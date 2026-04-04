@@ -1,0 +1,32 @@
+    /* Apply to the scrollbar of the div with class 'scrollbar-style' */
+    .scrollbar-style {
+        max-height: 600px; /* Allows for scrolling without setting a fixed height */
+        overflow-y: auto; /* Enables vertical scrolling */
+        padding: 10px;
+        background-color: #f9f9f9; /* Background color for visibility */
+      }
+  
+      /* WebKit scrollbar styles (Chrome, Safari) */
+      .scrollbar-style::-webkit-scrollbar {
+        width: 12px; /* Width of the scrollbar */
+      }
+  
+      .scrollbar-style::-webkit-scrollbar-track {
+        background: #fff; /* Color of the track */
+      }
+  
+      .scrollbar-style::-webkit-scrollbar-thumb {
+        background: #0015ff; /* Color of the scroll thumb */
+        border-radius: 10px; /* Round the corners of the thumb */
+        border: 2px solid #fff; /* Optional: add a border to highlight the thumb */
+      }
+  
+      .scrollbar-style::-webkit-scrollbar-thumb:hover {
+        background: #555; /* Color when the thumb is hovered */
+      }
+  
+      /* For Firefox */
+      .scrollbar-style {
+        scrollbar-width: thin; /* Options are: auto, thin, and none */
+        scrollbar-color: #0015ff #fff; /* Thumb color and track color */
+      }

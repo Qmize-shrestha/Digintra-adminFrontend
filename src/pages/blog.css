@@ -1,0 +1,4 @@
+.blog{
+    /* background-image: linear-gradient(to right, rgba(0,0,0,0.75), rgba(0,0,0,0.75)),url("blog.jpg"); */
+    background-image: linear-gradient(to top ,rgb(104, 236, 104), rgb(230, 230, 74));     
+}

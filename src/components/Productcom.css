@@ -1,0 +1,26 @@
+/* Initial state before animation */
+.fade-enter {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  
+  /* Active state during animation */
+  .fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+  }
+  
+  /* Initial state when exiting */
+  .fade-exit {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Active state during exit animation */
+  .fade-exit-active {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 500ms ease-in-out, transform 500ms ease-in-out;
+  }
+  
