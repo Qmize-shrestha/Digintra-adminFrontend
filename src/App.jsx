@@ -118,6 +118,7 @@ import Bulk_sms_Vietnam from "./pages/Vietnam.jsx";
 import Bulk_sms_Phillipines from "./pages/Philippines.jsx";
 import Bulk_sms_Belgium from "./pages/Belgium.jsx";
 import Bulk_sms_Zambia from "./pages/Zambia.jsx";
+import Bulk_sms_India from "./pages/Bulk_SMS_In_India.jsx"
 
 
 
@@ -338,7 +339,7 @@ function App() {
   <Route path="/promotional-email" element={<Promotional_email/>}/>
   <Route path="/smtp-server" element={<Smtp_server/>}/>
   <Route path="/whatsapp-business-api" element={<Whatsapp_business_api/>}/>
-  <Route path="/bulk-sms-india" element={<Bulk_SMS/>}/>
+  {/* <Route path="/bulk-sms-india" element={<Bulk_SMS/>}/> */}
   <Route path="/bulk-sms-germany" element={<BULK_SMS_GERMANY/>}/>
   <Route path="/bulk-sms-mexico" element={<BULK_SMS_MEXICO/>}/>
   <Route path="/bulk-sms-france" element={<BULK_SMS_FRANCE/>}/>
@@ -349,6 +350,8 @@ function App() {
   <Route path="/bulk-sms-phillipines" element={<Bulk_sms_Phillipines/>}/>
   <Route path="/bulk-sms-belgium" element={<Bulk_sms_Belgium/>}/>
   <Route path="/bulk-sms-zambia" element={<Bulk_sms_Zambia/>}/>
+  <Route path="/bulk-sms-india" element={<Bulk_sms_India/>}/>
+  
 
   
 

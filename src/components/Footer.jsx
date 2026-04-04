@@ -122,7 +122,7 @@ const Footer = () => {
      {/* <li><Link to="/bulk-sms-usa">Bulk SMS USA</Link></li> */}
 <li><Link to="/bulk-sms-uk">Bulk SMS UK</Link></li>
 <li><Link to="/bulk-sms-canada">Bulk SMS Canada</Link></li>
-{/* <li><Link to="/bulk-sms-india">Bulk SMS India</Link></li> */}
+<li><Link to="/bulk-sms-india">Bulk SMS India</Link></li>
 <li><Link to="/sms-broadcast-australia">Bulk SMS Australia</Link></li>
 <li><Link to="/bulk-sms-malaysia">Bulk SMS Malaysia</Link></li>
 <li><Link to="/bulk-sms-singapore">Bulk SMS Singapore</Link></li>
