@@ -31,6 +31,7 @@ import BULKSMSUAEBLOG from "./pages/Bulk_SMS_UAE_BLOGS.jsx"
 import RCSMESSAGE from "./pages/RCS_Messaging_The_Future_of_Business_Communication_in_2026.jsx"
 import DLT_Registration_2026 from "./pages/DLT_Registration_2026.jsx";
 import Jio_DLT_Registration_Guide from "./pages/Jio_DLT_Registration_Guide.jsx"
+import Airtel_DLT from './pages/Airtel_DLT.jsx'
 
 
 import The_top_10_advantages_of_sms_marketing_for_business from "./pages/The_top_10_advantages_of_sms_marketing_for_business";
@@ -424,6 +425,7 @@ function App() {
   <Route path="/blog/rcs-messaging-the-future-of-business-messaging" element={<RCSMESSAGE/>}/>
   <Route path="/blog/dlt-registration-india-guide" element={<DLT_Registration_2026/>}/>
   <Route path="/blog/jio-dlt-registration-guide" element={<Jio_DLT_Registration_Guide/>}/>
+  <Route path="/blog/airtel-dlt-registration" element={<Airtel_DLT/>}/>
 
 
   
