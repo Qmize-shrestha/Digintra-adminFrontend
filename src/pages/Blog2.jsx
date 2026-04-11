@@ -77,6 +77,7 @@ import BULKUAE from '../assets/UAE_Bulk_SMS_Service.jpeg'
 import RICHMESSAGE from '../assets/RichCommunicationServices.jpeg'
 import dltImage2 from "../assets/jio-dlt-registration.jpg";
 import dltImage from "../assets/dlt2026.jpg";
+import airteldlt from "../assets/airtel-dlt.png";
 
 
 
@@ -412,6 +413,11 @@ const MainPage = () => {
     image: dltImage2,
     title: "Jio DLT Registration Guide | Step-by-Step Process",
     link: "/blog/jio-dlt-registration-guide",
+  },
+  {
+    image: airteldlt,
+    title: "Airtel DLT Registration 2026: Step-by-Step Complete Guide",
+    link: "/blog/airtel-dlt-registration",
   },
 ];
 useEffect(()=>{
