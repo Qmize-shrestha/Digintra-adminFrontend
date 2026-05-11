@@ -181,7 +181,8 @@ import Send_Excel from './pages/How_to_send_bulk_sms_from_excel';
 import Sms_and_Mms from './pages/Sms_and_Mms';
 import Best_SMS_Marketing_Platforms from './pages/Best-SMS-Marketing-Platform-in-2026';
 import BULK_SMS_GERMANY from './pages/Bulk-SMS-Germany';
-
+import Vi_DLT from "./pages/Vi_DLT.jsx";
+import Trai_Guide from "./pages/TRAI_Guide.jsx";
 
 import Cookie from "./pages/Cookie";
 import Login from './pages/Login';
@@ -191,7 +192,7 @@ import BlogEditor from "./Blog/BlogEditor";
 import PostPage from './Blog/PostPage';
 import BlogPostDetail from './Blog/BlogPostDetails';
 import EditBlogPostForm from './Blog/EditBlogPostForm';
-
+import Bsnl_DLT from "./pages/Bsnl_DLT.jsx";
 import Privacypolicyapp from "./pages/Privacypolicyapp";
 
 import Bulk_SMS_vs_Whatsapp_Messages_Which_is_Better from "./pages/Bulk_SMS_vs_Whatsapp_Messages_Which_is_Better";
@@ -341,6 +342,7 @@ function App() {
   <Route path="/smtp-server" element={<Smtp_server/>}/>
   <Route path="/whatsapp-business-api" element={<Whatsapp_business_api/>}/>
   {/* <Route path="/bulk-sms-india" element={<Bulk_SMS/>}/> */}
+  {/* <Route path="/bulk-sms-india" element={<Bulk_SMS_In_India/>}/> */}
   <Route path="/bulk-sms-germany" element={<BULK_SMS_GERMANY/>}/>
   <Route path="/bulk-sms-mexico" element={<BULK_SMS_MEXICO/>}/>
   <Route path="/bulk-sms-france" element={<BULK_SMS_FRANCE/>}/>
@@ -426,8 +428,9 @@ function App() {
   <Route path="/blog/dlt-registration-india-guide" element={<DLT_Registration_2026/>}/>
   <Route path="/blog/jio-dlt-registration-guide" element={<Jio_DLT_Registration_Guide/>}/>
   <Route path="/blog/airtel-dlt-registration" element={<Airtel_DLT/>}/>
-
-
+  <Route path="blog/bsnl-dlt-registration-guide" element={<Bsnl_DLT />} />
+ <Route path="/blog/vi-dlt-registration-guide" element={< Vi_DLT/>} />
+ <Route path="/blog/trai" element={< Trai_Guide/>} />
   
 
 

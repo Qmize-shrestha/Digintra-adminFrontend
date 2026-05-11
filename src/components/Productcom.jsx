@@ -344,7 +344,7 @@ export default function Productcom({ onClose }) {
                       WhatsApp Business API
                     </li>
                   </Link>
-                  <Link to="/bulk-sms">
+                  <Link to="/bulk-sms-india">
                     <li
                       className="flex items-center gap-2 text-[#1E3F96] hover:text-[#172554] hover:pl-2 transition-all mt-8"
                       onClick={handleClose}

@@ -11,11 +11,13 @@ import icons4 from "../assets/icons8-ripple-50.png";
 import icons3 from "../assets/icons8-promotion-50.png";
 import icons5 from "../assets/icons8-message-501.png";
 import second from "../assets/second.jpg";
+
 export default function Products() {
     const[show1,setShow1]=useState(false);
     const[show2,setShow2]=useState(false);
     const[show3,setShow3]=useState(false);
     const[show4,setShow4]=useState(false);
+    const[show5,setShow5]=useState(false);
   return (
       
     <div className="chance w-auto h-auto pb-[50px] lg:pb-[350px] lg:h-auto pt-[20px] lg:pt-[50px] bg-gradient-to-tr from-orange-100 to-green-50 ">
@@ -58,13 +60,14 @@ export default function Products() {
         <h1  className="font-semibold text-[14px]" style={{fontFamily:"'Poppins', sans-serif"}}>
         TRENDING CHANNEL
         </h1>
-        <span><img src={icons2} alt="Messaging Services, Email Services, Social Media & Branding Services" className='h-3 my-2 ml-2'/></span>
+        <span><img src={icons2} alt="Messaging Services, Email Services, Social Media & Branding Services" className=' h-3 my-2 ml-2'/></span>
       </div>
       {show4 && <Trending/>}
      
     </div>
-    <div className="w-[310px] h-[310px] lg:w-[500px] lg:pb-10  mx-auto mt-8 rounded-lg ">
+    <div className="w-[310px]  h-[310px] lg:w-[500px] lg:pb-10  mx-auto mt-8 rounded-lg ">
         <img src={second} alt="Messaging Services, Email Services, Social Media & Branding Services" />
+      
       </div>
       </div>
       </div>

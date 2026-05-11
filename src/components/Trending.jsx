@@ -26,7 +26,7 @@ export default function Trending() {
         <p className="px-2  lg:px-4 text-left" style={{fontFamily:"'Poppins', sans-serif"}}>
         The WhatsApp Business API is a critical tool for businesses seeking to engage with their customers on the popular messaging platform, WhatsApp. This API enables businesses to integrate WhatsApp into their communication channels, allowing for real-time customer interactions, notifications, and support.
         </p>
-  <Link to="/whatsapp-business-api"><button className="border-b-2  border-blue-600 ml-2 lg:ml-3 bg-gradient-to-tr from-yellow-600 to-green-600 w-[150px] h-14 rounded-full shadow-md shadow-yellow-400 hover:-translate-y-2 text-white font-semibold pl-4 py-3  mt-5 flex">
+  <Link to="/whatsapp-business-api"><button className="border-b-2  border-blue-600 ml-2 lg:ml-3 bg-gradient-to-tr from-yellow-600 to-green-600 w-[150px] h-14 rounded-full shadow-md shadow-yellow-400 hover:-translate-y-2 text-black font-semibold pl-4 py-3  mt-5 flex">
           Read More
           <span>
             <img src={icons3} alt="" className="h-7 w-10" />

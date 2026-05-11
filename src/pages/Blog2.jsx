@@ -78,9 +78,9 @@ import RICHMESSAGE from '../assets/RichCommunicationServices.jpeg'
 import dltImage2 from "../assets/jio-dlt-registration.jpg";
 import dltImage from "../assets/dlt2026.jpg";
 import airteldlt from "../assets/airtel-dlt.png";
-
-
-
+import bsnldlt from "../assets/bsnldlt.jpg";
+import vidlt from "../assets/vidlt.jpg";
+import trai from "../assets/trai.jpeg";
 
 const MainPage = () => {
     const blogData = [
@@ -362,7 +362,7 @@ const MainPage = () => {
   {
     image: BestBULK,
     title: "10 Best Bulk SMS Providers in India 2025",
-    link: "/blog/10-best-bulk-sms-providers-india-2025",
+    link: "/blog/best-bulk-sms-providers-in-india",
   },
   {
     image: SMSMAR,
@@ -419,6 +419,21 @@ const MainPage = () => {
     title: "Airtel DLT Registration 2026: Step-by-Step Complete Guide",
     link: "/blog/airtel-dlt-registration",
   },
+  {
+    image: bsnldlt,
+    title: "BSNL DLT Registration: Ultimate Step-by-Step Guide for Businesses",
+    link: "/blog/bsnl-dlt-registration-guide",
+  },
+  {
+    image: vidlt,
+    title:"Vi DLT Registration Guide 2026 | Complete Process, Documents & Template Approval",
+    link: "/blog/vi-dlt-registration-guide"
+  },
+  {
+    image: trai,
+   title:"TRAI Guide 2026: Full Form, Complaints & SMS Rules",
+   link:"/blog/trai"
+  }
 ];
 useEffect(()=>{
     window.scrollTo(0,0);
