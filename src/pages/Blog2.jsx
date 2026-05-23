@@ -81,7 +81,8 @@ import airteldlt from "../assets/airtel-dlt.png";
 import bsnldlt from "../assets/bsnldlt.jpg";
 import vidlt from "../assets/vidlt.jpg";
 import trai from "../assets/trai.jpeg";
-
+import smsmarketing from "../assets/Smsmarketing.jpeg";
+import promotionaltextmsg from "../assets/promotional-text-msg.jpeg";
 const MainPage = () => {
     const blogData = [
   {
@@ -433,6 +434,11 @@ const MainPage = () => {
     image: trai,
    title:"TRAI Guide 2026: Full Form, Complaints & SMS Rules",
    link:"/blog/trai"
+  },
+  {
+    image: promotionaltextmsg,
+    title:"50 Promotional Text Message Examples to Boost Conversions in 2026",
+    link: "/blog/promotional-text-message-examples"
   }
 ];
 useEffect(()=>{

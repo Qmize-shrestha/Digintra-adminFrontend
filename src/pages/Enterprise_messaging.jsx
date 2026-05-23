@@ -26,12 +26,30 @@ import icons13 from "../assets/c4.png";
 import icons14 from "../assets/Get_started_img.webp";
 import icons15 from "../assets/icons8-plus-501.png";
 import Footer2 from '../components/Footer2';
-import enterprisemsgimg from '../assets/enterprise_msg.webp'
-import { FaCog, FaShieldAlt, FaChartLine, FaSearch, FaInbox,FaUserPlus, FaWhatsapp } from 'react-icons/fa';
+import Footer from '../components/Footer';
+import enterprisemsgimg from '../assets/enterprise_msg.webp';
+import enterprisesms from "../assets/enterprisesms.png";
+import enterprisemessg from "../assets/enterprisemessg.jpeg";
+import { FaCog, FaShieldAlt, FaChartLine, FaSearch, FaInbox,FaUserPlus, FaWhatsapp, FaArrowRight, FaBell, FaKey, FaBullhorn, FaUniversity, FaShoppingCart, FaHeadset, FaHeartbeat, FaTruck, FaUsersCog, FaCheckCircle } from 'react-icons/fa';
 import { MdCheckCircle } from 'react-icons/md';
 import Getstarted from '../components/Getstarted';
 import Client from '../components/Client';
-
+import { Sparkles } from 'lucide-react';
+import {
+    FaLayerGroup,
+  FaClock,
+  FaUserCheck,
+  FaPlug,
+  FaComments,
+  FaGlobe,
+  FaBolt,
+  FaServer,
+   FaCogs,
+    FaCode,
+  FaTachometerAlt,
+  FaLock,
+  FaProjectDiagram,
+} from "react-icons/fa";
 export default function Enterprise_messaging() {
     const [Ques1, setQues1] = useState(false);
     const [Ques2, setQues2] = useState(false);
@@ -119,294 +137,668 @@ export default function Enterprise_messaging() {
         <meta name="robots" content="index, follow" />
 
                   <meta charSet="utf-8" />
-                  <title>Enterprise Messaging Service | Business Text Messaging Service
-</title>
-                  <meta name="description" content="Looking for Bulk SMS Service for Enterprise Messaging? Digintra offers you Customizable, scalable, and reliable solutions for SMS in India. Contact Now!"/>
-                   <meta name="keywords" content="enterprise messaging service, business text messaging service
-" />
-                     <link rel="canonical" href="https://digintra.com/enterprise-messaging" />
+                  <title> Enterprise Messaging Solutions | Enterprise SMS Gateway & Business Text Messaging Platform</title>
+                  <meta name="description" content=" Boost communication with Enterprise Messaging solutions. Scalable enterprise SMS solution, business text messaging platform, and secure enterprise SMS gateway for global business growth"/>
+                   <meta name="keywords" content=" Enterprise Messaging solutions, Enterprise SMS Solution, business text messaging platform, Enterprise Messaging solution, business text messaging solution, enterprise messaging service, enterprise sms gateway" />
+                     <link rel="canonical" href="https://digintra.com//enterprise-messaging-solutions" />
                 
               </Helmet>   
 
-              
+    <section className="w-full bg-gradient-to-b from-white to-gray-50 py-10 px-6 md:px-12 lg:px-20">
+  <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center mt-3">
 
-        <div  className="relative bg-gradient-to-bl from-orange-500 via-blue-200 to-cyan-400
+    {/* LEFT CONTENT */}
+    <div className="flex flex-col gap-6 text-center md:text-left" >
 
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-gray-900">
+        Enterprise <span className="text-green-600">Messaging</span> Solutions
+      </h1>
 
+      <p
+        className="text-[14px] sm:text-[15px] lg:text-[16px] text-gray-700 leading-relaxed max-w-xl mx-auto md:mx-0"
+        style={{ fontFamily: "'Poppins', sans-serif" }}
+      >
+        Empower your business communication with scalable, secure, and intelligent
+        enterprise messaging solutions designed to deliver instant connectivity,
+        higher engagement, and seamless customer interactions across global markets.
+      </p>
 
- w-auto pt-[230px] lg:h-[720px] pb-[50px] flex flex-col gap-6 lg:flex-row justify-center items-center ">
-          <div className='absolute inset-0 backdrop-blur-md w-full h-full'></div>
-          <div  className='w-[90%] lg:w-[40%] z-10 '>
-            <div className="h-auto space-y-3 mx-auto lg:w-[500px]">
-            <div className=" mx-auto bg-[#0053b7]">
-              <h2 data-aos="fade-right" className="text-center lg:text-[16px] lg:tracking-widest text-white" style={{fontFamily:"'Montserrat', sans-serif"}}>
-                THE POWER OF SMS
-              </h2>
-            </div>
-  
-            <h1 data-aos="fade-right" className="text-[21px] font-[700] text-[#0053b7] text-center lg:text-[40px]" style={{fontFamily:"'Montserrat', sans-serif"}}>
-            Enterprise Messaging
-            </h1>
-            <p data-aos="fade-right" className="text-center text-[13px] text-black lg:text-[16px]" style={{fontFamily:"'Poppins',sans-serif"}}>
-              Send to everyone, connect individually
-            </p>
-          </div>
-          <div className="h-auto mx-auto px-12 mt-7 flex md:justify-center items-center gap-4 md:gap-8 flex-col md:flex-row">
-            <a href="https://sms-login.digintra.com/User/SignUp">
-              <button className="border-b-2 border-[#1e3b8d] ml-2 lg:ml-0 bg-gradient-to-tr from-[#3e8646] to-[#2fac13] w-[220px] h-16 rounded-lg shadow-xl transition-transform transform hover:scale-110 hover:shadow-2xl text-white font-bold flex items-center justify-center gap-2">
-                <FaUserPlus className="h-6 w-6" />
-                Register Now
-              </button>
-            </a>
-            <a href='https://api-wa.co/nVOl41'>
-              <button className="border-b-2 border-[#1e3b8d] mt-6 md:mt-0  ml-2 lg:ml-0 bg-gradient-to-tr from-[#00b09b] to-[#96c93d] w-[220px] h-16 rounded-lg font-bold shadow-xl transition-transform transform hover:scale-110 hover:shadow-2xl text-white  flex items-center justify-center gap-2">
-                <FaWhatsapp className="h-6 w-6" />
-                Chat on WhatsApp
-              </button>
-            </a>
-          </div>
-                    </div>
-          <div className='w-[90%] md:w-[35%] z-10'>
-            <img src={enterprisemsgimg} alt="" className='w-full  lg:mt-20 '/>
-          </div>
+      {/* BUTTONS */}
+      <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-4 justify-center md:justify-start items-center">
+
+<a href="https://digintra.com/">
+        <button className="border-b-2 border-[#1e3b8d] bg-gradient-to-tr from-[#3e8646] to-[#2fac13] w-[200px] h-14 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl text-white font-semibold flex items-center justify-center gap-2">
+          Get Started Today <FaArrowRight />
+        </button>
+</a>
+      <a href="https://wa.me/919031011559" target="_blank" rel="noopener noreferrer">
+  <button className="border-b-2 border-[#1e3b8d] bg-gradient-to-tr from-[#00b09b] to-[#96c93d] w-[200px] h-14 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl text-white font-semibold flex items-center justify-center gap-2">
+    <FaWhatsapp className="h-5 w-5" />
+    WhatsApp
+  </button>
+</a>
+
+      </div>
+    </div>
+
+    {/* RIGHT IMAGE */}
+    <div className="flex justify-center md:justify-end mt-5">
+      <img
+        src={enterprisemsgimg}
+        alt="Enterprise Messaging"
+        className="w-full max-w-md md:max-w-lg lg:max-w-xl object-contain"
+      />
+    </div>
+
+  </div>
+</section>
+
+ <section className="w-full bg-white py-12 px-6 md:px-12 lg:px-20">
+     <div className="max-w-6xl mx-auto mb-5 -mt-6 ">
+
+        <div className="flex items-center justify-center gap-3 
+                        bg-green-50 border border-green-100 
+                        rounded-xl py-3 px-6 shadow-sm">
+
+          {/* ICON */}
+          <Sparkles className="text-green-600 w-5 h-5" />
+           <Sparkles className="text-green-600 w-5 h-5" />
+
+          {/* TEXT */}
+          <p className="text-sm sm:text-base md:text-lg font-medium text-gray-800 text-center">
+            Transform Your{" "}
+            <span className="text-green-600 font-semibold">
+              Messaging Strategy
+            </span>{" "}
+            Today
+          </p>
+
         </div>
 
+      </div>
 
-        {/* <section className="py-16 bg-gray-50 text-black">
-      <div className="container mx-auto px-6">
-        <h2 className="text-4xl font-bold text-center mb-12 pulse-animation">Why Choose Our Enterprise Messaging Services?</h2>
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, index) => (
-            <div key={index} className="bg-gray-200 p-6 rounded-lg shadow-lg scale-up-on-hover">
-              {service.icon}
-              <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-              <p className="text-base">{service.description}</p>
-            </div>
-          ))}
+      <div className="max-w-6xl mx-auto">
+
+        {/* HEADING */}
+        <div className="text-center mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 leading-snug">
+            Transform Business Communication with{" "}
+            <span className="text-green-600">
+              Enterprise Messaging Solutions
+            </span>
+          </h2>
+        </div>
+
+        {/* CONTENT GRID */}
+        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+
+          {/* LEFT TEXT */}
+          <p
+            className="text-gray-700 text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
+            Communication plays a vital role in business success. So, all enterprises
+            require fast, reliable, and scalable messaging systems to connect with
+            their customers, partners, and internal teams in real time. Our <span className='font-bold'>enterprise
+            messaging solutions </span> are built to deliver high-performance communication
+            capabilities that enhance engagement, improve operational efficiency, and
+            drive measurable results.
+          </p>
+
+          {/* RIGHT TEXT */}
+          <p
+            className="text-gray-700 text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed"
+            style={{ fontFamily: "'Poppins', sans-serif" }}
+          >
+            With the growing demand for instant communication, businesses need more
+            than just basic messaging. They need a complete  <span className='font-bold'> enterprise messaging
+            solution </span>that integrates seamlessly with their systems, supports multiple
+            use cases, and ensures high deliverability across regions. That’s exactly
+            what DIGINTRA Teleservices offers: advanced messaging infrastructure
+            combined with enterprise-grade reliability.
+          </p>
+
         </div>
       </div>
-    </section> */}
-        {/* <div class="custom-shape-divider-bottom-1689164512">
-          <svg
-            data-name="Layer 1"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1200 120"
-            preserveAspectRatio="none"
-          >
-            <path d="M1200 0L0 0 598.97 114.72 1200 0z" class="shape-fill fill-white "></path>
-          </svg>
-        </div> */}
-        <div className='w-auto h-auto py-10 bg-white'>
+    </section>       
 
-  
-        <div className="w-[310px]  h-screen lg:h-auto mx-auto lg:w-[80%] lg:flex lg:justify-between">
-          <div className="space-y-2 lg:space-y-7 lg:w-[500px] lg:pt-5">
-            <p data-aos="fade-right" className="text-[13px] lg:text-left lg:text-[16px] text-center font-[400]" style={{fontFamily:"'Poppins',sans-serif"}}>
-              Our web-based platform &amp; API should be your first choice if you
-              need a reliable service to deliver your high volume text messages.
-              if you're looking to send bulk SMS messages in a single hot or want
-              to send time or event triggered messages (such as SMS server alerts,
-              promotion of products, services or job scheduling texts), We can
-              provide you with a trusted and teliable SMS service to got your
-              messages out there. {<br />}{" "}
-            </p>
-            <p data-aos="fade-right" className="text-[13px] lg:text-left lg:text-[16px] text-center font-[400] " style={{fontFamily:"'Poppins',sans-serif"}}>
-              The SMS has been the most important feature in the widespread
-              popularity and development of the mobile phone in the entire world.
-              The SMS service in the form of Bulk SMS succumbs perfectly in the
-              business and financial develop,emts owing to the globalization in
-              the nation. It is cost effective, fast and easy.
-            </p>
+    <section className="w-full bg-gradient-to-b from-gray-50 to-white py-12 px-6 md:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+        {/* LEFT CONTENT */}
+        <div className="flex flex-col gap-6 text-center md:text-left">
+
+          {/* HEADING */}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
+            Comprehensive{" "}
+            <span className="text-green-600">
+              Enterprise SMS Solution
+            </span>
+          </h2>
+
+          {/* DESCRIPTION */}
+          <p className="text-black text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed max-w-xl mx-auto md:mx-0">
+            Our <span className='font-bold'> enterprise SMS solution </span>is designed to handle mission-critical
+            communication needs for businesses of all sizes. Whether it's sending
+            OTPs, transactional SMS alerts, reminders, or promotional SMS campaigns,
+            our business text messaging platform ensures that every message is
+            delivered quickly and securely.
+          </p>
+
+          {/* BULLET POINTS */}
+          <div className="flex flex-col gap-3 mt-2 text-left max-w-md mx-auto md:mx-0">
+            {[
+              "High-speed bulk SMS delivery with low latency",
+              "Intelligent routing for maximum delivery success",
+              "Personalized messaging with dynamic content",
+              "Secure transmission with industry-standard protocols",
+              "Real-time delivery reports and analytics",
+            ].map((item, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <span className="text-green-600 text-lg mt-[2px]">✔</span>
+                <p className="text-black text-sm sm:text-base">{item}</p>
+              </div>
+            ))}
           </div>
-          <div data-aos="zoom-in-up" className="w-[310px]  mt-5 lg:mt-0 lg:w-[550px]">
-            <img src={icons3} alt="Enterprise Messaging" className='w-full'/>
-          </div>
+
+          {/* FOOT TEXT */}
+          <p className="text-black text-sm sm:text-base mt-2 max-w-xl mx-auto md:mx-0">
+            This makes it easier for enterprises to maintain consistent communication
+            with their audience while ensuring compliance and data security.
+          </p>
+
         </div>
-  
 
-
-        <div className=" lg:mt-12 h-auto mx-auto lg:w-[80%] border-2 border-dashed shadow-lg border-blue-800 rounded-lg md:py-11 px-11 lg:flex items-center bg-gradient-to-tr from-indigo-100 via-green-100 to-orange-100 justify-between">
-          
-
-          <div className='w-full h-auto '>
-            <img src={enterprisekey} alt="" className='h-[50%] md:h-[80%]' />
-
-          </div>
-          <div>
-            <h3 className="head text-center font-[700] text-[21px] lg:text-[40px] text-[#0053b7] lg:text-center" style={{fontFamily:"'Montserrat',sans-serif"}}>
-              {" "}
-              Key features of {<br />} <span className='text-transparent bg-clip-text bg-gradient-to-r from-orange-500 via-indigo-600 to-pink-500'>Enterprise {<br />}Messaging</span>
-            </h3>
-            <p className="text-[13px] font-[400] text-center lg:text-[16px] lg:text-left" style={{fontFamily:"'Poppins',sans-serif"}}>
-              Global Reach Connect with your global audiences effortlessly via
-              single or bulk SMS messages without overspending.
-            </p>
-          </div>
+        {/* RIGHT IMAGE */}
+        <div className="flex justify-center md:justify-end">
+          <img
+            src={enterprisesms}
+            alt="Enterprise SMS Solution"
+            className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl object-contain drop-shadow-xl transition duration-300 hover:scale-105"
+          />
         </div>
-        <div className="mt-7 w-[310px] py-11 h-auto mx-auto lg:w-[1140px]">
-          <h3 className="text-[21px] font-[700] text-[#0053b7] text-center px-4 lg:text-[40px] " style={{fontFamily:"'Montserrat',sans-serif"}}>
-            Customizable, <span className='text-orange-500'>scalable</span>  and reliable
+
+      </div>
+    </section>
+
+
+ <section className="w-full bg-gradient-to-b from-white to-gray-50 py-12 px-6 md:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
+        {/* LEFT IMAGE */}
+        <div className="flex justify-center md:justify-start order-2 md:order-1">
+          <img
+            src={enterprisemessg}
+            alt="Business Messaging Platform"
+            className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl object-contain drop-shadow-xl transition duration-300 hover:scale-105"
+          />
+        </div>
+
+        {/* RIGHT CONTENT */}
+        <div className="flex flex-col gap-6 text-center md:text-left order-1 md:order-2">
+
+          {/* HEADING */}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
+            Powerful{" "}
+            <span className="text-green-600">
+              Business Text Messaging Platform
+            </span>
+          </h2>
+
+          {/* DESCRIPTION */}
+          <p className="text-black text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed max-w-xl mx-auto md:mx-0">
+            Our advanced <span className='font-bold'> business text messaging platform </span> enables organizations to
+            manage, automate, and optimize their messaging operations from a single
+            unified interface. It simplifies communication workflows and enhances
+            productivity by eliminating manual processes.
+          </p>
+     <p className='text-black text-[14px]  sm:text-[15px] lg:text-[16px]'>With our platform, businesses can:</p>
+          {/* BULLETS */}
+          <div className="flex flex-col gap-3 mt-2 text-left max-w-md mx-auto md:mx-0">
+            {[
+              "Launch and manage large-scale messaging campaigns",
+              "Automate notifications based on triggers and events",
+              "Enable two-way messaging for customer interaction",
+              "Integrate messaging APIs into CRM, ERP, or applications",
+              "Monitor performance with detailed analytics dashboards",
+            ].map((item, index) => (
+              <div key={index} className="flex items-start gap-3">
+                <span className="text-green-600 text-lg mt-[2px]">✔</span>
+                <p className="text-black text-sm sm:text-base">{item}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* FOOT TEXT */}
+          <p className="text-black text-sm sm:text-base mt-2 max-w-xl mx-auto md:mx-0">
+            This platform is ideal for businesses looking to improve customer engagement
+            and streamline communication processes.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+
+  <section className="w-full bg-gradient-to-b from-gray-50 to-white py-12 px-6 md:px-12 lg:px-20">
+      <div className="max-w-6xl mx-auto text-center">
+
+        {/* HEADING */}
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black mb-6">
+          Scalable{" "}
+          <span className="text-green-600">
+            Enterprise Messaging Service
+          </span>
+        </h2>
+
+        {/* DESCRIPTION */}
+        <p className="text-black text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed max-w-3xl mx-auto mb-10">
+          Our <span className='font-bold'> enterprise messaging service </span> is built with scalability at its core.
+          Whether you're sending a few thousand messages or millions daily, our
+          infrastructure ensures consistent performance, speed, and reliability.
+        </p>
+  
+        {/* FEATURES GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {[
+            {
+          text: "Global connectivity with direct operator routes",
+          icon: <FaGlobe />,
+        },
+        {
+          text: "High throughput messaging capabilities",
+          icon: <FaBolt />,
+        },
+        {
+          text: "24/7 uptime with proactive monitoring",
+          icon: <FaServer />,
+        },
+        {
+          text: "Redundant systems for uninterrupted service",
+          icon: <FaShieldAlt />,
+        },
+        {
+          text: "Flexible deployment options for enterprise needs",
+          icon: <FaCogs />,
+        },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm 
+                         hover:shadow-xl transition duration-300 hover:-translate-y-1"
+            >
+              <div className="flex items-start gap-3">
+                <span className="text-green-600 text-xl mt-1">  {item.icon}</span>
+                <p className="text-black text-sm sm:text-base text-left">
+                    {item.text}
+                </p>
+              </div>
+            </div>
+          ))}
+
+        </div>
+
+        {/* FOOT TEXT */}
+        <p className="text-black text-sm sm:text-base mt-10 max-w-3xl mx-auto">
+          This ensures your communication never faces downtime, even during peak
+          demand periods.
+        </p>
+
+      </div>
+    </section>  
+
+  <section className="w-full bg-gradient-to-b from-white to-gray-50 py-12 px-6 md:px-12 lg:px-20">
+      <div className="max-w-6xl mx-auto">
+
+        {/* HEADING */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
+            Advanced{" "}
+            <span className="text-green-600">
+              Business Text Messaging Solution
+            </span>
+          </h2>
+        </div>
+
+        {/* DESCRIPTION */}
+        <p className="text-black text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed text-center max-w-3xl mx-auto mb-12">
+          Our customizable <span className='font-bold'> business text messaging solution </span> allows enterprises to
+          deliver personalized and targeted communication to their customers. By
+          leveraging customer data and behavioral insights, businesses can send
+          messages that truly resonate.
+        </p>
+
+        {/* CAPABILITIES GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {[
+             {
+          text: "Segmentation-based messaging campaigns",
+          icon: <FaLayerGroup />,
+        },
+        {
+          text: "Automated workflows and scheduling",
+          icon: <FaClock />,
+        },
+        {
+          text: "Personalized content delivery",
+          icon: <FaUserCheck />,
+        },
+        {
+          text: "Integration with marketing automation tools",
+          icon: <FaPlug />,
+        },
+        {
+          text: "Enhanced customer engagement strategies",
+          icon: <FaComments />,
+        },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="bg-white border border-gray-100 rounded-xl p-6 
+                         shadow-sm hover:shadow-xl transition duration-300 
+                         hover:-translate-y-1"
+            >
+              <div className="flex items-start gap-3">
+                <span className="text-green-600 text-xl mt-1">{item.icon}</span>
+                <p className="text-black text-sm sm:text-base text-left">
+                    {item.text}
+                </p>
+              </div>
+            </div>
+          ))}
+
+        </div>
+
+        {/* FOOT TEXT */}
+        <p className="text-black text-sm sm:text-base mt-12 text-center max-w-3xl mx-auto">
+          This helps businesses not only communicate but also build stronger
+          relationships with their customers.
+        </p>
+
+      </div>
+    </section>   
+
+ <section className="w-full bg-gradient-to-b from-gray-50 to-white py-12 px-6 md:px-12 lg:px-20">
+      <div className="max-w-6xl mx-auto">
+
+        {/* HEADING */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
+            Reliable{" "}
+            <span className="text-green-600">
+              Enterprise SMS Gateway
+            </span>
+          </h2>
+        </div>
+
+        {/* DESCRIPTION */}
+        <p className="text-black text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed text-center max-w-3xl mx-auto mb-12">
+          Our robust <span className='font-bold'> enterprise SMS gateway </span> ensures seamless communication between
+          your systems and mobile networks worldwide. With developer-friendly APIs
+          and secure connectivity, integration becomes quick and hassle-free.
+        </p>
+
+        {/* FEATURE CONTAINER */}
+        <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 md:p-10">
+
+          {/* GRID */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            {[
+               {
+            text: "RESTful APIs for easy integration",
+            icon: <FaCode />,
+          },
+          {
+            text: "High-speed message processing",
+            icon: <FaTachometerAlt />,
+          },
+          {
+            text: "Real-time delivery tracking",
+            icon: <FaChartLine />,
+          },
+          {
+            text: "Secure data encryption and compliance",
+            icon: <FaLock />,
+          },
+          {
+            text: "Multi-channel support for future scalability",
+            icon: <FaProjectDiagram />,
+          },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className="flex items-start gap-3 bg-gray-50 rounded-xl p-4 
+                           hover:shadow-md transition duration-300"
+              >
+                <span className="text-green-600 text-lg mt-1"> {item.icon}</span>
+                <p className="text-black text-sm sm:text-base">
+                       {item.text}
+                </p>
+              </div>
+            ))}
+
+          </div>
+
+        </div>
+
+        {/* FOOT TEXT */}
+        <p className="text-black text-sm sm:text-base mt-10 text-center max-w-3xl mx-auto">
+          This enables enterprises to embed messaging capabilities directly into
+          their applications and workflows.
+        </p>
+
+      </div>
+    </section>
+
+   <section className="w-full bg-gradient-to-b from-white to-gray-50 py-12 px-6 md:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto">
+
+        {/* HEADING */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
+            Key Use Cases of{" "}
+            <span className="text-green-600">
+              Enterprise Messaging Solutions
+            </span>
+          </h2>
+        </div>
+
+        {/* DESCRIPTION */}
+        <p className="text-black text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed text-center max-w-3xl mx-auto mb-12">
+          Our <span className='font-bold'>  enterprise messaging solutions </span> support a wide range of business
+          applications across industries. Here are some of the most impactful
+          use cases:
+        </p>
+
+        {/* USE CASES GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          {[
+            {
+              title: "Customer Notifications & Alerts",
+              desc: "Send real-time updates such as order confirmations, delivery status, payment reminders, and appointment alerts.",
+                icon: <FaBell />,
+            },
+            {
+              title: "OTP & Authentication",
+              desc: "Ensure secure user verification with instant one-time passwords (OTPs) for login and transactions.",
+                icon: <FaKey />,
+            },
+            {
+              title: "Marketing & Promotions",
+              desc: "Run targeted SMS campaigns to promote products, services, discounts, and offers.",
+              icon: <FaBullhorn />,
+            },
+            {
+              title: "Banking & Financial Services",
+              desc: "Deliver transaction alerts, fraud notifications, balance updates, and account activity messages securely.",
+              icon: <FaUniversity />,
+            },
+            {
+              title: "E-commerce Communication",
+              desc: "Enhance the customer journey with order updates, shipping notifications, and feedback requests.",
+              icon: <FaShoppingCart />,
+            },
+            {
+              title: "Customer Support & Engagement",
+              desc: "Enable two-way messaging for customer queries, feedback collection, and support interactions.",
+                icon: <FaHeadset />,
+            },
+            {
+              title: "Healthcare Communication",
+              desc: "Send appointment reminders, test results, prescription alerts, and health notifications to patients.",
+                icon: <FaHeartbeat />,
+            },
+            {
+              title: "Logistics & Delivery Updates",
+              desc: "Provide real-time shipment tracking, delivery confirmations, and delay notifications.",
+               icon: <FaTruck />,
+            },
+            {
+              title: "Internal Business Communication",
+              desc: "Streamline internal alerts, employee notifications, and operational updates within organizations.",
+               icon: <FaUsersCog />,
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="bg-white border border-gray-100 rounded-xl p-6 
+                         shadow-sm hover:shadow-xl transition duration-300 
+                         hover:-translate-y-1 flex flex-col gap-3 text-center"
+            >
+              <div className="flex justify-center">
+                 <span className=" bg-green-100 text-green-600  p-3 rounded-lg w-fit text-xl">
+            {item.icon}
+          </span>
+          </div>
+              {/* TITLE */}
+              <h3 className="text-black font-semibold text-base sm:text-lg">
+                {item.title}
+              </h3>
+
+              {/* DESCRIPTION */}
+              <p className="text-black text-sm sm:text-base leading-relaxed">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+
+        </div>
+
+      </div>
+    </section> 
+
+    <section className="w-full bg-gradient-to-b from-gray-50 to-white py-12 px-6 md:px-12 lg:px-20">
+      <div className="max-w-7xl mx-auto">
+
+        {/* HEADING */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-black">
+            Why Choose{" "}
+            <span className="text-green-600">
+              DIGINTRA Teleservices?
+            </span>
+          </h2>
+        </div>
+
+        {/* DESCRIPTION */}
+        <p className="text-black text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed text-center max-w-3xl mx-auto mb-12">
+          Choosing the right messaging partner is crucial for enterprise success.
+          DIGINTRA Teleservices stands out by offering reliable, scalable, and secure
+    <span className='font-bold'> enterprise messaging solutions </span> tailored to your business needs.
+        </p>
+
+        {/* FEATURES GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+
+          {[
+             {
+      text: " Global Coverage: Reach customers across multiple countries effortlessly",
+      icon: <FaGlobe />
+    },
+    {
+      text: "High Deliverability: Direct routes ensure maximum message delivery rates",
+      icon: <FaCheckCircle/>
+    },
+    {
+      text: "Scalable Infrastructure: Designed for enterprises with high messaging volumes",
+      icon: <FaServer />
+    },
+    {
+      text: "Secure Platform: Advanced encryption and compliance standards",
+      icon: <FaShieldAlt />
+    },
+    {
+      text: "Custom Solutions: Tailored messaging strategies for different industries",
+      icon: <FaCogs />
+    },
+    {
+      text: "Expert Support: Dedicated team available for assistance and optimization",
+      icon: <FaHeadset />
+    },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="bg-white border border-gray-100 rounded-xl p-6 
+                         shadow-sm hover:shadow-xl transition duration-300 
+                         hover:-translate-y-1 flex items-start gap-3"
+            >
+              <span className="text-green-600 text-xl mt-1"> {item.icon}</span>
+              <p className="text-black text-sm sm:text-base">
+             {item.text}
+              </p>
+            </div>
+          ))}
+
+        </div>
+
+        {/* CTA BOX */}
+        <div className="bg-gradient-to-r from-green-50 to-green-100 border border-green-200 rounded-2xl p-8 md:p-12 text-center shadow-sm mb-32">
+
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-black mb-4">
+            Get Started Today 
           </h3>
-          <div className="w-[200px] h-[3px] bg-gray-700 mx-auto"></div>
-          <div className="w-[310px] h-auto mx-auto lg:w-[1140px] grid grid-cols-1 lg:grid-cols-3 space-y-7 md:space-y-0 lg:mt-8 ">
-            {/* first card */}
-            <div className="w-[300px] bg-gradient-to-t from-orange-50 border-l-4 border-t-2 border-r-2 border-b-4 rounded-lg border-blue-800 h-auto p-4">
-              <img src={icons7} alt="Enterprise Messaging" />
-              <h3 className="text-[16px] mb-2 lg:text-[21px] font-semibold text-blue-800 text-center" style={{fontFamily:"'Montserrat',sans-serif"}}>
-                Tier 1 super network
-              </h3>
-              <p className="text-[13px] lg:text-[16px] text-center font-[400]" style={{fontFamily:"'Poppins',sans-serif"}}>
-                With over 250+ direct carrier relationships, we deliver yourSMS
-                messages directly to your customer phones across theworld –
-                quickly and with supreme quality.
-              </p>
-            </div>
-  
-            {/* second card */}
-  
-            <div className="w-[310px] bg-gradient-to-t from-orange-50 h-auto border-l-4 border-t-2 border-r-2 border-b-4 rounded-lg border-blue-800 p-4">
-              <img src={icons8} alt="Enterprise Messaging" />
-              <h3 className="text-[16px] lg:text-[21px] font-semibold text-blue-800 text-center" style={{fontFamily:"'Montserrat',sans-serif"}}>
-                Global compliance
-              </h3>
-              <p className="text-[13px] lg:text-[16px] text-center font-[400]" style={{fontFamily:"'Poppins',sans-serif"}}>
-                Our platform has routes in all corners of the world, giving you
-                the freedom to choose where to send SMS messages.
-              </p>
-            </div>
-  
-            {/* third card */}
-  
-            <div className="w-[310px] bg-gradient-to-t from-orange-50 h-auto border-l-4 border-t-2 border-r-2 border-b-4 rounded-lg border-blue-800 p-4  ">
-              <img src={icons9} alt="Enterprise Messaging" />
-              <h3 className="text-[16px] lg:text-[21px] font-semibold text-blue-800 text-center " style={{fontFamily:"'Montserrat',sans-serif"}}>
-                Customer insights
-              </h3>
-              <p className="text-[13px] lg:text-[16px] text-center font-[400]" style={{fontFamily:"'Poppins',sans-serif"}}>
-                In our SMS portal you can manage your campaigns and check the real
-                time delivery reports which help you make more informed business
-                decisions.
-              </p>
-            </div>
+
+          <p className="text-black text-[14px] sm:text-[15px] lg:text-[16px] leading-relaxed max-w-2xl mx-auto mb-6">
+            Upgrade your business communication with DIGINTRA’s powerful <span className='font-bold'>Enterprise
+            Messaging solutions</span>. Whether you need an <span className='font-bold'>enterprise SMS gateway</span>, a complete
+               <span className='font-bold'> business text messaging solution</span>, or a scalable <span className='font-bold'>enterprise messaging
+            service </span>, we have the expertise and technology to support your growth.
+          </p>
+
+          <p className="text-black text-sm sm:text-base mb-8 font-bold">
+            Contact us today and take the first step toward smarter, faster, and more
+            reliable enterprise communication.
+          </p>
+
+          {/* BUTTONS */}
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+
+<a href="https://digintra.com/">
+            <button className="bg-gradient-to-tr from-[#3e8646] to-[#2fac13] 
+                               text-white px-6 py-3 rounded-lg shadow-lg 
+                               hover:scale-105 hover:shadow-2xl transition duration-300  flex items-center gap-2">
+              Get Started <FaArrowRight />
+            </button>
+</a>
+           <a href="https://wa.me/919031011559" target="_blank" rel="noopener noreferrer">
+  <button className="border-b-2 border-[#1e3b8d] bg-gradient-to-tr from-[#00b09b] to-[#96c93d] w-[200px] h-14 rounded-lg shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl text-white font-semibold flex items-center justify-center gap-2">
+    <FaWhatsapp className="h-5 w-5" />
+    WhatsApp
+  </button>
+</a>
+
           </div>
+
         </div>
-        {/* Client getstarted */}
-        <Client/>
-        <Getstarted/>
-        {/* Frequently asked questiohns */}
-        <div className="w-[310px] space-y-7 h-auto pt-[60px] mx-auto lg:w-[1140px]">
-          <h3 className="text-[21px] font-[700] text-[#0053b7] text-center lg:text-[40px] " style={{fontFamily:"'Montserrat', sans-serif"}}>
-            Frequently Asked Questions
-          </h3>
-          <div className="w-[200px] h-[4px] bg-blue-600 mx-auto "></div>
-          <div className="lg:pt-[60px] w-[310px] pt-[50px] pb-7 lg:pb-14 h-auto lg:w-[1100px] mx-auto space-y-6">
-   
-          
-          <div
-            className="w-[310px] h-10 bg-[#FBFBFB] rounded-lg flex justify-between px-4 lg:w-[1000px] lg:h-14 lg:mx-auto"
-            onClick={handleQues1}
-          >
-            <h3 className="text-[13px] font-[600] text-[#01cf80] py-3 lg:text-[19px] "  style={{fontFamily:"'Montserrat', sans-serif"}}>
-              What is SMS?{" "}
-            </h3>
-            <span>
-              <img src={icons15} alt="" className="lg:h-8 h-4 l my-3" />
-            </span>
-          </div>
-          {Ques1 && (
-            <p className="bg-[#FBFBFB] text-[13px] px-4 lg:w-[1000px] lg:mx-auto lg:text-[16px] font-[400] text-[#646464]" style={{fontFamily:"'Poppins', sans-serif"}}>
-              Short Message Service (SMS) is the ability to send and receive short
-              alphanumeric messages to and from mobile telephones. Asingle text
-              message is limited to 160 characters including spaces.
-            </p>
-          )}
-  
-          <div
-            className="w-[310px] h-10 bg-[#FBFBFB] rounded-lg flex justify-between px-4 lg:w-[1000px] lg:h-14 lg:mx-auto"
-            onClick={handleQues2}
-          >
-            <h3 className="text-[13px] font-[600] text-[#01cf80] flex justify-between py-3 lg:text-[19px]" style={{fontFamily:"'Montserrat', sans-serif"}}>
-              How quickly are messages delivered?{" "}
-            </h3>
-            <span>
-              <img src={icons15} alt="" className="h-4 lg:h-8 my-3" />
-            </span>
-          </div>
-          {Ques2 && (
-            <p className="bg-[#FBFBFB] px-4 text-[13px] lg:w-[1000px] lg:mx-auto lg:text-[16px] font-[400] text-[#646464]" style={{fontFamily:"'Poppins', sans-serif"}}>
-              Wherever possible, we use direct or 1-hop connections. This means
-              that you are getting the highest quality SMS delivery available on
-              the market.Generally, you can expect messages to arrive in a matter
-              of seconds; an SMS message typically takes about 10 seconds to
-              arrive on a handset. This may vary based on the recipient country
-              (going up to 30 seconds) and depends on whether the receiving mobile
-              number is reachable and in good signal coverage. As there are a lot
-              of factors and variables that can impact delivery times, it's hard
-              to give a specific number for all SMS.
-            </p>
-          )}
-  
-          <div
-            className="w-[310px] h-10 bg-[#FBFBFB] rounded-lg flex justify-between px-4 lg:w-[1000px] lg:h-14 lg:mx-auto"
-            onClick={handleQues3}
-          >
-            <h3 className="text-[13px] font-[600] text-[#01cf80] py-3 lg:text-[19px]" style={{fontFamily:"'Montserrat', sans-serif"}}>
-              How do I buy SMS credit?
-            </h3>
-            <span>
-              <img src={icons15} alt="" className="h-4 lg:h-8 my-3" />
-            </span>
-          </div>
-          {Ques3 && (
-            <p className="text-[13px] bg-[#FBFBFB] px-4 lg:w-[1000px] lg:mx-auto lg:text-[16px] font-[400] text-[#646464]" style={{fontFamily:"'Poppins', sans-serif"}}>
-              DIGINTRA works on a prepaid basis. You can purchase credits anytime
-              by reaching out to your account RM.
-            </p>
-          )}
-  
-          <div
-            className="w-[310px] h-10 bg-[#FBFBFB] rounded-lg flex justify-between px-4 lg:w-[1000px] lg:h-14 lg:mx-auto"
-            onClick={handleQues4}
-          >
-            <h3 className="text-[13px]  font-[600] text-[#01cf80] lg:text-[19px] " style={{fontFamily:"'Montserrat', sans-serif"}}>
-              Are there any additional cost {<br />}involved when purchasing SMS
-              Credit?{" "}
-            </h3>
-            <span>
-              <img src={icons15} alt="" className="h-4 lg:h-8 my-3" />
-            </span>
-          </div>
-          {Ques4 && (
-            <p className="text-[13px] bg-[#FBFBFB] px-4 lg:w-[1000px] lg:mx-auto lg:text-[16px] font-[400] text-[#646464]" style={{fontFamily:"'Poppins', sans-serif"}}>
-              No! DIGINTRA operates on a prepaid basis. You simply purchaseSMS
-              credit and use them when needed. There is no monthly fee, no set up
-              fee and no contract fee involved when using our SMS service.
-            </p>
-          )}
-  
-          <div
-            className="w-[310px] h-10 bg-[#FBFBFB] rounded-lg flex justify-between px-4 lg:w-[1000px] lg:h-14 lg:mx-auto"
-            onClick={handleQues5}
-          >
-            <h3 className="text-[13px] font-[600] text-[#01cf80]  lg:text-[19px] " style={{fontFamily:"'Montserrat', sans-serif"}}>
-              Is there a daily or monthly minimum {<br />} quota for sending SMS?{" "}
-            </h3>
-            <span>
-              <img src={icons15} alt="" className="h-4 lg:h-8 my-3" />
-            </span>
-          </div>
-          {Ques5 && (
-            <p className="text-[13px] bg-[#FBFBFB] px-4 lg:w-[1000px] lg:mx-auto lg:text-[16px] font-[400] text-[#646464]" style={{fontFamily:"'poppins', sans-serif"}}>
-              No, you can send as few or as many SMS, over as long or short a
-              period as you like! Be aware though that if you are on a pre-paid
-              account, your credits may expire.
-            </p>
-          )}
-        </div>
-        </div>
-       
-        </div>
-        <Footer2/>
+
+      </div>
+    </section> 
+        <Footer/>
       </>
   )
 }

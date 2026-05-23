@@ -211,7 +211,7 @@ import Social_media_profiling from "./pages/Social_media_profiling";
 
 
 import Logo_designing from "./pages/Logo_designing";
-
+import Promotional_TextmsgBlog from "./pages/Promotional_TextmsgBlog.jsx";
 // import Registerpage from "./pages/Registerpage";
 
 // import LoginBlog from "./components/LoginBlog";
@@ -424,6 +424,7 @@ function App() {
   <Route path="/blog/best-bulk-sms-service-providers-in-uae" element={<Best_5_Bulk_SMS/>}/>
   <Route path="/blog/sms-marketing-platforms" element={<Best_SMS_Marketing_Platforms/>}/>
   <Route path="/blog/bulk-sms-uae" element={<BULKSMSUAEBLOG/>}/>
+  <Route path="/blog/bulk-sms-vs-whatsapp-messages-which-is-better" element={<Bulk_SMS_vs_Whatsapp_Messages_Which_is_Better/>}/>
   <Route path="/blog/rcs-messaging-the-future-of-business-messaging" element={<RCSMESSAGE/>}/>
   <Route path="/blog/dlt-registration-india-guide" element={<DLT_Registration_2026/>}/>
   <Route path="/blog/jio-dlt-registration-guide" element={<Jio_DLT_Registration_Guide/>}/>
@@ -431,7 +432,7 @@ function App() {
   <Route path="blog/bsnl-dlt-registration-guide" element={<Bsnl_DLT />} />
  <Route path="/blog/vi-dlt-registration-guide" element={< Vi_DLT/>} />
  <Route path="/blog/trai" element={< Trai_Guide/>} />
-  
+  <Route path="blog/promotional-text-message-examples" element={<Promotional_TextmsgBlog />} />
 
 
 
@@ -488,7 +489,7 @@ function App() {
 
 
 
-   <Route path="/blog/bulk-sms-vs-whatsapp-messages-which-is-better" element={<Bulk_SMS_vs_Whatsapp_Messages_Which_is_Better/>}/>
+   
    <Route path="/cookie" element={<Cookie/>}/>
    <Route path="/whatsapp-api-provider-bangalore" element={<Whatsapp_business_api_provider_bangalore/>}/>
    <Route path="/whatsapp-api-provider-chennai" element={<Whatsapp_business_api_provider_chennai/>}/>
