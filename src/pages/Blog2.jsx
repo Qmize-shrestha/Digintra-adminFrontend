@@ -83,6 +83,10 @@ import vidlt from "../assets/vidlt.jpg";
 import trai from "../assets/trai.jpeg";
 import smsmarketing from "../assets/Smsmarketing.jpeg";
 import promotionaltextmsg from "../assets/promotional-text-msg.jpeg";
+import sms  from "../assets/sms-api.jpg";
+import smsgateway  from "../assets/sms-gateway.jpg";
+import topetialt from "../assets/top5etisalternative.jpeg";
+import senderid from "../assets/whatissenderid.jpeg";
 const MainPage = () => {
     const blogData = [
   {
@@ -439,6 +443,26 @@ const MainPage = () => {
     image: promotionaltextmsg,
     title:"50 Promotional Text Message Examples to Boost Conversions in 2026",
     link: "/blog/promotional-text-message-examples"
+  },
+  {
+    image: sms,
+    title:"SMS API: Complete Guide to Integrating Text Messaging into Your Applications",
+    link: "/blog/sms-api"
+  },
+  {
+    image: smsgateway,
+    title: "SMS Gateway: The Complete Guide to Fast, Reliable Business Messaging",
+    link: "/blog/sms-gateway"
+  },
+  {
+       image: topetialt,
+    title: "Top 5 Etisalat Alternatives for Bulk SMS in UAE (2026 Guide)",
+    link: "/blog/top-etisalat-alternative-for-bulk-sms-uae"
+  },
+  {
+    image: senderid,
+    title: "What is a Sender ID? Complete Guide to SMS Sender ID for Businesses",
+    link: "/blog/sender-id"
   }
 ];
 useEffect(()=>{

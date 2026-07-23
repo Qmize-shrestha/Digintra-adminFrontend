@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { FaEnvelope } from "react-icons/fa";
+import { FaEnvelope, FaNetworkWired } from "react-icons/fa";
 import img1 from "../assets/arab-businessman-using-mobile-phone-business-connection.webp";
 import img2 from "../assets/arab-guy-engrossed-video-conference-call-with-coworker-his-smartphone-he-expertly-uses-wireless-technology-work-research-showcasing-his-digital-communication-skills.webp";
 import img3 from "../assets/close-up-man-holding-cell-phone-icon-email-message-marketing-business-sending-information-customers-hacking-online-transactions-business-concept-technology.webp";
@@ -8,14 +8,17 @@ import "./bulk.css";
 import { FaBuilding, FaClock, FaSignal } from "react-icons/fa";
 import { FaCheckCircle, FaServer, FaMapMarkerAlt } from "react-icons/fa";
 import { FaBullhorn, FaLock, FaCode, FaReply, FaGlobe } from "react-icons/fa";
-import { FaShoppingCart, FaUniversity, FaHospital,  FaTruck, FaLandmark, FaRegChartBar } from "react-icons/fa";
+import { FaShoppingCart, FaUniversity, FaHospital, FaTruck, FaLandmark, FaRegChartBar } from "react-icons/fa";
 import { FaUserPlus, FaUpload, FaPenFancy, FaCalendarCheck, FaChartLine } from "react-icons/fa";
-import { FaAward, FaUserTie, FaShieldAlt, FaHandshake } from "react-icons/fa";
+import { FaAward, FaUserTie, FaShieldAlt, FaHandshake, FaBriefcase } from "react-icons/fa";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+
+import uae from '../assets/Bulk-SMS-UAE.jpeg';
+import uae1 from "../assets/Bulk-sms-uae-provider.jpeg";
 
 import Footer from '../components/Footer';
 import { Helmet } from 'react-helmet';
@@ -23,50 +26,39 @@ import Client from '../components/Client';
 import Getstarted from '../components/Getstarted';
 import Hreflang from "../HrefComp";
 import { hreflangConfig } from "../HreflangConfig";
+import { Award, BadgeCheck, BarChart3, Brain, Building2, Clock, Globe, GraduationCap, HeartPulse, KeyRound, Landmark, Layers3, Megaphone, MessageCircle, MessageSquare, RefreshCcw, Send, Settings, ShieldCheck, ShoppingCart, Smartphone, Target, TrendingUp, Truck, Workflow, Zap } from "lucide-react";
+import { MdVerified } from "react-icons/md";
 
 
 
 
 export default function Bulk_sms_provider_rajasthan() {
 
-const faqs = [
-  {
-    question: "Is DIGINTRA’s Bulk SMS service compliant with UAE regulations?",
-    answer: "Yes. We strictly follow the Telecommunications Regulatory Authority (TRA) guidelines to ensure all messages are fully compliant and spam-free.",
-  },
-  {
-    question: "Can I send Arabic SMS messages?",
-    answer: "Absolutely! Our platform supports both Arabic and English Unicode messaging for complete local engagement.",
-  },
-  {
-    question: "What is the delivery time for messages?",
-    answer: "Messages are delivered within seconds through our high-speed routing channels.",
-  },
-  {
-    question: "What is the sender id?",
-    answer: "A sender is alphanumeric or numbers that appears in the header of an SMS, showing the recipient who sent the messages. It can be your company brand name or campaign name.",
-  },
-  {
-    question: "Can I use a branded sender id?",
-    answer: "Yes. We help you register your company name for higher trust and open rates.",
-  },
-  {
-    question: "What is the bulk SMS UAE price?",
-    answer: "Our pricing is volume-based and the lowest in the UAE, compared to other SMS marketing companies in UAE.",
-  },
-  {
-    question: "Do you support Dubai, Sharjah, and Abu Dhabi?",
-    answer: "Yes. We cover all major UAE cities and carriers with high delivery rates.",
-  },
-  {
-    question: "Can I integrate DIGINTRA SMS API into my system?",
-    answer: "Yes, our RESTful API allows seamless integration with CRMs, ERPs, and mobile apps.",
-  },
-  {
-    question: "Do you provide reports and analytics?",
-    answer: "Yes. Our dashboard provides real-time delivery and performance analytics for every campaign.",
-  },
-];
+
+
+  const faqs = [
+    {
+      question: "What is Bulk SMS UAE?",
+      answer: "Bulk SMS UAE is a messaging solution that allows businesses to send large volumes of SMS messages instantly across the United Arab Emirates.",
+    },
+    {
+      question: "How much does bulk SMS UAE cost?",
+      answer: "Bulk SMS UAE price depends on SMS volume, message type, and delivery routes. Higher volumes usually reduce per-message costs.",
+    },
+    {
+      question: "Can I integrate UAE SMS gateway with my website or app?",
+      answer: "Yes. DIGINTRA provides API integration for websites, CRM systems, applications, and enterprise platforms.",
+    },
+    {
+      question: "Is bulk SMS legal in UAE?",
+      answer: "Yes. Bulk SMS is legal when businesses follow UAE telecom regulations and use compliant messaging practices.",
+    },
+    {
+      question: "Why choose DIGINTRA as a bulk SMS provider UAE?",
+      answer: "DIGINTRA offers secure infrastructure, high delivery rates, scalable messaging solutions, and reliable customer support for businesses in the UAE.",
+    },
+   
+  ];
 
   const [openIndex, setOpenIndex] = useState(null);
 
@@ -75,24 +67,24 @@ const faqs = [
   };
 
 
-const trustPoints = [
-  { icon: <FaAward className="w-8 h-8 text-white" />, title: "Experience", description: "Over a decade serving leading UAE enterprises." },
-  { icon: <FaUserTie className="w-8 h-8 text-white" />, title: "Expertise", description: "Certified professionals in telecom and marketing technologies." },
-  { icon: <FaShieldAlt className="w-8 h-8 text-white" />, title: "Authoritativeness", description: "Recognized by industry associations and telecom regulators." },
-  { icon: <FaHandshake className="w-8 h-8 text-white" />, title: "Trustworthiness", description: "Transparent pricing, secure systems, and ethical communication practices." },
-];
+  const trustPoints = [
+    { icon: <FaAward className="w-8 h-8 text-white" />, title: "Experience", description: "Over a decade serving leading UAE enterprises." },
+    { icon: <FaUserTie className="w-8 h-8 text-white" />, title: "Expertise", description: "Certified professionals in telecom and marketing technologies." },
+    { icon: <FaShieldAlt className="w-8 h-8 text-white" />, title: "Authoritativeness", description: "Recognized by industry associations and telecom regulators." },
+    { icon: <FaHandshake className="w-8 h-8 text-white" />, title: "Trustworthiness", description: "Transparent pricing, secure systems, and ethical communication practices." },
+  ];
 
 
   const steps = [
-  { icon: <FaUserPlus className="w-8 h-8 text-black" />, title: "Register with DIGINTRA", description: "Create an account in minutes." },
-  { icon: <FaUpload className="w-8 h-8 text-black" />, title: "Upload Your Contacts", description: "Easily import your customer database." },
-  { icon: <FaPenFancy className="w-8 h-8 text-black" />, title: "Compose Your Message", description: "Personalize your text using merge tags." },
-  { icon: <FaCalendarCheck className="w-8 h-8 text-black" />, title: "Schedule & Send", description: "Choose immediate or scheduled delivery." },
-  { icon: <FaChartLine className="w-8 h-8 text-black" />, title: "Track Results", description: "Monitor open rates, delivery, and conversions." },
-];
+    { icon: <FaUserPlus className="w-8 h-8 text-black" />, title: "Register with DIGINTRA", description: "Create an account in minutes." },
+    { icon: <FaUpload className="w-8 h-8 text-black" />, title: "Upload Your Contacts", description: "Easily import your customer database." },
+    { icon: <FaPenFancy className="w-8 h-8 text-black" />, title: "Compose Your Message", description: "Personalize your text using merge tags." },
+    { icon: <FaCalendarCheck className="w-8 h-8 text-black" />, title: "Schedule & Send", description: "Choose immediate or scheduled delivery." },
+    { icon: <FaChartLine className="w-8 h-8 text-black" />, title: "Track Results", description: "Monitor open rates, delivery, and conversions." },
+  ];
 
 
-    const industries = [
+  const industries = [
     { icon: <FaShoppingCart className="w-8 h-8 text-white" />, name: "Retail & E-commerce", gradient: "bg-gradient-to-r from-pink-400 via-red-400 to-yellow-400" },
     { icon: <FaUniversity className="w-8 h-8 text-white" />, name: "Education", gradient: "bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400" },
     { icon: <FaHospital className="w-8 h-8 text-white" />, name: "Healthcare", gradient: "bg-gradient-to-r from-green-400 via-lime-400 to-yellow-400" },
@@ -102,7 +94,46 @@ const trustPoints = [
     { icon: <FaLandmark className="w-8 h-8 text-white" />, name: "Government & Public Sector", gradient: "bg-gradient-to-r from-gray-500 via-gray-600 to-gray-700" },
   ];
 
-
+// 7th section content
+const industriess = [
+  {
+    name: "Retail & E-commerce",
+    icon: ShoppingCart,
+    gradient: "from-orange-400 via-rose-400 to-pink-400",
+  },
+  {
+    name: "Banking & Financial Services",
+    icon: Landmark,
+    gradient: "from-blue-400 via-indigo-400 to-violet-400",
+  },
+  {
+    name: "Healthcare & Hospitals",
+    icon: HeartPulse,
+    gradient: "from-red-400 via-pink-400 to-rose-400",
+  },
+  {
+     
+    name: "Real Estate",
+    icon: Building2,
+    gradient: "from-red-400 via-pink-400 to-rose-400",
+ 
+  },
+  {
+    name: "Logistics & Transportation",
+    icon: Truck,
+    gradient: "from-teal-400 via-cyan-400 to-sky-400",
+  },
+  {
+    name: "Education & Training",
+    icon: GraduationCap,
+    gradient: "from-green-400 via-emerald-400 to-teal-400",
+  },
+  {
+    name: "Travel & Hospitality",
+    icon: Building2,
+    gradient: "from-purple-400 via-violet-400 to-indigo-400",
+  },
+];
   const features = [
     "UAE SMS gateway with direct routes",
     "API for developers and CRM integrations",
@@ -118,7 +149,7 @@ const trustPoints = [
     "Free signup, quick onboarding",
   ];
 
-   const items = [
+  const items = [
     {
       icon: <FaBuilding className="text-blue-600 text-3xl" />,
       title: "Trusted by UAE Businesses & Startups",
@@ -142,7 +173,7 @@ const trustPoints = [
     }),
   };
 
-    const items2 = [
+  const items2 = [
     {
       icon: <FaCheckCircle className="text-white w-8 h-8" />,
       title: "Proven Expertise in SMS Marketing",
@@ -187,16 +218,16 @@ const trustPoints = [
 
 
   const benefits = [
-  "99.9% message delivery success rate",
-  "GDPR & UAE TRA compliant platform",
-  "24/7 technical support",
-  "Cost-effective SMS pricing for all volumes",
-  "Advanced analytics & reports",
-  "Multi-language support (English & Arabic)",
-];
-   
+    "99.9% message delivery success rate",
+    "GDPR & UAE TRA compliant platform",
+    "24/7 technical support",
+    "Cost-effective SMS pricing for all volumes",
+    "Advanced analytics & reports",
+    "Multi-language support (English & Arabic)",
+  ];
 
-   const smsTypes = [
+
+  const smsTypes = [
     {
       icon: <FaBullhorn className="w-8 h-8 text-white" />,
       title: "Promotional SMS",
@@ -228,648 +259,1096 @@ const trustPoints = [
       gradient: "bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400",
     },
   ];
+  // 3rd section data
+  const points = [
+    { icon: "🚀", text: "High SMS delivery rates across UAE telecom networks" },
+    { icon: "⚡", text: "Instant SMS delivery with real-time reporting" },
+    { icon: "🔐", text: "Secure and compliant messaging infrastructure" },
+    { icon: "🛠", text: "Easy API integration with websites, apps, and CRM systems" },
+    { icon: "📊", text: "Advanced SMS campaign tracking and analytics" },
+    { icon: "🌍", text: "Local and international SMS coverage" },
+  ];
 
-  
+  // 5th section content
+  const stepss = [
+    {
+      step: "01",
+      title: "Promotional SMS Campaigns",
+      desc: "Reach customers instantly with targeted SMS marketing campaigns.",
+      points: [
+        "Product promotions",
+        "Discounts and offers",
+        "Event invitations",
+        "Customer engagement campaigns"
+      ],
+      icon: Megaphone,
+      color: "from-yellow-400 to-orange-400",
+    },
+    {
+      step: "02",
+      title: "Transactional SMS Services",
+      desc: "Deliver important information instantly with reliable transactional SMS.",
+      points: [
+        "OTP verification codes",
+        "Payment confirmations",
+        "Delivery updates",
+        "Appointment reminders"
+      ],
+      icon: KeyRound,
+      color: "from-cyan-400 to-sky-400",
+    },
+    {
+      step: "03",
+      title: "UAE SMS Gateway Integration",
+      desc: "Integrate messaging directly into your business applications using our robust UAE SMS gateway.",
+      points: [
+        "Fast API integration",
+        "Automated SMS workflows",
+        "Secure message routing",
+        "Scalable infrastructure"
+      ],
+      icon: Workflow,
+      color: "from-emerald-400 to-teal-400",
+    },
+    {
+      step: "04",
+      title: "Bulk SMS Services UAE for Enterprises",
+      desc: "DIGINTRA provides scalable SMS solutions for enterprises requiring high-volume messaging and reliable communication infrastructure.",
+      points: [],
+      icon: Layers3,
+      color: "from-violet-400 to-purple-400",
+    },
+  ];
+
+  // 6th section content
+const cards = [
+  {
+    title: "Instant SMS delivery",
+    desc: "High SMS open rates and instant reach",
+    icon: TrendingUp,
+    color: "bg-orange-400",
+    iconGradient: "from-orange-400 to-rose-400",
+  },
+  {
+    title: " Real-time delivery reports",
+    desc: "Real-time delivery and performance reports",
+    icon: BarChart3,
+    color: "bg-pink-400",
+    iconGradient: "from-pink-400 to-fuchsia-400",
+  },
+  {
+    title: "API integration support",
+    desc: "Two-way messaging support",
+    icon: RefreshCcw,
+    color: "bg-teal-400",
+    iconGradient: "from-teal-400 to-cyan-400",
+  },
+  {
+    title: "Scalable bulk messaging platform",
+    desc: "Scalable platform for high-volume campaigns",
+    icon: Settings,
+    color: "bg-green-400",
+    iconGradient: "from-green-400 to-emerald-400",
+  },
+  {
+    title: "Secure infrastructure and encrypted APIs",
+    desc: "Secure APIs and encrypted infrastructure",
+    icon: ShieldCheck,
+    color: "bg-blue-400",
+    iconGradient: "from-blue-400 to-indigo-400",
+  },
+  {
+    title: "Nationwide UAE coverage",
+    desc: "Nationwide coverage across the UAE",
+    icon: Globe,
+    color: "bg-indigo-400",
+    iconGradient: "from-indigo-400 to-purple-400",
+  },
+];
+
+// 8th section content
+const point = [
+  {
+    text: " High mobile penetration across UAE",
+    icon: Smartphone,
+  },
+  {
+    text: "SMS messages are read within minutes",
+    icon: Clock,
+  },
+  {
+    text: "Works on all mobile phones without internet",
+    icon: Globe,
+  },
+  {
+    text: " Ideal for urgent and time-sensitive communication",
+    icon: Target,
+  },
+];
+ 
+// 9th section content
+const trustItems = [
+    {
+      title: "Experience",
+      desc: "Extensive experience delivering enterprise messaging solutions globally.",
+      icon: Award,
+      color: "cyan",
+    },
+    {
+      title: "Expertise",
+      desc: "Advanced knowledge of telecom integrations and SMS gateway infrastructure.",
+      icon: Brain,
+      color: "teal",
+    },
+    {
+      title: "Authoritativeness",
+      desc: "Recognized as a reliable bulk SMS provider in Egypt by businesses across industries.",
+      icon: BadgeCheck,
+      color: "sky",
+    },
+    {
+      title: "Trustworthiness",
+      desc: "Secure systems, transparent pricing, and dedicated support teams.",
+      icon: ShieldCheck,
+      color: "emerald",
+    },
+  ];
+ const colorMap = {
+    cyan: {
+      ring: "border-cyan-400 text-cyan-600 shadow-[0_0_25px_rgba(34,211,238,0.45)]",
+      line: "bg-cyan-400",
+      border: "border-cyan-200",
+    },
+    teal: {
+      ring: "border-teal-400 text-teal-600 shadow-[0_0_25px_rgba(45,212,191,0.45)]",
+      line: "bg-teal-400",
+      border: "border-teal-200",
+    },
+    sky: {
+      ring: "border-sky-400 text-sky-600 shadow-[0_0_25px_rgba(56,189,248,0.45)]",
+      line: "bg-sky-400",
+      border: "border-sky-200",
+    },
+    emerald: {
+      ring: "border-emerald-400 text-emerald-600 shadow-[0_0_25px_rgba(52,211,153,0.45)]",
+      line: "bg-emerald-400",
+      border: "border-emerald-200",
+    },
+  };
+
+
   return (
     <>
 
-    <Hreflang links={hreflangConfig} />
-    <Helmet>
-    <meta name="robots" content="index, follow" />
+      <Hreflang links={hreflangConfig} />
+      <Helmet>
+        <meta name="robots" content="index, follow" />
+        <meta name="geo.region" content="AE" />
+        <meta name="geo.placename" content="United Arab Emirates" />
+        <meta name="language" content="en-AE" />
+        <title>Bulk SMS UAE | Trusted UAE SMS Gateway – DIGINTRA</title>
+        <meta name="description" content='Send bulk SMS in UAE with DIGINTRA Teleservices. Secure UAE SMS gateway, high delivery rates & scalable bulk SMS services for businesses.' />
 
-      <title>Bulk SMS Service in UAE | Cost-Effective Bulk SMS UAE Price
-
-</title>
-      <meta name="description" content='Trusted bulk SMS service provider in UAE. Send SMS across Dubai, Sharjah, and Abu Dhabi with direct routes, sender IDs, and real-time reports. Free signup.'/>
-
-      <meta
+        <meta
           name="keywords"
-          content="bulk sms uae, bulk sms service provider in uae, bulk sms marketing uae, sms marketing company uae, bulk sms uae price, bulk sms service in uae, uae sms gateway
-"
+          content="bulk sms uae, sms gateway uae, uae sms gateway, uae sms solutions, bulk SMS services UAE, bulk sms uae price, uae sms gateway, bulk sms provider uae"
         />
-   <link rel="canonical" href="https://digintra.com/bulk-sms-uae" />
-    </Helmet>
+        <link rel="canonical" href="https://digintra.com/bulk-sms-uae" />
+        
+        {/* Product Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": "Bulk SMS UAE",
+            "description": "Enterprise-grade Bulk SMS UAE platform by DIGINTRA Teleservices offering secure SMS delivery, transactional messaging, OTP SMS, and UAE SMS gateway integration.",
+            "brand": {
+              "@type": "Brand",
+              "name": "DIGINTRA Teleservices"
+            },
+            "manufacturer": {
+              "@type": "Organization",
+              "name": "DIGINTRA Teleservices",
+              "url": "https://www.digintra.com"
+            },
+            "category": "Bulk SMS Messaging Platform",
+            "areaServed": {
+              "@type": "Country",
+              "name": "United Arab Emirates"
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": "https://www.digintra.com/bulk-sms-uae",
+              "priceCurrency": "AED",
+              "availability": "https://schema.org/InStock"
+            }
+          })}
+        </script>
 
+        {/* FAQ Schema */}
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "What is Bulk SMS UAE?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Bulk SMS UAE is a messaging solution that allows businesses to send large volumes of SMS messages instantly across the United Arab Emirates."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "How much does bulk SMS UAE cost?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Bulk SMS UAE price depends on SMS volume, message type, and delivery routes. Higher volumes usually reduce per-message costs."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Can I integrate UAE SMS gateway with my website or app?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. DIGINTRA provides API integration for websites, CRM systems, applications, and enterprise platforms."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Is bulk SMS legal in UAE?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. Bulk SMS is legal when businesses follow UAE telecom regulations and use compliant messaging practices."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Why choose DIGINTRA as a bulk SMS provider UAE?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "DIGINTRA offers secure infrastructure, high delivery rates, scalable messaging solutions, and reliable customer support for businesses in the UAE."
+                }
+              }
+            ]
+          })}
+        </script>
+      </Helmet>
 
+      {/* 1st Section */}
+      <section className="flex min-h-screen w-full items-center justify-center bg-gradient-to-r from-sky-950 to-sky-900 px-4 md:px-6">
+        <div className="flex w-full max-w-6xl items-center gap-6 md:gap-10 flex-col md:flex-row">
 
-
-    <section className="relative w-full min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center  lg:text-left px-6 text-center lg:px-20 pt-[160px] lg:pt-[230px] pb-[50px]  overflow-hidden">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center w-full max-w-7xl">
-
-        {/* LEFT SIDE CONTENT */}
-        <motion.div
-          initial={{ x: -80, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="space-y-6"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-snug">
-            Bulk SMS Service in UAE that Delivers fast, at the lowest price
-          </h1>
-          <p className="text-lg text-gray-700 leading-relaxed">
-            A trusted bulk SMS service provider in UAE. Reach customers across
-            Dubai, Sharjah, and Abu Dhabi with instant delivery, clean sender
-            IDs, and real-time reports.
-          </p>
-
-          {/* Animated message icons */}
-          <div className="relative flex gap-4 mt-8">
-            {[...Array(4)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="text-blue-600 text-3xl"
-                initial={{ y: 0, opacity: 0 }}
-                animate={{
-                  y: [0, -20, 0],
-                  opacity: [0.3, 1, 0.3],
-                }}
-                transition={{
-                  duration: 2 + i * 0.3,
-                  repeat: Infinity,
-                  delay: i * 0.2,
-                }}
-              >
-                <FaEnvelope />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* RIGHT SIDE IMAGES */}
-        <motion.div
-          initial={{ x: 80, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative flex justify-center lg:justify-end"
-        >
-          <div className="relative w-full max-w-[500px] flex justify-center">
-            {/* Image 1 - Top Left */}
-            <motion.img
-              src={img1}
-              alt="Bulk SMS UAE"
-              className="absolute top-0 left-0 w-40 md:w-48 rounded-2xl shadow-lg border border-white"
-              whileHover={{ scale: 1.05 }}
-            />
-            {/* Image 2 - Center */}
-            <motion.img
-              src={img2}
-              alt="Bulk SMS service in UAE"
-              className="relative z-10 w-56 md:w-64 rounded-2xl shadow-2xl border-4 border-white"
-              whileHover={{ scale: 1.05 }}
-            />
-            {/* Image 3 - Bottom Right */}
-            <motion.img
-              src={img3}
-              alt="SMS Marketing Company UAE"
-              className="absolute bottom-0 right-0 w-40 md:w-48 rounded-2xl shadow-lg border border-white"
-              whileHover={{ scale: 1.05 }}
-            />
-          </div>
-        </motion.div>
-      </div>
-    </section>
-
-
-     <section className="w-full bg-gradient-to-br from-blue-50 via-white to-blue-100 py-8">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-around gap-8 text-center">
-        {items.map((item, index) => (
+          {/* Left Side - Image */}
           <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="flex flex-col items-center space-y-3"
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex w-full md:w-1/2 items-center justify-center"
           >
-            {item.icon}
-            <p className="text-gray-800 font-medium text-lg">{item.title}</p>
+            <motion.div
+              whileHover={{ scale: 1.03 }}
+              transition={{ type: "spring", stiffness: 200 }}
+              className="rounded-2xl bg-gradient-to-r from-blue-200 to-orange-200 p-3 md:p-5 w-full"
+            >
+              <img
+                src={uae1}
+                alt="Bulk SMS UAE"
+                className="rounded-xl w-full h-[300px] object-cover"
+              />
+            </motion.div>
           </motion.div>
-        ))}
-      </div>
-    </section>
 
+          {/* Right Side - Text */}
+          <motion.div
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="flex w-full md:w-1/2 flex-col justify-center text-white mt-4 md:mt-0 text-center md:text-left"
+          >
+            {/* <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="mb-3 inline-flex items-center rounded-full bg-white/10 px-4 py-1.5 text-sm md:text-base font-medium text-white backdrop-blur-md self-start"
+            >
+              📩 Fast, Secure & Enterprise-Grade Bulk SMS Services in UAE
+            </motion.div> */}
 
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.6 }}
+              className="mb-3 md:mb-4 text-2xl md:text-4xl font-bold leading-snug md:leading-tight"
+            >
+              Bulk SMS UAE – {" "}
+              <span className="text-red-400 block md:inline">
+                Reliable SMS Solutions for UAE Businesses
+              </span>
+            </motion.h1>
 
-     <section className="relative bg-gradient-to-br from-yellow-50 via-white to-yellow-100 py-20 px-4">
-      <div className="max-w-4xl mx-auto text-center">
-        <motion.h2
-          className="text-4xl md:text-5xl font-bold text-gray-900 leading-snug mb-6 drop-shadow-lg"
-          variants={textVariant}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={0}
-        >
-          Connect, Communicate, and Convert with the UAE’s Trusted SMS Marketing Partner
-        </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55, duration: 0.6 }}
+              className="mb-4 md:mb-6 text-base md:text-lg text-gray-300"
+            >
+              Send bulk SMS, automate notifications, and run high-performance SMS marketing campaigns with DIGINTRA Teleservices’ secure and reliable <span className="font-bold"> UAE SMS gateway </span>.
+            </motion.p>
 
-        <motion.p
-          className="text-gray-700 text-lg md:text-xl leading-relaxed mb-4"
-          variants={textVariant}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={1}
-        >
-          Reaching customers in the UAE can be slow and costly. Emails get ignored. Ads are expensive. 
-          You need a reliable UAE SMS gateway with high delivery, clear sender IDs, and fair pricing.
-        </motion.p>
+            {/* Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="flex gap-3 md:gap-4 justify-center md:justify-start flex-col sm:flex-row"
+            >
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05 }}
+                className="rounded-lg transition bg-white px-4 md:px-6 py-2 md:py-3 font-semibold text-black w-full sm:w-auto"
+              >
+                Get Started
+              </motion.button>
 
-        <motion.p
-          className="text-gray-700 text-lg md:text-xl leading-relaxed mb-4"
-          variants={textVariant}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={2}
-        >
-          At DIGINTRA Teleservices, we provide reliable and scalable Bulk SMS Services in UAE that help 
-          businesses reach their customers in seconds with precision, compliance, and measurable results.
-        </motion.p>
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                whileHover={{ scale: 1.05 }}
+                className="rounded-lg transition hover:bg-[#e4415b] bg-[#f64f6a] px-4 md:px-6 py-2 md:py-3 font-semibold text-white w-full sm:w-auto"
+              >
+                Request Free Demo
+              </motion.button>
+            </motion.div>
 
-        <motion.p
-          className="text-gray-700 text-lg md:text-xl leading-relaxed"
-          variants={textVariant}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          custom={3}
-        >
-          Whether you’re a retail brand, bank, healthcare provider, or e-commerce business, our bulk SMS 
-          gateway UAE ensures your messages get delivered on time.
-        </motion.p>
-      </div>
-    </section>
+            {/* Trust Signal */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.85, duration: 0.6 }}
+              className="mt-6 relative group w-fit mx-auto md:mx-0"
+            >
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 to-blue-500 rounded-full blur opacity-40 group-hover:opacity-70 transition duration-500"></div>
+              <div className="relative flex items-center gap-3 bg-sky-950 border border-white/10 rounded-full px-5 py-2.5">
+                <span className="text-xl md:text-2xl animate-pulse">🌍</span>
+                <p className="text-sm md:text-base font-medium text-gray-200">
+                  Delivering Messages Across <span className="font-bold text-white">190+ Countries</span>
+                </p>
+              </div>
+            </motion.div>
+          </motion.div>
 
-
-
-   <section className="bg-gray-50 py-20 px-4">
-  <motion.div
-    className="max-w-[90%] mx-auto text-center mb-12"
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.8 }}
-  >
-    <h2 className="text-4xl md:text-5xl font-bold text-gray-900 leading-snug drop-shadow-lg">
-      Why Choose DIGINTRA for Bulk SMS in UAE?
-    </h2>
-  </motion.div>
-
-  <motion.div
-    className="grid gap-8 md:grid-cols-3 max-w-[90%] mx-auto"
-    variants={container}
-    initial="hidden"
-    whileInView="visible"
-    viewport={{ once: true }}
-  >
-    {items2.map((item, index) => (
-      <motion.div
-        key={index}
-        className="bg-gradient-to-br from-blue-500 via-blue-500 to-blue-500 rounded-2xl p-6 shadow-2xl flex flex-col hover:scale-105 hover:shadow-3xl transition-transform duration-500"
-        variants={itemVariant}
-      >
-        <div className="flex items-center mb-4">
-          {item.icon}
-          <h3 className="text-xl md:text-2xl font-semibold ml-3 text-white">
-            {item.title}
-          </h3>
         </div>
-        <p className="text-white mb-2">{item.description}</p>
-        {item.points && (
-          <ul className="list-disc list-inside text-white mt-2 space-y-1">
-            {item.points.map((point, i) => (
-              <li key={i}>{point}</li>
+      </section>
+
+      {/* 2nd section */}
+      <section className="relative py-24 bg-gradient-to-br from-sky-50 via-white to-teal-50">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+              <span className="bg-gradient-to-r from-sky-600 to-teal-600 bg-clip-text text-transparent">
+                Trusted Bulk SMS UAE Services
+              </span>{" "}
+              for Business Communication
+
+            </h1>
+
+            <p className="mt-6 text-gray-700 text-lg leading-relaxed">
+              Businesses across the United Arab Emirates require fast, direct, and scalable communication channels to engage customers effectively.<span className="font-bold">Bulk SMS UAE </span> remains one of the most reliable ways to deliver instant notifications, OTPs, promotions, reminders, and transactional alerts directly to mobile devices.
+            </p>
+
+            <p className="mt-4 text-gray-700 text-lg leading-relaxed">
+              DIGINTRA Teleservices provides enterprise-grade <span className="font-bold">bulk SMS services UAE </span> through a secure and high-performance <span className="font-bold">UAE SMS gateway </span>, helping businesses improve customer engagement and communication efficiency.
+            </p>
+            <p className="mt-4 text-gray-700 text-lg leading-relaxed">
+              Whether you are a startup, enterprise, bank, retailer, healthcare provider, or e-commerce platform, our messaging solutions are designed to support high-volume SMS delivery across the UAE.
+            </p>
+
+            {/* Highlight points */}
+            <div className="mt-8 flex flex-wrap gap-4">
+              <span className="inline-flex items-center gap-2 rounded-full bg-sky-100 px-4 py-2 text-sm font-medium text-sky-700">
+                <Zap className="h-4 w-4" />
+                Fast Delivery
+              </span>
+
+              <span className="inline-flex items-center gap-2 rounded-full bg-teal-100 px-4 py-2 text-sm font-medium text-teal-700">
+                <MessageSquare className="h-4 w-4" />
+                High Read Rates
+              </span>
+
+              <span className="inline-flex items-center gap-2 rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+                <Globe className="h-4 w-4" />
+                Nationwide Reach
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Right Image */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="relative flex justify-center lg:justify-end"
+          >
+
+
+            <img
+              src={uae}
+              alt="Bulk SMS Service in UAE"
+              className="w-full max-w-lg rounded-3xl"
+            />
+
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* 3rd section */}
+      <section className="relative overflow-hidden py-28 bg-[#121a32]">
+
+        {/* Background Mesh / Glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-sky-500/20 blur-[120px]" />
+          <div className="absolute top-1/2 -right-40 h-[520px] w-[520px] -translate-y-1/2 rounded-full bg-emerald-500/20 blur-[140px]" />
+          <div className="absolute bottom-[-200px] left-1/2 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-indigo-500/20 blur-[160px]" />
+        </div>
+
+        <div className="relative max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+
+          {/* Left Content */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-extrabold leading-tight
+            bg-gradient-to-r from-sky-400 via-emerald-400 to-indigo-400
+            bg-clip-text text-transparent">
+              Why Businesses Choose{" "}
+              <span className="underline decoration-emerald-400/40 decoration-4 underline-offset-8">
+                DIGINTRA
+              </span>{" "}
+              for Bulk SMS in UAE?
+            </h2>
+
+            <p className="mt-8 text-slate-300 text-lg leading-relaxed">
+              DIGINTRA Teleservices is a trusted bulk SMS provider
+              UAE offering reliable SMS delivery, secure routing, and
+              scalable messaging infrastructure for organizations across
+              the UAE.
+
+            </p>
+            <p className="mt-4 text-slate-300 text-lg leading-relaxed">Our advanced <span className="font-bold">UAE SMS gateway </span> ensures your messages are delivered quickly and securely.
+            </p>
+          </motion.div>
+
+          {/* Right Cards */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6"
+          >
+            {points.map((item, index) => (
+              <div
+                key={index}
+                className="group relative rounded-2xl border border-white/10
+                bg-white/5 backdrop-blur-xl p-5
+                transition-all duration-300
+                hover:-translate-y-2
+                hover:border-sky-400/40
+                hover:shadow-[0_0_40px_rgba(56,189,248,0.35)]"
+              >
+                {/* Top Accent */}
+                <div className="absolute inset-x-0 top-0 h-1 rounded-t-2xl
+                bg-gradient-to-r from-sky-400 to-emerald-400" />
+
+                <div className="flex items-start gap-4 pt-3">
+                  <span className="text-2xl">{item.icon}</span>
+                  <p className="text-slate-200 text-base leading-relaxed">
+                    {item.text}
+                  </p>
+                </div>
+              </div>
             ))}
-          </ul>
-        )}
-      </motion.div>
-    ))}
-  </motion.div>
+          </motion.div>
+
+        </div>
+      </section>
+
+      {/* 4th section */}
+<section className="py-28 bg-gradient-to-br from-sky-50 via-white to-teal-50">
+
+  <div className="max-w-6xl mx-auto px-6">
+
+    {/* Heading */}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-center max-w-4xl mx-auto"
+    >
+      <h2 className="text-3xl md:text-4xl font-bold
+      bg-gradient-to-r from-sky-600 via-teal-600 to-emerald-600
+      bg-clip-text text-transparent">
+        Compliance, Security & UAE Trust Signals
+      </h2>
+
+      <p className="mt-6 text-gray-700 text-lg leading-relaxed">
+        DIGINTRA Teleservices prioritizes secure and compliant messaging practices for businesses operating in the UAE.
+      </p>
+    </motion.div>
+
+    {/* Cards */}
+    <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-8">
+
+      {/* TDRA Compliance */}
+      <div className="bg-white rounded-2xl shadow-md p-6 border hover:shadow-xl transition">
+        <MdVerified className="text-teal-600 text-3xl mb-4" />
+        <h4 className="font-semibold text-lg mb-2">TDRA (TRA) Aware Messaging Practices</h4>
+        <p className="text-gray-600 text-sm leading-relaxed">
+          Our <span className="font-bold">Bulk SMS UAE</span>  solutions are designed to support responsible messaging practices aligned with UAE telecommunications standards and industry regulations governed by the <span className="font-bold">Telecommunications and Digital Government Regulatory Authority (TDRA)</span>.
+        </p>
+      </div>
+
+      {/* Compliance Support */}
+      <div className="bg-white rounded-2xl shadow-md p-6 border hover:shadow-xl transition">
+        <FaShieldAlt className="text-teal-600 text-3xl mb-4" />
+        <h4 className="font-semibold text-lg mb-2">Compliance-Focused Messaging Support</h4>
+        <ul className="text-sm text-gray-600 space-y-1">
+          <li> Support for approved sender IDs and compliant SMS routing</li>
+          <li> Responsible opt-in and opt-out messaging practices</li>
+          <li>Secure handling of customer and business communication data</li>
+          <li>SMS delivery processes aligned with UAE telecom ecosystem requirements</li>
+        </ul>
+      </div>
+
+      {/* Infrastructure */}
+      <div className="bg-white rounded-2xl shadow-md p-6 border hover:shadow-xl transition">
+        <FaServer className="text-teal-600 text-3xl mb-4" />
+        <h4 className="font-semibold text-lg mb-2">Reliable UAE Messaging Infrastructure</h4>
+        <ul className="text-sm text-gray-600 space-y-1">
+          <li> High-availability SMS delivery platform</li>
+          <li> Secure API & encrypted connections</li>
+          <li> Direct telecom routing</li>
+          <li> Enterprise-grade monitoring</li>
+        </ul>
+      </div>
+
+      {/* Use Cases */}
+      <div className="bg-white rounded-2xl shadow-md p-6 border hover:shadow-xl transition">
+        <FaNetworkWired className="text-teal-600 text-3xl mb-4" />
+        <h4 className="font-semibold text-lg mb-2">Business-Ready SMS Platform</h4>
+        <ul className="text-sm text-gray-600 grid grid-cols-2 gap-x-4">
+          <li>Corporate communication</li>
+          <li> OTP verification</li>
+          <li> Banking alerts</li>
+          <li> E-commerce notifications</li>
+          <li> Promotional campaigns</li>
+          <li> Appointment reminders</li>
+        </ul>
+      </div>
+
+    </div>
+
+    {/* Global Stats */}
+    <div className="mt-16 bg-gradient-to-r from-teal-600 to-emerald-500 text-white rounded-2xl p-8 text-center shadow-lg">
+      <FaGlobe className="text-3xl mx-auto mb-4" />
+      <h4 className="text-xl font-semibold mb-4">Trusted Global SMS Delivery</h4>
+
+      <div className="flex flex-col sm:flex-row justify-center gap-6 text-sm sm:text-base">
+        <p>🌍 Supporting SMS delivery across 190+ countries</p>
+        <p>📩 Millions of SMS processed securely every month</p>
+        <p>⚡ Reliable uptime & enterprise-grade performance</p>
+      </div>
+    </div>
+
+  </div>
+
 </section>
 
-<section className="bg-gray-50 py-20 px-4 relative">
-      {/* Decorative SVG */}
-      <svg
-        className="absolute top-0 left-0 w-32 h-32 text-yellow-200 opacity-30"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <circle cx="12" cy="12" r="12" />
-      </svg>
-
-      <motion.div
-        className="max-w-[90%] mx-auto text-center mb-12 relative z-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 drop-shadow-lg">
-          Types of Bulk SMS Services We Offer for UAE
-        </h2>
-      </motion.div>
-
-      <motion.div
-        className="grid gap-8 sm:grid-cols-1 md:grid-cols-3 max-w-[90%] mx-auto"
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        {smsTypes.map((sms, index) => (
-          <motion.div
-            key={index}
-            className={`relative rounded-2xl p-6 flex flex-col shadow-2xl text-white ${sms.gradient} hover:scale-105 transition-transform duration-500`}
-            variants={itemVariant}
-          >
-            {/* Number Badge in Background */}
-            <span className="absolute text-white/20 text-[6rem] font-bold top-4 right-4 select-none pointer-events-none">
-              {index + 1}
-            </span>
-
-            <div className="flex items-center mb-4 relative z-10">
-              {sms.icon}
-              <h3 className="ml-3 text-xl md:text-2xl font-semibold">{sms.title}</h3>
-            </div>
-            <p className="text-white relative z-10">{sms.description}</p>
-
-            <button className="mt-6 w-max bg-white text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors duration-300 relative z-10">
-              Read More
-            </button>
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
 
 
+      {/* 5th section */}
+      <section className="relative py-28 bg-gradient-to-br from-[#050B1E] via-[#070E2B] to-[#050B1E] text-white">
+        <div className="max-w-6xl mx-auto px-6">
 
-
- <section className="bg-gray-50 py-20 px-4">
-      <motion.div
-        className="max-w-[90%] mx-auto text-center mb-12"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 drop-shadow-lg mb-4">
-          Industries We Serve
-        </h2>
-        <p className="text-gray-700 text-lg md:text-xl">
-          Our Bulk SMS Solutions in UAE are trusted across sectors. Each campaign is customized to meet your business objectives, audience, and compliance needs.
-        </p>
-      </motion.div>
-
-      <motion.div
-        className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 max-w-[90%] mx-auto"
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        {industries.map((industry, index) => (
-          <motion.div
-            key={index}
-            className={`flex items-center p-5 rounded-2xl shadow-2xl text-white ${industry.gradient} hover:scale-105 transition-transform duration-500`}
-            variants={itemVariant}
-          >
-            <div className="mr-4">{industry.icon}</div>
-            <h3 className="text-lg md:text-xl font-semibold">{industry.name}</h3>
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
-
-
- <section className="bg-gray-50 py-16 px-4">
-      <div className="max-w-[90%] mx-auto text-center mb-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 drop-shadow-lg">
-          Features Bulk SMS UAE
-        </h2>
-        <p className="text-gray-700 mt-4 text-lg md:text-xl">
-          Explore the essential features of our Bulk SMS services in UAE.
-        </p>
-      </div>
-
-      <div className="max-w-[90%] mx-auto grid gap-4 sm:grid-cols-2 md:grid-cols-3">
-        {features.map((feature, index) => (
-          <div
-            key={index}
-            className="bg-white p-5 rounded-lg shadow-md flex items-start space-x-3 hover:shadow-xl transition-shadow duration-300"
-          >
-            <span className="text-green-500 mt-1">✔️</span>
-            <p className="text-gray-800">{feature}</p>
+          {/* Heading */}
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+              Our Bulk SMS UAE Solutions
+            </h2>
           </div>
-        ))}
+
+          {/* Timeline */}
+          <div className="relative">
+            {/* Vertical Line */}
+            <div className="absolute left-6 top-0 h-full w-px bg-gradient-to-b from-yellow-400 via-cyan-400 to-emerald-400" />
+
+            <div className="space-y-14">
+              {stepss.map((item, index) => {
+                const Icon = item.icon;
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="relative flex items-start gap-10"
+                  >
+                    {/* Step Circle */}
+                    <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full
+                          border border-white/20 bg-[#050B1E] text-sm font-semibold text-white">
+                      {item.step}
+                    </div>
+
+                    {/* Redesigned Card */}
+                    <div className="relative flex-1 rounded-2xl bg-white/5 backdrop-blur
+                          border border-white/10 p-7
+                          hover:border-white/20 transition-all duration-300
+                          hover:shadow-[0_0_40px_rgba(56,189,248,0.25)]">
+
+                      {/* Gradient Accent */}
+                      <div className={`absolute left-0 top-0 h-full w-1.5 rounded-l-2xl bg-gradient-to-b ${item.color}`} />
+
+                      <div className="flex gap-5">
+                        {/* Icon Badge */}
+                        <div
+                          className={`flex h-14 w-14 items-center justify-center rounded-xl
+                              bg-gradient-to-br ${item.color} text-black shadow-lg`}
+                        >
+                          <Icon className="h-7 w-7" />
+                        </div>
+
+                        {/* Content */}
+                        <div>
+                          <h3 className="text-lg font-semibold text-white">
+                            {item.title}
+                          </h3>
+
+                          <p className="mt-1 text-sm text-slate-400">
+                            {item.desc}
+                          </p>
+
+                          {/* Bullet Points */}
+                          {item.points.length > 0 && (
+                            <ul className="mt-4 space-y-2 text-sm text-slate-300">
+                              {item.points.map((point, i) => (
+                                <li key={i} className="flex items-start gap-2">
+                                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-slate-400" />
+                                  <span>{point}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+  {/* 6th section  */}
+    <section className="py-24 bg-gradient-to-b from-[#a2cccc] to-[#d7ecec]">
+      <div className="max-w-6xl mx-auto px-6">
+
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-600 to-sky-600 bg-clip-text text-transparent">
+            Features of Our Bulk SMS Platform
+          </h2>
+        </motion.div>
+
+        {/* Cards */}
+        <div className="flex flex-wrap justify-center gap-8">
+          {cards.map((card, index) => {
+            const Icon = card.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className="relative"
+              >
+                {/* White Outline */}
+                <div className="relative w-[270px] h-[150px] bg-white clip-chevron p-[6px] shadow-lg">
+
+                  {/* Inner Card */}
+                  <div
+                    className={`relative h-full w-full ${card.color} clip-chevron
+                    px-5 pt-5 text-white`}
+                  >
+                    {/* Icon Badge */}
+                    <div
+                      className={`absolute top-4 left-4 flex h-10 w-10 items-center justify-center
+                      rounded-full bg-gradient-to-r ${card.iconGradient} shadow-md`}
+                    >
+                      <Icon className="h-5 w-5 text-white" />
+                    </div>
+
+                    {/* Text */}
+                    <div className="mt-12">
+                      <h4 className="text-sm font-semibold">
+                        {card.title}
+                      </h4>
+                      <p className="mt-1 text-xs opacity-90 leading-snug">
+                        {card.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Chevron Clip Path */}
+      <style>{`
+        .clip-chevron {
+          clip-path: polygon(
+            0 0,
+            90% 0,
+            100% 50%,
+            90% 100%,
+            0 100%,
+            6% 50%
+          );
+        }
+      `}</style>
+    </section>
+
+     {/* 7th section */}
+         <section className="py-24 bg-gradient-to-b from-slate-50 via-white to-sky-50">
+      <div className="max-w-6xl mx-auto px-6">
+
+        {/* Heading */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-teal-600 to-sky-600 bg-clip-text text-transparent">
+           Industries We Serve in UAE
+          </h2>
+
+          <p className="mt-4 text-gray-700 text-lg">
+           DIGINTRA supports organizations across multiple industries in the UAE.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {industriess.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={index}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.3 }}
+                className="relative group"
+              >
+                {/* Gradient Border */}
+                <motion.div
+                  animate={{ backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                  className={`p-[2px] rounded-2xl bg-gradient-to-r ${item.gradient}
+                  bg-[length:200%_200%]`}
+                >
+                  {/* Card */}
+                  <div className="rounded-2xl bg-white p-6 h-full
+                    shadow-sm transition-all duration-300
+                    group-hover:shadow-[0_20px_45px_rgba(59,130,246,0.18)]">
+
+                    {/* Icon */}
+                    <div
+                      className={`mb-5 flex h-14 w-14 items-center justify-center rounded-xl
+                      bg-gradient-to-r ${item.gradient} text-white shadow-md`}
+                    >
+                      <Icon className="h-7 w-7" />
+                    </div>
+
+                    {/* Title */}
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      {item.name}
+                    </h3>
+                  </div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Bottom Text */}
+        <div className="mt-16 text-center max-w-3xl mx-auto">
+          <p className="text-gray-700 text-lg">
+           Our messaging solutions help businesses improve customer communication and operational efficiency.
+          </p>
+        </div>
+
       </div>
     </section>
 
 
+  {/* 8th section */}
+          <section className="relative overflow-hidden py-28 bg-[#020617] text-white">
+      
+      {/* Top Cyan Glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[300px] w-[600px]
+        bg-cyan-500/30 blur-[140px]" />
 
-    <section className="bg-gray-50 py-16 px-4 relative overflow-hidden">
-      {/* Decorative SVG squares */}
-      <svg
-        className="absolute top-0 left-0 w-20 h-20 text-yellow-200 opacity-20 rotate-45"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <rect width="24" height="24" />
-      </svg>
-      <svg
-        className="absolute bottom-10 right-10 w-32 h-32 text-pink-200 opacity-20 rotate-12"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <rect width="24" height="24" />
-      </svg>
+      {/* Top Accent Line */}
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 h-[2px] w-[160px] bg-cyan-400" />
 
-      <motion.div
-        className="max-w-[90%] mx-auto text-center mb-10 relative z-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 drop-shadow-lg">
-          Pricing: Cost-effective Bulk SMS UAE Pricing
-        </h2>
-        <p className="text-gray-700 mt-4 text-lg md:text-xl">
-          Our bulk SMS UAE pricing is the lowest compared to other SMS marketing companies in the UAE.
-        </p>
-      </motion.div>
+      <div className="relative max-w-6xl mx-auto px-6">
 
-      <motion.div
-        className="max-w-[90%] mx-auto grid gap-6 sm:grid-cols-1 md:grid-cols-3 relative z-10"
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        {pricingFeatures.map((feature, index) => (
-          <motion.div
-            key={index}
-            className="bg-white p-6 rounded-lg shadow-md flex flex-col items-start hover:shadow-xl transition-shadow duration-300"
-            variants={itemVariant}
-          >
-            <span className="text-green-500 text-2xl mb-3">✔️</span>
-            <p className="text-gray-800 font-medium">{feature}</p>
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
+        {/* Heading */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r
+            from-cyan-400 to-teal-400 bg-clip-text text-transparent">
+            Why Bulk SMS is Effective in UAE
+          </h2>
+        </div>
 
+        {/* Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
+          {/* Left Points */}
+          <div className="space-y-6">
+            {point.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={index}
+                  className="flex items-start gap-4 rounded-xl
+                  border border-white/10 bg-white/5 backdrop-blur
+                  p-5 transition-all duration-300
+                  hover:border-cyan-400/40
+                  hover:shadow-[0_0_30px_rgba(34,211,238,0.25)]"
+                >
+                  {/* Icon */}
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg
+                    bg-cyan-400/10 text-cyan-400">
+                    <Icon className="h-6 w-6" />
+                  </div>
 
-     <section className="relative py-20 px-4 bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200 overflow-hidden">
-      {/* Decorative SVG shapes */}
-      <svg
-        className="absolute top-0 left-0 w-32 h-32 text-yellow-200 opacity-20 rotate-12"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <circle cx="12" cy="12" r="12" />
-      </svg>
-      <svg
-        className="absolute bottom-10 right-10 w-40 h-40 text-pink-300 opacity-20 -rotate-6"
-        fill="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <rect width="24" height="24" />
-      </svg>
+                  {/* Text */}
+                  <p className="text-slate-200 leading-relaxed">
+                    {item.text}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
 
-      <motion.div
-        className="max-w-[90%] mx-auto text-center mb-12 relative z-10"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 drop-shadow-lg">
-          Benefits of Using DIGINTRA Bulk SMS Platform
-        </h2>
-      </motion.div>
+          {/* Right Highlighted Paragraph */}
+          <div className="relative rounded-2xl border border-cyan-400/20
+            bg-gradient-to-br from-white/5 to-white/0 backdrop-blur
+            p-8 shadow-[0_0_40px_rgba(34,211,238,0.15)]">
 
-      <motion.div
-        className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[90%] mx-auto relative z-10"
-        variants={container}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        {benefits.map((benefit, index) => (
-          <motion.div
-            key={index}
-            className="bg-white/70 backdrop-blur-md p-6 rounded-2xl shadow-lg flex items-start space-x-3 hover:shadow-2xl transition-shadow duration-300"
-            variants={itemVariant}
-          >
-            <FaCheckCircle className="w-6 h-6 text-green-500 mt-1" />
-            <p className="text-gray-800 font-medium">{benefit}</p>
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
+            {/* Accent Line */}
+            <div className="absolute top-0 left-0 h-full w-1 rounded-l-2xl
+              bg-gradient-to-b from-cyan-400 to-teal-400" />
 
+            <p className="text-slate-300 text-lg leading-relaxed pl-4">
+              <span className="text-cyan-400 font-semibold">
+                Bulk SMS continues to be one of the most effective customer
+                engagement channels for businesses in UAE.
+              </span>{" "}
+              This makes Bulk SMS UAE an essential communication tool for businesses.
+            </p>
+          </div>
 
-
-<section className="bg-gradient-to-br from-blue-100 via-blue-200 to-blue-100 py-20 px-4 relative">
-      {/* Decorative SVG */}
-      <svg className="absolute top-0 left-0 w-32 h-32 text-blue-300 opacity-20 rotate-12" fill="currentColor" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="12" />
-      </svg>
-
-      <motion.div className="max-w-[90%] mx-auto text-center mb-12 relative z-10"
-        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 drop-shadow-lg">
-          How Our Bulk SMS UAE Process Works
-        </h2>
-        <p className="text-gray-700 mt-4 text-lg md:text-xl">
-          Our easy-to-use dashboard makes bulk messaging simple for marketers and developers.
-        </p>
-      </motion.div>
-
-      <motion.div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-[90%] mx-auto relative z-10"
-        variants={container} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-        {steps.map((step, index) => (
-          <motion.div key={index} variants={itemVariant} className="bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-lg flex flex-col items-start hover:shadow-2xl transition-shadow duration-300 relative">
-            <span className="absolute text-gray-200 text-[5rem] font-bold top-4 right-4 select-none pointer-events-none">{index + 1}</span>
-            <div className="flex items-center mb-4 z-10">{step.icon}</div>
-            <h3 className="text-xl md:text-2xl font-semibold mb-2 z-10">{step.title}</h3>
-            <p className="text-gray-800 z-10">{step.description}</p>
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
-
-
-
-
-     <section className="bg-gradient-to-br from-purple-100 via-pink-100 to-yellow-100 py-20 px-4 relative">
-      {/* Decorative SVG */}
-      <svg className="absolute top-0 right-0 w-32 h-32 text-pink-200 opacity-20 rotate-12" fill="currentColor" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="12" />
-      </svg>
-
-      <motion.div className="max-w-[90%] mx-auto text-center mb-12 relative z-10"
-        initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 drop-shadow-lg">
-          Why UAE Businesses Trust DIGINTRA Teleservices
-        </h2>
-        <p className="text-gray-700 mt-4 text-lg md:text-xl">
-          We believe in long-term partnerships, not one-time campaigns.
-        </p>
-      </motion.div>
-
-      <motion.div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 max-w-[90%] mx-auto relative z-10"
-        variants={container} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-        {trustPoints.map((point, index) => (
-          <motion.div key={index} variants={itemVariant} className="bg-white/80 backdrop-blur-md p-6 rounded-2xl shadow-lg flex flex-col items-start hover:shadow-2xl transition-shadow duration-300">
-            <div className="flex items-center mb-4">{point.icon}</div>
-            <h3 className="text-xl md:text-2xl font-semibold mb-2">{point.title}</h3>
-            <p className="text-gray-800">{point.description}</p>
-          </motion.div>
-        ))}
-      </motion.div>
-    </section>
-
-
-
-    <section className="bg-gray-50 py-20 px-4">
-      <div className="max-w-[90%] mx-auto text-center">
-        <h2 className="text-4xl md:text-4xl font-bold text-gray-900 mb-6">
-          Ready to Power Your Business with Bulk SMS service in UAE?
-        </h2>
-        <p className="text-gray-700 text-lg md:text-xl mb-8">
-          Join thousands of satisfied businesses that rely on DIGINTRA Teleservices for secure, fast, and impactful communication.
-        </p>
-
-        <ul className="text-gray-800 mb-10 space-y-2 text-centre sm:text-center max-w-md mx-auto">
-          <li className="flex items-center justify-center sm:justify-start gap-2">
-            <span className="text-green-500">✅</span> Free demo available
-          </li>
-          <li className="flex items-center justify-center sm:justify-start gap-2">
-            <span className="text-green-500">✅</span> No setup fees
-          </li>
-          <li className="flex items-center justify-center sm:justify-start gap-2">
-            <span className="text-green-500">✅</span> 24/7 local support
-          </li>
-        </ul>
-
-        <p className="text-gray-700 text-lg md:text-xl mb-8">
-          Get Started Today with Best SMS Marketing Company UAE
-        </p>
-
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-          <button className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300">
-            Request a Free Quote
-          </button>
-          <button className="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors duration-300">
-            Book a Demo
-          </button>
-          <a href="tel:+971505017786" className="bg-gray-800 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-900 transition-colors duration-300">
-            Call +971-505017786
-          </a>
         </div>
       </div>
     </section>
 
-
-
- <section className="bg-gray-50 py-20 px-4 relative">
-      <div className="max-w-[90%] mx-auto text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 drop-shadow-lg">
-          Frequently Asked Questions (FAQ) – Bulk SMS Service UAE
-        </h2>
-      </div>
-
-      <div className="max-w-[90%] mx-auto space-y-4">
-        {faqs.map((faq, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer"
-            onClick={() => toggleIndex(index)}
-          >
-            <div className="flex justify-between items-center">
-              <h3 className="text-lg md:text-xl font-semibold text-gray-800">{faq.question}</h3>
-              {openIndex === index ? (
-                <FaChevronUp className="w-5 h-5 text-gray-600" />
-              ) : (
-                <FaChevronDown className="w-5 h-5 text-gray-600" />
-              )}
+      {/* 9th section */}
+        <section className="relative py-28 bg-gradient-to-br from-teal-50 via-white to-sky-50">
+          <div className="max-w-6xl mx-auto px-6">
+    
+            {/* Heading */}
+            <div className="text-center max-w-4xl mx-auto mb-20">
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+                Why{" "}
+                <span className="bg-gradient-to-r from-teal-600 via-cyan-600 to-sky-600 bg-clip-text text-transparent">
+                  DIGINTRA
+                </span>{" "}
+                is a Trusted Bulk SMS Provider in UAE?
+              </h2>
             </div>
-            {openIndex === index && (
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
-                className="mt-4 text-gray-700"
-              >
-                {faq.answer}
-              </motion.p>
-            )}
-          </motion.div>
-        ))}
+    
+            {/* Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+              {trustItems.map((item, index) => {
+                const Icon = item.icon;
+                const colors = colorMap[item.color];
+    
+                return (
+                  <div
+                    key={index}
+                    className={`relative rounded-3xl bg-white p-8 text-center
+                    border ${colors.border}
+                    shadow-sm transition-all duration-300
+                    hover:-translate-y-1
+                    hover:shadow-[0_20px_45px_rgba(59,130,246,0.18)]`}
+                  >
+                    {/* Glowing Ring */}
+                    <div
+                      className={`mx-auto flex h-20 w-20 items-center justify-center
+                      rounded-full border-2 bg-white ${colors.ring}`}
+                    >
+                      <Icon className="h-9 w-9" />
+                    </div>
+    
+                    {/* Title */}
+                    <h3 className="mt-6 text-lg font-semibold text-gray-800">
+                      {item.title}
+                    </h3>
+    
+                    {/* Description */}
+                    <p className="mt-3 text-sm text-gray-600 leading-relaxed">
+                      {item.desc}
+                    </p>
+    
+                    {/* Bottom Line */}
+                    <div
+                      className={`mx-auto mt-6 h-[3px] w-16 rounded-full ${colors.line}`}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+    
+          </div>
+        </section>
+    
+      {/* 10th section */}
+    <section className="relative overflow-hidden py-32 bg-gradient-to-br from-sky-50 via-white to-teal-50">
+      
+      {/* Soft Background Glow */}
+      <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-[320px] w-[520px]
+        bg-teal-300/30 blur-[140px]" />
+
+      <div className="relative max-w-5xl mx-auto px-6 text-center">
+
+        {/* Heading */}
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800">
+          Get Started with{" "}
+          <span className="bg-gradient-to-r from-teal-600 via-cyan-600 to-sky-600 bg-clip-text text-transparent">
+            Bulk SMS UAE Today 
+          </span>{" "}
+          Today
+        </h2>
+
+        {/* Description */}
+        <p className="mt-6 text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+         Whether you need promotional SMS campaigns, transactional messaging, OTP delivery, or a scalable <span className="font-bold">UAE SMS gateway </span>, DIGINTRA Teleservices provides reliable and secure messaging solutions tailored for your business.
+        </p>
+
+        <p className="mt-3 text-lg text-gray-700 leading-relaxed max-w-3xl mx-auto">
+        Contact us today to start sending Bulk SMS across the UAE.
+        </p>
+
+        {/* CTA Buttons */}
+        <div className="mt-12 flex flex-col sm:flex-row justify-center gap-6">
+
+          {/* Talk to Expert */}
+          <button
+            className="inline-flex items-center justify-center gap-3 rounded-full
+            border border-teal-500 bg-white px-8 py-4 text-teal-600 font-semibold
+            transition-all duration-300
+            hover:bg-teal-50 hover:shadow-[0_15px_35px_rgba(20,184,166,0.25)]"
+          >
+            <MessageCircle className="h-5 w-5" />
+            Talk to an SMS Expert
+          </button>
+
+          {/* Start Bulk SMS */}
+          <button
+            className="inline-flex items-center justify-center gap-3 rounded-full
+            bg-gradient-to-r from-teal-600 to-sky-600 px-8 py-4 text-white font-semibold
+            shadow-md transition-all duration-300
+            hover:shadow-[0_20px_45px_rgba(14,165,233,0.35)]"
+          >
+            <Send className="h-5 w-5" />
+           Start Sending SMS
+          </button>
+
+        </div>
+
       </div>
     </section>
 
 
 
+      <section className="mb-20 bg-gray-50 py-20 px-4 relative">
+        <div className="max-w-[90%] mx-auto text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 drop-shadow-lg">
+           FAQs – Bulk SMS UAE
+          </h2>
+        </div>
+
+        <div className="max-w-[90%] mx-auto space-y-4">
+          {faqs.map((faq, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 cursor-pointer"
+              onClick={() => toggleIndex(index)}
+            >
+              <div className="flex justify-between items-center">
+                <h3 className="text-lg md:text-xl font-semibold text-gray-800">{faq.question}</h3>
+                {openIndex === index ? (
+                  <FaChevronUp className="w-5 h-5 text-gray-600" />
+                ) : (
+                  <FaChevronDown className="w-5 h-5 text-gray-600" />
+                )}
+              </div>
+              {openIndex === index && (
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                  className="mt-4 text-gray-700"
+                >
+                  {faq.answer}
+                </motion.p>
+              )}
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+ 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-   
-
-    {/* fifth content */}
-
-    <Client/>
-
-{/* sixth content */}
-
-<Getstarted/>
-
-   
-   <Footer/>
-   </>
+      <Footer />
+    </>
   )
 }

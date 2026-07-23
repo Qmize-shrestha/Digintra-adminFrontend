@@ -212,6 +212,10 @@ import Social_media_profiling from "./pages/Social_media_profiling";
 
 import Logo_designing from "./pages/Logo_designing";
 import Promotional_TextmsgBlog from "./pages/Promotional_TextmsgBlog.jsx";
+import Sms_Api from "./pages/Sms_Api.jsx";
+import Sms_Gateway from "./pages/Sms_Gateway.jsx";
+import Top5_Etisalat_Alt from "./pages/Top5_Etisalat_Alt.jsx";
+import Sender_Id from "./pages/Sender_Id.jsx";
 // import Registerpage from "./pages/Registerpage";
 
 // import LoginBlog from "./components/LoginBlog";
@@ -433,6 +437,10 @@ function App() {
  <Route path="/blog/vi-dlt-registration-guide" element={< Vi_DLT/>} />
  <Route path="/blog/trai" element={< Trai_Guide/>} />
   <Route path="blog/promotional-text-message-examples" element={<Promotional_TextmsgBlog />} />
+  <Route path="/blog/sms-api" element={<Sms_Api />} />
+  <Route path="/blog/sms-gateway" element={<Sms_Gateway />} />
+  <Route path="/blog/top-etisalat-alternative-for-bulk-sms-uae" element={<Top5_Etisalat_Alt/>} />
+  <Route path="/blog/sender-id" element={<Sender_Id />} />
 
 
 

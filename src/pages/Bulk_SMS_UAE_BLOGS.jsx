@@ -53,15 +53,20 @@ const BlogPage = () => {
 
     <Helmet>
         <meta name="robots" content="index, follow" />
-        <title> Bulk SMS UAE | The Ultimate Guide for UAE Business Owners to Boost Growth & Customer Engagement</title>
+        <meta name="geo.region" content="AE" />
+        <meta name="geo.placename" content="United Arab Emirates" />
+        <meta name="language" content="en-AE" />
+        <title> Bulk SMS UAE | Trusted UAE SMS Gateway - DIGINTRA</title>
         <meta
           name="description"
-          content="Bulk SMS UAE : the ultimate guide for UAE Business Owners to boost company."
+          content="Send bulk SMS in UAE with DIGINTRA Teleservices. Secure UAE SMS gateway, high delivery rates & scalable bulk SMS services for businesses."
+        />
+        <meta
+          name="keywords"
+          content="bulk sms uae, sms gateway uae, uae sms gateway, uae sms solutions, bulk SMS services UAE, bulk sms uae price, uae sms gateway, bulk sms provider uae"
         />
         <link rel="canonical" href="https://digintra.com/blog/bulk-sms-uae" />
-
-
-</Helmet>
+    </Helmet>
 
     <div className="w-full flex justify-center px-5 sm:px-6 bg-gray-50 ">
       <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-8 lg:gap-10 my-32">
