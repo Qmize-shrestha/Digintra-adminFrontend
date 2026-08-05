@@ -186,12 +186,12 @@ const SmsMarketingBlog2026 = () => {
             </li>
             </a>
 
-            <a href="#Klaviyo">
+            <a href="#GetItSMS">
               <li className="flex items-center gap-3 bg-white/70 backdrop-blur rounded-xl p-3 shadow-sm hover:shadow-md transition">
               <span className="flex items-center justify-center w-8 h-8 rounded-full bg-pink-600 text-white text-sm font-semibold">
                 📊
               </span>
-              <span className="text-gray-800 font-medium">Klaviyo</span>
+              <span className="text-gray-800 font-medium">GetItSMS</span>
             </li>
             </a>
 
@@ -303,26 +303,48 @@ const SmsMarketingBlog2026 = () => {
               <p><span className="font-semibold">Industry Fit:</span> Ideal for tech companies, enterprises, and businesses that require custom workflows, integrations, and advanced messaging infrastructure.</p>
               <p><span className="font-semibold">Best for:</span> Developers and enterprises requiring flexible SMS infrastructure</p>
             </div>
+<div id="GetItSMS">
+  <h3 className="text-xl font-semibold text-blue-900 mb-2">
+    3. GetItSMS – Affordable SMS Marketing Platform
+  </h3>
 
-            <div id="Klaviyo">
-              <h3 className="text-xl font-semibold text-blue-900 mb-2">
-                3. Klaviyo – Best for personalized SMS campaigns
-              </h3>
-              <p className="mb-3">
-                Klaviyo combines SMS and email marketing into one unified platform. 
-                Known for deep ecommerce integrations, Klaviyo allows businesses to create personalized SMS campaigns 
-                based on customer behavior and purchase history.
-              </p>
-              <p className="font-semibold text-blue-800 mb-1">Key Features</p>
-              <ul className="list-disc pl-5 space-y-1 mb-3">
-                <li>Unified email and SMS automation</li>
-                <li>Customer behavior based personalization</li>
-                <li>Deep ecommerce integrations</li>
-                <li>Detailed campaign analytics</li>
-              </ul>
-              <p><span className="font-semibold">Industry Fit:</span> Perfect for online stores, D2C brands, and ecommerce businesses focused on data driven segmentation and personalized messaging.</p>
-              <p><span className="font-semibold">Best for:</span> Ecommerce brands focused on data driven marketing</p>
-            </div>
+  <p className="mb-3">
+    GetItSMS is a reliable SMS marketing platform that helps businesses send
+    bulk SMS, transactional messages, OTPs, and promotional campaigns with
+    high delivery rates. It also supports multi-channel APIs for SMS,
+    WhatsApp, voice, and RCS in one platform, allowing businesses to manage
+    different communication channels more efficiently. With an easy-to-use
+    dashboard, API integration, and automation features, it is suitable for
+    businesses of all sizes.
+  </p>
+
+  <p className="font-semibold text-blue-800 mb-1">Key Features</p>
+
+  <ul className="list-disc pl-5 space-y-1 mb-3">
+    <li>Bulk SMS campaigns</li>
+    <li>Transactional and promotional SMS</li>
+    <li>SMS API integration</li>
+    <li>Global SMS delivery</li>
+    <li>Customer segments and behavior triggers</li>
+    <li>DLT registration assistance</li>
+    <li>Real-time delivery reports</li>
+    <li>Contact list management</li>
+    <li>Campaign scheduling</li>
+  </ul>
+
+  <p>
+    <span className="font-semibold">Industry Fit:</span> Ideal for SMBs,
+    eCommerce businesses, educational institutions, healthcare providers,
+    financial services, real estate, and enterprises looking for
+    cost-effective SMS communication.
+  </p>
+
+  <p>
+    <span className="font-semibold">Best for:</span> Businesses seeking an
+    easy-to-use SMS marketing platform with bulk messaging, automation, and
+    API integration.
+  </p>
+</div>
 
             <div id="Sender.net">
               <h3 className="text-xl font-semibold text-blue-900 mb-2">
