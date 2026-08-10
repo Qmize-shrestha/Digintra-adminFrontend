@@ -10,7 +10,6 @@ import icons3 from "../assets/next.png";
 import SMSMAR from "../assets/sms_marketing.jpg";
 import CompleteGuide from "../assets/completeguide.png";
 import Digintra from "../assets/Digintra.webp";
-// import SMSREMINDERS from '../assets/SMSreminder.jpg'
 import SMSALERTPIC from "../assets/smsalertpic.jpg";
 import FAST2SMS from "../assets/fast2sms.jpg";
 import Du from "../assets/Du.jpeg";
