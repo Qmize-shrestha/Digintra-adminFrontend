@@ -1,3 +1,4 @@
+import { ArrowRightIcon } from 'lucide-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,66 +12,51 @@ const Card = ({ title, description, buttonLink, Icon }) => {
   };
 
   return (
-    <div className="group relative w-[110%] max-w-sm">
-  {/* Gradient Border */}
-  <div className="absolute inset-0 rounded-2xl p-[2px] bg-gradient-to-bl from-purple-400 to-green-400  group-hover:opacity-100 transition duration-500">
-    <div className="absolute inset-0 blur-xl bg-gradient-to-r from-green-400  to-purple-400 "></div>
-  </div>
+    <div className="group relative h-full w-full max-w-sm">
 
-  {/* Card Content */}
-  <div className="
-      relative z-10 rounded-2xl bg-white/10 backdrop-blur-xl
-      border border-white/20 p-6 text-center shadow-xl
-      transition-all duration-500 ease-out
-      group-hover:scale-[1.06] group-hover:shadow-2xl group-hover:shadow-purple-500/30
-      overflow-hidden
-    "
-  >
-    {/* Shine Effect */}
-    <div className="
-        absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
-        translate-x-[-150%] group-hover:translate-x-[150%]
-        transition-all duration-[1200ms] ease-out
-      "
-    ></div>
+      {/* Glowing gradient backdrop that appears on hover */}
+      <div className="absolute -inset-0.5 rounded-2xl bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-500 opacity-0 blur transition-opacity duration-500 group-hover:opacity-70" />
 
-    {/* Icon */}
-    {Icon && (
-      <div className="
-          w-14 h-14 flex items-center justify-center rounded-full 
-          bg-gradient-to-br from-purple-600 to-blue-500 text-white shadow-lg
-          mb-4 group-hover:shadow-purple-500/50 transition-all duration-500
-        "
-      >
-        <Icon className="text-3xl" />
+      <div className="relative z-10 flex h-full flex-col overflow-hidden rounded-2xl border border-emerald-100 bg-gradient-to-b from-white via-emerald-50/80 to-emerald-100/70 p-6 text-center shadow-lg transition-all duration-500 ease-out group-hover:-translate-y-2 group-hover:shadow-2xl group-hover:shadow-emerald-500/25">
+
+        {/* Shine sweep */}
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent translate-x-[-150%] transition-all duration-[1200ms] ease-out group-hover:translate-x-[150%]" />
+
+        {/* Decorative corner accent */}
+        <div className="absolute -top-8 -right-8 h-24 w-24 rounded-full bg-emerald-300/20 blur-2xl transition-all duration-500 group-hover:bg-emerald-400/30" />
+
+        <div className="relative z-10 flex h-full flex-col items-center text-center">
+          {Icon && (
+            <div className="relative mb-5">
+              {/* Pulsing ring behind icon */}
+              <div className="absolute inset-0 rounded-full bg-emerald-400/40 blur-md scale-100 opacity-0 transition-all duration-500 group-hover:scale-125 group-hover:opacity-100" />
+              <div className="relative flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-md transition-all duration-500 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-emerald-500/50 group-hover:rotate-6">
+                <Icon className="text-3xl" />
+              </div>
+            </div>
+          )}
+
+          <h2 className="text-2xl font-bold tracking-wide text-gray-900 drop-shadow-sm">
+            {title}
+          </h2>
+
+          <div className="mt-3 flex-1 px-3">
+            <p className="text-[15px] leading-relaxed text-gray-700">
+              {description}
+            </p>
+          </div>
+
+          <button
+            onClick={handleButtonClick}
+            className="group/btn relative mt-6 inline-flex w-full max-w-[220px] items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-2.5 font-semibold text-white shadow-md transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/40 hover:scale-[1.04]"
+          >
+            <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/25 to-white/0 -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700 ease-out" />
+            <span className="relative">Learn More</span>
+            <ArrowRightIcon className="relative h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+          </button>
+        </div>
       </div>
-    )}
-
-    {/* Title */}
-    <h2 className="text-2xl font-bold text-white tracking-wide drop-shadow-sm">
-      {title}
-    </h2>
-
-    {/* Description */}
-    <p className="mt-3 text-white/90 leading-relaxed text-[15px] px-3">
-      {description}
-    </p>
-
-    {/* Button */}
-    <button
-      onClick={handleButtonClick}
-      className="
-          mt-6 border border-blue-500 text-blue-700 font-semibold 
-          px-6 py-2 rounded-lg
-          hover:bg-blue-600 hover:text-white
-          transition-all duration-300 shadow-md
-        "
-    >
-      Learn More
-    </button>
-  </div>
-</div>
-
+    </div>
   );
 };
 

@@ -24,12 +24,38 @@ const TypingEffect = ({ messages, speed = 100 }) => {
   }, [displayedText, msgIndex, messages, speed]);
 
   return (
-      <div className=' ' style={{ display: 'inline', fontFamily: "'Familjen Grotesk', 'sans-serif'" }} >
-      <p className="md:text-[36px] text-xl font-bold text-center md:leading-[60px] font-mono text-white" style={{fontFamily:"'Montserrat',sans-serif"}}>
-      Grow Your <span className='text-green-800 bg-green-100 p-1 rounded-lg '>Business Globally</span> with <span className='text-green-800 bg-green-100 p-1 rounded-lg '>DIGINTRA’s Messaging</span> &
-              </p>  <span className='inline-block min-h-[1em]'>{displayedText}</span>
-              
-      </div>
+    <div
+  className="relative mx-auto flex max-w-4xl flex-col items-center justify-center gap-2 text-center"
+  style={{ fontFamily: "'Poppins', 'sans-serif'" }}
+>
+  {/* Soft glow behind the headline for extra pop */}
+  <div className="pointer-events-none absolute -top-10 left-1/2 -z-10 h-40 w-[90%] -translate-x-1/2 rounded-full bg-emerald-300/25 blur-[80px]" />
+
+  <p className="text-2xl font-semibold leading-tight text-slate-900 sm:text-3xl md:text-4xl lg:text-[3.25rem] lg:leading-[1.15]">
+    <span className="bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text text-transparent">
+      Grow Your
+    </span>{" "}
+    <span className="relative inline-block px-1 text-slate-900">
+      Business Globally
+      {/* <span className="absolute inset-x-0 -bottom-1 h-3 -rotate-1 rounded-full bg-emerald-200/60 -z-10" /> */}
+    </span>{" "}
+    <span className="bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text px-1 text-transparent">
+      with
+    </span>{" "}
+    <span className="px-1 text-slate-900">
+      DIGINTRA’s Bulk SMS Solutions
+    </span>
+    {/* <span className="text-emerald-600 px-2">&</span> */}
+  </p>
+
+  <span className="relative mt-1 inline-flex min-h-[1.4em] items-center text-xl font-bold text-emerald-700 sm:text-2xl md:text-3xl lg:text-[2.25rem]">
+    {displayedText}
+    <span
+      aria-hidden="true"
+      className="ml-1 inline-block h-[0.85em] w-[3px] animate-pulse rounded-full bg-emerald-600 align-middle"
+    />
+  </span>
+</div>
   );
 };
 

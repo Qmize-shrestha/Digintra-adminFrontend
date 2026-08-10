@@ -92,7 +92,9 @@ export default function Blog() {
      <h1 data-aos="fade-right" className="text-blue-700 text-[28px] font-semibold text-center  lg:text-[48px]" style={{fontFamily:"'Montserrat', sans-serif"}}>TechTalk: Navigating the Digital Frontier</h1>
      <p data-aos="fade-up" className="text-center text-[16px] text-black px-3 lg:text-[20px] mt-2 " style={{fontFamily:"'Poppins', sans-serif"}}> "Exploring the latest trends, innovations, and insights in the world of technology." </p>
      <div className=' flex justify-center'>
-     <a href="#allblogs"> <button className="w-[200px] h-14 hover:scale-125 bg-gradient-to-tr from-yellow-500 to-green-500 text-white  border-2 border-black  mt-5 rounded-lg  font-medium  ">Explore now</button> </a>
+     <a href="#allblogs">
+       <button className="w-[200px] h-14 hover:scale-125 bg-gradient-to-tr from-yellow-500 to-green-500 text-white  border-2 border-black  mt-5 rounded-lg  font-medium  ">
+        Explore now</button> </a>
      </div>
      
     

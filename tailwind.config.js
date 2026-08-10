@@ -44,7 +44,7 @@
 
 
 
-/** @type {import('tailwindcss').Config} */
+//** @type {import('tailwindcss').Config} */
 export default {
   content: [
     "./index.html",
@@ -71,6 +71,10 @@ export default {
           '0%': { transform: 'rotate(0deg)' },
           '100%': { transform: 'rotate(360deg)' },
         },
+        'marquee-reverse': {
+          '0%': { transform: 'translateX(-50%)' },
+          '100%': { transform: 'translateX(0%)' },
+        },
       },
 
       animation: {
@@ -81,8 +85,10 @@ export default {
         'fadeIn-delay-800': 'fadeIn 1s ease 0.8s forwards',
         float: 'float 4s ease-in-out infinite',
         'spin-slow': 'spinSlow 60s linear infinite',
+        'marquee-reverse': 'marquee-reverse 25s linear infinite',
       },
     },
   },
+
   plugins: [],
 };

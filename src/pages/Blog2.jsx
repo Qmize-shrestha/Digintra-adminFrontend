@@ -87,6 +87,7 @@ import sms  from "../assets/sms-api.jpg";
 import smsgateway  from "../assets/sms-gateway.jpg";
 import topetialt from "../assets/top5etisalternative.jpeg";
 import senderid from "../assets/whatissenderid.jpeg";
+import digintra_photo3 from "../assets/Digintra_photo3.jpeg";
 const MainPage = () => {
     const blogData = [
   {
@@ -459,11 +460,20 @@ const MainPage = () => {
     title: "Top 5 Etisalat Alternatives for Bulk SMS in UAE (2026 Guide)",
     link: "/blog/top-etisalat-alternative-for-bulk-sms-uae"
   },
+
   {
     image: senderid,
     title: "What is a Sender ID? Complete Guide to SMS Sender ID for Businesses",
     link: "/blog/sender-id"
-  }
+  },
+
+{
+    image: digintra_photo3,
+    title: "Bulk SMS Marketing Strategies for UAE Businesses: A Complete Guide to Higher Engagement and Better ROI ",
+    link: "/blog/bulk-sms-marketing-strategies-uae-businesses"
+  },
+
+
 ];
 useEffect(()=>{
     window.scrollTo(0,0);

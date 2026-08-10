@@ -217,6 +217,7 @@ import Sms_Gateway from "./pages/Sms_Gateway.jsx";
 import Top5_Etisalat_Alt from "./pages/Top5_Etisalat_Alt.jsx";
 import Sender_Id from "./pages/Sender_Id.jsx";
 // import Registerpage from "./pages/Registerpage";
+import Bulk_SMS_MarketingUAE from "./pages/Bulk_SMS_MarketingUAE.jsx";
 
 // import LoginBlog from "./components/LoginBlog";
 import Error from "./pages/Error";
@@ -229,6 +230,7 @@ import { MdClose } from "react-icons/md";
 import { IoMdClose } from "react-icons/io";
 import { GoAlertFill } from "react-icons/go";
 import OfferPopup from "./components/Offerpopup";
+
 // import BlogEditor from "./Blog/BlogEditor";
 function App() {
 
@@ -441,6 +443,7 @@ function App() {
   <Route path="/blog/sms-gateway" element={<Sms_Gateway />} />
   <Route path="/blog/top-etisalat-alternative-for-bulk-sms-uae" element={<Top5_Etisalat_Alt/>} />
   <Route path="/blog/sender-id" element={<Sender_Id />} />
+  <Route path="/blog/bulk-sms-marketing-strategies-uae-businesses" element={<Bulk_SMS_MarketingUAE />} />
 
 
 

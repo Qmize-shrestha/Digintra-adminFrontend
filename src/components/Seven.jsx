@@ -6,7 +6,7 @@ import icons4 from "../assets/004.png";
 
 const Seven = ({ endnumber, endnumber1, endnumber2, endnumber3 }) => {
     const [currentNumber1, setCurrentNumber1] = useState(0);
-    const [currentNumber2, setCurrentNumber2] = useState(500);
+    const [currentNumber2, setCurrentNumber2] = useState(0);
     const [currentNumber3, setCurrentNumber3] = useState(0);
     const [currentNumber4, setCurrentNumber4] = useState(0);
 
@@ -32,127 +32,117 @@ const Seven = ({ endnumber, endnumber1, endnumber2, endnumber3 }) => {
         };
     }, []);
 
-    useEffect(() => { 
-        if (inView) {
-            const interval1 = setInterval(() => {
-                setCurrentNumber1((prevNumber) => {
-                    if (prevNumber < endnumber1) {
-                        return prevNumber + 1;
-                    }
-                    clearInterval(interval1);
-                    return prevNumber;
-                });
-            }, 120);
+    useEffect(() => {
+        if (!inView) return;
 
-            const interval2 = setInterval(() => {
-                setCurrentNumber2((prevNumber) => {
-                    if (prevNumber < endnumber2) {
-                        return prevNumber + 1;
-                    }
-                    clearInterval(interval2);
-                    return prevNumber;
-                });
-            }, 3);
+        // All four counters animate over the same duration, regardless of
+        // how big their target number is — so a small target (e.g. 5) and
+        // a large target (e.g. 1000) both visibly count up instead of the
+        // small one finishing almost instantly.
+        const duration = 1600; // ms
+        const startTime = performance.now();
 
-            const interval3 = setInterval(() => {
-                setCurrentNumber3((prevNumber) => {
-                    if (prevNumber < endnumber3) {
-                        return prevNumber + 1;
-                    }
-                    clearInterval(interval3);
-                    return prevNumber;
-                });
-            }, 3);
+        const targets = {
+            1: endnumber1 || 0,
+            2: endnumber2 || 0,
+            3: endnumber3 || 0,
+            4: endnumber || 0,
+        };
+        const setters = {
+            1: setCurrentNumber1,
+            2: setCurrentNumber2,
+            3: setCurrentNumber3,
+            4: setCurrentNumber4,
+        };
 
-            const interval4 = setInterval(() => {
-                setCurrentNumber4((prevNumber) => {
-                    if (prevNumber < endnumber) {
-                        return prevNumber + 1;
-                    }
-                    clearInterval(interval4);
-                    return prevNumber;
-                });
-            }, 3);
+        let rafId;
+        const tick = (now) => {
+            const progress = Math.min((now - startTime) / duration, 1);
+            Object.keys(targets).forEach((key) => {
+                setters[key](Math.round(progress * targets[key]));
+            });
+            if (progress < 1) {
+                rafId = requestAnimationFrame(tick);
+            }
+        };
 
-            return () => {
-                clearInterval(interval1);
-                clearInterval(interval2);
-                clearInterval(interval3);
-                clearInterval(interval4);
-            };
-        }
+        rafId = requestAnimationFrame(tick);
+        return () => cancelAnimationFrame(rafId);
     }, [inView, endnumber, endnumber1, endnumber2, endnumber3]);
 
+    const stats = [
+        { icon: icons1, value: currentNumber1, label: "Years of Experience" },
+        { icon: icons2, value: currentNumber2, label: "Network Operators" },
+        { icon: icons3, value: currentNumber3, label: "Direct Connections" },
+        { icon: icons4, value: currentNumber4, label: "Customer Satisfaction" },
+    ];
+
     return (
-      <div
-  ref={containerRef}
-  className="relative w-full py-24 bg-gradient-to-br from-green-50 via-white to-green-100 overflow-hidden"
->
+        <div
+            ref={containerRef}
+            className="relative w-full overflow-hidden bg-gradient-to-b from-emerald-50/60 via-white to-emerald-50/40 py-20 lg:py-24"
+        >
+            {/* Soft decorative glows to add depth without darkening the section */}
+            <div className="pointer-events-none absolute -top-24 -left-24 h-72 w-72 rounded-full bg-emerald-200/30 blur-[100px]" />
+            <div className="pointer-events-none absolute -bottom-24 -right-24 h-80 w-80 rounded-full bg-lime-200/30 blur-[110px]" />
+            <div
+                className="pointer-events-none absolute inset-0 opacity-[0.05]"
+                style={{
+                    backgroundImage: "radial-gradient(circle, #16a34a 1px, transparent 1px)",
+                    backgroundSize: "24px 24px",
+                }}
+            />
 
-  {/* Decorative Blobs */}
-  <svg className="absolute top-0 left-0 opacity-20 w-[300px]" viewBox="0 0 200 200">
-    <path
-      fill="#22c55e"
-      d="M45.4,-79.1C59.8,-73.9,72.1,-60.2,79.6,-44.3C87.1,-28.4,89.8,-10.2,87.8,7.5C85.9,25.2,79.3,42.3,67.7,57.2C56.2,72.2,39.7,85,20.1,92.4C0.5,99.8,-22.1,101.8,-40.4,94.5C-58.8,87.3,-73,70.8,-81.9,51.9C-90.8,32.9,-94.4,11.6,-92.8,-8.7C-91.2,-29,-84.4,-48.2,-71.2,-59.2C-58,-70.2,-38.5,-73,-19.7,-78.8C-0.8,-84.6,17.4,-93.3,33.5,-90.5C49.6,-87.7,56.1,-73,45.4,-79.1Z"
-      transform="translate(100 100)"
-    />
-  </svg>
+            <div className="relative container mx-auto px-4 md:px-10 lg:px-20">
 
-  {/* Glow Spots */}
-  <div className="absolute top-20 right-20 w-40 h-40 bg-green-300/40 rounded-full blur-2xl animate-pulse"></div>
-  <div className="absolute bottom-20 left-10 w-56 h-56 bg-emerald-400/40 rounded-full blur-[70px] animate-pulse"></div>
+                {/* Header row: heading + subtext on the left, CTA on the right */}
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+                    <div>
+                        <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700 mb-4">
+                            Our Impact
+                        </span>
+                       <h2 className="font-poppins text-3xl md:text-[3rem] font-bold text-slate-900 leading-tight">
+  Numbers That Speak for Us
+</h2>
+                        <p className="mt-3 text-slate-500 text-base md:text-lg max-w-xl">
+                            Real results that reflect our commitment, growth, and impact over time.
+                        </p>
+                    </div>
+                   
+                </div>
 
-  {/* MAIN CONTENT */}
-  <div className="relative container mx-auto px-4 md:px-20 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+                {/* Stat cards */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {stats.map((stat, i) => (
+                        <div
+                            key={i}
+                            className="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-emerald-50/80 p-6 
+shadow-[0_8px_30px_-12px_rgba(15,23,42,0.10)] ring-1 ring-emerald-100/70 transition-all duration-300 hover:-translate-y-1.5 hover:
+ from-white hover:to-emerald-100/70 hover:shadow-[0_20px_40px_-16px_rgba(16,185,129,0.35)] hover:ring-emerald-200  flex flex-col
+  items-center text-center">
 
-    {/* CARD 1 */}
-    <div className="relative group">
-      <div className="glass-card bg-gradient-to-br from-green-600 to-green-800 shadow-2xl p-6 rounded-2xl border border-white/20 backdrop-blur-xl text-white flex flex-col items-center text-center transition-all duration-500 hover:scale-105 hover:shadow-green-500/40">
 
-        <img src={icons1} alt="Experience" className="w-16 h-16 mb-4 bg-white rounded-xl p-2" />
+                            {/* Accent top bar */}
+                            <div className="absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r from-emerald-500 via-green-500 to-lime-400" />
 
-        <h1 className="text-4xl font-extrabold">{currentNumber1}+</h1>
-        <h2 className="text-lg mt-1 font-medium">Years of Experience</h2>
-      </div>
-    </div>
+                            {/* Soft glow behind icon on hover */}
+                            <div className="pointer-events-none absolute -top-6 -left-6 h-28 w-28 rounded-full bg-emerald-200/0 blur-2xl transition-all duration-500 group-hover:bg-emerald-200/50" />
 
-    {/* CARD 2 */}
-    <div className="relative group">
-      <div className="glass-card bg-white shadow-lg p-6 rounded-2xl border border-gray-200 backdrop-blur-sm flex flex-col items-center text-center transition-all duration-500 hover:scale-105 hover:shadow-xl">
+                            <div className="relative w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-50 to-white flex items-center justify-center mb-8 shadow-sm ring-1 ring-emerald-100 transition-transform duration-300 group-hover:scale-110">
+                                <img src={stat.icon} alt={stat.label} className="w-7 h-7 object-contain" />
+                            </div>
 
-        <img src={icons2} alt="Network Operators" className="w-16 h-16 mb-4" />
-
-        <h1 className="text-4xl font-extrabold text-gray-900">{currentNumber2}+</h1>
-        <h2 className="text-lg mt-1 font-medium text-gray-700">Network Operators</h2>
-      </div>
-    </div>
-
-    {/* CARD 3 */}
-    <div className="relative group">
-      <div className="glass-card bg-gradient-to-br from-emerald-700 to-green-900 text-white shadow-2xl p-6 rounded-2xl border border-white/20 backdrop-blur-xl flex flex-col items-center text-center transition-all duration-500 hover:scale-105 hover:shadow-green-500/40">
-
-        <img src={icons3} alt="Direct Connection" className="w-16 h-16 mb-4 bg-white rounded-xl p-2" />
-
-        <h1 className="text-4xl font-extrabold">{currentNumber3}+</h1>
-        <h2 className="text-lg mt-1 font-medium">Direct Connections</h2>
-      </div>
-    </div>
-
-    {/* CARD 4 */}
-    <div className="relative group">
-      <div className="glass-card bg-white p-6 rounded-2xl border border-gray-200 backdrop-blur-sm shadow-lg flex flex-col items-center text-center transition-all duration-500 hover:scale-105 hover:shadow-xl">
-
-        <img src={icons4} alt="Customer Satisfaction" className="w-16 h-16 mb-4" />
-
-        <h1 className="text-4xl font-extrabold text-gray-900">{currentNumber4}+</h1>
-        <h2 className="text-lg mt-1 font-medium text-gray-700">Customer Satisfaction</h2>
-      </div>
-    </div>
-
-  </div>
-
-</div>
-
+                            <h1 className="relative text-4xl md:text-5xl font-extrabold text-slate-900">
+                                {stat.value}
+                                <span className="text-emerald-500">+</span>
+                            </h1>
+                            <div className="mt-3 mb-2 h-[3px] w-8 rounded-full bg-emerald-400 transition-all duration-300 group-hover:w-14" />
+                            <h2 className="text-slate-500 font-medium">{stat.label}</h2>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </div>
     );
 };
 

@@ -1,7 +1,6 @@
-import React from "react";
-import { useRef ,useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { FaInbox, FaSyncAlt, FaBullhorn, FaShippingFast } from "react-icons/fa";
+import { FaInbox, FaSyncAlt, FaBullhorn, FaLayerGroup } from "react-icons/fa";
 import Seven from "../components/Seven";
 import Blogtypingeffect from "../components/Blogtypingeffect";
 import Client from "../components/Client";
@@ -10,14 +9,12 @@ import Choose from "../components/Choose";
 import TypingEffect from "../components/TypingEffect";
 import Products from "../components/Products";
 import "./Home.css";
-import yourImage from '../assets/yourImage.png'
+import GlobalImg from '../assets/GlobalImg.jpeg'
 
-import { useInView } from 'react-intersection-observer';
 import Homeslider from "../components/Homeslider";
 import Testimonials from "../components/Testimonials";
 import { Helmet } from "react-helmet";
-import { useEffect } from "react";
-import { FaWhatsapp, FaCog, FaUsers, FaRegChartBar, FaShieldAlt, FaEnvelope, FaCloud, FaComments,FaBell, FaSync,FaUserPlus} from 'react-icons/fa';
+import { FaWhatsapp, FaCog, FaUsers, FaRegChartBar, FaShieldAlt, FaEnvelope, FaCloud, FaComments, FaBell, FaSync, FaUserPlus } from 'react-icons/fa';
 import { TbHandClick } from "react-icons/tb";
 import icons1 from "../assets/anyuse.jpg";
 import icons2 from "../assets/icons8-arrow-100.png";
@@ -30,13 +27,17 @@ import icons8 from "../assets/api.png";
 import icons9 from "../assets/fff.png";
 import icons10 from "../assets/seamless-floral-pattern-vintage-wallpaper.jpg";
 import icons11 from '../assets/bg-white.jpg';
+import { ArrowRight, MessageCircleMore } from "lucide-react";
+import { CreditCard, Wallet } from "lucide-react";
+
+
 
 import blogCardbg from "../assets/OAICFK0.jpg";
 import pricescreenshot from "../assets/Screenshot 2024-08-30 104623.webp";
 import emailcamp from "../assets/email.jpg";
 import smtpserver from "../assets/smtp-server.jpg";
 import voicebroadcast from "../assets/voice-broadcast.jpg";
-import {} from "react-icons/fa";
+import { } from "react-icons/fa";
 import { MdMessage } from "react-icons/md";
 import Footer from "../components/Footer";
 import ChildCompany from "../components/ChildCompany";
@@ -46,51 +47,169 @@ import health from '../assets/Healthcare.webp'
 import government from '../assets/SMES.webp'
 import education from '../assets/Education.webp'
 import transport from '../assets/Logistics.webp';
-import travel from '../assets/Hospitality.jpg'
-import media from '../assets/Media.webp'
-import HomepageImage from '../assets/digintra.webp';
+import travel from '../assets/Hospitality.jpg';
+import Digintra_dashboard from '../assets/Digintra_dashboard.jpeg';
 
+import mapImg from '../assets/mapImg.png';
+import messaging from '../assets/messaging.jpeg';
+import { motion, useInView, useSpring, useTransform } from "framer-motion";
+import { Globe, Megaphone, ReceiptText, KeyRound } from "lucide-react";
+// import { Lock } from "lucide-react";
 
+const ChooseSection = lazy(() => import("../components/Choose"));
+const TestimonialsSection = lazy(() => import("../components/Testimonials"));
+const SevenSection = lazy(() => import("../components/Seven"));
+const ClientSection = lazy(() => import("../components/Client"));
+const FooterSection = lazy(() => import("../components/Footer"));
 
+function DeferredSection({ children }) {
+  const [shouldRender, setShouldRender] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setShouldRender(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  return <div ref={ref}>{shouldRender ? <Suspense fallback={null}>{children}</Suspense> : null}</div>;
+}
+
+function AnimatedStat({ value, label }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  const match = value.match(/^([^\d]*)([\d,.]+)(.*)$/);
+  const springValue = useSpring(0, {
+    stiffness: 50,
+    damping: 20,
+    restDelta: 0.001,
+  });
+
+  const formattedValue = match
+    ? (() => {
+      const [, prefix, rawNum, suffix] = match;
+      const targetNum = parseFloat(rawNum.replace(/,/g, ""));
+      const decimals = rawNum.includes(".") ? rawNum.split(".")[1].length : 0;
+
+      useEffect(() => {
+        if (isInView) springValue.set(targetNum);
+      }, [isInView, springValue, targetNum]);
+
+      const displayValue = useTransform(springValue, (current) =>
+        `${prefix}${current.toFixed(decimals)}${suffix}`
+      );
+
+      return displayValue;
+    })()
+    : value;
+
+  if (!match) {
+    return (
+      <div ref={ref} className="text-center">
+        <p
+          className="bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text text-2xl font-bold text-transparent sm:text-3xl"
+          style={{ fontFamily: "'Poppins', 'sans-serif'" }}
+        >
+          {value}
+        </p>
+        <p
+          className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500 sm:text-sm"
+          style={{ fontFamily: "'Poppins', 'sans-serif'" }}
+        >
+          {label}
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div ref={ref} className="text-center">
+      <p
+        className="bg-gradient-to-r from-emerald-600 to-green-500 bg-clip-text text-2xl font-bold text-transparent sm:text-3xl"
+        style={{ fontFamily: "'Poppins', 'sans-serif'" }}
+      >
+        <motion.span>{formattedValue}</motion.span>
+      </p>
+      <p
+        className="mt-1 text-xs font-medium uppercase tracking-wide text-slate-500 sm:text-sm"
+        style={{ fontFamily: "'Poppins', 'sans-serif'" }}
+      >
+        {label}
+      </p>
+    </div>
+  );
+}
+
+function StatsGrid() {
+  const stats = [
+    { value: "200+", label: "Countries Reached" },
+    { value: "100+", label: "Businesses Served" },
+    { value: "99.9%", label: "Delivery Rate" },
+    { value: "24/7", label: "Global Support" },
+  ];
+
+  return (
+    <div className="mx-auto mt-14 grid max-w-2xl grid-cols-2 gap-6 rounded-2xl border border-emerald-100 bg-white/60 px-6 py-8 shadow-sm backdrop-blur-md sm:grid-cols-4">
+      {stats.map((stat) => (
+        <AnimatedStat key={stat.label} value={stat.value} label={stat.label} />
+      ))}
+    </div>
+  );
+}
 
 export default function Home() {
   const messages = [
-    "Communication Suite",
-  "Engagement Solutions",
-  "Automation Tools",
-  "Omnichannel Suite"
+    "Bulk SMS, Delivered Instantly",
+    // "WhatsApp Business API",
+    "Voice & SMS in One Place",
+    "Global Reach. Real Results.",
   ];
   const blogmessages = [
-   "Solutions for Businesses Worldwide.",
+    "Solutions for Businesses Worldwide.",
     "Solutions for Seamless Connectivity.",
     "to Accelerate Your Business Growth.",
   ];
-  const dummyData = [
+  const smsSolutions = [
     {
       id: 1,
-      title: "Enterprise SMS",
+      title: "Global Bulk SMS",
       description:
-        "Scale your messaging with our secure and reliable Enterprise SMS solutions, crafted for large organizations needing high-volume messaging.",
-      buttonLink: "/enterprise-messaging",
-      icon: FaInbox,
+        "Send high-volume SMS campaigns worldwide using fast and reliable carrier routes.",
+      icon: Globe,
     },
     {
       id: 2,
-      title: "Transactional SMS",
-      description: `Keep your customers informed with real-time updates
-                      through our reliable Transactional SMS service, ensuring
-                      timely and effective communication.`,
-      buttonLink: "/transactional-sms",
-      icon: FaSyncAlt,
+      title: "Promotional SMS",
+      description:
+        "Launch marketing campaigns, offers, discounts, and customer engagement messages.",
+      icon: Megaphone,
     },
     {
       id: 3,
-      title: "Wholesale SMS",
-      description: `Access high-volume messaging with our Wholesale SMS
-                      service, designed for resellers and large enterprises
-                      seeking cost-effective solutions.`,
-      buttonLink: "/wholesale-messaging",
-      icon: FaShippingFast,
+      title: "Transactional SMS",
+      description:
+        "Deliver instant alerts, order confirmations, account notifications, and reminders.",
+      icon: ReceiptText,
+    },
+    {
+      id: 4,
+      title: "OTP SMS",
+      description:
+        "Secure logins and customer verification with fast one-time password delivery.",
+      icon: KeyRound,
     },
   ];
   const cardofindustry = [
@@ -130,11 +249,53 @@ export default function Home() {
       text: 'Schedule and build trips and share greeting messages, notifications, and reminders through SMS.',
     },
     {
-      image: media,
+      // image: media,
       heading: 'Media & Entertainment',
       text: 'Use SMS to run opinion polls and contests, garner votes for a game and reality shows, send event invites, and much more.',
     },
   ];
+
+  const useCases = [
+    {
+      image: icons4,
+      title: "2-Way SMS",
+      description:
+        "Send and receive messages instantly — ideal for remote teams, staff, and customer engagement.",
+    },
+    {
+      image: icons5,
+      title: "SMPP Connectivity",
+      description:
+        "Bind our SMPP (v3.4) directly into your stack and start routing traffic globally in minutes.",
+    },
+    {
+      image: icons6,
+      title: "Real-Time DLR Reports",
+      description:
+        "Track delivery status of every message in real time and optimize campaign performance instantly.",
+    },
+    {
+      image: icons7,
+      title: "Mass Texting",
+      description:
+        "Log in and start sending mass texts across 800+ mobile network connections with ease.",
+    },
+    {
+      image: icons8,
+      title: "Flexible, Scalable API",
+      description:
+        "The most adaptable SMS API gateway — start sending from any application in minutes.",
+    },
+    {
+      image: icons9,
+      title: "Schedule Campaigns",
+      description:
+        "Queue reminders, alerts and notifications ahead of time to deliver at exactly the right moment.",
+    },
+  ];
+
+
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -145,13 +306,13 @@ export default function Home() {
   const [animate, setAnimate] = useState(false);
 
   useEffect(() => {
-    
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
           setAnimate(true); // Start the animation when in view
-          
+
           // Reset the animation after a short duration
           setTimeout(() => {
             setAnimate(false);
@@ -181,13 +342,13 @@ export default function Home() {
   const [animatem, setAnimatem] = useState(false);
 
   useEffect(() => {
-    
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setInViewm(true);
           setAnimatem(true); // Start the animation when in view
-          
+
           // Reset the animation after a short duration
           setTimeout(() => {
             setAnimate(false);
@@ -212,21 +373,12 @@ export default function Home() {
     };
   }, [refm]);
 
-  // const { ref, inView } = useInView({
-  //   triggerOnce: true,
-  //   threshold: 1,
-  // });
 
-
-//  const { ref: refm, inView: inViewm } = useInView({
-//     triggerOnce: true,
-//     threshold: 1,
-//   }); 
- const messages1 = [
-  "Grow Your Business Globally with Digintra’s Messaging & Engagement Suite"
+  const messages1 = [
+    "Grow Your Business Globally with Digintra’s Messaging & Engagement Suite"
   ];
 
- 
+
 
   return (
     <div>
@@ -241,1129 +393,516 @@ export default function Home() {
             content="DIGINTRA is a fast-growing SMS platform, offering secure A2P messaging solutions for all. Empower your communication with instant, reliable delivery.
 "
           />
-           <meta name="keywords" content="sms platform, bulk sms platform, bulk sms provider
+          <meta name="keywords" content="sms platform, bulk sms platform, bulk sms provider
 " />
-<link rel="canonical" href="https://digintra.com" />
+          <link rel="canonical" href="https://digintra.com" />
 
 
         </Helmet>
         {/* <Homeslider /> */}
 
-
-
-
-      <div className="relative overflow-hidden bg-gradient-to-b from-white via-green-300 to-green-900">
-<div className="absolute top-[400px] left-10 w-14 h-14 bg-white/60 rounded-full flex items-center justify-center animate-[float_6s_ease-in-out_infinite] z-10">
-💬
-</div>
-
-
-<div className="absolute top-40 right-16 w-12 h-12 bg-white/60 rounded-full flex items-center justify-center animate-[floatReverse_7s_ease-in-out_infinite] z-10 ">
-✨
-</div>
-
-
-<div className="absolute bottom-20 left-1/2 w-16 h-16 bg-white/60 rounded-full flex items-center justify-center animate-[float_8s_ease-in-out_infinite] z-10 ">
-🌟
-</div>
-
-
-{/* Hero Content */}
-<div className="py-[8rem] md:py-[10rem] backdrop-blur-md flex justify-center flex-col items-center">
-<div className="flex items-center justify-center">
-<div
-className="
-    md:text-5xl text-2xl font-bold text-center md:leading-[80px]
-    font-mono p-4
-    bg-gradient-to-r from-green-400 to-blue-900 bg-clip-text text-transparent
-    
-  "
-style={{ fontFamily: "'Familjen Grotesk', 'sans-serif'" }}
->
-<TypingEffect messages={messages} speed={50} />
-</div>
-</div>
-
-
-<p
-className="px-4 text-base md:text-lg text-center mt-0 md:mt-0 w-[95%] md:w-[60%] leading-[28px] md:leading-[28px] text-gray-900"
-style={{ fontFamily: "'Familjen Grotesk', 'sans-serif'" }}
->
-Connect with your audience across the globe using our reliable bulk SMS solutions,
-delivering messages quickly and efficiently.
-</p>
-
-
-<div className="flex flex-col md:flex-row gap-4 my-9 ">
-<a href="https://sms-login.digintra.com/User/SignUp" className="w-full md:w-auto">
-<button className=" w-full bg-green-700 text-white font-semibold py-3 px-5 rounded-lg shadow-lg hover:bg-green-900 border border-white transition duration-300 ease-in-out">
-Start Free Trial
-</button>
-</a>
-
-
-<Link to="/contact-us" className="w-full md:w-auto">
-<button className=" w-full bg-green-700 text-white font-semibold py-3 px-5 rounded-lg shadow-lg hover:bg-green-900 border border-white transition duration-300 ease-in-out">
-Contact Us
-</button>
-</Link>
-</div>
-</div>
-
-
-{/* Custom Animations */}
-<style>
-{`
-@keyframes float {
-0%, 100% { transform: translateY(0); }
-50% { transform: translateY(-20px); }
-}
-@keyframes floatReverse {
-0%, 100% { transform: translateY(0); }
-50% { transform: translateY(20px); }
-}
-@keyframes spin-slow {
-0% { transform: rotate(0deg); }
-100% { transform: rotate(360deg); }
-}
-`}
-</style>
-</div>
-
-        {/* child company */}
-        {/* <ChildCompany/> */}
-        {/* next content */}
-
-
-        
-
-
-
-        <div
-          className=" relative pb-10 pt-5 px-4 sm:px-8 lg:px-12 bg-cover bg-center flex items-center justify-center "
-          style={{ backgroundImage: `url(${icons11})` }}
-        >
-          <div className="absolute inset-0 bg-white opacity-60"></div>
-
-          <div className="max-w-7xl w-full mx-auto md:mt-20 z-10">
-            <div className=" w-[90%] text-center mx-auto">
-              <h1 className="text-lg md:text-5xl font-semibold text-gray-900 sm:text-5xl leading-[30px] md:leading-[54px]" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-                Transform Your Communication with Our Premium Solutions
-              </h1>
-              <p className="mt-4 text-lg md:text-lg text-gray-700 max-w-2xl mx-auto">
-                Explore our suite of advanced services designed to streamline
-                and elevate your business communications.
-              </p>
-            </div>
-
-            <div className=" mt-6 md:mt-16 ">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center gap-12 md:gap-24 p-8">
-                {dummyData.map((item) => (
-                  <Card
-                    key={item.id}
-                    title={item.title}
-                    description={item.description}
-                    buttonLink={item.buttonLink}
-                    Icon={item.icon}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-24 text-center">
-              <h2 className="text-4xl font-bold text-gray-900" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-              Cloud Services Designed for Better Results
-              </h2>
-              <p className="mt-4 text-md text-gray-700 max-w-xl mx-auto">
-                Maximize your reach with our comprehensive range of promotion
-                channels tailored to meet your business needs.
-              </p>
-              <div className="mt-4 md:mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 p-2 md:p-0">
-                {/* Email Campaigns */}
-                <div className="group relative bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-xl border border-white/20 transition-all duration-500 hover:scale-[1.04] hover:shadow-2xl hover:shadow-blue-500/20">
-
-  {/* Glow Gradient Border */}
-  <div className="absolute inset-0 rounded-2xl p-[2px] bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-    <div className="absolute inset-0 blur-xl bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-600 opacity-50"></div>
-  </div>
-
-  {/* Shine Sweep */}
-  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
-                  translate-x-[-150%] group-hover:translate-x-[150%] 
-                  transition-all duration-[1200ms] ease-out"></div>
-
-  {/* Card Content */}
-  <div className="relative z-10">
-
-    {/* Image */}
-    <img
-      src={emailcamp}
-      alt="Email Campaigns"
-      className="w-full h-48 object-cover rounded-t-2xl"
-    />
-
-    {/* Text Content */}
-    <div className="p-8 bg-gradient-to-b from-white via-gray-50 to-gray-100">
-      <h3 className="text-2xl font-bold text-gray-900" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>Email Campaigns</h3>
-
-      <p className="mt-2 text-gray-700 leading-relaxed" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-        Design and manage high-impact email campaigns with our intuitive tools,
-        driving engagement and conversions effectively.
-      </p>
-    </div>
-
-    {/* Button */}
-    <Link to="/promotional-email">
-      <div className="bg-gray-100 py-4 text-center text-blue-600 hover:text-blue-800 font-semibold transition-colors duration-300" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-        Learn More
-      </div>
-    </Link>
-  </div>
-</div>
-
-                {/* SMTP Server */}
-
-            <div className="group relative rounded-2xl overflow-hidden bg-white/10 backdrop-blur-md shadow-xl border border-white/20 transition-all duration-500 hover:scale-[1.04] hover:shadow-purple-500/30">
-
-  {/* Gradient Glow Border */}
-  <div className="absolute inset-0 rounded-2xl p-[2px] 
-                  bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 
-                  opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-    <div className="absolute inset-0 blur-xl 
-                    bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 
-                    opacity-50"></div>
-  </div>
-
-  {/* Shine Sweep */}
-  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent
-                  translate-x-[-150%] group-hover:translate-x-[150%]
-                  transition-all duration-[1200ms] ease-out pointer-events-none"></div>
-
-  {/* Card Body */}
-  <div className="relative z-10">
-
-    {/* Image */}
-    <img
-      src={smtpserver}
-      alt="SMTP Server"
-      className="w-full h-48 object-cover rounded-t-2xl"
-    />
-
-    {/* Content */}
-    <div className="p-8 bg-gradient-to-b from-white via-gray-50 to-gray-100">
-      <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-        SMTP Server
-      </h3>
-      <p className="text-gray-700 leading-relaxed" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-        Ensure reliable email delivery with our robust SMTP Server solutions, 
-        tailored for both transactional and marketing emails.
-      </p>
-    </div>
-
-    {/* Button */}
-    <Link to="/smtp-server">
-      <div className="bg-gray-100 p-4 text-center text-blue-600 
-                      hover:text-blue-800 font-semibold transition-colors 
-                      duration-300 cursor-pointer" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-        Learn More
-      </div>
-    </Link>
-
-  </div>
-</div>
-
-
-
-                {/* Voice Broadcast */}
-
-               <div className="group relative rounded-2xl overflow-hidden bg-white/10 backdrop-blur-md 
-                shadow-xl border border-white/20 transition-all duration-500 
-                hover:scale-[1.05] hover:shadow-purple-500/30">
-
-  {/* Neon Gradient Border */}
-  <div className="absolute inset-0 rounded-2xl p-[2px] 
-                  bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500
-                  opacity-70 group-hover:opacity-100 transition-opacity duration-500">
-    <div className="absolute inset-0 blur-xl 
-                    bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 
-                    opacity-50"></div>
-  </div>
-
-  {/* Shine Sweep Animation */}
-  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
-                  translate-x-[-150%] group-hover:translate-x-[150%] 
-                  transition-all duration-[1200ms] ease-out pointer-events-none"></div>
-
-  {/* Sound Wave Glow Background */}
-  <div className="absolute inset-0 opacity-10 bg-[url('https://i.imgur.com/nH6QTdU.png')] 
-                  bg-cover bg-center mix-blend-soft-light"></div>
-
-  {/* Card Body */}
-  <div className="relative z-10">
-
-    {/* Image */}
-    <img
-      src={voicebroadcast}
-      alt="Voice Broadcast"
-      className="w-full h-48 object-cover rounded-t-2xl"
-    />
-
-    {/* Text Content */}
-    <div className="p-8 bg-gradient-to-b from-white via-gray-50 to-gray-100">
-      <h3 className="text-2xl font-bold text-gray-900 mb-2" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-        Voice Broadcast
-      </h3>
-      <p className="text-gray-700 text-base" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-        Reach your audience effectively with automated voice calls for important
-        announcements, reminders, and more.
-      </p>
-    </div>
-
-    {/* Button */}
-    <Link to="/voice-broadcast">
-      <div className="bg-gray-100 p-4 text-center text-blue-600 
-                      hover:text-blue-800 font-semibold transition-colors duration-300 cursor-pointer" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-        Learn More
-      </div>
-    </Link>
-  </div>
-</div>
-
-              </div>
-            </div>
-
-            {/* next content */}
-
-            <div className="flex flex-col md:flex-row md:px-8 gap-8">
-              <div className="mt-24 text-center">
-                <h2 className="text-3xl font-bold text-gray-900" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-                  SMS GATEWAY SOFTWARE
-                </h2>
-                <p className="mt-4 text-lg text-gray-700 max-w-xl mx-auto" style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-                  Elevate your communication with our SMS Gateway Software,
-                  providing reliable and efficient messaging tailored to your
-                  needs.
-                </p>
-                <div className="mt-12 flex justify-center w-full">
-
-  <div className="w-[95%] md:w-[80%] lg:w-[100%] 
-                  bg-white/70 backdrop-blur-lg rounded-2xl 
-                  shadow-xl border border-gray-200 
-                  transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]
-                  overflow-hidden">
-
-    {/* Top Gradient Line */}
-    <div className="w-full h-[4px] bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500"></div>
-
-    <div className="px-8 py-10">
-
-      {/* Title */}
-      <h3 className="text-2xl font-bold text-gray-900 text-center"
-          style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-        SMS Load Balancer
-      </h3>
-
-      {/* Description */}
-      <p className="mt-4 text-gray-700 text-center leading-relaxed"
-         style={{fontFamily:"'Familjen Grotesk','sans-serif'"}}>
-        A powerful SMS distribution engine that intelligently balances SMS traffic 
-        across gateways to reduce congestion and increase delivery speed — 
-        ensuring reliable performance even during high-volume peaks.
-      </p>
-
-      {/* Icon Grid */}
-      <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 mt-10 place-items-center">
-
-        {[
-          { icon: <FaEnvelope />, label: "messages" },
-          { icon: <FaComments />, label: "comments" },
-          { icon: <FaBell />, label: "alerts" },
-          { icon: <FaSync />, label: "sync" },
-          { icon: <MdMessage />, label: "chat" },
-          { icon: <FaCloud />, label: "cloud" },
-        ].map((item, index) => (
-          <div key={index} className="flex flex-col items-center group">
-
-            {/* Icon circle */}
-            <div className="p-3 rounded-xl 
-                            bg-gradient-to-tr from-purple-500 to-blue-500 
-                            text-white shadow-md 
-                            transition-all duration-300 group-hover:scale-110">
-              <span className="text-xl">{item.icon}</span>
-            </div>
-
-            {/* Label */}
-            <p className="mt-2 text-sm text-gray-700 group-hover:text-gray-900 
-                          transition-all duration-300 capitalize">
-              {item.label}
-            </p>
-
+        <section className="relative isolate overflow-hidden bg-gradient-to-br from-emerald-50 via-white to-green-100">
+          <style>{`
+          @keyframes heroPingDot {
+            0% { transform: scale(1); opacity: 0.8; }
+            75%, 100% { transform: scale(2.4); opacity: 0; }
+          }
+          .hero-live-dot::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: currentColor;
+            animation: heroPingDot 1.8s cubic-bezier(0,0,0.2,1) infinite;
+          }
+          @keyframes heroDrift {
+            0%, 100% { transform: translate3d(0,0,0); }
+            50% { transform: translate3d(0,-14px,0); }
+          }
+          .hero-drift { animation: heroDrift 6s ease-in-out infinite; }
+        `}</style>
+
+
+          {/* Background network map, recolored into blue */}
+          <div className="absolute inset-0 -z-20">
+            <img
+              src={mapImg}
+              alt="Global connectivity network powering DIGINTRA's messaging platform"
+              className="h-full w-full object-cover object-right opacity-80"
+              style={{ filter: "hue-rotate(30deg) saturate(2.2) brightness(1.1) contrast(1.05)" }}
+              loading="eager"
+              onError={(e) => console.error("Map image failed to load:", e)}
+            />
+            {/* Very light fade so the map stays clearly visible */}
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-50/60 via-emerald-50/15 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/40 via-transparent to-white/25" />
           </div>
-        ))}
 
-      </div>
-
-      {/* Button */}
-      <div className="mt-10 text-center">
-        <a
-          href="#"
-          className="px-6 py-2 bg-blue-600 hover:bg-blue-700 
-                     text-white rounded-xl font-semibold 
-                     transition-all duration-300 shadow-md hover:shadow-lg"
-        >
-          Learn More
-        </a>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-              </div>
-              <div className="mt-24 text-center">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  TRENDING CHANNEL
-                </h2>
-                <p className="mt-4 text-lg text-gray-700 max-w-xl mx-auto">
-                  Stay ahead with our Trending Channel, delivering the latest
-                  insights and updates to keep your business at the forefront.
-                </p>
-                <div className="mt-12 flex justify-center w-full">
-
-  <div className="w-[95%] md:w-[80%] lg:w-[100%] 
-                  bg-white/70 backdrop-blur-lg rounded-2xl 
-                  shadow-xl border border-gray-200 
-                  transition-all duration-500 hover:shadow-2xl hover:scale-[1.02]
-                  overflow-hidden">
-
-    {/* Top Gradient Line (WhatsApp Green Theme) */}
-    <div className="w-full h-[4px] bg-gradient-to-r from-green-500 via-green-600 to-green-700"></div>
-
-    <div className="px-8 py-10">
-
-      {/* Title */}
-      <h3 className="text-2xl font-bold text-gray-900 text-center"
-      >
-        WhatsApp Business API
-      </h3>
-
-      {/* Description */}
-      <p className="mt-4 text-gray-700 text-center leading-relaxed">
-        The WhatsApp Business API helps businesses connect with customers in 
-        real-time using automated interactions, notifications, and seamless support.
-        Improve engagement, boost conversions, and enhance customer satisfaction.
-      </p>
-
-      {/* Icon Grid */}
-      {/* Icon Grid - Fixed-size icons, perfectly aligned */}
-<div className="w-full flex justify-center py-6">
-  <div className="grid grid-cols-3 sm:grid-cols-6 gap-6 place-items-center w-full max-w-3xl">
-    {[
-      { IconComp: FaWhatsapp, label: "Whatsapp API" },
-      { IconComp: FaCog, label: "Settings" },
-      { IconComp: FaUsers, label: "Broad Users" },
-      { IconComp: FaRegChartBar, label: "High Growth" },
-      { IconComp: FaShieldAlt, label: "Secure" },
-      { IconComp: FaCloud, label: "Cloud" },
-    ].map(({ IconComp, label }, i) => (
-      <div key={i} className="flex flex-col items-center">
-        {/* fixed square icon box */}
-        <div className="w-12 h-12 flex items-center justify-center rounded-lg
-                        bg-gradient-to-r from-green-400 to-green-600 text-white
-                        shadow-xl transition-transform duration-300 group-hover:scale-110">
-          <IconComp className="text-lg sm:text-xl" />
-        </div>
-
-        {/* label */}
-        <p className="mt-2 text-sm text-gray-700 text-center leading-tight">
-          {label}
-        </p>
-      </div>
-    ))}
-  </div>
-</div>
-
-
-      {/* Button */}
-      <div className="mt-10 text-center">
-        <Link
-          to="/whatsapp-business-api"
-          className="px-6 py-2 bg-green-600 hover:bg-green-700 
-                     text-white rounded-xl font-semibold 
-                     transition-all duration-300 shadow-md hover:shadow-lg"
-        >
-          Learn More
-        </Link>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* third content */}
-        {/* <Products /> */}
-
-        {/* third */}
-        {/* <div className="w-auto  h-auto bg-white py-8 ">
-          <h1
-            data-aos="fade-right"
-            className="text-2xl font-semibold text-center pt-5 lg:text-3xl"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
-          >
-            Our <span className="text-blue-600">Resources</span>
-          </h1>
-          <div className="w-[100px] h-[2px] bg-blue-700 mx-auto mt-2"></div>
-          <div className="lg:w-[1140px] lg:flex lg:mx-auto">
+          {/* Ambient glow accents */}
+          <div className="absolute inset-0 -z-10 overflow-hidden">
+            <div className="absolute left-[-8%] top-[-12%] h-[420px] w-[420px] rounded-full bg-emerald-300/40 blur-[120px]" />
+            <div className="absolute right-[-5%] top-[8%] h-[360px] w-[360px] rounded-full bg-green-300/40 blur-[110px]" />
+            <div className="absolute bottom-[-8%] left-1/2 h-[320px] w-[320px] -translate-x-1/2 rounded-full bg-lime-200/50 blur-[100px]" />
             <div
-              data-aos="zoom-in-up"
-              style={{ backgroundImage: `url(${blogCardbg})` }}
-              className="w-[310px] h-auto pb-2  lg:pb-6   shadow-lg shadow-gray-400 mx-auto mt-7 rounded-lg lg:w-[440px] lg:mt-12"
-            >
-              <h1 className="flex  px-3 space-x-2">
-                <span
-                  className="text-[80px] text-white font-semibold "
-                  style={{
-                    textShadow: "2px 2px 5px gray",
-                    fontFamily: "'Montserrat', sans-serif",
-                  }}
-                >
-                  01
-                </span>
-                <span
-                  className="text-[30px] pt-[50px] font-semibold"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  Blogs
-                </span>
-              </h1>
-              <div className="w-[150px] h-[2px] bg-blue-600 ml-3"></div>
+              className="absolute inset-0 opacity-[0.07]"
+              style={{
+                backgroundImage: "radial-gradient(circle, #16a34a 1px, transparent 1px)",
+                backgroundSize: "22px 22px",
+              }}
+            />
+          </div>
 
-              <div className="w-[280px] h-[190px]  mx-auto  mt-6">
-                <img
-                  src={icons1}
-                  className=" h-[210px] w-[210px] mx-auto lg:h-[220px] rounded-full"
-                  alt="Messaging Services, Email Services, Social Media & Branding Services"
-                />
+          <div className="relative mx-auto flex min-h-[85vh] max-w-7xl flex-col justify-center px-4 py-24  sm:px-6 lg:px-8 lg:py-32">
+            <div className="mx-auto max-w-4xl text-center">
+
+              {/* Eyebrow / trust badge */}
+              <div className="hero-drift mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-300/60 bg-white/70 px-4 py-1.5 shadow-sm shadow-emerald-900/5 backdrop-blur-md">
+                <span className="hero-live-dot relative inline-flex h-2 w-2 rounded-full bg-emerald-500 text-emerald-500" />
+                <span
+                  className="text-xs font-medium uppercase tracking-wider text-emerald-700"
+                  style={{ fontFamily: "'Poppins', 'sans-serif'" }}
+                >
+                  Global Messaging Platform • 200+ Countries
+                </span>
               </div>
 
-              <Link to="/blog">
-                <button className=" transition-transform border-b-2 border-blue-600 ml-2 lg:ml-[125px] lg:mt-10  my-5 bg-gradient-to-tr from-yellow-600 to-green-600 w-[200px] h-14 rounded-full shadow-md shadow-yellow-400 hover:-translate-y-2 text-white font-semibold pl-10 py-4 flex">
-                  Read More
-                  <span>
-                    <img
-                      src={icons2}
-                      alt="Messaging Services, Email Services, Social Media & Branding Services"
-                      className="h-7 w-10"
-                    />
-                  </span>
+              <div
+                className="text-4xl font-bold leading-tight text-slate-900 sm:text-5xl lg:text-6xl"
+                style={{ fontFamily: "'Poppins', 'sans-serif'" }}
+              >
+                <TypingEffect messages={messages} speed={50} />
+              </div>
+
+              <p
+                className="mx-auto mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg"
+                style={{ fontFamily: "'Poppins', 'sans-serif'" }}
+              >
+                Reach customers anywhere in the world with reliable Bulk SMS Services, Promotional SMS, Transactional SMS, OTP SMS, Voice Broadcasting, and WhatsApp Business API from a trusted
+                global messaging provider.
+              </p>
+
+              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+                <a href="https://sms-login.digintra.com/User/SignUp" className="w-full sm:w-auto">
+                  <button className="flex w-full sm:w-auto sm:min-w-[180px] items-center justify-center gap-2 rounded-xl
+                 bg-gradient-to-r from-emerald-600 to-green-500 px-6 py-3.5 font-semibold text-white shadow-lg
+                  shadow-emerald-600/30 transition duration-300 hover:shadow-xl hover:shadow-emerald-500/40 hover:-translate-y-0.5">
+                    Get Started
+                    <ArrowRight size={18} />
+                  </button>
+                </a>
+
+                <Link to="/contact-us" className="w-full sm:w-auto">
+                  <button className="flex w-full sm:w-auto sm:min-w-[180px] items-center justify-center gap-2 rounded-xl border border-emerald-200 bg-white/80 px-6 py-3.5 font-semibold text-emerald-700 shadow-sm backdrop-blur-md transition duration-300 hover:bg-white hover:border-emerald-300">
+                    <MessageCircleMore size={18} />
+                    Contact Sales
+                  </button>
+                </Link>
+              </div>
+
+              {/* Trust stats strip */}
+              <StatsGrid />
+            </div>
+          </div>
+
+
+
+          {/* Dashboard Image with Fade Effect */}
+
+
+          {/* Dashboard preview inside a laptop frame — only the top ~70% of the
+            screenshot is visible, cropped and faded at the bottom so it reads
+            as a natural "peek" rather than an abrupt cut. */}
+      <div className="relative z-20 mx-auto max-w-4xl px-4 sm:-mt-10 sm:px-6 lg:-mt-16 lg:px-8 translate-y-5">
+  <div className="hero-drift relative mx-auto w-full">
+    {/* <div className="relative w-full overflow-hidden rounded-t-2xl border-x-[10px] border-t-[10px] border-slate-800 bg-white shadow-2xl shadow-emerald-900/20 sm:border-x-[12px] sm:border-t-[12px]"> */}
+      {/* Camera notch */}
+      {/* <div className="relative flex h-3 items-center justify-center bg-slate-800">
+        <span className="h-1.5 w-1.5 rounded-full bg-slate-600" />
+      </div> */}
+
+      {/* Dashboard Screen Wrapper */}
+      <div className="relative aspect-[2.5] w-full overflow-hidden">
+        <img
+          src={Digintra_dashboard}
+          alt="DIGINTRA dashboard showing real-time SMS delivery, traffic summary, and message analytics"
+          className="absolute left-0 top-0 block h-auto w-full"
+          loading="lazy"
+        />
+
+        {/* --- SHIFTED BLUR/FADE TO BOTTOM ONLY --- */}
+        <div 
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 backdrop-blur-[2px] bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.8)_65%,rgba(255,255,255,1)_100%)]"
+          style={{
+            maskImage: "linear-gradient(to bottom, transparent 0%, black 70%)",
+            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 70%)"
+          }}
+        />
+      </div>
+    </div>
+  </div>
+{/* </div> */}
+        </section>
+
+        {/* <div className="relative mx-auto max-w-5xl mt-16 px-4 sm:px-6 lg:px-8">
+          <div className="rounded-xl bg-white p-2 ring-1 ring-white/10 backdrop-blur-sm">
+            <img
+              src={digintra_dashboard}
+              alt="App Dashboard Preview"
+              className="w-full rounded-lg shadow-2xl"
+              style={{
+                WebkitMaskImage: 'linear-gradient(to bottom, white 60%, transparent 100%)',
+                maskImage: 'linear-gradient(to bottom, white 80%, transparent 90%)',
+              }}
+            />
+          </div>
+        </div>
+      */}
+
+
+
+        {/* Bulk SMS Solutions Section */}
+        <div className="relative mt-24 md:mt-22 px-2 max-w-6xl mx-auto mb-12">
+
+          <div className="mx-auto max-w-2xl text-center">
+            <span className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-emerald-700">
+              What We Offer
+            </span>
+            <h2
+              className="mt-4 text-2xl font-semibold leading-tight text-gray-900 sm:text-3xl md:text-4xl"
+              style={{ fontFamily: "'Poppins', 'sans-serif'" }}
+            >
+              Our Bulk SMS Solutions for Business Communication
+            </h2>
+            <div className="mx-auto mt-4 h-[3px] w-16 rounded-full bg-gradient-to-r from-emerald-500 to-green-500" />
+          </div>
+
+          <div className="relative mt-12 md:mt-16">
+            <div className="absolute left-1/2 top-8 h-[220px] w-[80%] -translate-x-1/2 rounded-full bg-emerald-300/15 blur-[100px]" />
+            <div className="relative z-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+              {smsSolutions.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.id}
+                    className="group relative  flex flex-col items-center text-center flow-hidden rounded-2xl border border-emerald-100 bg-white/80 p-7  shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-emerald-200 hover:bg-white hover:shadow-xl hover:shadow-emerald-500/10"
+                  >
+                    {/* Accent glow that appears on hover */}
+                    <div className="pointer-events-none absolute -top-8 -right-8 h-28 w-28 rounded-full bg-emerald-200/0 blur-2xl transition-all duration-500 group-hover:bg-emerald-200/50" />
+
+                    <div className="relative flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-green-600 text-white shadow-md shadow-emerald-500/25 transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3">
+                      <Icon className="h-5 w-5" />
+                    </div>
+
+                    <h3 className="relative mt-6 text-lg font-bold text-slate-900">
+                      {item.title}
+                    </h3>
+                    <p className="relative mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+                      {item.description}
+                    </p>
+
+                    {/* <span className="relative mt-5 inline-flex w-fit items-center gap-1 text-sm font-semibold text-emerald-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  Learn more →
+                </span> */}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
+
+
+        {/* </div> */}
+
+
+
+
+        <div className="relative w-full overflow-hidden py-28">
+
+          <style>{`
+    @keyframes floatSlow {
+      0%, 100% { transform: translate3d(0,0,0) rotate(0deg); }
+      50% { transform: translate3d(0,-20px,0) rotate(3deg); }
+    }
+    @keyframes floatSlower {
+      0%, 100% { transform: translate3d(0,0,0); }
+      50% { transform: translate3d(0,-14px,0); }
+    }
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+    @keyframes shimmerBorder {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    .float-slow { animation: floatSlow 7s ease-in-out infinite; }
+    .float-slower { animation: floatSlower 9s ease-in-out infinite; }
+    .glow-pulse { animation: glowPulse 3s ease-in-out infinite; }
+    .shimmer-border {
+      background: linear-gradient(90deg, #14b8a6, #3b82f6, #a855f7, #14b8a6);
+      background-size: 200% 100%;
+      animation: shimmerBorder 6s linear infinite;
+    }
+  `}</style>
+
+          {/* 🌈 Gradient Mesh Background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-teal-50 to-blue-50"></div>
+
+          {/* Ambient glow blobs */}
+          <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-teal-300/30 blur-[100px] glow-pulse"></div>
+          <div className="absolute -right-16 bottom-0 h-80 w-80 rounded-full bg-blue-300/30 blur-[110px] glow-pulse" style={{ animationDelay: "1.5s" }}></div>
+          <div className="absolute left-1/2 top-1/3 h-64 w-64 -translate-x-1/2 rounded-full bg-purple-200/20 blur-[100px]"></div>
+
+          {/* Dot grid texture */}
+          <div
+            className="absolute inset-0 opacity-[0.06] pointer-events-none"
+            style={{
+              backgroundImage: "radial-gradient(circle, #0d9488 1px, transparent 1px)",
+              backgroundSize: "24px 24px",
+            }}
+          />
+
+          {/* 🌊 Soft Wave Layer */}
+          <svg className="absolute bottom-0 left-0 w-full opacity-50" viewBox="0 0 1440 320">
+            <path
+              fill="#ffffff"
+              fillOpacity="1"
+              d="M0,224L48,197.3C96,171,192,117,288,122.7C384,128,480,192,576,202.7C672,213,768,171,864,165.3C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160V320H0Z"
+            ></path>
+          </svg>
+
+          {/* CONTENT CONTAINER */}
+          <div className="relative max-w-[1280px] mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-14">
+
+            {/* LEFT TEXT */}
+            <div className="flex-1 text-center lg:text-left">
+
+              {/* Eyebrow badge */}
+              <div className="inline-flex items-center gap-2 rounded-full border border-teal-300/60 bg-white/70 px-4 py-1.5 mb-5 shadow-sm backdrop-blur-md">
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-teal-500">
+                  <span className="absolute inset-0 rounded-full bg-teal-500 animate-ping"></span>
+                </span>
+                <span
+                  className="text-xs font-semibold uppercase tracking-wider text-teal-700"
+                  style={{ fontFamily: "'Poppins', sans-serif" }}
+                >
+                  Insights & Updates
+                </span>
+              </div>
+
+              <h2
+                className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight"
+                style={{ fontFamily: "'Familjen Grotesk', sans-serif" }}
+              >
+                <Blogtypingeffect messages={blogmessages} speed={50} />
+              </h2>
+
+              <p
+                className="mt-5 max-w-xl mx-auto lg:mx-0 text-base md:text-lg text-slate-600"
+                style={{ fontFamily: "'Poppins', sans-serif" }}
+              >
+                Stay ahead with expert tips, product updates, and stories on scaling communication for modern businesses.
+              </p>
+
+              <Link to="/blogs#allblog">
+                <button
+                  className="mt-8 group relative px-8 py-3.5 bg-gradient-to-r from-teal-600 to-emerald-600
+             text-white rounded-xl font-semibold text-lg
+             shadow-xl shadow-teal-600/30 hover:shadow-2xl hover:shadow-teal-600/50
+             transition-all duration-300 hover:-translate-y-1 hover:scale-[1.03]
+             flex items-center justify-center gap-2 mx-auto lg:mx-0 overflow-hidden
+             ring-2 ring-teal-300/50 ring-offset-2 ring-offset-white"
+                >
+                  <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/30 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-out"></span>
+                  <span className="relative">Explore Our Latest Blogs</span>
+                  <ArrowRight size={18} className="relative transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </Link>
             </div>
 
-            <div
-              data-aos="zoom-in-up"
-              style={{ backgroundImage: `url(${blogCardbg})` }}
-              className="w-[310px] h-auto pb-2 lg:pb-6 shadow-lg shadow-gray-400  ring-offset-8 mx-auto mt-7 rounded-lg lg:w-[440px] lg:mt-[50px]"
-            >
-              <h1 className="flex  px-3 space-x-2">
-                <span
-                  className="text-[80px] text-white font-semibold "
-                  style={{
-                    textShadow: "2px 2px 5px gray",
-                    fontFamily: "'Montserrat', sans-serif",
-                  }}
-                >
-                  02
-                </span>
-                <span
-                  className="text-[30px] pt-[50px] font-semibold"
-                  style={{ fontFamily: "'Montserrat', sans-serif" }}
-                >
-                  Use Cases
-                </span>
-              </h1>
-              <div className="w-[150px] h-[2px] bg-blue-600 ml-3"></div>
+            {/* RIGHT LAPTOP */}
+            <div className="flex-1 flex justify-center">
+              <div className="relative">
 
-              <div className="w-[280px] h-[190px] lg:h-[190px] mx-auto  mt-6">
-                <img
-                  src={icons3}
-                  alt="Messaging Services, Email Services, Social Media & Branding Services"
-                  className=" h-[210px] mx-auto lg:h-[220px] rounded-full"
-                />
+                {/* Floating badge - top left */}
+                <div className="float-slow absolute -top-6 -left-6 md:-left-10 z-20 flex items-center gap-2 rounded-2xl bg-white/90 backdrop-blur-md px-4 py-2.5 shadow-xl border border-white/60">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-100 text-teal-600 text-sm font-bold">✓</span>
+                  <div className="text-left">
+                    <p className="text-xs font-semibold text-slate-800">New Article</p>
+                    <p className="text-[10px] text-slate-500">Published today</p>
+                  </div>
+                </div>
+
+                {/* Floating badge - bottom right */}
+                <div className="float-slower absolute -bottom-4 -right-6 md:-right-10 z-20 flex items-center gap-2 rounded-2xl bg-white/90 backdrop-blur-md px-4 py-2.5 shadow-xl border border-white/60">
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600 text-sm">📈</span>
+                  <div className="text-left">
+                    <p className="text-xs font-semibold text-slate-800">Growing Reach</p>
+                    <p className="text-[10px] text-slate-500">50+ countries</p>
+                  </div>
+                </div>
+
+                {/* Glow behind laptop */}
+                <div className="absolute inset-0 scale-95 rounded-3xl bg-gradient-to-r from-teal-400/40 via-blue-400/40 to-purple-400/40 blur-2xl"></div>
+
+                <div
+                  ref={ref}
+                  className={`relative w-[320px] md:w-[450px] h-[240px] md:h-[300px] rounded-2xl
+                      bg-white/40 backdrop-blur-xl shadow-2xl border border-white/50
+                      transition-all duration-700
+                      ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
+                      `}
+                >
+
+                  {/* Animated Gradient Border */}
+                  <div className="absolute -inset-[2px] rounded-2xl shimmer-border opacity-70 -z-10"></div>
+
+                  {/* Screen */}
+                  <div
+                    className="absolute inset-[5px] rounded-xl flex flex-col justify-center items-center bg-cover bg-center overflow-hidden"
+                    style={{ backgroundImage: `url(${messaging})` }}
+                  >
+                    {/* subtle top gradient for depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-black/5"></div>
+                  </div>
+
+                  {/* Reflection sheen */}
+                  <div className="absolute inset-[5px] rounded-xl bg-gradient-to-br from-white/20 via-transparent to-transparent pointer-events-none"></div>
+
+                  {/* Bottom Keyboard Part */}
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 
+                          w-[75%] h-[24px] bg-gray-700 rounded-b-xl shadow-xl"></div>
+                  <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 
+                          w-[85%] h-[6px] bg-gray-600 rounded-b-2xl shadow-md translate-y-[18px]"></div>
+                </div>
               </div>
-
-              <button className="transition-transform border-b-2 my-5 border-blue-600 ml-2 lg:ml-[125px] lg:mt-10 bg-gradient-to-tr from-yellow-600 to-green-600 w-[200px] h-14 rounded-full shadow-md shadow-yellow-400 hover:-translate-y-2 text-white font-semibold pl-10 py-4 flex">
-                Read More
-                <span>
-                  <img
-                    src={icons2}
-                    alt="Messaging Services, Email Services, Social Media & Branding Services"
-                    className="h-7 w-10"
-                  />
-                </span>
-              </button>
             </div>
-          </div>
-        </div> */}
 
-
-       <div className="relative w-full overflow-hidden py-24">
-
-  {/* 🌈 Gradient Mesh Background */}
-  <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-teal-100 to-blue-50 opacity-90"></div>
-
-  {/* 🟣 Floating Blobs */}
-  <div className="absolute top-10 left-10 w-48 h-48 bg-green-300/30 rounded-full blur-3xl animate-pulse"></div>
-  <div className="absolute bottom-10 right-16 w-56 h-56 bg-blue-300/30 rounded-full blur-3xl animate-pulse"></div>
-
-  {/* 🔷 Abstract SVG Shape */}
-  <svg className="absolute top-0 right-0 opacity-[0.18] w-[350px]" viewBox="0 0 200 200">
-    <path
-      fill="#0ea5e9"
-      d="M39.3,-71.8C53.3,-63.1,67.8,-54.6,74.1,-42.3C80.5,-29.9,78.7,-13.7,74.3,-0.3C69.8,13,62.8,26.1,54.2,38C45.6,49.9,35.4,60.7,22.4,70.1C9.3,79.6,-6.6,87.7,-22.8,87.6C-39.1,87.5,-55.7,79.3,-66.3,66C-76.9,52.7,-81.4,34.2,-82.4,17C-83.3,-0.2,-80.7,-16.1,-74.8,-30.1C-68.9,-44,-59.7,-56,-47.4,-65.1C-35.1,-74.3,-19.5,-80.5,-4.4,-75.5C10.6,-70.5,21.2,-54.6,39.3,-71.8Z"
-      transform="translate(100 100)"
-    />
-  </svg>
-
-  {/* 🌊 Soft Wave Layer */}
-  <svg className="absolute bottom-0 left-0 w-full opacity-40" viewBox="0 0 1440 320">
-    <path
-      fill="#ffffff"
-      fillOpacity="1"
-      d="M0,224L48,197.3C96,171,192,117,288,122.7C384,128,480,192,576,202.7C672,213,768,171,864,165.3C960,160,1056,192,1152,197.3C1248,203,1344,181,1392,170.7L1440,160V320H0Z"
-    ></path>
-  </svg>
-
-  {/* CONTENT CONTAINER */}
-  <div className="relative max-w-[1280px] mx-auto px-6 flex flex-col-reverse lg:flex-row items-center gap-14">
-
-    {/* LEFT TEXT */}
-    <div className="flex-1 text-center lg:text-left">
-      <h2
-        className="text-3xl md:text-5xl font-bold text-gray-900 leading-tight"
-        style={{ fontFamily: "'Familjen Grotesk', sans-serif" }}
-      >
-        <Blogtypingeffect messages={blogmessages} speed={50} />
-      </h2>
-
-      <button
-        className="mt-8 px-8 py-3 bg-teal-600 hover:bg-teal-700 
-                   text-white rounded-xl font-semibold text-lg 
-                   shadow-xl hover:shadow-teal-600/50 transition-all duration-300 
-                   hover:scale-[1.07]"
-      >
-        Explore Our Latest Blogs
-      </button>
-    </div>
-
-    {/* RIGHT LAPTOP */}
-    <div className="flex-1 flex justify-center">
-      <div
-        ref={ref}
-        className={`relative w-[320px] md:w-[450px] h-[240px] md:h-[300px] rounded-2xl
-                    bg-white/40 backdrop-blur-xl shadow-2xl border border-white/50
-                    transition-all duration-700
-                    ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
-                    `}
-      >
-
-        {/* Gradient Border */}
-        <div className="absolute inset-0 rounded-2xl p-[2px] 
-                        bg-gradient-to-r from-teal-400 via-blue-500 to-purple-500 opacity-50"></div>
-
-        {/* Screen */}
-       <div
-  className="absolute inset-[5px] rounded-xl flex flex-col justify-center items-center bg-cover bg-center"
-  style={{ backgroundImage: `url(${yourImage})` }}
->
-  <h3 className="text-white font-semibold text-lg drop-shadow-lg">
-    
-  </h3>
-
-  <TbHandClick className="text-white text-5xl mt-4 animate-pulse drop-shadow-lg" />
-</div>
-
-
-        {/* Bottom Keyboard Part */}
-        <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 
-                        w-[75%] h-[24px] bg-gray-700 rounded-b-xl shadow-xl"></div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-        {/* next content */}
-
-        <div className="w-full h-auto bg-gradient-to-tr from-orange-100 to-green-50 pb-8">
-          <div className="w-[310px] md:w-[80%] h-auto mx-auto pt-[100px] lg:w-[1080px]">
-            <h3
-              data-aos="fade-right"
-              className="text-center  px-3 font-[700] lg:text-[40px] text-[21px]"
-              style={{ fontFamily: "'Familjen Grotesk', sans-serif" }}
-            >
-              Engage customers on their preferred messaging platform with <span className="text-[#0053b7] text-2xl md:text-5xl" style={{ fontFamily: "'Familjen Grotesk', sans-serif" }}>DIGINTRA</span>.
-            </h3>
-            <div className="lg:w-[800px] w-[200px] my-7  h-[3px] mx-auto bg-blue-600"></div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:mt-[60px] gap-x-6 gap-y-12 place-items-center">
-              {/* first card */}
-
-              {/* <div
-                data-aos="zoom-in-up"
-                className="w-[300px] shadow-lg border-2 bg-white rounded-lg py-2 mt-5 shadow-gray-300  h-auto mx-auto"
-              >
-                <div className="w-[280px] flex h-auto mx-auto">
-                  <img
-                    src={icons4}
-                    alt="Messaging Services, Email Services, Social Media & Branding Services"
-                    className="w-[130px] h-[130px] rounded-full mx-auto "
-                  />
-                </div>
-                <div className="mt-7 space-y-3">
-                  <h2 className="text-center text-[16px] py-1 text-[#ffab03] lg:text-[21px] font-[500]" style={{fontFamily:"'Montserrat', sans-serif"}}>
-                    2 Way SMS
-                  </h2>
-                  <p className="text-center text-[13px] lg:text-[16px] font-medium px-2" style={{fontFamily:"'Poppins', sans-serif"}}>
-                    Send and receive messages with our 2 Way Messaging. It
-                    isperfect for remote communication with staff and customers.
-                  </p>
-                </div>
-              </div> */}
-
-              <div className="relative group w-[300px] md:w-[320px] rounded-2xl overflow-hidden shadow-2xl 
-                bg-gradient-to-br from-purple-600  to-teal-400 
-                transition-all duration-700 hover:scale-[1.06] hover:shadow-blue-500/50">
-
-  {/* Glass Layer */}
-  <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-2xl"></div>
-
-  {/* Gradient Glow Border */}
-  <div className="absolute inset-0 p-[2px] rounded-2xl 
-                  bg-gradient-to-br  from-blue-500 to-green-400 
-                  opacity-60 group-hover:opacity-100 transition-all duration-700 blur-[1px]"></div>
-
-  {/* Floating Waves */}
-  <div className="absolute bottom-0 left-0 w-full">
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-  </div>
-
-  {/* CONTENT */}
-  <div className="relative z-10 p-6 flex flex-col items-center text-center">
-
-    <img
-      src={icons4}
-      alt="Messaging Services"
-      className="w-[110px] h-[110px] rounded-full shadow-xl border-4 border-white/40"
-    />
-
-    <h2 className="mt-4 text-2xl font-bold text-white drop-shadow-lg"
-        style={{ fontFamily: "'Familjen Grotesk', sans-serif" }}>
-      2 Way SMS
-    </h2>
-
-    <p className="mt-3 text-white/90 text-sm leading-relaxed"
-       style={{ fontFamily: "'Familjen Grotesk', sans-serif" }}>
-      Send and receive messages instantly with two-way messaging—perfect for
-      remote teams, staff, and customer engagement.
-    </p>
-
-  </div>
-</div>
-
-
-              {/* second card */}
-
-              {/* <div
-                data-aos="zoom-in-up"
-                className="w-[300px] border-2 bg-white rounded-lg shadow-lg py-2 mt-5 shadow-gray-300  h-auto mx-auto"
-              >
-                <div className="w-[280px] flex h-auto mx-auto">
-                  <img
-                    src={icons5}
-                    alt="Messaging Services, Email Services, Social Media & Branding Services"
-                    className="w-[130px] h-[130px] rounded-full mx-auto "
-                  />
-                </div>
-                <div className="mt-7 space-y-3">
-                  <h2
-                    className="text-center text-[16px] text-[#ffab03] lg:text-[21px] font-[500]"
-                    style={{ fontFamily: "'Montserrat',sans-serif" }}
-                  >
-                    SMPP Connectivity
-                  </h2>
-                  <p
-                    className="text-center text-[13px] lg:text-[16px] font-medium px-2"
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
-                    Easily bind our SMPP (v3.4) into your business and start
-                    sending your traffic globally.
-                  </p>
-                </div>
-              </div> */}
-
-              <div className="relative group w-[300px] md:w-[320px] rounded-2xl overflow-hidden shadow-2xl 
-                bg-gradient-to-br from-purple-600 via-blue-500 to-teal-400 
-                transition-all duration-700 hover:scale-[1.06] hover:shadow-blue-500/50">
-
-  {/* Glass Layer */}
-  <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-2xl"></div>
-
-  {/* Gradient Glow Border */}
-  <div className="absolute inset-0 p-[2px] rounded-2xl 
-                  bg-gradient-to-br  from-blue-500 to-green-400 
-                  opacity-60 group-hover:opacity-100 transition-all duration-700 blur-[1px]"></div>
-
-  {/* Floating Waves */}
-  <div className="absolute bottom-0 left-0 w-full">
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-  </div>
-
-  {/* CONTENT */}
-  <div className="relative z-10 p-6 flex flex-col items-center text-center">
-
-    <img
-      src={icons5}
-      alt="SMPP Connectivity"
-      className="w-[110px] h-[110px] rounded-full shadow-xl border-4 border-white/40"
-    />
-
-    <h2 className="mt-4 text-2xl font-bold text-white drop-shadow-lg"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}>
-      SMPP Connectivity
-    </h2>
-
-    <p className="mt-3 text-white/90 text-sm leading-relaxed"
-       style={{ fontFamily: "'Poppins', sans-serif" }}>
-      Easily bind our SMPP (v3.4) into your business and start sending your 
-      messaging traffic globally with high speed & reliability.
-    </p>
-
-  </div>
-</div>
-
-
-              {/* third card */}
-
-              {/* <div
-                data-aos="zoom-in-up"
-                className="w-[300px] border-2 bg-white rounded-lg shadow-lg py-2 mt-5 shadow-gray-300  h-auto mx-auto"
-              >
-                <div className="w-[280px] flex h-auto mx-auto">
-                  <img
-                    src={icons6}
-                    alt="Messaging Services, Email Services, Social Media & Branding Services"
-                    className="w-[130px] h-[130px] rounded-full mx-auto "
-                  />
-                </div>
-                <div className="mt-7 space-y-3">
-                  <h2
-                    className="text-center text-[16px] text-[#ffab03] lg:text-[21px] font-[500]"
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}
-                  >
-                    Real-time DLR Reports
-                  </h2>
-                  <p
-                    className="text-center text-[13px] lg:text-[16px] font-medium px-2"
-                    style={{ fontFamily: "'Poppins',sans-serif" }}
-                  >
-                    Track delivery status of every SMS sent in real-time to
-                    measure and optimize the performance of your bulk SMS
-                    campaigns.
-                  </p>
-                </div>
-              </div> */}
-
-              <div className="relative group w-[300px] md:w-[320px] rounded-2xl overflow-hidden shadow-2xl 
-                bg-gradient-to-br from-purple-600 via-blue-500 to-teal-400 
-                transition-all duration-700 hover:scale-[1.06] hover:shadow-blue-500/50">
-
-  {/* Glass Layer */}
-  <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-2xl"></div>
-
-  {/* Gradient Glow Border */}
-  <div className="absolute inset-0 p-[2px] rounded-2xl 
-                  bg-gradient-to-br from-blue-500 to-green-400 
-                  opacity-60 group-hover:opacity-100 transition-all duration-700 blur-[1px]"></div>
-
-  {/* Floating Waves */}
-  <div className="absolute bottom-0 left-0 w-full">
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-  </div>
-
-  {/* CONTENT */}
-  <div className="relative z-10 p-6 flex flex-col items-center text-center">
-
-    <img
-      src={icons6}
-      alt="Real-time DLR Reports"
-      className="w-[110px] h-[110px] rounded-full shadow-xl border-4 border-white/40"
-    />
-
-    <h2 className="mt-4 text-2xl font-bold text-white drop-shadow-lg"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}>
-      Real-time DLR Reports
-    </h2>
-
-    <p className="mt-3 text-white/90 text-sm leading-relaxed"
-       style={{ fontFamily: "'Poppins', sans-serif" }}>
-      Track delivery status of every SMS in real-time and optimize 
-      your bulk campaign performance instantly.
-    </p>
-
-  </div>
-</div>
-
-
-              {/* fourth card */}
-
-              {/* <div
-                data-aos="zoom-in-up"
-                className="w-[300px] bg-white border-2 rounded-lg shadow-lg py-2 mt-5 shadow-gray-300  h-auto mx-auto"
-              >
-                <div className="w-[280px] flex h-auto mx-auto">
-                  <img
-                    src={icons7}
-                    alt="Messaging Services, Email Services, Social Media & Branding Services"
-                    className="w-[130px] h-[130px] rounded-full mx-auto  "
-                  />
-                </div>
-                <div className="mt-7 space-y-3">
-                  <h2
-                    className="text-center text-[16px] text-[#ffab03] lg:text-[21px] font-[500]"
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}
-                  >
-                    Mass Texting
-                  </h2>
-                  <p
-                    className="text-center text-[13px] lg:text-[16px] font-medium px-2"
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
-                    Login to your account and start sending mass texts online to
-                    800+ Super network (MNOs) Connections.
-                  </p>
-                </div>
-              </div> */}
-
-              <div className="relative group w-[300px] md:w-[320px] rounded-2xl overflow-hidden shadow-2xl 
-                bg-gradient-to-br from-purple-600 via-blue-500 to-teal-400 
-                transition-all duration-700 hover:scale-[1.06] hover:shadow-blue-500/50">
-
-  {/* Glass Layer */}
-  <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-2xl"></div>
-
-  {/* Gradient Glow Border */}
-  <div className="absolute inset-0 p-[2px] rounded-2xl 
-                  bg-gradient-to-br from-blue-500 to-green-400 
-                  opacity-60 group-hover:opacity-100 transition-all duration-700 blur-[1px]"></div>
-
-  {/* Floating Waves */}
-  <div className="absolute bottom-0 left-0 w-full">
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-  </div>
-
-  {/* CONTENT */}
-  <div className="relative z-10 p-6 flex flex-col items-center text-center">
-
-    <img
-      src={icons7}
-      alt="Mass Texting"
-      className="w-[110px] h-[110px] rounded-full shadow-xl border-4 border-white/40"
-    />
-
-    <h2 className="mt-4 text-2xl font-bold text-white drop-shadow-lg"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}>
-      Mass Texting
-    </h2>
-
-    <p className="mt-3 text-white/90 text-sm leading-relaxed"
-       style={{ fontFamily: "'Poppins', sans-serif" }}>
-      Login to your account and start sending mass texts online across 
-      800+ super network (MNOs) connections with ease.
-    </p>
-
-  </div>
-</div>
-
-
-              {/* fifth card */}
-
-              {/* <div
-                data-aos="zoom-in-up"
-                className="w-[300px] bg-white border-2  rounded-lg shadow-lg py-2 mt-5 shadow-gray-300  h-auto mx-auto"
-              >
-                <div className="w-[280px] flex h-auto mx-auto">
-                  <img
-                    src={icons8}
-                    alt="Messaging Services, Email Services, Social Media & Branding Services"
-                    className="w-[130px] h-[130px] rounded-full mx-auto  "
-                  />
-                </div>
-                <div className="mt-7 space-y-3">
-                  <h2
-                    className="text-center text-[16px] text-[#ffab03] lg:text-[21px] font-[500]"
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}
-                  >
-                    Quick, Flexible & Scalable API
-                  </h2>
-                  <p
-                    className="text-center text-[13px] lg:text-[16px] font-medium px-2"
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
-                    DIGINTRA offers the most flexible and easily adaptable
-                    SMSAPI gateway allowing you to start sending SMS from any
-                    application in minutes.
-                  </p>
-                </div>
-              </div> */}
-
-             <div className="relative group w-[300px] md:w-[320px] rounded-2xl overflow-hidden shadow-2xl 
-                bg-gradient-to-br from-purple-600 via-blue-500 to-teal-400 
-                transition-all duration-700 hover:scale-[1.06] hover:shadow-blue-500/50">
-
-  {/* Glass Layer */}
-  <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-2xl"></div>
-
-  {/* Gradient Glow Border */}
-  <div className="absolute inset-0 p-[2px] rounded-2xl 
-                  bg-gradient-to-br from-blue-500 to-green-400 
-                  opacity-60 group-hover:opacity-100 transition-all duration-700 blur-[1px]"></div>
-
-  {/* Floating Waves */}
-  <div className="absolute bottom-0 left-0 w-full">
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-  </div>
-
-  {/* CONTENT */}
-  <div className="relative z-10 p-6 flex flex-col items-center text-center">
-
-    <img
-      src={icons8}
-      alt="API Icon"
-      className="w-[110px] h-[110px] rounded-full shadow-xl border-4 border-white/40"
-    />
-
-    <h2 className="mt-4 text-2xl font-bold text-white drop-shadow-lg"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}>
-      Quick, Flexible & Scalable API
-    </h2>
-
-    <p className="mt-3 text-white/90 text-sm leading-relaxed"
-       style={{ fontFamily: "'Poppins', sans-serif" }}>
-      DIGINTRA provides the most flexible and easily adaptable SMS API gateway
-     and immediate messaging from any application.
-    </p>
-
-  </div>
-</div>
-
-
-              {/* Sixth card */}
-              {/* <div
-                data-aos="zoom-in-up"
-                className="w-[300px] bg-white border-2 rounded-lg shadow-lg py-2 mt-5 shadow-gray-300  h-auto mx-auto"
-              >
-                <div className="w-[280px] flex h-auto mx-auto mt-[]">
-                  <img
-                    src={icons9}
-                    alt="Messaging Services, Email Services, Social Media & Branding Services"
-                    className="w-[130px] h-[130px] rounded-full mx-auto"
-                  />
-                </div>
-                <div className="mt-7 space-y-3">
-                  <h2
-                    className="text-center text-[16px] text-[#ffab03] lg:text-[21px] font-[500]"
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}
-                  >
-                    Schedule Campaign
-                  </h2>
-                  <p
-                    className="text-center lg:text-[16px] text-[13px] font-medium px-2"
-                    style={{ fontFamily: "'Poppins', sans-serif" }}
-                  >
-                    Schedule your important SMS reminders, alerts, campaignsand
-                    notifications online to be sent when needed.
-                  </p>
-                </div>
-              </div> */}
-
-             <div className="relative group w-[300px] md:w-[320px] rounded-2xl overflow-hidden shadow-2xl 
-                bg-gradient-to-br from-purple-600 via-blue-500 to-teal-400 
-                transition-all duration-700 hover:scale-[1.06] hover:shadow-blue-500/50">
-
-  {/* Glass Layer */}
-  <div className="absolute inset-0 bg-white/20 backdrop-blur-xl rounded-2xl"></div>
-
-  {/* Gradient Glow Border */}
-  <div className="absolute inset-0 p-[2px] rounded-2xl 
-                  bg-gradient-to-br from-blue-500 to-green-400 
-                  opacity-60 group-hover:opacity-100 transition-all duration-700 blur-[1px]"></div>
-
-  {/* Floating Waves */}
-  <div className="absolute bottom-0 left-0 w-full">
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-    <div className="wave-new"></div>
-  </div>
-
-  {/* CONTENT */}
-  <div className="relative z-10 p-6 flex flex-col items-center text-center">
-
-    <img
-      src={icons9}
-      alt="Schedule Campaign"
-      className="w-[110px] h-[110px] rounded-full shadow-xl border-4 border-white/40"
-    />
-
-    <h2 className="mt-4 text-2xl font-bold text-white drop-shadow-lg"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}>
-      Schedule Campaign
-    </h2>
-
-    <p className="mt-3 text-white/90 text-sm leading-relaxed"
-       style={{ fontFamily: "'Poppins', sans-serif" }}>
-      Schedule your important SMS reminders, alerts, campaigns and notifications 
-      effortlessly to deliver at the perfect time.
-    </p>
-
-  </div>
-</div>
-
-            </div>
           </div>
         </div>
 
-        {/* next content */}
-        <Choose />
+
+        <section className="bg-[#F3F6FB] py-20 md:py-28">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="mx-auto max-w-2xl text-center">
+              <h2 className="text-[3rem] font-semibold tracking-tight text-gray-900 sm:text-4xl"
+                style={{ fontFamily: "'Poppins', sans-serif" }}>
+                Engage customers on their preferred channel with <span className="text-[#0E9F6E]">DIGINTRA</span>
+              </h2>
+            </div>
+
+            <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {useCases.map((item) => (
+                <div key={item.title} className="flex items-start gap-4 rounded-2xl border border-emerald-100 bg-white p-6 shadow-sm">
+                  <img src={item.image} alt={item.title} className="h-12 w-12 shrink-0 rounded-xl object-cover" />
+                  <div>
+                    <h3 className="font-bold text-[#0B1324]">{item.title}</h3>
+                    <p className="mt-1.5 text-sm leading-relaxed text-[#55617A]">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+
+        {/* Engage customers on their preferred messaging platform*/}
+
+        {/* <div className="relative w-full h-auto bg-white pb-16 pt-16 sm:pt-20 overflow-hidden">
+
+  Soft background glow, consistent with hero
+  <div className="absolute inset-0 -z-10 overflow-hidden">
+    <div className="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[900px] h-[500px]
+     bg-emerald-200/25 rounded-full blur-[120px]" />
+  </div>
+
+  <div className="w-[310px] md:w-[80%] h-auto mx-auto lg:w-[1080px]">
+
+   
+    <h3
+      data-aos="fade-right"
+      className="px-3 text-center font-bold text-[22px] leading-snug lg:text-[42px] lg:leading-[52px] text-gray-900"
+      style={{ fontFamily: "'Familjen Grotesk', sans-serif" }}
+    >
+      Engage customers on their preferred messaging platform with{" "}
+      <span className="text-emerald-600" style={{ fontFamily: "'Familjen Grotesk', sans-serif" }}>
+        DIGINTRA
+      </span>
+      .
+    </h3>
+
+    <p className="mt-4 text-center text-gray-500 text-sm md:text-base max-w-xl mx-auto">
+      One platform, every channel — built to keep your customers engaged wherever they are.
+    </p>
+
+
+  
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:mt-[50px] mt-10 gap-x-6 gap-y-10 place-items-stretch">
+      {[
+        { title: '2 Way SMS', description: 'Send and receive messages instantly with two-way messaging—perfect for remote teams, staff, and customer engagement.', image: icons4 },
+        { title: 'SMPP Connectivity', description: 'Easily bind our SMPP (v3.4) into your business and start sending your messaging traffic globally with high speed & reliability.', image: icons5 },
+        { title: 'Real-time DLR Reports', description: 'Track delivery status of every SMS in real-time and optimize your bulk campaign performance instantly.', image: icons6 },
+        { title: 'Mass Texting', description: 'Login to your account and start sending mass texts online across 800+ super network (MNOs) connections with ease.', image: icons7 },
+        { title: 'Quick, Flexible & Scalable API', description: 'DIGINTRA provides the most flexible and easily adaptable SMS API gateway and immediate messaging from any application.', image: icons8 },
+        { title: 'Schedule Campaign', description: 'Schedule your important SMS reminders, alerts, campaigns and notifications effortlessly to deliver at the perfect time.', image: icons9 },
+      ].map((item, index) => (
+        <div
+          key={index}
+          className="group relative flex h-full w-full max-w-[320px] flex-col items-center overflow-hidden rounded-[24px] border border-emerald-100/80 bg-gradient-to-br from-white via-emerald-50/80 to-emerald-100/70 p-7 text-center shadow-[0_12px_35px_-18px_rgba(15,23,42,0.28)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-emerald-200 hover:shadow-[0_18px_40px_-16px_rgba(16,185,129,0.32)]"
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(16,185,129,0.14),_transparent_55%)]" />
+          <div className="absolute bottom-0 left-1/2 h-24 w-[80%] -translate-x-1/2 rounded-full bg-emerald-200/30 blur-3xl" />
+
+          <div className="relative z-10 flex flex-col items-center">
+            <div className="relative mb-5 flex h-[96px] w-[96px] items-center justify-center rounded-full bg-gradient-to-br from-emerald-600 to-emerald-500 ring-4 ring-emerald-100/80 shadow-lg shadow-emerald-600/20 transition-transform duration-300 group-hover:scale-105">
+              <img
+                src={item.image}
+                alt={item.title}
+                className="h-[62px] w-[62px] object-contain"
+              />
+            </div>
+
+            <h2
+              className="text-lg font-bold text-slate-900"
+              style={{ fontFamily: "'Familjen Grotesk', sans-serif" }}
+            >
+              {item.title}
+            </h2>
+
+            <p
+              className="mt-3 flex-grow text-sm leading-relaxed text-slate-600"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              {item.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</div> */}
+
+        {/* Why Choose DIGINTRA For Your Venture?*/}
+        <DeferredSection>
+          <ChooseSection />
+        </DeferredSection>
 
         {/* next content */}
 
-        <Testimonials />
+        <DeferredSection>
+          <TestimonialsSection />
+        </DeferredSection>
 
-{/* next content */}
-<div className="relative w-full py-20 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-100 to-purple-100">
+        {/* next content */}
+        <div className="relative w-full py-20 overflow-hidden bg-gradient-to-b from-gray-50 to-white">
 
-  {/* Floating Orbs */}
-  <div className="absolute top-10 left-10 w-40 h-40 bg-indigo-300/30 rounded-full blur-3xl animate-pulse"></div>
-  <div className="absolute bottom-10 right-10 w-52 h-52 bg-purple-300/30 rounded-full blur-3xl animate-pulse"></div>
+          {/* Floating Orbs */}
+          {/* <div className="absolute top-10 left-10 w-40 h-40 bg-indigo-300/30 rounded-full blur-3xl animate-pulse"></div>
+  <div className="absolute bottom-10 right-10 w-52 h-52 bg-purple-300/30 rounded-full blur-3xl animate-pulse"></div> */}
 
-  {/* Gradient Mesh Shape */}
-  <svg
+          {/* Gradient Mesh Shape */}
+          {/* <svg
     className="absolute top-0 right-0 opacity-20 w-[350px]"
     viewBox="0 0 200 200"
   >
@@ -1372,75 +911,77 @@ Contact Us
       d="M39.3,-71.8C53.3,-63.1,67.8,-54.6,74.1,-42.3C80.5,-29.9,78.7,-13.7,74.3,-0.3C69.8,13,62.8,26.1,54.2,38C45.6,49.9,35.4,60.7,22.4,70.1C9.3,79.6,-6.6,87.7,-22.8,87.6C-39.1,87.5,-55.7,79.3,-66.3,66C-76.9,52.7,-81.4,34.2,-82.4,17C-83.3,-0.2,-80.7,-16.1,-74.8,-30.1C-68.9,-44,-59.7,-56,-47.4,-65.1C-35.1,-74.3,-19.5,-80.5,-4.4,-75.5C10.6,-70.5,21.2,-54.6,39.3,-71.8Z"
       transform="translate(100 100)"
     />
-  </svg>
+  </svg> */}
 
-  {/* MAIN CONTAINER */}
-  <div className="relative max-w-7xl mx-auto px-6">
+          {/* MAIN CONTAINER */}
+          <div className="relative max-w-7xl mx-auto px-6">
 
-    {/* Heading */}
-    <div className="text-center max-w-3xl mx-auto mb-14">
-      <h3
-        className="text-3xl md:text-5xl font-bold text-gray-900 drop-shadow-sm"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}
-      >
-        Industries We Empower
-      </h3>
+            {/* Heading */}
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <h3
+                className="text-3xl md:text-5xl font-bold text-gray-900 drop-shadow-sm"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
+              >
+                Industries We Empower
+              </h3>
 
-      <p
-        className="text-gray-700 mt-4 text-lg leading-relaxed"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}
-      >
-        Build tailored communication solutions for your industry using automated workflows.
-        Engage customers at every touchpoint with intelligent, scalable messaging experiences.
-      </p>
-    </div>
+              <p
+                className="text-gray-700 mt-4 text-lg leading-relaxed"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
+              >
+                Build tailored communication solutions for your industry using automated workflows.
+                Engage customers at every touchpoint with intelligent, scalable messaging experiences.
+              </p>
+            </div>
 
-    {/* GRID */}
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-      
-      {cardofindustry.map((card, index) => (
-        <div
-          key={index}
-          className="
+            {/* GRID */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+
+              {cardofindustry.map((card, index) => (
+                <div
+                  key={index}
+                  className="
             group bg-white/40 backdrop-blur-xl rounded-2xl shadow-xl 
             border border-white/50 overflow-hidden 
             transition-all duration-500 hover:scale-[1.05] hover:shadow-indigo-400/40
             hover:border-indigo-500/40
             "
-        >
-          {/* Card Image */}
-          <div className="relative">
-            <img
-              src={card.image}
-              alt={card.heading}
-              className="w-full h-48 object-cover rounded-t-2xl"
-            />
+                >
+                  {/* Card Image */}
+                  <div className="relative">
+                    <img
+                      src={card.image}
+                      alt={card.heading}
+                      className="w-full h-48 object-cover rounded-t-2xl"
+                      loading="lazy"
+                      decoding="async"
+                    />
 
-            {/* Shine effect */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-          </div>
+                    {/* Shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  </div>
 
-          {/* Card Text */}
-          <div className="p-4 text-center">
-            <h3
-              className="text-lg font-bold text-gray-800 group-hover:text-indigo-700 transition-colors"
-              style={{ fontFamily: "'Montserrat', sans-serif" }}
-            >
-              {card.heading}
-            </h3>
+                  {/* Card Text */}
+                  <div className="p-4 text-center">
+                    <h3
+                      className="text-lg font-bold text-gray-800 group-hover:text-indigo-700 transition-colors"
+                      style={{ fontFamily: "'Montserrat', sans-serif" }}
+                    >
+                      {card.heading}
+                    </h3>
 
-            <p
-              className="text-gray-600 text-sm mt-2 leading-relaxed"
-              style={{ fontFamily: "'Poppins', sans-serif" }}
-            >
-              {card.text}
-            </p>
+                    <p
+                      className="text-gray-600 text-sm mt-2 leading-relaxed"
+                      style={{ fontFamily: "'Poppins', sans-serif" }}
+                    >
+                      {card.text}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-      ))}
-    </div>
-  </div>
-</div>
 
 
 
@@ -1448,202 +989,153 @@ Contact Us
 
         {/* next content */}
 
-       <div className="relative w-full py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-100 to-blue-200">
 
-  {/* Floating Mesh Blob */}
-  <svg className="absolute top-0 left-0 opacity-30 w-[280px]" viewBox="0 0 200 200">
-    <path fill="#3b82f6" d="M45.4,-79.1C59.8,-73.9,72.1,-60.2,79.6,-44.3C87.1,-28.4,89.8,-10.2,87.8,7.5C85.9,25.2,79.3,42.3,67.7,57.2C56.2,72.2,39.7,85,20.1,92.4C0.5,99.8,-22.1,101.8,-40.4,94.5C-58.8,87.3,-73,70.8,-81.9,51.9C-90.8,32.9,-94.4,11.6,-92.8,-8.7C-91.2,-29,-84.4,-48.2,-71.2,-59.2C-58,-70.2,-38.5,-73,-19.7,-78.8C-0.8,-84.6,17.4,-93.3,33.5,-90.5C49.6,-87.7,56.1,-73,45.4,-79.1Z" transform="translate(100 100)" />
-  </svg>
 
-  {/* Floating Glow Circles */}
-  <div className="absolute top-20 right-10 w-40 h-40 bg-purple-300/40 rounded-full blur-2xl animate-pulse"></div>
-  <div className="absolute bottom-20 left-10 w-48 h-48 bg-green-300/40 rounded-full blur-3xl animate-pulse"></div>
+        <div className="relative w-full py-24 overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-100 to-blue-200">
 
-  {/* Dotted Pattern */}
-  <div className="absolute top-0 right-0 w-60 h-60 bg-[radial-gradient(circle,rgba(0,0,0,0.15)_1px,transparent_1px)] bg-[length:14px_14px] opacity-20"></div>
+          {/* Map background image */}
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-60"
+            style={{ backgroundImage: `url(${GlobalImg})` }}
+          />
 
-  {/* MAIN CONTENT */}
-  <div className="relative max-w-4xl mx-auto px-6">
+          {/* Soft wash so the map recedes and text stays readable */}
+          <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/10 to-white/50" />
 
-    {/* Glass Card */}
-    <div className="bg-white/40 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-white/50">
-      
-      {/* Heading */}
-      <h3
-        className="text-center text-3xl md:text-5xl font-bold text-gray-800"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}
-      >
-        Get started with  
-        <span className="text-blue-700 font-extrabold"> DIGINTRA </span>
-        today!
-      </h3>
+          <div className="absolute top-0 right-0 w-60 h-60 bg-[radial-gradient(circle,rgba(0,0,0,0.15)_1px,transparent_1px)] bg-[length:14px_14px] opacity-20"></div>
 
-      {/* Description */}
-      <p
-        className="mt-4 text-center text-gray-700 text-lg leading-relaxed"
-        style={{ fontFamily: "'Poppins', sans-serif" }}
-      >
-        Create an account to start your free trial instantly or chat with us for quick assistance.
-      </p>
+          {/* MAIN CONTENT */}
+          <div className="relative max-w-4xl mx-auto px-6">
 
-      {/* Buttons */}
-      <div className="mt-10 flex flex-col md:flex-row justify-center gap-6">
+            {/* Glass Card */}
+            <div className="bg-white/80 backdrop-blur-xl p-10 rounded-3xl shadow-2xl border border-white/50">
 
-        {/* Register Button */}
-        <a href="https://sms-login.digintra.com/User/SignUp">
-          <button className="w-[230px] h-16 bg-gradient-to-tr from-green-500 to-lime-500 text-white font-bold rounded-xl shadow-xl
+              {/* Heading */}
+              <h3
+                className="text-center text-3xl md:text-5xl font-bold text-gray-800"
+                style={{ fontFamily: "'Montserrat', sans-serif" }}
+              >
+                Get started with
+                <span className="text-emerald-700 font-extrabold"> DIGINTRA </span>
+                today!
+              </h3>
+
+              {/* Description */}
+              <p
+                className="mt-4 text-center text-gray-700 text-lg leading-relaxed"
+                style={{ fontFamily: "'Poppins', sans-serif" }}
+              >
+                Create an account to start your free trial instantly or chat with us for quick assistance.
+              </p>
+
+              {/* Buttons */}
+              <div className="mt-10 flex flex-col md:flex-row justify-center gap-6">
+
+                {/* Register Button */}
+                <a href="https://sms-login.digintra.com/User/SignUp">
+                  <button className="w-[230px] h-16 bg-gradient-to-r from-emerald-600 to-green-500 text-white font-bold rounded-xl shadow-xl
                              flex items-center justify-center gap-3 border-b-4 border-green-700
                              transition-all duration-300 hover:scale-110 hover:shadow-2xl">
-            <FaUserPlus className="h-6 w-6" />
-            Register Now
-          </button>
-        </a>
+                    <FaUserPlus className="h-6 w-6" />
+                    Register Now
+                  </button>
+                </a>
 
-        {/* WhatsApp Button */}
-        <a href="https://api-wa.co/nVOl41">
-          <button className="w-[230px] h-16 bg-gradient-to-tr from-emerald-500 to-green-400 text-white font-bold rounded-xl shadow-xl
+                {/* WhatsApp Button */}
+                <a href="https://api-wa.co/nVOl41">
+                  <button className="w-[230px] h-16 bg-gradient-to-r from-emerald-600 to-green-500 text-white font-bold rounded-xl shadow-xl
                              flex items-center justify-center gap-3 border-b-4 border-green-800
                              transition-all duration-300 hover:scale-110 hover:shadow-2xl">
-            <FaWhatsapp className="h-7 w-7" />
-            Chat on WhatsApp
-          </button>
-        </a>
+                    <FaWhatsapp className="h-7 w-7" />
+                    Chat on WhatsApp
+                  </button>
+                </a>
 
-      </div>
-    </div>
-  </div>
+              </div>
+            </div>
+          </div>
 
-</div>
+        </div>
 
 
-        {/* next content */}
-       <div className="relative w-full py-20 bg-gradient-to-br from-green-50 via-white to-green-100 overflow-hidden">
 
-  {/* Floating Mesh Blob Left */}
-  <svg className="absolute top-0 left-0 w-[280px] opacity-25" viewBox="0 0 200 200">
-    <path fill="#16a34a"
-      d="M45.4,-79.1C59.8,-73.9,72.1,-60.2,79.6,-44.3C87.1,-28.4,89.8,-10.2,87.8,7.5C85.9,25.2,79.3,42.3,67.7,57.2C56.2,72.2,39.7,85,20.1,92.4C0.5,99.8,-22.1,101.8,-40.4,94.5C-58.8,87.3,-73,70.8,-81.9,51.9C-90.8,32.9,-94.4,11.6,-92.8,-8.7C-91.2,-29,-84.4,-48.2,-71.2,-59.2C-58,-70.2,-38.5,-73,-19.7,-78.8C-0.8,-84.6,17.4,-93.3,33.5,-90.5C49.6,-87.7,56.1,-73,45.4,-79.1Z"
-      transform="translate(100 100)"
-    />
-  </svg>
-
-  {/* Glow Circles */}
-  <div className="absolute top-20 right-10 w-40 h-40 bg-green-300/40 rounded-full blur-2xl animate-pulse"></div>
-  <div className="absolute bottom-20 left-16 w-48 h-48 bg-emerald-300/40 rounded-full blur-3xl animate-pulse"></div>
-
-  {/* Dotted Overlay */}
-  <div className="absolute top-0 right-0 w-64 h-64 
-                  bg-[radial-gradient(circle,rgba(0,0,0,0.2)_1px,transparent_1px)] 
-                  bg-[length:14px_14px] opacity-10"></div>
-
-  {/* MAIN CONTENT */}
-  <div className="relative w-[95%] md:w-[80%] lg:w-[1140px] mx-auto flex flex-col lg:flex-row justify-between gap-10">
-
-    {/* LEFT CONTENT */}
-    <div className="lg:w-[50%] flex flex-col justify-center gap-6">
-
-      <p
-        className="text-3xl lg:text-5xl font-extrabold text-gray-900 leading-tight"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}
-      >
-        <span className="text-green-700">C</span>hoose{" "}
-        <span className="text-green-700">Y</span>our{" "}
-        <span className="text-green-700">P</span>rice{" "}
-        <span className="text-green-700">P</span>lan
-      </p>
-
-      <p
-        className="text-sm lg:text-lg font-medium text-gray-700"
-        style={{ fontFamily: "'Montserrat', sans-serif" }}
-      >
-        Try pay-as-you-go or subscription packages — made to fit your budget.
-      </p>
-
-      <div className="flex gap-4 mt-3">
-        <Link to="/whatsapp-pricing">
-          <button
-            className="px-6 py-3 lg:text-lg text-sm font-semibold text-white rounded-lg 
-                       bg-gradient-to-tr from-green-700 via-green-500 to-green-700 
-                       shadow-lg hover:scale-110 transition-transform duration-300"
-            style={{ fontFamily: "'Montserrat', sans-serif" }}
-          >
-            Subscription
-          </button>
-        </Link>
-
-        <button
-          className="px-6 py-3 lg:text-lg text-sm font-semibold text-white rounded-lg 
-                     bg-gradient-to-tr from-green-700 via-green-500 to-green-700 
-                     shadow-lg hover:scale-110 transition-transform duration-300"
-          style={{ fontFamily: "'Montserrat', sans-serif" }}
-        >
-          Pay As You Go
-        </button>
-      </div>
-    </div>
-
-    {/* RIGHT: Image with Glass Effect */}
-    <div className="relative lg:w-[45%] h-auto">
-
-      {/* Glow behind image */}
-      <div className="absolute inset-0 rounded-3xl bg-green-300/40 blur-2xl"></div>
-
-      <div className="relative overflow-hidden rounded-3xl shadow-xl bg-white/10 backdrop-blur-xl">
-        <img
-          src={pricescreenshot}
-          alt="Pricing Preview"
-          className="rotate-[-18deg] scale-[1.1] mx-auto"
-        />
-      </div>
-
-    </div>
-  </div>
-
-</div>
-
-        {/* next content */}
-
-        <Seven
-          endnumber1={5}
-          endnumber2={1000}
-          endnumber3={225}
-          endnumber={100}
-        />
+        <DeferredSection>
+          <SevenSection
+            endnumber1={5}
+            endnumber2={1000}
+            endnumber3={225}
+            endnumber={100}
+          />
+        </DeferredSection>
 
         {/*next content cum divider  */}
-        <div className="marquee py-10 bg-gradient-to-r from-[#1E3B8D] to-[#387DF4]">
-  <div className="relative w-full overflow-hidden py-6">
 
-  {/* Background Layer */}
-  <div className="absolute inset-0 bg-gradient-to-r from-green-700 via-green-500 to-green-800"></div>
+        <div className="bg-green-600 p-4">
+          {/* Keyframe Definition injected directly */}
+          <style>{`
+    @keyframes marqueeReverse {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeReverse 25s linear infinite;
+    }
+    .marquee-track:hover {
+      animation-play-state: paused;
+    }
+  `}</style>
 
-  {/* Glow Edges */}
-  <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/10 mix-blend-overlay"></div>
+          <div className="relative w-full overflow-hidden py-4 bg-white shadow-2xl border-y border-emerald-400/30">
 
-  {/* Noise Texture */}
-  <div className="absolute inset-0 opacity-[0.08] bg-[url('https://www.transparenttextures.com/patterns/asfalt-light.png')]"></div>
+            {/* Glossy Overlay */}
+            <div className="absolute inset-0 pointer-events-none z-10" />
 
-  {/* Shine Sweep */}
-  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent 
-                  animate-shine pointer-events-none"></div>
+            {/* Micro-Dot Pattern */}
+            <div className="absolute inset-0 bg-[radial-gradient(rgba(0,0,0,0.15)_1px,transparent_1px)] [background-size:20px_20px] opacity-30 pointer-events-none" />
 
-  {/* TEXT */}
-  <div className="relative marquee-content text-center px-6">
-    <p
-      className="text-lg md:text-3xl font-semibold tracking-wide text-white drop-shadow-lg"
-      style={{ fontFamily: "'Familjen Grotesk','sans-serif'" }}
-    >
-      TRANSFORM YOUR COMMUNICATION STRATEGY WITH OUR ALL-IN-ONE MESSAGING AND PROMOTION SOLUTION.
-    </p>
-  </div>
-</div>
+            {/* Edge Vignette */}
+            <div className="absolute inset-0 z-20 pointer-events-none w-full" />
 
-</div>
+            {/* Marquee Track using custom CSS class */}
+            <div className="marquee-track whitespace-nowrap">
+
+              {/* First Text Block */}
+              <div className="flex items-center shrink-0">
+                <p
+                  className="text-lg md:text-2xl font-black tracking-wider uppercase text-black drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] pr-12"
+                  style={{ fontFamily: "'Familjen Grotesk', sans-serif" }}
+                >
+                  TRANSFORM YOUR COMMUNICATION STRATEGY WITH OUR ALL-IN-ONE MESSAGING AND PROMOTION SOLUTION.
+                </p>
+              </div>
+
+              {/* Duplicate Text Block for Infinite Loop */}
+              <div className="flex items-center shrink-0">
+                <p
+                  className="text-lg md:text-2xl font-black tracking-wider uppercase text-black drop-shadow-[0_4px_12px_rgba(0,0,0,0.5)] pr-12"
+                  style={{ fontFamily: "'Familjen Grotesk', sans-serif" }}
+                >
+                  TRANSFORM YOUR COMMUNICATION STRATEGY WITH OUR ALL-IN-ONE MESSAGING AND PROMOTION SOLUTION.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+        {/* 
+</div> */}
 
         {/* Second content */}
-        <Client />
+        <DeferredSection>
+          <ClientSection />
+        </DeferredSection>
         {/* <Footer /> */}
-        <Footer/>
+        <DeferredSection>
+          <FooterSection />
+        </DeferredSection>
       </>
     </div>
   );

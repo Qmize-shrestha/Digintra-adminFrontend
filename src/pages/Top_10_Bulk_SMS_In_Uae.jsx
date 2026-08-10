@@ -12,11 +12,7 @@ import CompleteGuide from "../assets/completeguide.png";
 // import SMSREMINDERS from '../assets/SMSreminder.jpg'
 import SMSALERTPIC from "../assets/smsalertpic.jpg";
 import FAST2SMS from "../assets/fast2sms.jpg";
-// import INTEGRATE from '../assets/integrate.jpg';
-// import CAMPAIGN from '../assets/campaign.jpg'
-// import SMSABANDONED from '../assets/smsabndoned.jpg';
-// import SMSSUBSCRIBER from '../assets/smssubscriber.jpg';
-// import SERVICEPRO from '../assets/smsservice.jpg'
+
 import INSIDER from "../assets/insider.png";
 // import SMSCAMPAIGN from '../assets/bulksmsmarketing2.jpg';
 // import BULKSMSUNLOCK from '../assets/bulksmsunlock.jpg';
