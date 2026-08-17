@@ -219,6 +219,7 @@ import Sender_Id from "./pages/Sender_Id.jsx";
 // import Registerpage from "./pages/Registerpage";
 import Bulk_SMS_MarketingUAE from "./pages/Bulk_SMS_MarketingUAE.jsx";
 import Sms_CampaignIdeas from "./pages/Sms_CampaignIdeas.jsx";
+import Sms_Marketing_RulesUAE from "./pages/Sms_Marketing_RulesUAE.jsx";
 
 // import LoginBlog from "./components/LoginBlog";
 import Error from "./pages/Error";
@@ -446,6 +447,7 @@ function App() {
   <Route path="/blog/sender-id" element={<Sender_Id />} />
   <Route path="/blog/bulk-sms-marketing-strategies-uae-businesses" element={<Bulk_SMS_MarketingUAE />} />
   <Route path="/blog/sms-campaign-ideas-for-small-businesses" element={<Sms_CampaignIdeas />} />
+  <Route path="/blog/sms-marketing-rules-uae" element={<Sms_Marketing_RulesUAE />} />
 
 
 

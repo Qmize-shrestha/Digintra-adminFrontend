@@ -89,6 +89,7 @@ import topetialt from "../assets/top5etisalternative.jpeg";
 import senderid from "../assets/whatissenderid.jpeg";
 import digintra_photo3 from "../assets/Digintra_photo3.jpeg";
 import Sms_campaign from "../assets/Sms_campaign.jpeg";
+import SmsMarketing_Rules from "../assets/SmsMarketing_Rules.jpeg";
 const MainPage = () => {
     const blogData = [
   {
@@ -479,6 +480,12 @@ const MainPage = () => {
     title: "SMS Campaign Ideas for Small Businesses",
     link: "/blog/sms-campaign-ideas-for-small-businesses"
   },
+  {
+    image: SmsMarketing_Rules,
+    title: "SMS Marketing Rules in UAE (2026 Guide)",
+    link: "/blog/sms-marketing-rules-uae"
+  },
+
 
 
 ];
