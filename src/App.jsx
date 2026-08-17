@@ -218,6 +218,7 @@ import Top5_Etisalat_Alt from "./pages/Top5_Etisalat_Alt.jsx";
 import Sender_Id from "./pages/Sender_Id.jsx";
 // import Registerpage from "./pages/Registerpage";
 import Bulk_SMS_MarketingUAE from "./pages/Bulk_SMS_MarketingUAE.jsx";
+import Sms_CampaignIdeas from "./pages/Sms_CampaignIdeas.jsx";
 
 // import LoginBlog from "./components/LoginBlog";
 import Error from "./pages/Error";
@@ -444,6 +445,7 @@ function App() {
   <Route path="/blog/top-etisalat-alternative-for-bulk-sms-uae" element={<Top5_Etisalat_Alt/>} />
   <Route path="/blog/sender-id" element={<Sender_Id />} />
   <Route path="/blog/bulk-sms-marketing-strategies-uae-businesses" element={<Bulk_SMS_MarketingUAE />} />
+  <Route path="/blog/sms-campaign-ideas-for-small-businesses" element={<Sms_CampaignIdeas />} />
 
 
 

@@ -543,22 +543,7 @@ export default function Home() {
 {/* </div> */}
         </section>
 
-        {/* <div className="relative mx-auto max-w-5xl mt-16 px-4 sm:px-6 lg:px-8">
-          <div className="rounded-xl bg-white p-2 ring-1 ring-white/10 backdrop-blur-sm">
-            <img
-              src={digintra_dashboard}
-              alt="App Dashboard Preview"
-              className="w-full rounded-lg shadow-2xl"
-              style={{
-                WebkitMaskImage: 'linear-gradient(to bottom, white 60%, transparent 100%)',
-                maskImage: 'linear-gradient(to bottom, white 80%, transparent 90%)',
-              }}
-            />
-          </div>
-        </div>
-      */}
-
-
+       
 
         {/* Bulk SMS Solutions Section */}
         <div className="relative mt-24 md:mt-22 px-2 max-w-6xl mx-auto mb-12">

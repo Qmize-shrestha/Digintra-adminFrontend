@@ -88,6 +88,7 @@ import smsgateway  from "../assets/sms-gateway.jpg";
 import topetialt from "../assets/top5etisalternative.jpeg";
 import senderid from "../assets/whatissenderid.jpeg";
 import digintra_photo3 from "../assets/Digintra_photo3.jpeg";
+import Sms_campaign from "../assets/Sms_campaign.jpeg";
 const MainPage = () => {
     const blogData = [
   {
@@ -471,6 +472,12 @@ const MainPage = () => {
     image: digintra_photo3,
     title: "Bulk SMS Marketing Strategies for UAE Businesses: A Complete Guide to Higher Engagement and Better ROI ",
     link: "/blog/bulk-sms-marketing-strategies-uae-businesses"
+  },
+
+  {
+    image: Sms_campaign,
+    title: "SMS Campaign Ideas for Small Businesses",
+    link: "/blog/sms-campaign-ideas-for-small-businesses"
   },
 
 
