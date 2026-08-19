@@ -48,12 +48,14 @@ import government from '../assets/SMES.webp'
 import education from '../assets/Education.webp'
 import transport from '../assets/Logistics.webp';
 import travel from '../assets/Hospitality.jpg';
-import Digintra_dashboard from '../assets/Digintra_dashboard.jpeg';
+import media from '../assets/media.webp';
+import Digintra_dashboard from '../assets/Digintra_dashboard.jpg';
 
 import mapImg from '../assets/mapImg.png';
 import messaging from '../assets/messaging.jpeg';
 import { motion, useInView, useSpring, useTransform } from "framer-motion";
 import { Globe, Megaphone, ReceiptText, KeyRound } from "lucide-react";
+
 // import { Lock } from "lucide-react";
 
 const ChooseSection = lazy(() => import("../components/Choose"));
@@ -249,7 +251,7 @@ export default function Home() {
       text: 'Schedule and build trips and share greeting messages, notifications, and reminders through SMS.',
     },
     {
-      // image: media,
+       image: media,
       heading: 'Media & Entertainment',
       text: 'Use SMS to run opinion polls and contests, garner votes for a game and reality shows, send event invites, and much more.',
     },
@@ -714,8 +716,8 @@ export default function Home() {
                 <div className="float-slow absolute -top-6 -left-6 md:-left-10 z-20 flex items-center gap-2 rounded-2xl bg-white/90 backdrop-blur-md px-4 py-2.5 shadow-xl border border-white/60">
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-teal-100 text-teal-600 text-sm font-bold">✓</span>
                   <div className="text-left">
-                    <p className="text-xs font-semibold text-slate-800">New Article</p>
-                    <p className="text-[10px] text-slate-500">Published today</p>
+                    <p className="text-xs font-semibold text-slate-800">New SMS Routes Added </p>
+                    <p className="text-[10px] text-slate-500">More destinations. Better connectivity </p>
                   </div>
                 </div>
 
@@ -724,7 +726,7 @@ export default function Home() {
                   <span className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600 text-sm">📈</span>
                   <div className="text-left">
                     <p className="text-xs font-semibold text-slate-800">Growing Reach</p>
-                    <p className="text-[10px] text-slate-500">50+ countries</p>
+                    <p className="text-[10px] text-slate-500">200+ Destinations  </p>
                   </div>
                 </div>
 
@@ -1046,7 +1048,7 @@ export default function Home() {
 
         <DeferredSection>
           <SevenSection
-            endnumber1={5}
+            endnumber1={10}
             endnumber2={1000}
             endnumber3={225}
             endnumber={100}

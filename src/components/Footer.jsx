@@ -244,12 +244,12 @@ const Footer = () => {
 
       {/* Map + Offices block */}
       <div className="max-w-[80%] mx-auto px-4 py-10 border-t border-white/6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center ">
           <div className="lg:col-span-1">
             <img src={mapImg} alt="Offices map" className="rounded-lg shadow-xl" />
           </div>
 
-          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 mt-[-120px] ">
             {/* Office 1 */}
             <div className="bg-white/4 rounded-xl p-4">
               <div className="flex gap-4 items-start">
@@ -271,9 +271,12 @@ const Footer = () => {
                 </div>
               </div>
             </div>
+</div>
+<div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 translate-x-[420px] -mt-[150px]">
 
-            {/* Contact / CTA */}
-            <div className="bg-white/4 rounded-xl p-4 md:col-span-2">
+
+                         {/* Contact / CTA */}
+            <div className="bg-white/4 rounded-xl p-4 ">
               <h5 className="font-semibold">Get started - scale globally</h5>
               <p className="text-sm text-white/80 mt-2">Start a free trial, request a demo or chat with our team for enterprise onboarding.</p>
               <div className="mt-4 flex gap-3">
@@ -285,7 +288,34 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-          </div>
+
+
+{/* Office 3 */}
+  <div className="bg-white/4 rounded-xl p-4">
+              <div className="flex gap-4 items-start">
+                <img src={gayabiharicons} alt="Gayabihar" className="w-20 h-20 rounded-full object-cover border border-white/10" />
+                <div>
+                  <h5 className="font-semibold">Gaya, Bihar</h5>
+                  <p className="text-sm text-white/80">2nd Floor, G.R Tower, opp. Railway Hospital, Gaya, Bihar 823001</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Contact / CTA
+            <div className="bg-white/4 rounded-xl p-4 ">
+              <h5 className="font-semibold">Get started - scale globally</h5>
+              <p className="text-sm text-white/80 mt-2">Start a free trial, request a demo or chat with our team for enterprise onboarding.</p>
+              <div className="mt-4 flex gap-3">
+                <a href="https://sms-login.digintra.com/User/SignUp" className="inline-block">
+                  <button className="bg-white text-[#071233] px-5 py-2 rounded-md font-medium">Register</button>
+                </a>
+                <a href="https://api-wa.co/nVOl41" className="inline-block">
+                  <button className="bg-transparent border border-white/20 px-5 py-2 rounded-md">WhatsApp</button>
+                </a>
+              </div>
+            </div> */}
+            </div>
+          
         </div>
       </div>
 

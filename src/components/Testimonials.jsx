@@ -15,7 +15,7 @@ export default function Testimonials() {
     },
     {
       img: icons2,
-      name: "DigiEarn-YT",
+      name: "Maskan Foundation",
       role: "Youtuber",
       text: "Amazing experience with DIGINTRA. Their support team replies instantly and understands technical requirements deeply. Highly recommended!"
     },
