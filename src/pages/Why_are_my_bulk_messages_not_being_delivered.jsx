@@ -23,7 +23,6 @@ export default function Why_are_my_bulk_messages_not_being_delivered() {
 <link rel='canonical' href='https://digintra.com/blog/why-are-my-bulk-messages-not-being-delivered' />
 </Helmet>
    <div className="w-[310px] lg:w-[840px] h-auto mx-auto">
-      <h2 className="text-[20px] lg:text-[30px] lg:text-left font-semibold text-center" style={{fontFamily:"'Montserrat',sans-serif"}}>04 Blog</h2>
       <img src={icons1} alt="Why Are My Bulk Messages Not Being Delivered?"  className="mt-4" />
       <h1  className="text-[20px] mt-4 font-bold lg:text-[36px] text-blue-900 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>
     Why Are My Bulk Messages Not Being Delivered?
@@ -40,7 +39,7 @@ export default function Why_are_my_bulk_messages_not_being_delivered() {
       intricacies .
     </p>
 
-    <h3  className="text-[18px] font-semibold" style={{fontFamily:"'Montserrat',sans-serif"}}>Your Messages is not being Delivered, Why?</h3>
+    <h2  className="text-[18px] font-semibold" style={{fontFamily:"'Montserrat',sans-serif"}}>Your Messages is not being Delivered, Why?</h2>
     <p style={{fontFamily:"'Poppins',sans-serif"}}> 
       Each countries have specific messaging restrictions and a direct
       connection is necessary in order to ensure message delivery to the
@@ -52,7 +51,7 @@ export default function Why_are_my_bulk_messages_not_being_delivered() {
       We provide simple & easy online interface for sending SMS to any
       mobile number in easy steps.
     </h4>
-    <h3 className="text-[18px] font-semibold" style={{fontFamily:"'Montserrat',sans-serif"}}>Common Causes of Bulk Message go Undelivered</h3>
+    <h2 className="text-[18px] font-semibold" style={{fontFamily:"'Montserrat',sans-serif"}}>Common Causes of Bulk Message go Undelivered</h2>
     <p style={{fontFamily:"'Poppins',sans-serif"}}>
       {" "}
       01.<b> Repetitive URL’s and keywords </b> in the SMS body will be blocked by
@@ -120,9 +119,9 @@ Compliance Guidelines for Successful SMS Marketing.....
 
 
     <div className="">
-      <h3 className="text-[20px] font-semibold text-blue-900" style={{fontFamily:"'Montserrat',sans-serif"}}>
+      <h2 className="text-[20px] font-semibold text-blue-900" style={{fontFamily:"'Montserrat',sans-serif"}}>
       Tips to Improve Your SMS Response Rates
-      </h3>
+      </h2>
       <img src={icons2} alt="" className="mt-5" data-aos="zoom-in-up" />
       <p  className="mt-2" style={{fontFamily:"'Poppins',sans-serif"}}>SMS is a fantastic marketing tool, known for its affordable cost and high ROI. It’s fast, suitable for all types of startup and enterprises</p>
    <p className="mt-2" style={{fontFamily:"'Poppins',sans-serif"}}>SMS has incredible open rates of nearly 98%,while email only has a 6% open rate.  And, SMS messages have a 45% response rate, as opposed to email which has a 20% response rate.</p>

@@ -22,7 +22,6 @@ export default function Bulk_sms_service_for_charities_trust_ngos_community_grou
           <meta name="description" content='NGOs, Trust, Charities are established to assist people who are in need and want help. Read More!'/>
           </Helmet>
     <div className="w-[310px] lg:w-[840px] h-auto mx-auto">
-        <h3 className="text-[20px] lg:text-[30px] lg:text-left font-semibold text-center" style={{fontFamily:"'Montserrat',sans-serif"}}> 05 Blog</h3>
         <img src={icons1} alt="Bulk SMS service for Charities, NGOs & Community Groups" className="my-4" />
         <h1 className="text-[20px] font-bold lg:text-[36px] text-blue-900 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>
         Bulk SMS service for Charities, NGOs & Community Groups
@@ -35,7 +34,7 @@ export default function Bulk_sms_service_for_charities_trust_ngos_community_grou
          <p style={{fontFamily:"'Poppins',sans-serif"}}>The reason is that NGOs, Trust, Charities and Community Groups don’t promote their works to make others aware of their services. Using DIGINTRA SMS Service, each & every NGOs, Charities and Community Groups can establish effective communication with other people and at the same time inform and make them aware of their presence.</p>
          <p style={{fontFamily:"'Poppins',sans-serif"}}>Nowadays many NGOs, Charities, Trusts are choosing SMS messaging to improve their operational efficiency and create more awareness like NGOs and Community Groups organizes seminars and trainings occasionally to educate the public of some major affairs of the organization and equally on what they need.</p>
          <p style={{fontFamily:"'Poppins',sans-serif"}}>These seminars are usually without charge, and the NGOs can organize such seminars with the use of bulk SMS in creating awareness.</p>
-        <h1 className="text-[20px] font-bold mt-5" style={{fontFamily:"'Montserrat',sans-serif"}}>How can Charities, NGOs and Non Profit Organizations Use the DIGINTRA SMS Platform?</h1>
+        <h2 className="text-[20px] font-bold mt-5" style={{fontFamily:"'Montserrat',sans-serif"}}>How can Charities, NGOs and Non Profit Organizations Use the DIGINTRA SMS Platform?</h2>
           <p style={{fontFamily:"'Poppins',sans-serif"}}>Using DIGINTRA SMS Platform, NGOs, Charities and Non Profit Organizations can raise awareness about the constant struggle that charities, NGOs face, encourage people to donate by sending text messages.
 
 </p>

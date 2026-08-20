@@ -25,7 +25,6 @@ export default function Top_5_bulk_sms_provider_in_india() {
         <link rel="stylesheet" href="https://digintra.com/top-5-bulk-sms-provider-in-india" />
         </Helmet>
       <div className="w-[310px] lg:w-[840px] h-auto mx-auto">
-      <h1 className="text-[25px] font-semibold text-center lg:text-left lg:text-[30px]  " style={{fontFamily:"'Montserrat',sans-serif"}}>13 Blog</h1>
       <img src={BULKSMS} alt="" className="mt-4 border-2 border-black rounded-lg" />
       <h1  className="text-[20px] font-bold lg:text-[36px] text-blue-900 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>Top 5 Bulk SMS Provider in India</h1>
      <div  className="space-y-5 mt-2">
@@ -34,22 +33,22 @@ export default function Top_5_bulk_sms_provider_in_india() {
          </div>
          <br />
          <br />
-         <h1  className=" rounded-md text-[20px] text-white mt-8 font-bold bg-gradient-to-r from-green-900 via-green-600 to-green-500 inline p-1" style={{fontFamily:"'Montserrat',sans-serif"}}>Digintra :</h1><br />
+         <h2  className=" rounded-md text-[20px] text-white mt-8 font-bold bg-gradient-to-r from-green-900 via-green-600 to-green-500 inline p-1" style={{fontFamily:"'Montserrat',sans-serif"}}>Digintra :</h2><br />
          <p  className="text-[16px] mt-3" style={{fontFamily:"'Poppins',sans-serif"}}>Digintra is a distinguished name in the realm of global mobile messaging, offering comprehensive bulk SMS services tailored to meet diverse business needs. Renowned for their expertise in advertising, digital marketing, SMS marketing, and transactional SMS services, Digintra has established itself as a reliable partner for businesses aiming to enhance their communication strategies. </p>
          <p  className="text-[16px] mt-2" style={{fontFamily:"'Poppins',sans-serif"}}>Clients benefit from Digintra's seamless integration capabilities, ensuring that businesses can effortlessly incorporate SMS marketing into their existing operations.  </p>
          <p  className="text-[16px] mt-2" style={{fontFamily:"'Poppins',sans-serif"}}>For businesses seeking to elevate their marketing efforts and customer engagement, Digintra stands out as an exceptional bulk SMS service provider, combining innovation with reliability to deliver outstanding results.​ Whenever, you will search for top 5 Bulk SMS provider in India, you will surely find Digintra’s name. </p>
 
-             <h1  className="rounded-md text-white bg-gradient-to-r from-green-900 via-green-600 to-green-500 inline-block p-1 text-[20px] mt-8 font-bold" style={{fontFamily:"'Montserrat',sans-serif"}}>Digimiles: </h1>
+             <h2  className="rounded-md text-white bg-gradient-to-r from-green-900 via-green-600 to-green-500 inline-block p-1 text-[20px] mt-8 font-bold" style={{fontFamily:"'Montserrat',sans-serif"}}>Digimiles: </h2>
              <p  className="text-[16px] mt-2" style={{fontFamily:"'Poppins',sans-serif"}}>Recognized for its affordability and user-friendly interface, Digimiles offers comprehensive SMS solutions suitable for small businesses. Their ISO 9001:2015 certification reflects a commitment to quality and customer satisfaction. </p>
               
-              <h1  className="text-[20px] mt-8 font-bold rounded-md text-white bg-gradient-to-r from-green-900 via-green-600 to-green-500 inline-block p-1" style={{fontFamily:"'Montserrat',sans-serif"}}>Gupshup:</h1>
+              <h2  className="text-[20px] mt-8 font-bold rounded-md text-white bg-gradient-to-r from-green-900 via-green-600 to-green-500 inline-block p-1" style={{fontFamily:"'Montserrat',sans-serif"}}>Gupshup:</h2>
               <p  className="text-[16px] mt-2" style={{fontFamily:"'Poppins',sans-serif"}}>Ideal for businesses requiring multi-channel communication, Gupshup provides seamless integration across platforms like SMS, WhatsApp, Facebook Messenger, and Viber. Their platform supports real-time customer engagement and automated responses. </p>
          
-               <h1  className="text-[20px] mt-8 mb-2 font-bold rounded-md text-white bg-gradient-to-r from-green-900 via-green-600 to-green-500 inline-block p-1" style={{fontFamily:"'Montserrat',sans-serif"}}>TextLocal:</h1><br />
+               <h2  className="text-[20px] mt-8 mb-2 font-bold rounded-md text-white bg-gradient-to-r from-green-900 via-green-600 to-green-500 inline-block p-1" style={{fontFamily:"'Montserrat',sans-serif"}}>TextLocal:</h2><br />
               
                <p dclassName="text-[16px] mt-2" style={{fontFamily:"'Poppins',sans-serif"}}>TextLocal stands out with its feature-rich platform supporting over 20 languages and the ability to send rich media attachments. Their services are tailored for businesses seeking comprehensive messaging solutions with detailed analytics. </p>
 
-              <h1  className="text-[20px] mt-8 font-bold rounded-md text-white bg-gradient-to-r from-green-900 via-green-600 to-green-500 inline-block p-1" style={{fontFamily:"'Montserrat',sans-serif"}}>Fast2SMS:</h1>
+              <h2  className="text-[20px] mt-8 font-bold rounded-md text-white bg-gradient-to-r from-green-900 via-green-600 to-green-500 inline-block p-1" style={{fontFamily:"'Montserrat',sans-serif"}}>Fast2SMS:</h2>
               <p  className="text-[16px] mt-2" style={{fontFamily:"'Poppins',sans-serif"}}> Offering cost-effective bulk SMS solutions, Fast2SMS is favored for its user-friendly interface and instant delivery reports. It's particularly suitable for businesses looking for affordable and efficient SMS marketing services. </p>
               <p  className="text-[16px] mt-2" style={{fontFamily:"'Poppins',sans-serif"}}>While selecting a bulk SMS service provider in India, keep in mind important factors such as delivery rates, integration capabilities, customer support, and pricing to ensure the service aligns with your business requirements.  </p>
 

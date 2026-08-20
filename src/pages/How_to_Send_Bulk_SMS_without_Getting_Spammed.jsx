@@ -26,7 +26,6 @@ export default function How_to_Send_Bulk_SMS_without_Getting_Spammed() {
 <link rel='canonical' href='https://digintra.com/How-to-Send-Bulk-SMS-without-Getting-Spammed' />
       </Helmet>
           <div className="w-[310px] lg:w-[840px] mx-auto h-auto ">
-            <h1 className="text-[20px] lg:text-[30px] lg:text-left font-semibold text-center">12 Blog</h1>
             <img src={icons1}   alt="" />
             <h1  className="text-[20px] font-bold lg:text-[36px] text-blue-900 lg:mt-10">
       How to Send Bulk SMS without Getting Spammed?
@@ -65,18 +64,18 @@ export default function How_to_Send_Bulk_SMS_without_Getting_Spammed() {
 How to Send Bulk Messages Without Being Marked as Spam.....
   <span className="ml-2 text-sm font-semibold">Read More →</span>
 </Link>
-     <h1 className="text-[20px] font-semibold">Here are top 6 tips to send SMS without getting spam:</h1>
-      <h1  className="text-[20px] font-bold mt-5">01. Building a Quality Subscriber List: 
-</h1>
+     <h2 className="text-[20px] font-semibold">Here are top 6 tips to send SMS without getting spam:</h2>
+      <h3  className="text-[20px] font-bold mt-5">01. Building a Quality Subscriber List: 
+</h3>
       
 
 <p >One of the most effective ways to avoid being marked as spam is to build a quality subscriber list. A quality list consists of recipients who have opted to receive messages from your business and are genuinely interested in your offerings. Implement a double opt-in process to ensure that subscribers genuinely want to receive your messages. Regularly clean your subscriber list by removing inactive or disengaged users.
 
 </p>
 
-<h1 className="text-[20px] font-bold mt-5">02. Crafting Relevant and Personalized Messages: 
+<h3 className="text-[20px] font-bold mt-5">02. Crafting Relevant and Personalized Messages: 
 
-</h1>
+</h3>
 
 
 <p >Personalized and relevant messages are more likely to be well-received by recipients. Tailoring your bulk SMS content to match the preferences and interests of your audience can significantly reduce the chances of your messages being marked as spam. Use recipient names in messages to add a personal touch. Segment your audience and send targeted messages based on their preferences and behavior.
@@ -87,28 +86,28 @@ How to Send Bulk Messages Without Being Marked as Spam.....
 <h3 className="font-semibold">Recommended reading:  Why Are My Bulk Messages Not Being Delivered?
 
 </h3>
-<h1 className="text-[20px] font-bold mt-5">Timing Your SMS Campaigns Wisely: 
-</h1>
+<h2 className="text-[20px] font-bold mt-5">Timing Your SMS Campaigns Wisely: 
+</h2>
 <p >Timing plays a crucial role in the success of your SMS campaigns. Sending messages at the right time can improve open rates and engagement while reducing the risk of being marked as spam. Avoid sending messages during late-night hours or very early in the morning. Consider the time zones of your recipients to ensure timely delivery.
 
 </p>
 
-  <h1  className="text-[20px] font-bold mt-5">Providing Clear Opt-Out Options: 
-</h1>
+  <h2  className="text-[20px] font-bold mt-5">Providing Clear Opt-Out Options: 
+</h2>
 <p >Respecting the preferences of your subscribers is essential in avoiding spam complaints. Providing clear and easy-to-use opt-out options allows recipients to unsubscribe from your messages if they no longer wish to receive them. Include clear opt-out instructions in every message. Honor opt-out requests promptly to maintain a positive reputation.
 
 </p>
-<h1 className="text-[20px] font-bold mt-5">Avoiding Spam Trigger Words: 
+<h2 className="text-[20px] font-bold mt-5">Avoiding Spam Trigger Words: 
 
-</h1>
+</h2>
 <p >Certain words and phrases can trigger spam filters and increase the likelihood of your messages being marked as spam. Being cautious with your choice of words can help prevent your messages from getting flagged. Avoid using words commonly associated with spam, such as "free," "guaranteed," or "act now." Be mindful of excessive use of exclamation points or all capital letters. (source)
 
 </p>
 
 
-<h1  className="text-[20px] font-bold mt-5">Monitoring and Analyzing Campaign Performance: 
+<h2  className="text-[20px] font-bold mt-5">Monitoring and Analyzing Campaign Performance: 
 
-</h1>
+</h2>
 <p >Regularly monitoring and analyzing the performance of your bulk SMS campaigns can provide valuable insights into the effectiveness of your messaging strategies. It also allows you to identify and address potential issues promptly. Track delivery rates, open rates, and engagement metrics to evaluate campaign success. Use analytics to identify trends and optimize future campaigns.
 
 

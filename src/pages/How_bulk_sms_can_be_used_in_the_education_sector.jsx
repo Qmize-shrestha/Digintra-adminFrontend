@@ -23,7 +23,6 @@ export default function How_bulk_sms_can_be_used_in_the_education_sector() {
      <meta name="description" content='SMS messaging is quickly turning into the most important marketing tools for an advertiser. Read More!'/>
      </Helmet>
        <div className="w-[310px] lg:w-[840px] h-auto mx-auto">
-    <h3 className="font-semibold lg:text-[30px] lg:text-left text-[20px] text-center" style={{fontFamily:"'Montserrat',sans-serif"}}>06 Blog</h3>
     <img src={icons1} alt="How Bulk SMS can be used in the Education sector?" className="my-4" />
     <h1 className="text-[20px] font-bold lg:text-[36px] text-blue-900 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>
    How Bulk SMS can be used in the Education sector?
@@ -35,7 +34,7 @@ export default function How_bulk_sms_can_be_used_in_the_education_sector() {
      <p style={{fontFamily:"'Poppins',sans-serif"}} >“Communication is the key to run any successful educational institution”</p>
     <p style={{fontFamily:"'Poppins',sans-serif"}} >The advantages of Bulk SMS also apply to Schools, Colleges, Coaching Institutes, Training centers, Educational NGO and Universities to develop classroom interaction and also provide the opportunity to create a virtual community for teachers and pupils to communicate, both amongst themselves and with each other.</p>
   
-   <h3 className="text-[20px] font-bold mt-5" style={{fontFamily:"'Montserrat',sans-serif"}}>Why Education sector need bulk SMS?</h3>
+   <h2 className="text-[20px] font-bold mt-5" style={{fontFamily:"'Montserrat',sans-serif"}}>Why Education sector need bulk SMS?</h2>
      <p style={{fontFamily:"'Poppins',sans-serif"}} >Use DIGINTRA bulk SMS to send information about exam schedules, reading material, meeting invites to students, parents and staff. Bulk SMS messaging is a great way to build relationships with students, parents, and members of staff.
 
 </p>
@@ -53,7 +52,7 @@ export default function How_bulk_sms_can_be_used_in_the_education_sector() {
   <p style={{fontFamily:"'Poppins',sans-serif"}} >09. Send alerts likes birthday wishes, payment reminders and other notifications.
 Ex: “Dear Parent’s, Fee for your ward, for the month of X XXis due; please clear the fee before xx/xx/xxx. Thank you!”</p>
 
-<h1 className="text-[20px] font-bold mt-5 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>Why DIGINTRA is the best SMS service provider for Education sector?</h1>
+<h2 className="text-[20px] font-bold mt-5 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>Why DIGINTRA is the best SMS service provider for Education sector?</h2>
 <p style={{fontFamily:"'Poppins',sans-serif"}}>Our robust panel will make your bulk SMS messaging campaign more effective. DIGINTRA provides the best bulk SMS service and easiest platform to send your campaign.</p>
 <p style={{fontFamily:"'Poppins',sans-serif"}}>1.  It is the most affordable bulk SMS service provider in India.</p>
 <p style={{fontFamily:"'Poppins',sans-serif"}}>2. You can add contacts in form of .csv .text etc.</p>

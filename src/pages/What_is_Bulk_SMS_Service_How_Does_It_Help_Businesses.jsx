@@ -27,7 +27,6 @@ export default function What_is_Bulk_SMS_Service_How_Does_It_Help_Businesses() {
 <link rel="canonical" href="https://digintra.com/blog/what-is-bulk-sms-service-how-does-it-help-businesses" />
  </Helmet>
      <div className="w-[310px] lg:w-[840px] h-auto mx-auto">
-         <h1 className="font-semibold lg:text-[30px] text-[20px] text-center lg:text-left">11 Blog</h1>
          <img src={icons1} alt="" />
          <h1 className="text-[20px] font-bold lg:text-[36px] text-blue-900 lg:mt-10">
  What is Bulk SMS Service? & How Does It Help Businesses?
@@ -52,9 +51,9 @@ export default function What_is_Bulk_SMS_Service_How_Does_It_Help_Businesses() {
 
 </p>
 
-<h1  className="text-[20px] font-bold mt-5">Top 6 Advantages of Bulk SMS Service
+<h2  className="text-[20px] font-bold mt-5">Top 6 Advantages of Bulk SMS Service
 
-</h1>
+</h2>
 
 
 <p >Bulk SMS Service offers numerous advantages for businesses:
@@ -83,9 +82,9 @@ export default function What_is_Bulk_SMS_Service_How_Does_It_Help_Businesses() {
 
 
 
-<h1  className="text-[20px] font-bold mt-5">Bulk SMS Service for Marketing
+<h2  className="text-[20px] font-bold mt-5">Bulk SMS Service for Marketing
 
-</h1>
+</h2>
 
 <p >Bulk SMS Service is an invaluable marketing tool that can help your business reach new heights:
 </p>
@@ -134,8 +133,7 @@ export default function What_is_Bulk_SMS_Service_How_Does_It_Help_Businesses() {
 
 
 </p>
-<h1>Bulk SMS Service for Internal Communication
-</h1>
+<h2 className="text-[20px] font-bold mt-5">Bulk SMS Service for Internal Communication</h2>
 <p>Effective internal communication is crucial for the smooth functioning of any organization:</p>
 <h3  className="text-[20px] font-bold mt-5">Employee Notifications
 
@@ -188,7 +186,7 @@ export default function What_is_Bulk_SMS_Service_How_Does_It_Help_Businesses() {
 
 </p>
 
-<h1 className="font-semibold text-[20px]">6 Best Practices for Bulk SMS Service</h1>
+<h2 className="font-semibold text-[20px]">6 Best Practices for Bulk SMS Service</h2>
 <p>To make the most of Bulk SMS Service, follow these best practices:</p>
 
 <h3  className="text-[20px] font-bold mt-5">1. Segment Your Audience
@@ -242,7 +240,7 @@ export default function What_is_Bulk_SMS_Service_How_Does_It_Help_Businesses() {
 
 </p>
 
-<h1 className="text-[20px] font-semibold">FAQs on Bulk SMS Service</h1>
+<h2 className="text-[20px] font-semibold">FAQs on Bulk SMS Service</h2>
 
 <h3  className="text-[20px] font-bold mt-5">Can I send multimedia content through Bulk SMS Service?
 </h3>

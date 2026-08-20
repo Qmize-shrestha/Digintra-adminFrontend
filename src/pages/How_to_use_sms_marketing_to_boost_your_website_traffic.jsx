@@ -27,7 +27,6 @@ export default function How_to_use_sms_marketing_to_boost_your_website_traffic()
   <meta name='description' content='I wonder reminding the old way of texting people before the genesis of I- message and whatsApp, do you recall that SMS thing? Raed More!'/>
 </Helmet>
       <div className="w-[310px] lg:w-[840px] h-auto mx-auto">
-        <h3 className="text-[20px] lg:text-[30px] lg:text-left font-semibold text-center" style={{fontFamily:"'Montserrat',sans-serif"}}>08 Blog</h3>
         <img src={icons1} alt="How to use SMS Marketing to Boost Your Website Traffic?" />
         <h1 className="text-[20px] font-bold lg:text-[36px] text-blue-900 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>
     How to use SMS Marketing to Boost Your Website Traffic?

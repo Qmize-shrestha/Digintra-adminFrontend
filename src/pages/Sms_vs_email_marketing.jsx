@@ -24,7 +24,6 @@ export default function Top5BulkSmsProviderInIndia() {
 
       <div className="w-auto bg-white lg:flex h-auto pt-[280px] md:pt-[180px] mx-auto">
         <div className="w-[310px] lg:w-[840px] h-auto mx-auto">
-          <h1 className="text-[25px] font-semibold text-center lg:text-left lg:text-[30px]" style={{ fontFamily: "'Montserrat',sans-serif" }}>14 Blog</h1>
           <img src={SMSMARK} alt="" className="mt-4 border-2 border-black rounded-lg" />
           <h1 className="text-[20px] font-bold lg:text-[36px] text-blue-900 lg:mt-10" style={{ fontFamily: "'Montserrat',sans-serif" }}>SMS v/s Email Marketing</h1>
           <h3 className='text-xl font-semibold'>SMS vs email marketing, which is better?</h3>

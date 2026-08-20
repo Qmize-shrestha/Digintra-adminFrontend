@@ -27,7 +27,6 @@ export default function Bulk_SMS_vs_Whatsapp_Messages_Which_is_Better() {
 <link rel='canonical' href='https://digintra.com/blog/bulk-sms-vs-whatsapp-messages-which-is-better' />
      </Helmet>
          <div className="w-[310px] lg:w-[840px] h-auto mx-auto">
-           <h1 className="text-[20px] lg:text-[30px] lg:text-left font-semibold text-center">10 Blog</h1>
            <img src={icons1} alt="" />
            <h1 className="text-[20px] font-bold lg:text-[36px] text-blue-900 lg:mt-10">
      Bulk SMS vs Whatsapp Messages - Which is Better?
@@ -40,7 +39,7 @@ export default function Bulk_SMS_vs_Whatsapp_Messages_Which_is_Better() {
       
      
     
-     <h1 className="text-[20px] font-bold mt-5">01.  Reach and Accessibility</h1>
+     <h3 className="text-[20px] font-bold mt-5">01.  Reach and Accessibility</h3>
      
 
 <p >Bulk SMS: Bulk SMS stands as a time-tested method to reach a broad audience instantly. It is compatible with all mobile devices, making it accessible to a wide range of users, including those without internet access.
@@ -52,8 +51,8 @@ export default function Bulk_SMS_vs_Whatsapp_Messages_Which_is_Better() {
 
 </p>
 
-<h1  className="text-[20px] font-bold mt-5">02. Message Delivery Speed
-</h1>
+<h3  className="text-[20px] font-bold mt-5">02. Message Delivery Speed
+</h3>
 
 
 <p >Bulk SMS: When it comes to instant message delivery, Bulk SMS takes the lead. Messages are delivered almost instantly upon sending, ensuring timely communication with your audience.
@@ -68,8 +67,8 @@ export default function Bulk_SMS_vs_Whatsapp_Messages_Which_is_Better() {
 
 
 
-<h1 className="text-[20px] font-bold mt-5">03. Message Open Rates
-</h1>
+<h3 className="text-[20px] font-bold mt-5">03. Message Open Rates
+</h3>
 <p >Bulk SMS: Bulk SMS boasts significantly higher open rates compared to emails, ensuring that your messages are seen by a large percentage of recipients.
 
 </p>
@@ -77,35 +76,35 @@ export default function Bulk_SMS_vs_Whatsapp_Messages_Which_is_Better() {
 
 </p>
 
- <h1 className="text-[20px] font-bold mt-5">04. Cost-Effectiveness </h1>
+ <h3 className="text-[20px] font-bold mt-5">04. Cost-Effectiveness </h3>
 <p >Bulk SMS: Bulk SMS is renowned for its cost-effectiveness, allowing businesses to reach a vast audience without breaking the bank. Digintra offers Bulk SMS service in Delhi at a competitive price, check out today!
 
 </p> 
 <p>Whatsapp Messages: While Whatsapp Messages use internet data, their cost-effectiveness may vary depending on data plans and international messaging.
 </p>
 
-<h1  className="text-[20px] font-bold mt-5">05. Message Personalization
+<h3  className="text-[20px] font-bold mt-5">05. Message Personalization
 
 
-</h1>
+</h3>
 <p>Bulk SMS: Bulk SMS allows personalization to some extent, but it may not match the level of individualized communication that Whatsapp Messages can offer.
 </p>
 <p>Whatsapp Messages: Whatsapp Messages excel in personalization, enabling businesses to send tailored messages with multimedia content to individual recipients.</p>
 
 
-<h1  className="text-[20px] font-bold mt-5">06.  Message Content and Format
+<h3  className="text-[20px] font-bold mt-5">06.  Message Content and Format
 
-</h1>
+</h3>
 <p >Bulk SMS: Bulk SMS allows personalization to some extent, but it may not match the level of individualized communication that Whatsapp Messages can offer.
 
 </p>
 <p>Whatsapp Messages: Whatsapp Messages provide more flexibility, allowing longer messages, images, videos, and other multimedia content for a richer communication experience.
 
 </p>
-<h1  className="text-[20px] font-bold mt-5">07. Ease of Use
+<h3  className="text-[20px] font-bold mt-5">07. Ease of Use
 
 
-</h1>
+</h3>
 <p >Bulk SMS: Bulk SMS platforms are user-friendly and straightforward, making it easy for businesses of all sizes to adopt and implement.
 
 </p>

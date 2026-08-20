@@ -24,7 +24,6 @@ export default function SMSMarketingBlog() {
       <div className="w-auto bg-white lg:flex h-auto pt-[280px] md:pt-[180px] mx-auto">
         
         <div className="w-[310px] lg:w-[840px] h-auto mx-auto">
-        <h1 className='text-xl font-bold text-black'> 15 Blog</h1>
           {/* <h1 className="text-[25px] font-semibold text-center lg:text-left lg:text-[30px]" style={{ fontFamily: "'Montserrat',sans-serif" }}>SMS Marketing</h1> */}
           <img src={SMSMARK2} alt="SMS Marketing" className="mt-4 border-2 border-black rounded-lg" />
           <h1 className="text-[20px] font-bold lg:text-[36px] text-blue-900 lg:mt-10" style={{ fontFamily: "'Montserrat',sans-serif" }}>How Top Businesses Use SMS Marketing to Build Customer Satisfaction</h1>
@@ -68,6 +67,7 @@ export default function SMSMarketingBlog() {
 Bulk SMS for spa and salon.....
   <span className="ml-2 text-sm font-semibold">Read More →</span>
 </Link>
+
 
 
 

@@ -21,7 +21,6 @@ export default function Budget_friendly_sms_marketing_tactics_for_effective_camp
     <link rel='canonical' href='https://www.digintra.com/blog/budget-friendly-sms-marketing-tactics-for-effective-campaigns' />
           </Helmet>
             <div className="w-[310px] lg:w-[840px] h-auto mx-auto">
-           <h1 className="font-semibold text-[20px] lg:text-[30px] lg:text-left" style={{fontFamily:"'Montserrat',sans-serif"}}>03 Blog</h1>
            <img src={icons1} alt="" className="mt-4" />
            <h1 data-aos="fade-up" className="text-[20px] mt-4 font-bold lg:text-[36px] text-blue-900 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>Budget-Friendly SMS Marketing Tactics for Effective Campaigns</h1>
        <div data-aos="fade-right" className="space-y-5 mt-2">
@@ -84,7 +83,7 @@ export default function Budget_friendly_sms_marketing_tactics_for_effective_camp
 
 
 
-                   <h1  className="text-[20px] mt-4 font-bold lg:text-[25px] lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>Top 15 SMS Marketing Strategies for Maximum ROI :</h1>
+                   <h2  className="text-[20px] mt-4 font-bold lg:text-[25px] lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>Top 15 SMS Marketing Strategies for Maximum ROI :</h2>
 
                    <h3  className="text-[18px] mt-4 font-semibold lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>01. DEFINE CLEAR OBJECTIVES:
  </h3>
@@ -146,7 +145,7 @@ export default function Budget_friendly_sms_marketing_tactics_for_effective_camp
                    <p   className="text-[16px] mt-2 lg:mt-5" style={{fontFamily:"'Poppins',sans-serif"}}>By implementing these best value SMS marketing strategies, you can drive engagement, conversions, and ultimately achieve maximum return on investment (ROI) for your campaigns. Customize, optimize, analyze, and continuously improve your SMS marketing efforts to unlock the full potential of this powerful channel.</p>
                    
              
-                  <h1 className="text-[20px] mt-4 font-bold" style={{fontFamily:"'Montserrat',sans-serif"}}>Conclusion :</h1>
+                  <h2 className="text-[20px] mt-4 font-bold" style={{fontFamily:"'Montserrat',sans-serif"}}>Conclusion :</h2>
                   <p   className="text-[16px] mt-2 " style={{fontFamily:"'Poppins',sans-serif"}}>Budget-friendly SMS marketing tactics can help businesses maximize the effectiveness of their campaigns without compromising their financial resources. By setting clear goals, building a quality subscriber list, crafting compelling messages, segmenting your audience, optimizing timing and frequency, utilizing automation, leveraging user-generated content, running contests and promotions, monitoring results, and continuously testing and iterating, businesses can create impactful SMS marketing campaigns on a limited budget. With strategic planning, creativity, and a focus on high-impact techniques, businesses can achieve remarkable results and drive engagement and conversions through cost-effective SMS marketing.</p>
               <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
           <Link href="/blog/the-top-10-advantages-of-sms-marketing-for-business">  <button className="w-[150px]  flex gap-x-5 hover:text-blue-700 font-semibold"><span className="mt-2"><img src={icons2} alt="" className="h-10" /></span><span className="text-[16px] mt-4">prev</span></button> </Link>    

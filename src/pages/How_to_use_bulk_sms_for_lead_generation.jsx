@@ -23,7 +23,6 @@ export default function How_to_use_bulk_sms_for_lead_generation() {
           <meta name='description' content='SMS blasting is an ideal way to generate leads for businesses and is a great way to succeed one’s small business or a Enterprise company. Read More!'/>
           </Helmet>
     <div className="w-[310px] lg:w-[840px]  h-auto mx-auto">
-      <h3 className="font-semibold  lg:text-[30px] lg:text-left text-[20px] text-center" style={{fontFamily:"'Montserrat',sans-serif"}}>07 Blog</h3>
       <img src={icons1} alt="How to use Bulk SMS for Lead Generation?" className="my-4"/>
       <h1 className="text-[20px]   font-bold lg:text-[36px] text-blue-900 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>
           How to use Bulk SMS for Lead Generation?
@@ -36,7 +35,7 @@ export default function How_to_use_bulk_sms_for_lead_generation() {
            <p style={{fontFamily:"'Poppins',sans-serif"}} >“Bulk SMS Is Not Just An Engagement Channel, But A Great Marketing Channel For Lead Generation”</p>
            <p style={{fontFamily:"'Poppins',sans-serif"}} >Believe it or not, but in today’s era, bulk messaging can provide you the competitive edge you need to make your business a success. SMS messaging is the fastest means of communication between you and your client. It will help you connect with million’s of people with just DIGINTRA SMS platform</p>
          
-          <h3 style={{fontFamily:"'Montserrat',sans-serif"}}  className="text-[20px] font-bold mt-5">Text messaging between businesses or brands and customers are extremely effective. Why? The reasons are provided below:</h3>
+          <h2 style={{fontFamily:"'Montserrat',sans-serif"}}  className="text-[20px] font-bold mt-5">Text messaging between businesses or brands and customers are extremely effective. Why? The reasons are provided below:</h2>
           
   
   <p  style={{fontFamily:"'Poppins',sans-serif"}}>01. SMS is a direct and immediate message delivery channel. 95%++ of text messages are read within three minutes. This is a super easy and speedy way to reach large number of audience in a single click.</p>
@@ -48,7 +47,7 @@ export default function How_to_use_bulk_sms_for_lead_generation() {
   <p  style={{fontFamily:"'Poppins',sans-serif"}}>07. The biggest advantage offered by SMS marketing for B2B businesses is that your messages are not filtered out by the SPAM filter. This is the most annoying aspect of email marketing. But, in the case of SMS marketing, you remain assure that your message will definitely reach the prospects leading to greater chances of lead conversion..</p>
   
   
-  <h3 className="text-[20px] font-bold mt-5 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>Text messaging is also used as a medium to engage your new or loyal customers. The many ways in which text message can be used to engage your audience is:</h3>
+  <h2 className="text-[20px] font-bold mt-5 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>Text messaging is also used as a medium to engage your new or loyal customers. The many ways in which text message can be used to engage your audience is:</h2>
  
   <p style={{fontFamily:"'Poppins',sans-serif"}}>1. Sending them updates about your product or news.</p>
   <p style={{fontFamily:"'Poppins',sans-serif"}}>2. Updating them with a new offers or promotion that your business has come up with.</p>

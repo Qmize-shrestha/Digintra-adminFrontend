@@ -25,7 +25,6 @@ export default function How_to_Send_Bulk_Messages_Without_Being_Marked_as_Spam()
 <link rel='canonical' href='https://www.digintra.com/blog/how-to-send-bulk-messages-without-being-marked-as-spam' />
 </Helmet>
    <div className="w-[310px] lg:w-[840px] h-auto mx-auto">
-       <h1 className="text-[20px] lg:text-[30px] lg:text-left font-semibold text-center" style={{fontFamily:"'Montserrat',sans-serif"}}>09 Blog</h1>
        <img src={icons1} alt="" />
        <h1 className="text-[20px] font-bold lg:text-[36px] text-blue-900 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>
 How to Send Bulk Messages Without Being Marked as Spam?
@@ -64,8 +63,8 @@ How to Send Bulk Messages Without Being Marked as Spam?
 </li>
 
 </ul>
-<h1 className="text-[20px] font-bold mt-5" style={{fontFamily:"'Montserrat',sans-serif"}}>02. How to Ensure Compliance and Avoid Spammy Behavior?
-</h1>
+<h2 className="text-[20px] font-bold mt-5" style={{fontFamily:"'Montserrat',sans-serif"}}>02. How to Ensure Compliance and Avoid Spammy Behavior?
+</h2>
 
 
 <p style={{fontFamily:"'Poppins',sans-serif"}} >To avoid being marked as spam, adhere to these best practices:
@@ -88,8 +87,8 @@ How to Send Bulk Messages Without Being Marked as Spam?
 </ul>
 <h3 className="font-semibold" style={{fontFamily:"'Montserrat',sans-serif"}}>Recommended reading: Compliance Guidelines for Successful SMS Marketing
 </h3>
-<h1  className="text-[20px] font-bold mt-5" style={{fontFamily:"'Montserrat',sans-serif"}}>03. Crafting Engaging and Personalized Bulk Messages
-</h1>
+<h2  className="text-[20px] font-bold mt-5" style={{fontFamily:"'Montserrat',sans-serif"}}>03. Crafting Engaging and Personalized Bulk Messages
+</h2>
 <p style={{fontFamily:"'Poppins',sans-serif"}} >Personalization is key to engaging your audience. Consider these tips by Digintra:
 </p>
 <ul className="space-y-5">
@@ -100,14 +99,14 @@ How to Send Bulk Messages Without Being Marked as Spam?
 </li>
 
 </ul>
-<h1  className="text-[20px] font-bold mt-5" style={{fontFamily:"'Poppins',sans-serif"}}>04. Crafting Engaging and Personalized Bulk Messages
-</h1>
+<h2  className="text-[20px] font-bold mt-5" style={{fontFamily:"'Poppins',sans-serif"}}>04. Crafting Engaging and Personalized Bulk Messages
+</h2>
 <p style={{ fontFamily:"'Poppins',sans-serif"}} >Segmentation allows you to divide your audience into specific groups based on criteria like location, interests, or behavior. This ensures that your messages are relevant and valuable to each recipient.
 
 </p>
-<h1 className="text-[20px] font-bold mt-5">05. How to Scheduling Bulk Messages?
+<h2 className="text-[20px] font-bold mt-5">05. How to Scheduling Bulk Messages?
 
-</h1>
+</h2>
 <p >Timing plays a crucial role in the success of your bulk messaging campaigns.
 
 
@@ -122,16 +121,16 @@ How to Send Bulk Messages Without Being Marked as Spam?
 </ul>
 <h3 className="font-semibold">Recommended reading: Top 10 Advantages of SMS Marketing for Business
 </h3>
-<h1  className="text-[20px] font-bold mt-5">06. Measuring the Success of Your Bulk Messaging Campaign
+<h2  className="text-[20px] font-bold mt-5">06. Measuring the Success of Your Bulk Messaging Campaign
 
-</h1>
+</h2>
 <p >Tracking the performance of your bulk messaging campaign is essential to understand its effectiveness. Monitor metrics such as delivery rates, open rates, click-through rates, and conversion rates.
 
 
 </p>
-<h1 className="text-[20px] font-bold mt-5">07. Leveraging WhatsApp Business API for Bulk Messaging
+<h2 className="text-[20px] font-bold mt-5">07. Leveraging WhatsApp Business API for Bulk Messaging
 
-</h1>
+</h2>
 <p >WhatsApp Business API offers additional features and automation for large-scale bulk messaging. Learn how to integrate it effectively into your messaging strategy with Digintra.
 
 </p>
@@ -150,36 +149,36 @@ How to Send Bulk SMS without Getting Spammed.....
 
 
 
-<h1  className="text-[20px] font-bold mt-5">FAQs on How to Send Bulk Messages on Whatsapp
+<h2  className="text-[20px] font-bold mt-5">FAQs on How to Send Bulk Messages on Whatsapp
 
 
-</h1>
-<h4 className="font-semibold mt-3">How can I avoid being marked as spam when sending bulk messages on WhatsApp?
-</h4>
+</h2>
+<h2 className="font-semibold mt-3">How can I avoid being marked as spam when sending bulk messages on WhatsApp?
+</h2>
 <p >Respect user consent and provide an opt-out option for recipients. Personalize your messages and avoid excessive use of emojis. Adhere to best practices for scheduling bulk messages.
 
 </p>
-<h4 className="font-semibold mt-3">What is the significance of segmentation in bulk WhatsApp messaging?
-</h4>
+<h2 className="font-semibold mt-3">What is the significance of segmentation in bulk WhatsApp messaging?
+</h2>
 <p>Segmentation allows you to target specific groups with relevant messages. It ensures that your messages are valuable and engaging to each recipient.
 </p>
-<h4 className="font-semibold mt-3">How can I measure the success of my bulk messaging campaign?
-</h4>
+<h2 className="font-semibold mt-3">How can I measure the success of my bulk messaging campaign?
+</h2>
 <p>Monitor metrics such as delivery rates, open rates, and conversion rates. Use data insights to optimize your messaging strategy.
 </p>
 
-<h4 className="font-semibold mt-3">Can I use WhatsApp Business API for bulk messaging?
+<h2 className="font-semibold mt-3">Can I use WhatsApp Business API for bulk messaging?
 
-</h4>
+</h2>
 <p>Yes, WhatsApp Business API offers additional features for large-scale bulk messaging.
 
 </p>
-<h4 className="font-semibold mt-3">Can I use WhatsApp Business API for bulk messaging?
-</h4>
+<h2 className="font-semibold mt-3">Can I use WhatsApp Business API for bulk messaging?
+</h2>
 <p>Yes, WhatsApp Business API offers additional features for large-scale bulk messaging.
 </p>
-<h4 className="font-semibold mt-3">How important is personalization in bulk WhatsApp messages?
-</h4>
+<h2 className="font-semibold mt-3">How important is personalization in bulk WhatsApp messages?
+</h2>
 <p>Personalization creates a personal connection with recipients and enhances engagement. Address recipients by name and customize messages based on their preferences.
 
 </p>
