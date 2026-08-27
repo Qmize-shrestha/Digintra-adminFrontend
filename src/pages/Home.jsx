@@ -157,7 +157,7 @@ function AnimatedStat({ value, label }) {
 
 function StatsGrid() {
   const stats = [
-    { value: "200+", label: "Countries Reached" },
+    { value: "200+", label: "Destinations Reached" },
     { value: "100+", label: "Businesses Served" },
     { value: "99.9%", label: "Delivery Rate" },
     { value: "24/7", label: "Global Support" },
@@ -251,7 +251,7 @@ export default function Home() {
       text: 'Schedule and build trips and share greeting messages, notifications, and reminders through SMS.',
     },
     {
-       image: media,
+      image: media,
       heading: 'Media & Entertainment',
       text: 'Use SMS to run opinion polls and contests, garner votes for a game and reality shows, send event invites, and much more.',
     },
@@ -464,7 +464,7 @@ export default function Home() {
                   className="text-xs font-medium uppercase tracking-wider text-emerald-700"
                   style={{ fontFamily: "'Poppins', 'sans-serif'" }}
                 >
-                  Global Messaging Platform • 200+ Countries
+                  Global Messaging Platform • 200+ Destinations
                 </span>
               </div>
 
@@ -514,38 +514,38 @@ export default function Home() {
           {/* Dashboard preview inside a laptop frame — only the top ~70% of the
             screenshot is visible, cropped and faded at the bottom so it reads
             as a natural "peek" rather than an abrupt cut. */}
-      <div className="relative z-20 mx-auto max-w-4xl px-4 sm:-mt-10 sm:px-6 lg:-mt-16 lg:px-8 translate-y-5">
-  <div className="hero-drift relative mx-auto w-full">
-    {/* <div className="relative w-full overflow-hidden rounded-t-2xl border-x-[10px] border-t-[10px] border-slate-800 bg-white shadow-2xl shadow-emerald-900/20 sm:border-x-[12px] sm:border-t-[12px]"> */}
-      {/* Camera notch */}
-      {/* <div className="relative flex h-3 items-center justify-center bg-slate-800">
+          <div className="relative z-20 mx-auto max-w-4xl px-4 sm:-mt-10 sm:px-6 lg:-mt-16 lg:px-8 translate-y-5">
+            <div className="hero-drift relative mx-auto w-full">
+              {/* <div className="relative w-full overflow-hidden rounded-t-2xl border-x-[10px] border-t-[10px] border-slate-800 bg-white shadow-2xl shadow-emerald-900/20 sm:border-x-[12px] sm:border-t-[12px]"> */}
+              {/* Camera notch */}
+              {/* <div className="relative flex h-3 items-center justify-center bg-slate-800">
         <span className="h-1.5 w-1.5 rounded-full bg-slate-600" />
       </div> */}
 
-      {/* Dashboard Screen Wrapper */}
-      <div className="relative aspect-[2.5] w-full overflow-hidden">
-        <img
-          src={Digintra_dashboard}
-          alt="DIGINTRA dashboard showing real-time SMS delivery, traffic summary, and message analytics"
-          className="absolute left-0 top-0 block h-auto w-full"
-          loading="lazy"
-        />
+              {/* Dashboard Screen Wrapper */}
+              <div className="relative aspect-[2.5] w-full overflow-hidden">
+                <img
+                  src={Digintra_dashboard}
+                  alt="DIGINTRA dashboard showing real-time SMS delivery, traffic summary, and message analytics"
+                  className="absolute left-0 top-0 block h-auto w-full"
+                  loading="lazy"
+                />
 
-        {/* --- SHIFTED BLUR/FADE TO BOTTOM ONLY --- */}
-        <div 
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 backdrop-blur-[2px] bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.8)_65%,rgba(255,255,255,1)_100%)]"
-          style={{
-            maskImage: "linear-gradient(to bottom, transparent 0%, black 70%)",
-            WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 70%)"
-          }}
-        />
-      </div>
-    </div>
-  </div>
-{/* </div> */}
+                {/* --- SHIFTED BLUR/FADE TO BOTTOM ONLY --- */}
+                <div
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 backdrop-blur-[2px] bg-[linear-gradient(to_bottom,transparent_0%,rgba(255,255,255,0.8)_65%,rgba(255,255,255,1)_100%)]"
+                  style={{
+                    maskImage: "linear-gradient(to bottom, transparent 0%, black 70%)",
+                    WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 70%)"
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+          {/* </div> */}
         </section>
 
-       
+
 
         {/* Bulk SMS Solutions Section */}
         <div className="relative mt-24 md:mt-22 px-2 max-w-6xl mx-auto mb-12">

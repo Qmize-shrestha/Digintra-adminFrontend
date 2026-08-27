@@ -83,573 +83,581 @@ import vidlt from "../assets/vidlt.jpg";
 import trai from "../assets/trai.jpeg";
 import smsmarketing from "../assets/Smsmarketing.jpeg";
 import promotionaltextmsg from "../assets/promotional-text-msg.jpeg";
-import sms  from "../assets/sms-api.jpg";
-import smsgateway  from "../assets/sms-gateway.jpg";
+import sms from "../assets/sms-api.jpg";
+import smsgateway from "../assets/sms-gateway.jpg";
 import topetialt from "../assets/top5etisalternative.jpeg";
 import senderid from "../assets/whatissenderid.jpeg";
 import digintra_photo3 from "../assets/Digintra_photo3.jpeg";
 import Sms_campaign from "../assets/Sms_campaign.jpeg";
 import SmsMarketing_Rules from "../assets/SmsMarketing_Rules.jpeg";
+import A2P_Sms_Messaging from "../assets/A2P_Sms.jpeg";
 const MainPage = () => {
-    const blogData = [
-  {
-    image: icons1,
-    title: "Compliance Guidelines for Successful SMS Marketing",
-    link: "/blog/compliance-guidelines-for-successful-sms-marketing",
-  },
-  {
-    image: icons2,
-    title: "The Top 10 Advantages of SMS Marketing for Business",
-    link: "/blog/the-top-10-advantages-of-sms-marketing-for-business",
-  },
-  {
-    image: icons3,
-    title: "Budget-Friendly SMS Marketing Tactics for Effective Campaigns",
-    link: "/blog/budget-friendly-sms-marketing-tactics-for-effective-campaigns",
-  },
-  {
-    image: icons4,
-    title: "Why Are My Bulk Messages Not Being Delivered?",
-    link: "/blog/why-are-my-bulk-messages-not-being-delivered",
-  },
-  {
-    image: icons5,
-    title: "Bulk SMS Service for Charities, NGOs & Community Groups",
-    link: "/blog/bulk-sms-service-for-charities-trust-ngos-community-groups",
-  },
-  {
-    image: icons6,
-    title: "How Bulk SMS can be used in the Education sector?",
-    link: "/blog/how-bulk-sms-can-be-used-in-the-education-sector",
-  },
-  {
-    image: icons7,
-    title: "How to use Bulk SMS for Lead Generation?",
-    link: "/blog/how-to-use-bulk-sms-for-lead-generation",
-  },
-  {
-    image: icons8,
-    title: "How to use SMS marketing to boost your website traffic",
-    link: "/blog/how-to-use-sms-marketing-to-boost-your-website-traffic",
-  },
-  {
-    image: icons9,
-    title: "How to Send Bulk Messages Without Being Marked as Spam",
-    link: "/blog/how-to-send-bulk-messages-without-being-marked-as-spam",
-  },
-  {
-    image: icons10,
-    title: "Bulk SMS vs Whatsapp Messages: Which is Better?",
-    link: "/blog/bulk-sms-vs-whatsapp-messages-which-is-better",
-  },
-  {
-    image: icons11,
-    title: "What is Bulk SMS Service? How Does It Help Businesses",
-    link: "/blog/what-is-bulk-sms-service-how-does-it-help-businesses",
-  },
-  {
-    image: icons12,
-    title: "How to Send Bulk SMS without Getting Spammed",
-    link: "/blog/how-to-send-bulk-sms-without-getting-spammed",
-  },
-  {
-    image: BULKSMS,
-    title: "Top 5 Bulk SMS Provider in India",
-    link: "/blog/top-5-bulk-sms-provider-in-india",
-  },
-  {
-    image: SMSMARK,
-    title: "SMS v/s Email Marketing",
-    link: "/blog/sms-vs-email-marketing",
-  },
-  {
-    image: SMSMARK2,
-    title: "How Top Businesses Use SMS Marketing to Build Customer Satisfaction",
-    link: "/blog/how-top-businesses-use-sms-marketing-to-build-customer-satisfaction",
-  },
-  {
-    image: BULKSMS2,
-    title: "What is Bulk SMS and How Does It Work?",
-    link: "/blog/what-is-bulk-sms-and-how-does-it-work",
-  },
-  {
-    image: BULKSMS3,
-    title: "Top 5 Benefits of Bulk SMS Marketing for Businesses",
-    link: "/blog/top-5-benefits-of-bulk-sms-marketing-for-businesses",
-  },
-  {
-    image: BULKSMS4,
-    title: "Bulk SMS for Spa and Salon",
-    link: "/blog/bulk-sms-for-spa-and-salon",
-  },
-  {
-    image: BULKHOSPITAL,
-    title: "Bulk SMS Services for Hospitals",
-    link: "/blog/bulk-sms-services-for-hospitals",
-  },
-  {
-    image: ecommerce,
-    title: "Bulk SMS Service for Ecommerce",
-    link: "/blog/bulk-sms-service-for-ecommerce",
-  },
-  {
-    image: smstips,
-    title: "How to Write Effective SMS Marketing Messages that Convert",
-    link: "/blog/how-to-write-effective-sms-marketing-meassages-that-convert",
-  },
-  {
-    image: BulkSMS,
-    title: "Bulk SMS Marketing Regulations",
-    link: "/blog/bulk-sms-marketing-regulations",
-  },
-  {
-    image: Latest,
-    title: "Latest Trends in Bulk SMS Marketing in 2025",
-    link: "/blog/latest-trend-in-bulk-sms-marketing-in-2025",
-  },
-  {
-    image: AISMS,
-    title: "Impact of AI and Chatbots on Bulk SMS Marketing",
-    link: "/blog/impact-of-ai-and-chatbots-on-bulk-sms-marketing",
-  },
-  {
-    image: Future,
-    title: "Future of Bulk SMS: What to Expect in the Next 5 Years",
-    link: "/blog/future-of-bulk-SMS-what-to-expect-in-the-next-5-years",
-  },
-  {
-    image: BULKSMS5,
-    title: "Top 4 Bulk SMS Provider in Mumbai",
-    link: "/blog/top-4-bulk-sms-provider-in-mumbai",
-  },
-  {
-    image: BEST,
-    title: "How to Choose the Best Bulk SMS Provider",
-    link: "/blog/how-to-choose-the-best-bulk-sms-provider",
-  },
-  {
-    image: SMSCAM,
-    title: "How to Run Automated SMS Campaigns: A Step-by-Step Guide",
-    link: "/blog/how-to-run-automated-sms-campaigns",
-  },
-  {
-    image: DLT,
-    title: "What is DLT Registration and Why it is Necessary in the SMS Industry",
-    link: "/blog/what-is-dlt-registration-and-why-it-is-necessary-in-the-sms-industry",
-  },
-  {
-    image: PUNESMS,
-    title: "Top 3 Bulk SMS Service Provider in Pune",
-    link: "/blog/top-3-bulk-sms-service-provider-in-pune",
-  },
-  {
-    image: FACEBOOK,
-    title: "Get your Facebook Business Manager Account verified in 5 easy steps",
-    link: "/blog/get-your-facebook-business-manager-account-verified-in-5-easy-steps",
-  },
-  {
-    image: SMSAI,
-    title: "How to Use AI for SMS Marketing: A Game-Changer for Modern Businesses",
-    link: "/blog/how-to-use-ai-for-sms-marketing-a-game-changer-for-modern-business",
-  },
-  {
-    image: PERSONAL,
-    title: "How to Send Personalized SMS at Scale",
-    link: "/blog/how-to-send-personalized-sms-at-scale",
-  },
-  {
-    image: BULKSMSAPI,
-    title: "How to Integrate Bulk SMS API with Your Website or App",
-    link: "/blog/how-to-integrate-bulk-sms-api-with-your-website-or-app",
-  },
-  {
-    image: SMSREMINDERS,
-    title: "How to Send SMS for Appointment Reminders",
-    link: "/blog/how-to-send-sms-for-appointment-reminders",
-  },
-  {
-    image: SMSALERTPIC,
-    title: "How to Send SMS for Emergency Alerts",
-    link: "/blog/how-to-send-sms-for-emergency-alerts",
-  },
-  {
-    image: FAST2SMS,
-    title: "Top 4 Fast2SMS Alternatives in 2025",
-    link: "/blog/top-4-fast2sms-alternative-in-2025",
-  },
-  {
-    image: INTEGRATE,
-    title: "How to Integrate SMS with CRM",
-    link: "/blog/how-to-integrate-sms-with-crm",
-  },
-  {
-    image: CAMPAIGN,
-    title: "How to Use Bulk SMS for Political Campaigns",
-    link: "/blog/how-to-use-bulk-sms-for-political-campaigns",
-  },
-  {
-    image: SMSABANDONED,
-    title: "How to Use SMS for Abandoned Cart Recovery",
-    link: "/blog/how-to-use-sms-for-abandoned-cart-recovery",
-  },
-  {
-    image: SMSSUBSCRIBER,
-    title: "How to Build an SMS Subscriber List",
-    link: "/blog/how-to-build-an-sms-subscriber-list",
-  },
-  {
-    image: SERVICEPRO,
-    title: "Top 5 Things You Need to Know Before Choosing a Bulk SMS Service Provider",
-    link: "/blog/top-5-things-you-need-to-know-before-choosing-a-bulk-sms-service-provider",
-  },
-  {
-    image: INSIDER,
-    title: "Insider Guide to Select Best Bulk SMS Service Provider",
-    link: "/blog/insider-guide-to-select-best-bulk-sms-service-provider",
-  },
-  {
-    image: SERVICEIND,
-    title: "How to Choose the Best Bulk SMS Service Provider in India",
-    link: "/blog/how-to-choose-the-best-bulk-sms-service-provider-in-india",
-  },
-  {
-    image: CompleteGuide,
-    title: "Complete Guide on How to Contact Best Bulk SMS Service Provider",
-    link: "/blog/complete-guide-on-how-to-contact-best-bulk-sms-service-provider",
-  },
-  {
-    image: BulkSMSBenefits,
-    title: "Top 3 Benefits of Bulk SMS Services You Should Know About",
-    link: "/blog/top-3-benefits-of-bulk-sms-services-you-should-know-about",
-  },
-  {
-    image: SMSCAMPAIGN,
-    title: "Your SMS Campaigns Aren’t Converting?",
-    link: "/blog/your-sms-campaigns-are-not-converting",
-  },
-  {
-    image: BULKSMSUNLOCK,
-    title: "Unlocking the Power of Bulk SMS: Transform Your Communication Strategy Today",
-    link: "/blog/unlocking-the-power-of-bulk-sms-transform-your-communication-strategy-today",
-  },
-  {
-    image: DLTREGISTRATION,
-    title: "DLT Registration for SMS in India: A Complete 2025 Guide",
-    link: "/blog/dlt-registration-for-sms-in-india-a-complete-2025-guide",
-  },
-  {
-    image: CUSTOMERFEEDBACK,
-    title: "How to Use SMS for Customer Feedback and Surveys",
-    link: "/blog/how-to-use-sms-for-customer-feedback-and-surveys",
-  },
-  {
-    image: MULTIMEDIAMESSAGE,
-    title: "Multimedia Messaging Service: A Comprehensive Guide to MMS Definition and Benefits",
-    link: "/blog/multimedia-messaging-service-a-comprehensive-guide-to-mms-defination-and-benefits",
-  },
-  {
-    image: SmsEmailWhatsapp,
-    title: "SMS vs WhatsApp vs Email Marketing: Which is Best for Your Business in 2025?",
-    link: "/blog/sms-vs-whatsapp-vs-email-marketing-which-is-best-for-your-business-in-2025",
-  },
-  {
-    image: TenIndustries,
-    title: "10 Industries That Can Double Their Conversions with Bulk SMS Service",
-    link: "/blog/10-industries-that-can-double-their-conversions-with-bulk-sms-service",
-  },
-  {
-    image: SENDEXCEL,
-    title: "How to Send Bulk SMS from Excel: Step-by-Step Tutorial",
-    link: "/blog/how-to-send-bulk-sms-from-excel-step-by-step-tutorial",
-  },
-  {
-    image: SMSMMS,
-    title: "How to Choose Between SMS and MMS for Effective Marketing Campaigns",
-    link: "/blog/how-to-choose-between-sms-and-mms-for-effective-marketing-campaigns",
-  },
-  {
-    image: BestBULK,
-    title: "10 Best Bulk SMS Providers in India 2025",
-    link: "/blog/best-bulk-sms-providers-in-india",
-  },
-  {
-    image: SMSMAR,
-    title: "How to Choose Between SMS and MMS for Effective Marketing Campaigns",
-    link: "/blog/sms-marketing",
-  },
-  {
-    image: tentelecomcompanies,
-    title: "Top 10 Telecom Companies in UAE (2025 List and Picks)",
-    link: "/blog/top-10-telecom-companies-in-uae",
-  },
-  {
-    image: TRA,
-    title: "Telecom Regulatory Authority UAE: A Complete Guide",
-    link: "/blog/telecom-regulatory-authority",
-  },
-  {
-    image: TRA2,
-    title: "Top 10 Bulk SMS Service Provider in UAE (2025 Review)",
-    link: "/blog/top-10-bulk-sms-service-provider-in-uae",
-  },
-  {
-    image: Best_Bulk_SMS,
-    title: "5 Best Bulk SMS Service Providers in UAE – Features, Pricing",
-    link: "/blog/best-bulk-sms-service-providers-in-uae",
-  },
-  {
-    image: Best_SMS,
-    title: "10 Best SMS Marketing Platforms in 2026: A Complete Guide for Businesses",
-    link: "/blog/sms-marketing-platforms",
-  },
-  {
-    image: BULKUAE,
-    title: "Bulk SMS UAE: The Ultimate Guide for UAE Business Owners to Boost Growth & Customer Engagement",
-    link: "/blog/bulk-sms-uae",
-  },
-  {
-    image: RICHMESSAGE,
-    title: "RCS Messaging: The Future of Business Communication in 2026",
-    link: "/blog/rcs-messaging-the-future-of-business-messaging",
-  },
-  {
-    image: dltImage,
-    title: "DLT Registration in India 2026 – Process, Charges, Documents & Benefits Guide",
-    link: "/blog/dlt-registration-india-guide",
-  },
-  {
-    image: dltImage2,
-    title: "Jio DLT Registration Guide | Step-by-Step Process",
-    link: "/blog/jio-dlt-registration-guide",
-  },
-  {
-    image: airteldlt,
-    title: "Airtel DLT Registration 2026: Step-by-Step Complete Guide",
-    link: "/blog/airtel-dlt-registration",
-  },
-  {
-    image: bsnldlt,
-    title: "BSNL DLT Registration: Ultimate Step-by-Step Guide for Businesses",
-    link: "/blog/bsnl-dlt-registration-guide",
-  },
-  {
-    image: vidlt,
-    title:"Vi DLT Registration Guide 2026 | Complete Process, Documents & Template Approval",
-    link: "/blog/vi-dlt-registration-guide"
-  },
-  {
-    image: trai,
-   title:"TRAI Guide 2026: Full Form, Complaints & SMS Rules",
-   link:"/blog/trai"
-  },
-  {
-    image: promotionaltextmsg,
-    title:"50 Promotional Text Message Examples to Boost Conversions in 2026",
-    link: "/blog/promotional-text-message-examples"
-  },
-  {
-    image: sms,
-    title:"SMS API: Complete Guide to Integrating Text Messaging into Your Applications",
-    link: "/blog/sms-api"
-  },
-  {
-    image: smsgateway,
-    title: "SMS Gateway: The Complete Guide to Fast, Reliable Business Messaging",
-    link: "/blog/sms-gateway"
-  },
-  {
-       image: topetialt,
-    title: "Top 5 Etisalat Alternatives for Bulk SMS in UAE (2026 Guide)",
-    link: "/blog/top-etisalat-alternative-for-bulk-sms-uae"
-  },
+  const blogData = [
+    {
+      image: icons1,
+      title: "Compliance Guidelines for Successful SMS Marketing",
+      link: "/blog/compliance-guidelines-for-successful-sms-marketing",
+    },
+    {
+      image: icons2,
+      title: "The Top 10 Advantages of SMS Marketing for Business",
+      link: "/blog/the-top-10-advantages-of-sms-marketing-for-business",
+    },
+    {
+      image: icons3,
+      title: "Budget-Friendly SMS Marketing Tactics for Effective Campaigns",
+      link: "/blog/budget-friendly-sms-marketing-tactics-for-effective-campaigns",
+    },
+    {
+      image: icons4,
+      title: "Why Are My Bulk Messages Not Being Delivered?",
+      link: "/blog/why-are-my-bulk-messages-not-being-delivered",
+    },
+    {
+      image: icons5,
+      title: "Bulk SMS Service for Charities, NGOs & Community Groups",
+      link: "/blog/bulk-sms-service-for-charities-trust-ngos-community-groups",
+    },
+    {
+      image: icons6,
+      title: "How Bulk SMS can be used in the Education sector?",
+      link: "/blog/how-bulk-sms-can-be-used-in-the-education-sector",
+    },
+    {
+      image: icons7,
+      title: "How to use Bulk SMS for Lead Generation?",
+      link: "/blog/how-to-use-bulk-sms-for-lead-generation",
+    },
+    {
+      image: icons8,
+      title: "How to use SMS marketing to boost your website traffic",
+      link: "/blog/how-to-use-sms-marketing-to-boost-your-website-traffic",
+    },
+    {
+      image: icons9,
+      title: "How to Send Bulk Messages Without Being Marked as Spam",
+      link: "/blog/how-to-send-bulk-messages-without-being-marked-as-spam",
+    },
+    {
+      image: icons10,
+      title: "Bulk SMS vs Whatsapp Messages: Which is Better?",
+      link: "/blog/bulk-sms-vs-whatsapp-messages-which-is-better",
+    },
+    {
+      image: icons11,
+      title: "What is Bulk SMS Service? How Does It Help Businesses",
+      link: "/blog/what-is-bulk-sms-service-how-does-it-help-businesses",
+    },
+    {
+      image: icons12,
+      title: "How to Send Bulk SMS without Getting Spammed",
+      link: "/blog/how-to-send-bulk-sms-without-getting-spammed",
+    },
+    {
+      image: BULKSMS,
+      title: "Top 5 Bulk SMS Provider in India",
+      link: "/blog/top-5-bulk-sms-provider-in-india",
+    },
+    {
+      image: SMSMARK,
+      title: "SMS v/s Email Marketing",
+      link: "/blog/sms-vs-email-marketing",
+    },
+    {
+      image: SMSMARK2,
+      title: "How Top Businesses Use SMS Marketing to Build Customer Satisfaction",
+      link: "/blog/how-top-businesses-use-sms-marketing-to-build-customer-satisfaction",
+    },
+    {
+      image: BULKSMS2,
+      title: "What is Bulk SMS and How Does It Work?",
+      link: "/blog/what-is-bulk-sms-and-how-does-it-work",
+    },
+    {
+      image: BULKSMS3,
+      title: "Top 5 Benefits of Bulk SMS Marketing for Businesses",
+      link: "/blog/top-5-benefits-of-bulk-sms-marketing-for-businesses",
+    },
+    {
+      image: BULKSMS4,
+      title: "Bulk SMS for Spa and Salon",
+      link: "/blog/bulk-sms-for-spa-and-salon",
+    },
+    {
+      image: BULKHOSPITAL,
+      title: "Bulk SMS Services for Hospitals",
+      link: "/blog/bulk-sms-services-for-hospitals",
+    },
+    {
+      image: ecommerce,
+      title: "Bulk SMS Service for Ecommerce",
+      link: "/blog/bulk-sms-service-for-ecommerce",
+    },
+    {
+      image: smstips,
+      title: "How to Write Effective SMS Marketing Messages that Convert",
+      link: "/blog/how-to-write-effective-sms-marketing-meassages-that-convert",
+    },
+    {
+      image: BulkSMS,
+      title: "Bulk SMS Marketing Regulations",
+      link: "/blog/bulk-sms-marketing-regulations",
+    },
+    {
+      image: Latest,
+      title: "Latest Trends in Bulk SMS Marketing in 2025",
+      link: "/blog/latest-trend-in-bulk-sms-marketing-in-2025",
+    },
+    {
+      image: AISMS,
+      title: "Impact of AI and Chatbots on Bulk SMS Marketing",
+      link: "/blog/impact-of-ai-and-chatbots-on-bulk-sms-marketing",
+    },
+    {
+      image: Future,
+      title: "Future of Bulk SMS: What to Expect in the Next 5 Years",
+      link: "/blog/future-of-bulk-SMS-what-to-expect-in-the-next-5-years",
+    },
+    {
+      image: BULKSMS5,
+      title: "Top 4 Bulk SMS Provider in Mumbai",
+      link: "/blog/top-4-bulk-sms-provider-in-mumbai",
+    },
+    {
+      image: BEST,
+      title: "How to Choose the Best Bulk SMS Provider",
+      link: "/blog/how-to-choose-the-best-bulk-sms-provider",
+    },
+    {
+      image: SMSCAM,
+      title: "How to Run Automated SMS Campaigns: A Step-by-Step Guide",
+      link: "/blog/how-to-run-automated-sms-campaigns",
+    },
+    {
+      image: DLT,
+      title: "What is DLT Registration and Why it is Necessary in the SMS Industry",
+      link: "/blog/what-is-dlt-registration-and-why-it-is-necessary-in-the-sms-industry",
+    },
+    {
+      image: PUNESMS,
+      title: "Top 3 Bulk SMS Service Provider in Pune",
+      link: "/blog/top-3-bulk-sms-service-provider-in-pune",
+    },
+    {
+      image: FACEBOOK,
+      title: "Get your Facebook Business Manager Account verified in 5 easy steps",
+      link: "/blog/get-your-facebook-business-manager-account-verified-in-5-easy-steps",
+    },
+    {
+      image: SMSAI,
+      title: "How to Use AI for SMS Marketing: A Game-Changer for Modern Businesses",
+      link: "/blog/how-to-use-ai-for-sms-marketing-a-game-changer-for-modern-business",
+    },
+    {
+      image: PERSONAL,
+      title: "How to Send Personalized SMS at Scale",
+      link: "/blog/how-to-send-personalized-sms-at-scale",
+    },
+    {
+      image: BULKSMSAPI,
+      title: "How to Integrate Bulk SMS API with Your Website or App",
+      link: "/blog/how-to-integrate-bulk-sms-api-with-your-website-or-app",
+    },
+    {
+      image: SMSREMINDERS,
+      title: "How to Send SMS for Appointment Reminders",
+      link: "/blog/how-to-send-sms-for-appointment-reminders",
+    },
+    {
+      image: SMSALERTPIC,
+      title: "How to Send SMS for Emergency Alerts",
+      link: "/blog/how-to-send-sms-for-emergency-alerts",
+    },
+    {
+      image: FAST2SMS,
+      title: "Top 4 Fast2SMS Alternatives in 2025",
+      link: "/blog/top-4-fast2sms-alternative-in-2025",
+    },
+    {
+      image: INTEGRATE,
+      title: "How to Integrate SMS with CRM",
+      link: "/blog/how-to-integrate-sms-with-crm",
+    },
+    {
+      image: CAMPAIGN,
+      title: "How to Use Bulk SMS for Political Campaigns",
+      link: "/blog/how-to-use-bulk-sms-for-political-campaigns",
+    },
+    {
+      image: SMSABANDONED,
+      title: "How to Use SMS for Abandoned Cart Recovery",
+      link: "/blog/how-to-use-sms-for-abandoned-cart-recovery",
+    },
+    {
+      image: SMSSUBSCRIBER,
+      title: "How to Build an SMS Subscriber List",
+      link: "/blog/how-to-build-an-sms-subscriber-list",
+    },
+    {
+      image: SERVICEPRO,
+      title: "Top 5 Things You Need to Know Before Choosing a Bulk SMS Service Provider",
+      link: "/blog/top-5-things-you-need-to-know-before-choosing-a-bulk-sms-service-provider",
+    },
+    {
+      image: INSIDER,
+      title: "Insider Guide to Select Best Bulk SMS Service Provider",
+      link: "/blog/insider-guide-to-select-best-bulk-sms-service-provider",
+    },
+    {
+      image: SERVICEIND,
+      title: "How to Choose the Best Bulk SMS Service Provider in India",
+      link: "/blog/how-to-choose-the-best-bulk-sms-service-provider-in-india",
+    },
+    {
+      image: CompleteGuide,
+      title: "Complete Guide on How to Contact Best Bulk SMS Service Provider",
+      link: "/blog/complete-guide-on-how-to-contact-best-bulk-sms-service-provider",
+    },
+    {
+      image: BulkSMSBenefits,
+      title: "Top 3 Benefits of Bulk SMS Services You Should Know About",
+      link: "/blog/top-3-benefits-of-bulk-sms-services-you-should-know-about",
+    },
+    {
+      image: SMSCAMPAIGN,
+      title: "Your SMS Campaigns Aren’t Converting?",
+      link: "/blog/your-sms-campaigns-are-not-converting",
+    },
+    {
+      image: BULKSMSUNLOCK,
+      title: "Unlocking the Power of Bulk SMS: Transform Your Communication Strategy Today",
+      link: "/blog/unlocking-the-power-of-bulk-sms-transform-your-communication-strategy-today",
+    },
+    {
+      image: DLTREGISTRATION,
+      title: "DLT Registration for SMS in India: A Complete 2025 Guide",
+      link: "/blog/dlt-registration-for-sms-in-india-a-complete-2025-guide",
+    },
+    {
+      image: CUSTOMERFEEDBACK,
+      title: "How to Use SMS for Customer Feedback and Surveys",
+      link: "/blog/how-to-use-sms-for-customer-feedback-and-surveys",
+    },
+    {
+      image: MULTIMEDIAMESSAGE,
+      title: "Multimedia Messaging Service: A Comprehensive Guide to MMS Definition and Benefits",
+      link: "/blog/multimedia-messaging-service-a-comprehensive-guide-to-mms-defination-and-benefits",
+    },
+    {
+      image: SmsEmailWhatsapp,
+      title: "SMS vs WhatsApp vs Email Marketing: Which is Best for Your Business in 2025?",
+      link: "/blog/sms-vs-whatsapp-vs-email-marketing-which-is-best-for-your-business-in-2025",
+    },
+    {
+      image: TenIndustries,
+      title: "10 Industries That Can Double Their Conversions with Bulk SMS Service",
+      link: "/blog/10-industries-that-can-double-their-conversions-with-bulk-sms-service",
+    },
+    {
+      image: SENDEXCEL,
+      title: "How to Send Bulk SMS from Excel: Step-by-Step Tutorial",
+      link: "/blog/how-to-send-bulk-sms-from-excel-step-by-step-tutorial",
+    },
+    {
+      image: SMSMMS,
+      title: "How to Choose Between SMS and MMS for Effective Marketing Campaigns",
+      link: "/blog/how-to-choose-between-sms-and-mms-for-effective-marketing-campaigns",
+    },
+    {
+      image: BestBULK,
+      title: "10 Best Bulk SMS Providers in India 2025",
+      link: "/blog/best-bulk-sms-providers-in-india",
+    },
+    {
+      image: SMSMAR,
+      title: "How to Choose Between SMS and MMS for Effective Marketing Campaigns",
+      link: "/blog/sms-marketing",
+    },
+    {
+      image: tentelecomcompanies,
+      title: "Top 10 Telecom Companies in UAE (2025 List and Picks)",
+      link: "/blog/top-10-telecom-companies-in-uae",
+    },
+    {
+      image: TRA,
+      title: "Telecom Regulatory Authority UAE: A Complete Guide",
+      link: "/blog/telecom-regulatory-authority",
+    },
+    {
+      image: TRA2,
+      title: "Top 10 Bulk SMS Service Provider in UAE (2025 Review)",
+      link: "/blog/top-10-bulk-sms-service-provider-in-uae",
+    },
+    {
+      image: Best_Bulk_SMS,
+      title: "5 Best Bulk SMS Service Providers in UAE – Features, Pricing",
+      link: "/blog/best-bulk-sms-service-providers-in-uae",
+    },
+    {
+      image: Best_SMS,
+      title: "10 Best SMS Marketing Platforms in 2026: A Complete Guide for Businesses",
+      link: "/blog/sms-marketing-platforms",
+    },
+    {
+      image: BULKUAE,
+      title: "Bulk SMS UAE: The Ultimate Guide for UAE Business Owners to Boost Growth & Customer Engagement",
+      link: "/blog/bulk-sms-uae",
+    },
+    {
+      image: RICHMESSAGE,
+      title: "RCS Messaging: The Future of Business Communication in 2026",
+      link: "/blog/rcs-messaging-the-future-of-business-messaging",
+    },
+    {
+      image: dltImage,
+      title: "DLT Registration in India 2026 – Process, Charges, Documents & Benefits Guide",
+      link: "/blog/dlt-registration-india-guide",
+    },
+    {
+      image: dltImage2,
+      title: "Jio DLT Registration Guide | Step-by-Step Process",
+      link: "/blog/jio-dlt-registration-guide",
+    },
+    {
+      image: airteldlt,
+      title: "Airtel DLT Registration 2026: Step-by-Step Complete Guide",
+      link: "/blog/airtel-dlt-registration",
+    },
+    {
+      image: bsnldlt,
+      title: "BSNL DLT Registration: Ultimate Step-by-Step Guide for Businesses",
+      link: "/blog/bsnl-dlt-registration-guide",
+    },
+    {
+      image: vidlt,
+      title: "Vi DLT Registration Guide 2026 | Complete Process, Documents & Template Approval",
+      link: "/blog/vi-dlt-registration-guide"
+    },
+    {
+      image: trai,
+      title: "TRAI Guide 2026: Full Form, Complaints & SMS Rules",
+      link: "/blog/trai"
+    },
+    {
+      image: promotionaltextmsg,
+      title: "50 Promotional Text Message Examples to Boost Conversions in 2026",
+      link: "/blog/promotional-text-message-examples"
+    },
+    {
+      image: sms,
+      title: "SMS API: Complete Guide to Integrating Text Messaging into Your Applications",
+      link: "/blog/sms-api"
+    },
+    {
+      image: smsgateway,
+      title: "SMS Gateway: The Complete Guide to Fast, Reliable Business Messaging",
+      link: "/blog/sms-gateway"
+    },
+    {
+      image: topetialt,
+      title: "Top 5 Etisalat Alternatives for Bulk SMS in UAE (2026 Guide)",
+      link: "/blog/top-etisalat-alternative-for-bulk-sms-uae"
+    },
 
-  {
-    image: senderid,
-    title: "What is a Sender ID? Complete Guide to SMS Sender ID for Businesses",
-    link: "/blog/sender-id"
-  },
+    {
+      image: senderid,
+      title: "What is a Sender ID? Complete Guide to SMS Sender ID for Businesses",
+      link: "/blog/sender-id"
+    },
 
-{
-    image: digintra_photo3,
-    title: "Bulk SMS Marketing Strategies for UAE Businesses: A Complete Guide to Higher Engagement and Better ROI ",
-    link: "/blog/bulk-sms-marketing-strategies-uae-businesses"
-  },
+    {
+      image: digintra_photo3,
+      title: "Bulk SMS Marketing Strategies for UAE Businesses: A Complete Guide to Higher Engagement and Better ROI ",
+      link: "/blog/bulk-sms-marketing-strategies-uae-businesses"
+    },
 
-  {
-    image: Sms_campaign,
-    title: "SMS Campaign Ideas for Small Businesses",
-    link: "/blog/sms-campaign-ideas-for-small-businesses"
-  },
-  {
-    image: SmsMarketing_Rules,
-    title: "SMS Marketing Rules in UAE (2026 Guide)",
-    link: "/blog/sms-marketing-rules-uae"
-  },
+    {
+      image: Sms_campaign,
+      title: "SMS Campaign Ideas for Small Businesses",
+      link: "/blog/sms-campaign-ideas-for-small-businesses"
+    },
+    {
+      image: SmsMarketing_Rules,
+      title: "SMS Marketing Rules in UAE (2026 Guide)",
+      link: "/blog/sms-marketing-rules-uae"
+    },
+
+    {
+      image: A2P_Sms_Messaging,
+      title: "A2P SMS Messaging and How to Use It for Business",
+      link: "/blog/a2p-sms-messaging-business-guide"
+    },
 
 
 
-];
-useEffect(()=>{
-    window.scrollTo(0,0);
-  },[])
+
+  ];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [])
 
   return (
     <>
-    <Helmet>
-                <meta charSet="utf-8"/>
-                <title>DIGINTRA® – A great source of information for any marketers or business owners who are interested in learning more about the world of mobile messaging.</title>
-                <meta name="robots" content="noindex,follow"/>
-                <link rel="canonical" href="https://www.digintra.com/blogs" />
-                <meta name='description' content='DIGINTRA is a fast-growing SMS platform, offering secure A2P messaging solutions for all. Empower your communication with instant, reliable delivery.'/>
-             </Helmet>
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-50 via-emerald-50 to-lime-100 ">
-      
-      {/* Soft Green Glow Effects */}
-      <motion.div
-        animate={{ y: [0, -30, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-10 left-10 w-80 h-80 bg-green-300 rounded-full blur-3xl opacity-30"
-      />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>DIGINTRA® – A great source of information for any marketers or business owners who are interested in learning more about the world of mobile messaging.</title>
+        <meta name="robots" content="noindex,follow" />
+        <link rel="canonical" href="https://www.digintra.com/blogs" />
+        <meta name='description' content='DIGINTRA is a fast-growing SMS platform, offering secure A2P messaging solutions for all. Empower your communication with instant, reliable delivery.' />
+      </Helmet>
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-green-50 via-emerald-50 to-lime-100 ">
 
-      <motion.div
-        animate={{ y: [0, 30, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-20 right-10 w-80 h-80 bg-emerald-300 rounded-full blur-3xl opacity-30"
-      />
+        {/* Soft Green Glow Effects */}
+        <motion.div
+          animate={{ y: [0, -30, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-10 left-10 w-80 h-80 bg-green-300 rounded-full blur-3xl opacity-30"
+        />
 
-      {/* Content */}
-      <motion.div
-        initial="hidden"
-        animate="visible"
-        variants={{
-          hidden: {},
-          visible: {
-            transition: {
-              staggerChildren: 0.3,
+        <motion.div
+          animate={{ y: [0, 30, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-20 right-10 w-80 h-80 bg-emerald-300 rounded-full blur-3xl opacity-30"
+        />
+
+        {/* Content */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: 0.3,
+              },
             },
-          },
-        }}
-        className="relative z-10 max-w-4xl text-center px-6 pb-32 mt-32"
-      >
-        
-        {/* Heading */}
-        <motion.h1
-          variants={{
-            hidden: { opacity: 0, y: 50 },
-            visible: { opacity: 1, y: 0 },
           }}
-          transition={{ duration: 0.8 }}
-          className="text-4xl md:text-6xl font-extrabold leading-tight text-gray-800 "
+          className="relative z-10 max-w-4xl text-center px-6 pb-32 mt-32"
         >
-          <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-            TechTalk:
-          </span>{" "}
-          Navigating the Digital Frontier
-        </motion.h1>
 
-        {/* Paragraph */}
-        <motion.p
-          variants={{
-            hidden: { opacity: 0, y: 40 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ duration: 0.8 }}
-          className="mt-6 text-lg md:text-xl text-gray-600"
-        >
-          "Exploring the latest trends, innovations, and insights in the world of technology."
-        </motion.p>
+          {/* Heading */}
+          <motion.h1
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-6xl font-extrabold leading-tight text-gray-800 "
+          >
+            <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+              TechTalk:
+            </span>{" "}
+            Navigating the Digital Frontier
+          </motion.h1>
 
-        {/* Button */}
-        <motion.a
-          href="#allblog"
-          variants={{
-            hidden: { opacity: 0, scale: 0.8 },
-            visible: { opacity: 1, scale: 1 },
-          }}
-          transition={{ duration: 0.5 }}
-          whileHover={{ scale: 1.08 }}
-          whileTap={{ scale: 0.9 }}
-          className="mt-10 inline-block px-8 py-4 rounded-xl text-lg font-semibold 
+          {/* Paragraph */}
+          <motion.p
+            variants={{
+              hidden: { opacity: 0, y: 40 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.8 }}
+            className="mt-6 text-lg md:text-xl text-gray-600"
+          >
+            "Exploring the latest trends, innovations, and insights in the world of technology."
+          </motion.p>
+
+          {/* Button */}
+          <motion.a
+            href="#allblog"
+            variants={{
+              hidden: { opacity: 0, scale: 0.8 },
+              visible: { opacity: 1, scale: 1 },
+            }}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.9 }}
+            className="mt-10 inline-block px-8 py-4 rounded-xl text-lg font-semibold 
           bg-gradient-to-r from-green-500 to-emerald-600 text-white active:scale-90
           hover:shadow-xl hover:shadow-green-300/50
           transition-all duration-300"
+          >
+            Explore now
+          </motion.a>
+        </motion.div>
+
+        {/* Bottom Wave SVG */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 1 }}
+          className="absolute bottom-0 left-0 w-full overflow-hidden leading-none"
         >
-          Explore now
-        </motion.a>
-      </motion.div>
+          <svg
+            className="relative block w-full h-32"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1440 320"
+            preserveAspectRatio="none"
+          >
+            <path
+              fill="#ffffff"
+              fillOpacity="1"
+              d="M0,224L60,218.7C120,213,240,203,360,197.3C480,192,600,192,720,202.7C840,213,960,235,1080,224C1200,213,1320,171,1380,149.3L1440,128V320H0Z"
+            ></path>
+          </svg>
+        </motion.div>
+      </section>
 
-      {/* Bottom Wave SVG */}
-      <motion.div
-        initial={{ opacity: 0, y: 60 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 1 }}
-        className="absolute bottom-0 left-0 w-full overflow-hidden leading-none"
-      >
-        <svg
-          className="relative block w-full h-32"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 320"
-          preserveAspectRatio="none"
-        >
-          <path
-            fill="#ffffff"
-            fillOpacity="1"
-            d="M0,224L60,218.7C120,213,240,203,360,197.3C480,192,600,192,720,202.7C840,213,960,235,1080,224C1200,213,1320,171,1380,149.3L1440,128V320H0Z"
-          ></path>
-        </svg>
-      </motion.div>
-    </section>
-    
-     <section className="py-16 bg-gradient-to-b from-gray-50 to-white mb-20">
-  
-  {/* Heading */}
-  <div id='allblog' className="text-center mb-12">
-    <h2 className="text-4xl font-bold text-gray-800">
-      All Blogs
-    </h2>
+      <section className="py-16 bg-gradient-to-b from-gray-50 to-white mb-20">
 
-    {/* Beautiful Gradient HR */}
-    <div className="flex justify-center mt-4">
-      <div className="h-1 w-28 bg-gradient-to-r from-blue-500 via-sky-400 to-indigo-500 rounded-full"></div>
-    </div>
-  </div>
+        {/* Heading */}
+        <div id='allblog' className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-gray-800">
+            All Blogs
+          </h2>
 
-  {/* Blog Cards */}
-  <div className="max-w-6xl mx-auto px-4 grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-    {blogData.map((blog, index) => (
-      <div
-        key={index}
-        className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group"
-      >
-        {/* Image */}
-        <div className="overflow-hidden">
-          <img
-            src={blog.image}
-            alt={blog.title}
-            className="w-full h-52 object-cover group-hover:scale-105 transition duration-300"
-          />
+          {/* Beautiful Gradient HR */}
+          <div className="flex justify-center mt-4">
+            <div className="h-1 w-28 bg-gradient-to-r from-blue-500 via-sky-400 to-indigo-500 rounded-full"></div>
+          </div>
         </div>
 
-        {/* Content */}
-        <div className="p-6 flex flex-col justify-between h-44">
-          <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
-            {blog.title}
-          </h3>
+        {/* Blog Cards */}
+        <div className="max-w-6xl mx-auto px-4 grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+          {blogData.map((blog, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group"
+            >
+              {/* Image */}
+              <div className="overflow-hidden">
+                <img
+                  src={blog.image}
+                  alt={blog.title}
+                  className="w-full h-52 object-cover group-hover:scale-105 transition duration-300"
+                />
+              </div>
 
-          <Link
-      to={blog.link}
-      className="mt-5 inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-2.5 px-5 rounded-lg font-medium 
+              {/* Content */}
+              <div className="p-6 flex flex-col justify-between h-44">
+                <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
+                  {blog.title}
+                </h3>
+
+                <Link
+                  to={blog.link}
+                  className="mt-5 inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-2.5 px-5 rounded-lg font-medium 
       hover:from-blue-600 hover:to-indigo-700 transition duration-300 shadow-md hover:shadow-lg"
-    >
-      Read More
-    </Link>
+                >
+                  Read More
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
-      </div>
-    ))}
-  </div>
-</section>
-<Footer/>
-</>
+      </section>
+      <Footer />
+    </>
 
   )
 }
