@@ -2,11 +2,12 @@ import React, { useState, useRef, useCallback } from 'react';
 import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import axiosClient from './AxiosClient'; // ✅ CORRECT
-import Footer from '../components/Footer'
+import axiosClient from './AxiosClient';
+import { useNavigate } from 'react-router-dom';
 
 
 const BlogPostForm = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [slug, setSlug] = useState('');
   const [content, setContent] = useState('');
@@ -131,10 +132,12 @@ const BlogPostForm = () => {
     };
 
     try {
-      await axiosClient.post('/blogpost/create', blogPostData); // Use axios for the request
+      await axiosClient.post('/blogs', blogPostData);
       alert('Blog post created successfully');
+      navigate('/admin/blogs');
     } catch (error) {
       console.error('Error submitting form:', error);
+      alert('Failed to create blog post');
     }
   };
 

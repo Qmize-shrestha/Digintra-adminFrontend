@@ -91,6 +91,7 @@ import digintra_photo3 from "../assets/Digintra_photo3.jpeg";
 import Sms_campaign from "../assets/Sms_campaign.jpeg";
 import SmsMarketing_Rules from "../assets/SmsMarketing_Rules.jpeg";
 import A2P_Sms_Messaging from "../assets/A2P_Sms.jpeg";
+import Otp_Sms_Provider from "../assets/Otp_Sms_Provider.jpeg";
 const MainPage = () => {
   const blogData = [
     {
@@ -491,6 +492,11 @@ const MainPage = () => {
       image: A2P_Sms_Messaging,
       title: "A2P SMS Messaging and How to Use It for Business",
       link: "/blog/a2p-sms-messaging-business-guide"
+    },
+    {
+      image: Otp_Sms_Provider,
+      title: "5 Best OTP SMS Service Providers in UAE",
+      link: "/blog/best-otp-sms-service-providers-in-uae"
     },
 
 

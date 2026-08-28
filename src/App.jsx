@@ -76,6 +76,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import AdminLayout from "./components/AdminLayout";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminManageBlogs from "./pages/AdminManageBlogs";
 import UserDashboard from "./pages/User_Dashboard";
 import How_to_Run_Automated_SMS_Campaigns from './pages/How_to_Run_Automated_SMS_Campaigns';
 import What_is_DLT_Registration_and_why_it_is_necessary_in_the_SMS_Industry from './pages/What_is_DLT_Registration_and_why_it_is_necessary_in_the_SMS_Industry';
@@ -124,6 +125,7 @@ import Bulk_sms_Phillipines from "./pages/Philippines.jsx";
 import Bulk_sms_Belgium from "./pages/Belgium.jsx";
 import Bulk_sms_Zambia from "./pages/Zambia.jsx";
 import Bulk_sms_India from "./pages/Bulk_SMS_In_India.jsx"
+import Otp_Sms_Provider from "./pages/Otp_Sms_Provider.jsx"
 
 import Bloglogin from "./pages/Bloglogin.jsx"
 
@@ -200,6 +202,7 @@ import BlogEditor from "./Blog/BlogEditor";
 import PostPage from './Blog/PostPage';
 import BlogPostDetail from './Blog/BlogPostDetails';
 import EditBlogPostForm from './Blog/EditBlogPostForm';
+import BlogPostForm from './Blog/BlogPostForm';
 import Bsnl_DLT from "./pages/Bsnl_DLT.jsx";
 import Privacypolicyapp from "./pages/Privacypolicyapp";
 
@@ -346,6 +349,36 @@ function App() {
             <AdminProtectedRoute>
               <AdminLayout>
                 <AdminDashboard />
+              </AdminLayout>
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/blogs"
+          element={
+            <AdminProtectedRoute>
+              <AdminLayout>
+                <AdminManageBlogs />
+              </AdminLayout>
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/blogs/create"
+          element={
+            <AdminProtectedRoute>
+              <AdminLayout>
+                <BlogPostForm />
+              </AdminLayout>
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/blogs/edit/:postId"
+          element={
+            <AdminProtectedRoute>
+              <AdminLayout>
+                <EditBlogPostForm />
               </AdminLayout>
             </AdminProtectedRoute>
           }
@@ -534,6 +567,7 @@ function App() {
         <Route path="/two-way-sms" element={<TWO_WAY_SMS />} />
         <Route path="/bulk-sms-kuwait" element={<Bulk_sms_Kuwait />} />
         <Route path="/blog/a2p-sms-messaging-business-guide" element={<A2P_Sms_Messaging />} />
+        <Route path="/blog/best-otp-sms-service-providers-in-uae" element={<Otp_Sms_Provider />} />
 
 
 

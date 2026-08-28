@@ -115,7 +115,7 @@ const EditBlogPostForm = () => {
     const fetchBlogPost = async () => {
       try {
         console.log('Fetching blog post data...');
-        const response = await axiosClient.get(`/blogpost/getpostdetail/${postId}`);
+        const response = await axiosClient.get(`/blogs/${postId}`);
         console.log('Fetched blog post data:', response.data);
         const data = response.data;
         setTitle(data.title);
@@ -170,10 +170,10 @@ const EditBlogPostForm = () => {
     };
 
     try {
-      await axiosClient.put(`/blogpost/editpost/${postId}`, blogPostData);
+      await axiosClient.put(`/blogs/${postId}`, blogPostData);
       alert('Blog post updated successfully');
       // navigate(`/blogpost/${postId}`);
-      navigate(`/${category}/${subCategory}/${slug}`)
+      navigate('/admin/blogs')
     } catch (error) {
       console.error('Error submitting form:', error);
     }
