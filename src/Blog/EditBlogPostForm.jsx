@@ -18,8 +18,11 @@ const EditBlogPostForm = () => {
   const [subCategory, setSubCategory] = useState('');
   const [coverImage, setCoverImage] = useState('');
   const [isPublished, setIsPublished] = useState(false);
+  const [metaTitle, setMetaTitle] = useState('');
+  const [metaDescription, setMetaDescription] = useState('');
+  const [canonicalUrl, setCanonicalUrl] = useState('');
   const [loading, setLoading] = useState(true);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
 
   const quillRef = useRef(null);
 
@@ -128,6 +131,11 @@ const EditBlogPostForm = () => {
         setSubCategory(data.subCategory);
         setCoverImage(data.coverImage);
         setIsPublished(data.isPublished);
+        if (data.seo) {
+          setMetaTitle(data.seo.metaTitle || '');
+          setMetaDescription(data.seo.metaDescription || '');
+          setCanonicalUrl(data.seo.canonicalUrl || '');
+        }
       } catch (error) {
         console.error('Error fetching blog post:', error);
       } finally {
@@ -136,20 +144,8 @@ const EditBlogPostForm = () => {
       }
     };
 
-    const checkAdminStatus = async () => {
-      try {
-        const userId = localStorage.getItem('userId');
-        if (userId) {
-          const response = await axiosClient.get(`/user/isadmincheck/${userId}`);
-          setIsAdmin(response.data.isAdmin);
-        }
-      } catch (error) {
-        console.error('Error checking admin status:', error);
-      }
-    };
     window.scrollTo(0, 0);
     Aos.init({duration:1300});
-    checkAdminStatus();
     fetchBlogPost();
   }, [postId]);
 
@@ -166,7 +162,12 @@ const EditBlogPostForm = () => {
       category,
       subCategory,
       coverImage,
-      isPublished
+      status: isPublished ? "published" : "draft",
+      seo: {
+        metaTitle,
+        metaDescription,
+        canonicalUrl
+      }
     };
 
     try {
@@ -327,6 +328,45 @@ const EditBlogPostForm = () => {
                 className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
               />
             </div>
+
+            {/* SEO Settings */}
+            <div className="bg-white p-4 rounded-md border border-gray-300 space-y-4">
+              <h3 className="text-lg font-bold text-gray-800">SEO Settings</h3>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Meta Title</label>
+                <input
+                  type="text"
+                  value={metaTitle}
+                  onChange={(e) => setMetaTitle(e.target.value)}
+                  placeholder="SEO Title (leave blank to use post title)"
+                  className="mt-1 block w-full h-9 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-2"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Meta Description</label>
+                <textarea
+                  rows="3"
+                  value={metaDescription}
+                  onChange={(e) => setMetaDescription(e.target.value)}
+                  placeholder="Brief description for search engines"
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Canonical URL</label>
+                <input
+                  type="text"
+                  value={canonicalUrl}
+                  onChange={(e) => setCanonicalUrl(e.target.value)}
+                  placeholder="https://example.com/blog/my-post"
+                  className="mt-1 block w-full h-9 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-2"
+                />
+              </div>
+            </div>
+
             <div className="flex items-center space-x-3">
               <input
                 type="checkbox"

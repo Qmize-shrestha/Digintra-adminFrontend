@@ -18,6 +18,9 @@ const BlogPostForm = () => {
   const [subCategory, setSubCategory] = useState('');
   const [coverImage, setCoverImage] = useState('');
   const [isPublished, setIsPublished] = useState(false);
+  const [metaTitle, setMetaTitle] = useState('');
+  const [metaDescription, setMetaDescription] = useState('');
+  const [canonicalUrl, setCanonicalUrl] = useState('');
 
   const quillRef = useRef(null);
 
@@ -128,7 +131,12 @@ const BlogPostForm = () => {
       category,
       subCategory,
       coverImage,
-      isPublished
+      status: isPublished ? "published" : "draft",
+      seo: {
+        metaTitle,
+        metaDescription,
+        canonicalUrl
+      }
     };
 
     try {
@@ -286,6 +294,45 @@ const BlogPostForm = () => {
             className="mt-1 block w-full h-9 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
           />
         </div>
+
+        {/* SEO Settings */}
+        <div className="bg-white p-4 rounded-md border-2 border-gray-300 space-y-4">
+          <h3 className="text-lg font-bold text-gray-800">SEO Settings</h3>
+          
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Meta Title</label>
+            <input
+              type="text"
+              value={metaTitle}
+              onChange={(e) => setMetaTitle(e.target.value)}
+              placeholder="SEO Title (leave blank to use post title)"
+              className="mt-1 block w-full h-9 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-2"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Meta Description</label>
+            <textarea
+              rows="3"
+              value={metaDescription}
+              onChange={(e) => setMetaDescription(e.target.value)}
+              placeholder="Brief description for search engines"
+              className="mt-1 block w-full border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700">Canonical URL</label>
+            <input
+              type="text"
+              value={canonicalUrl}
+              onChange={(e) => setCanonicalUrl(e.target.value)}
+              placeholder="https://example.com/blog/my-post"
+              className="mt-1 block w-full h-9 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-2"
+            />
+          </div>
+        </div>
+
         <div className="flex items-center space-x-3">
           <input
             type="checkbox"

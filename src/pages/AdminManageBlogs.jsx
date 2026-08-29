@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Edit, Trash2, Plus, Search, Eye } from 'lucide-react';
+import { Edit, Trash2, Plus, Search, Eye, FileText } from 'lucide-react';
 import axiosClient from '../Blog/AxiosClient';
 import { toast } from 'react-toastify';
 
@@ -129,13 +129,13 @@ export default function AdminManageBlogs() {
                       {typeof blog.author === 'object' && blog.author !== null ? blog.author?.name : blog.author || 'Unknown'}
                     </td>
                     <td className="px-6 py-4">
-                      {blog.isPublished ? (
+                      {blog.status === 'published' ? (
                         <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
                           Published
                         </span>
                       ) : (
                         <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-amber-100 text-amber-800 border border-amber-200">
-                          Draft
+                          {blog.status ? blog.status.charAt(0).toUpperCase() + blog.status.slice(1) : 'Draft'}
                         </span>
                       )}
                     </td>

@@ -128,6 +128,8 @@ import Bulk_sms_India from "./pages/Bulk_SMS_In_India.jsx"
 import Otp_Sms_Provider from "./pages/Otp_Sms_Provider.jsx"
 
 import Bloglogin from "./pages/Bloglogin.jsx"
+import AdminManageUsers from "./pages/AdminManageUsers.jsx"
+import SingleBlog from "./pages/SingleBlog.jsx"
 
 
 
@@ -364,6 +366,16 @@ function App() {
           }
         />
         <Route
+          path="/admin/users"
+          element={
+            <AdminProtectedRoute>
+              <AdminLayout>
+                <AdminManageUsers />
+              </AdminLayout>
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
           path="/admin/blogs/create"
           element={
             <AdminProtectedRoute>
@@ -568,6 +580,7 @@ function App() {
         <Route path="/bulk-sms-kuwait" element={<Bulk_sms_Kuwait />} />
         <Route path="/blog/a2p-sms-messaging-business-guide" element={<A2P_Sms_Messaging />} />
         <Route path="/blog/best-otp-sms-service-providers-in-uae" element={<Otp_Sms_Provider />} />
+        <Route path="/blog/post/:slug" element={<SingleBlog />} />
 
 
 
