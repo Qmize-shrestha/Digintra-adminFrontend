@@ -49,13 +49,13 @@ export default function AdminDashboard() {
       color: 'from-blue-500 to-blue-600',
       shadow: 'shadow-blue-500/30'
     },
-    {
-      name: 'Active Sessions',
-      value: statsData.activeUsers,
-      icon: <Activity size={28} className="text-white" />,
-      color: 'from-emerald-500 to-emerald-600',
-      shadow: 'shadow-emerald-500/30'
-    },
+    // {
+    //   name: 'Active Sessions',
+    //   value: statsData.activeUsers,
+    //   icon: <Activity size={28} className="text-white" />,
+    //   color: 'from-emerald-500 to-emerald-600',
+    //   shadow: 'shadow-emerald-500/30'
+    // },
     {
       name: 'Total Blogs',
       value: statsData.totalBlogs,

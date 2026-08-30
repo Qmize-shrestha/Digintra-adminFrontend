@@ -24,7 +24,46 @@ const EditBlogPostForm = () => {
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(true);
 
+  // Category and Subcategory list states
+  const [categoriesList, setCategoriesList] = useState([]);
+  const [subCategoriesList, setSubCategoriesList] = useState([]);
+
   const quillRef = useRef(null);
+
+  // Load categories list on mount
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axiosClient.get('/categories');
+      if (response.data && response.data.success) {
+        setCategoriesList(response.data.categories || []);
+      }
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const handleCategoryChange = async (selectedCatId) => {
+    setCategory(selectedCatId);
+    setSubCategory('');
+    if (!selectedCatId) {
+      setSubCategoriesList([]);
+      return;
+    }
+
+    try {
+      const response = await axiosClient.get(`/subcategories/by-category/${selectedCatId}`);
+      if (response.data && response.data.success) {
+        setSubCategoriesList(response.data.subCategories || []);
+      }
+    } catch (error) {
+      console.error('Error fetching subcategories for category:', error);
+      setSubCategoriesList([]);
+    }
+  };
 
   // const imageHandler = useCallback(() => {
   //   const input = document.createElement('input');
@@ -119,18 +158,34 @@ const EditBlogPostForm = () => {
       try {
         console.log('Fetching blog post data...');
         const response = await axiosClient.get(`/blogs/${postId}`);
-        console.log('Fetched blog post data:', response.data);
-        const data = response.data;
-        setTitle(data.title);
-        setSlug(data.slug);
-        setContent(data.content);
-        setSummary(data.summary);
-        setTags(data.tags.join(', '));
-        setAuthor(data.author);
-        setCategory(data.category);
-        setSubCategory(data.subCategory);
-        setCoverImage(data.coverImage);
-        setIsPublished(data.isPublished);
+        const data = response.data.blog || response.data;
+        setTitle(data.title || '');
+        setSlug(data.slug || '');
+        setContent(data.content || '');
+        setSummary(data.excerpt || data.summary || '');
+        setTags(Array.isArray(data.tags) ? data.tags.join(', ') : '');
+        setAuthor(typeof data.author === 'object' && data.author !== null ? data.author._id : (data.author || ''));
+        
+        const catId = typeof data.category === 'object' && data.category !== null ? data.category._id : (data.category || '');
+        setCategory(catId);
+        
+        // Fetch subcategories for the initial category
+        if (catId) {
+          try {
+            const subRes = await axiosClient.get(`/subcategories/by-category/${catId}`);
+            if (subRes.data && subRes.data.success) {
+              setSubCategoriesList(subRes.data.subCategories || []);
+            }
+          } catch (e) {
+            console.error('Error fetching subcategories on edit load:', e);
+          }
+        }
+
+        const subCatId = typeof data.subCategory === 'object' && data.subCategory !== null ? data.subCategory._id : (data.subCategory || '');
+        setSubCategory(subCatId);
+
+        setCoverImage(data.featuredImage || data.coverImage || '');
+        setIsPublished(data.status === 'published' || data.isPublished === true);
         if (data.seo) {
           setMetaTitle(data.seo.metaTitle || '');
           setMetaDescription(data.seo.metaDescription || '');
@@ -140,7 +195,6 @@ const EditBlogPostForm = () => {
         console.error('Error fetching blog post:', error);
       } finally {
         setLoading(false);
-        console.log('Data fetching complete.');
       }
     };
 
@@ -312,21 +366,40 @@ const EditBlogPostForm = () => {
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">Category</label>
-              <input
-                type="text"
+              <select
                 value={category}
-                onChange={(e) => setCategory(e.target.value)}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              />
+                onChange={(e) => handleCategoryChange(e.target.value)}
+                className="mt-1 block w-full h-10 px-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
+              >
+                <option value="">Select a Category</option>
+                {categoriesList.map((cat) => (
+                  <option key={cat._id} value={cat._id}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div>
               <label className="block text-sm font-medium text-gray-700">Sub-Category</label>
-              <input
-                type="text"
+              <select
                 value={subCategory}
                 onChange={(e) => setSubCategory(e.target.value)}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              />
+                disabled={!category || subCategoriesList.length === 0}
+                className="mt-1 block w-full h-10 px-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white disabled:bg-gray-100 disabled:text-gray-400"
+              >
+                <option value="">
+                  {!category
+                    ? 'Select a Category first'
+                    : subCategoriesList.length === 0
+                    ? 'No subcategories available'
+                    : 'Select a Sub-Category (Optional)'}
+                </option>
+                {subCategoriesList.map((sub) => (
+                  <option key={sub._id} value={sub._id}>
+                    {sub.name}
+                  </option>
+                ))}
+              </select>
             </div>
 
             {/* SEO Settings */}

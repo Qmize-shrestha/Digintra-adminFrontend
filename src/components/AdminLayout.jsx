@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Users, FileText, LogOut, Menu, X } from 'lucide-react';
+import { LayoutDashboard, Users, FileText, FolderTree, LogOut, Menu, X } from 'lucide-react';
 
 const AdminLayout = ({ children }) => {
   const navigate = useNavigate();
@@ -16,6 +16,7 @@ const AdminLayout = ({ children }) => {
   const navLinks = [
     { name: "Dashboard", path: "/admin-dashboard", icon: <LayoutDashboard size={20} /> },
     { name: "Manage Users", path: "/admin/users", icon: <Users size={20} /> },
+    { name: "Manage Categories", path: "/admin/categories", icon: <FolderTree size={20} /> },
     { name: "Manage Blogs", path: "/admin/blogs", icon: <FileText size={20} /> },
   ];
 

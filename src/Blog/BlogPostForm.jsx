@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -22,7 +22,45 @@ const BlogPostForm = () => {
   const [metaDescription, setMetaDescription] = useState('');
   const [canonicalUrl, setCanonicalUrl] = useState('');
 
+  // Category and Subcategory list states
+  const [categoriesList, setCategoriesList] = useState([]);
+  const [subCategoriesList, setSubCategoriesList] = useState([]);
+
   const quillRef = useRef(null);
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axiosClient.get('/categories');
+      if (response.data && response.data.success) {
+        setCategoriesList(response.data.categories || []);
+      }
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
+  const handleCategoryChange = async (selectedCatId) => {
+    setCategory(selectedCatId);
+    setSubCategory('');
+    if (!selectedCatId) {
+      setSubCategoriesList([]);
+      return;
+    }
+
+    try {
+      const response = await axiosClient.get(`/subcategories/by-category/${selectedCatId}`);
+      if (response.data && response.data.success) {
+        setSubCategoriesList(response.data.subCategories || []);
+      }
+    } catch (error) {
+      console.error('Error fetching subcategories for category:', error);
+      setSubCategoriesList([]);
+    }
+  };
 
   // const imageHandler = useCallback(() => {
   //   const input = document.createElement('input');
@@ -277,22 +315,41 @@ const BlogPostForm = () => {
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Category</label>
-          <input
-            type="text"
+          <select
             value={category}
-            onChange={(e) => setCategory(e.target.value)}
+            onChange={(e) => handleCategoryChange(e.target.value)}
             required
-            className="mt-1 block w-full h-9 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
+            className="mt-1 block w-full h-10 px-3 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
+          >
+            <option value="">Select a Category</option>
+            {categoriesList.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Sub-Category</label>
-          <input
-            type="text"
+          <select
             value={subCategory}
             onChange={(e) => setSubCategory(e.target.value)}
-            className="mt-1 block w-full h-9 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
+            disabled={!category || subCategoriesList.length === 0}
+            className="mt-1 block w-full h-10 px-3 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white disabled:bg-gray-100 disabled:text-gray-400"
+          >
+            <option value="">
+              {!category
+                ? 'Select a Category first'
+                : subCategoriesList.length === 0
+                ? 'No subcategories available'
+                : 'Select a Sub-Category (Optional)'}
+            </option>
+            {subCategoriesList.map((sub) => (
+              <option key={sub._id} value={sub._id}>
+                {sub.name}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* SEO Settings */}

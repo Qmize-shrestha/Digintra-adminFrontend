@@ -129,6 +129,7 @@ import Otp_Sms_Provider from "./pages/Otp_Sms_Provider.jsx"
 
 import Bloglogin from "./pages/Bloglogin.jsx"
 import AdminManageUsers from "./pages/AdminManageUsers.jsx"
+import AdminManageCategories from "./pages/AdminManageCategories.jsx"
 import SingleBlog from "./pages/SingleBlog.jsx"
 
 
@@ -371,6 +372,16 @@ function App() {
             <AdminProtectedRoute>
               <AdminLayout>
                 <AdminManageUsers />
+              </AdminLayout>
+            </AdminProtectedRoute>
+          }
+        />
+        <Route
+          path="/admin/categories"
+          element={
+            <AdminProtectedRoute>
+              <AdminLayout>
+                <AdminManageCategories />
               </AdminLayout>
             </AdminProtectedRoute>
           }
