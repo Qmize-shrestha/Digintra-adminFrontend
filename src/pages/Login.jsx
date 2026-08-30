@@ -40,11 +40,13 @@ export default function Login() {
         console.log("User role:", data.user.role);
 
 
-        if (data.user.role === "admin") {
-          navigate("/admin-dashboard");
-        } else {
-          navigate("/user-dashboard");
-        }
+      if (data.user.role === "admin") {
+        navigate("/admin-dashboard");
+      } else if (data.user.role === "editor") {
+        navigate("/editor-dashboard");
+      } else {
+        navigate("/user-dashboard");
+      }
     } catch (err) {
       setError(err.message);
     }

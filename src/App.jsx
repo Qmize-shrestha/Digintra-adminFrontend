@@ -77,6 +77,9 @@ import AdminProtectedRoute from "./components/AdminProtectedRoute";
 import AdminLayout from "./components/AdminLayout";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminManageBlogs from "./pages/AdminManageBlogs";
+import EditorProtectedRoute from "./components/EditorProtectedRoute";
+import EditorLayout from "./components/EditorLayout";
+import EditorDashboard from "./pages/EditorDashboard";
 import UserDashboard from "./pages/User_Dashboard";
 import How_to_Run_Automated_SMS_Campaigns from './pages/How_to_Run_Automated_SMS_Campaigns';
 import What_is_DLT_Registration_and_why_it_is_necessary_in_the_SMS_Industry from './pages/What_is_DLT_Registration_and_why_it_is_necessary_in_the_SMS_Industry';
@@ -346,6 +349,7 @@ function App() {
       <GlobalElements showPopup={showPopup} closePopup={closePopup} />
 
       <Routes>
+        {/* Admin Routes */}
         <Route
           path="/admin-dashboard"
           element={
@@ -406,6 +410,59 @@ function App() {
             </AdminProtectedRoute>
           }
         />
+
+        {/* Dedicated Editor Routes */}
+        <Route
+          path="/editor-dashboard"
+          element={
+            <EditorProtectedRoute>
+              <EditorLayout>
+                <EditorDashboard />
+              </EditorLayout>
+            </EditorProtectedRoute>
+          }
+        />
+        <Route
+          path="/editor/blogs"
+          element={
+            <EditorProtectedRoute>
+              <EditorLayout>
+                <AdminManageBlogs />
+              </EditorLayout>
+            </EditorProtectedRoute>
+          }
+        />
+        <Route
+          path="/editor/categories"
+          element={
+            <EditorProtectedRoute>
+              <EditorLayout>
+                <AdminManageCategories />
+              </EditorLayout>
+            </EditorProtectedRoute>
+          }
+        />
+        <Route
+          path="/editor/blogs/create"
+          element={
+            <EditorProtectedRoute>
+              <EditorLayout>
+                <BlogPostForm />
+              </EditorLayout>
+            </EditorProtectedRoute>
+          }
+        />
+        <Route
+          path="/editor/blogs/edit/:postId"
+          element={
+            <EditorProtectedRoute>
+              <EditorLayout>
+                <EditBlogPostForm />
+              </EditorLayout>
+            </EditorProtectedRoute>
+          }
+        />
+
         <Route
           path="/user-dashboard"
           element={

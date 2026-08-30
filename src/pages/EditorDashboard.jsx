@@ -1,0 +1,197 @@
+import React, { useState, useEffect } from 'react';
+import { FileText, Folder, Layers, Plus, Clock, CheckCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+
+export default function EditorDashboard() {
+  const [statsData, setStatsData] = useState({
+    totalBlogs: 0,
+    publishedBlogs: 0,
+    draftBlogs: 0,
+    totalCategories: 0,
+    totalSubCategories: 0,
+  });
+  const [recentBlogs, setRecentBlogs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const response = await fetch("http://localhost:5000/api/admin/editor-stats", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        if (data.success) {
+          setStatsData({
+            totalBlogs: data.data.blogs.total || 0,
+            publishedBlogs: data.data.blogs.published || 0,
+            draftBlogs: data.data.blogs.draft || 0,
+            totalCategories: data.data.categories.total || 0,
+            totalSubCategories: data.data.subCategories.total || 0,
+          });
+          setRecentBlogs(data.data.recentBlogs || []);
+        }
+      } catch (error) {
+        console.error("Failed to fetch editor stats:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchStats();
+  }, []);
+
+  const stats = [
+    {
+      name: 'My Total Blogs',
+      value: statsData.totalBlogs,
+      icon: <FileText size={28} className="text-white" />,
+      color: 'from-emerald-500 to-emerald-600',
+      shadow: 'shadow-emerald-500/30',
+    },
+    {
+      name: 'Published Posts',
+      value: statsData.publishedBlogs,
+      icon: <CheckCircle size={28} className="text-white" />,
+      color: 'from-blue-500 to-blue-600',
+      shadow: 'shadow-blue-500/30',
+    },
+    {
+      name: 'Drafts',
+      value: statsData.draftBlogs,
+      icon: <Clock size={28} className="text-white" />,
+      color: 'from-amber-500 to-amber-600',
+      shadow: 'shadow-amber-500/30',
+    },
+    {
+      name: 'Available Categories',
+      value: statsData.totalCategories,
+      icon: <Folder size={28} className="text-white" />,
+      color: 'from-purple-500 to-purple-600',
+      shadow: 'shadow-purple-500/30',
+    },
+  ];
+
+  return (
+    <div className="space-y-8">
+      {/* Welcome Banner */}
+      <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950 p-8 rounded-2xl text-white shadow-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
+        <div>
+          <span className="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+            Editor Workspace
+          </span>
+          <h2 className="text-3xl font-extrabold tracking-tight">Welcome back!</h2>
+          <p className="text-slate-300 mt-2 max-w-xl text-sm leading-relaxed">
+            Create, refine, and manage your articles. Organize your content with categories and subcategories.
+          </p>
+        </div>
+        <Link
+          to="/editor/blogs/create"
+          className="flex items-center gap-2 px-5 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl shadow-lg shadow-emerald-500/30 transition-all font-semibold whitespace-nowrap text-sm"
+        >
+          <Plus size={18} />
+          <span>Write New Blog</span>
+        </Link>
+      </div>
+
+      {/* Metrics Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {stats.map((stat, index) => (
+          <motion.div
+            key={stat.name}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.08 }}
+            className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+          >
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{stat.name}</p>
+                <h3 className="text-3xl font-black text-slate-800 mt-2">
+                  {isLoading ? "..." : stat.value}
+                </h3>
+              </div>
+              <div className={`p-3.5 rounded-xl bg-gradient-to-br ${stat.color} ${stat.shadow} shadow-lg`}>
+                {stat.icon}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Recent Posts Table */}
+      <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-6 space-y-4">
+        <div className="flex justify-between items-center pb-3 border-b border-slate-100">
+          <div>
+            <h3 className="text-lg font-bold text-slate-800">My Recent Articles</h3>
+            <p className="text-xs text-slate-500 mt-0.5">Recently edited content authored by you</p>
+          </div>
+          <Link
+            to="/editor/blogs"
+            className="text-sm font-semibold text-emerald-600 hover:text-emerald-700 transition-colors"
+          >
+            View All →
+          </Link>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="text-xs font-semibold text-slate-400 uppercase border-b border-slate-100">
+                <th className="py-3 px-4">Title</th>
+                <th className="py-3 px-4">Category</th>
+                <th className="py-3 px-4">Status</th>
+                <th className="py-3 px-4">Date</th>
+                <th className="py-3 px-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-100 text-sm">
+              {isLoading ? (
+                <tr>
+                  <td colSpan="5" className="py-8 text-center text-slate-400">Loading articles...</td>
+                </tr>
+              ) : recentBlogs.length === 0 ? (
+                <tr>
+                  <td colSpan="5" className="py-8 text-center text-slate-400">
+                    No articles published yet. Click "Write New Blog" to get started!
+                  </td>
+                </tr>
+              ) : (
+                recentBlogs.map((blog) => (
+                  <tr key={blog._id} className="hover:bg-slate-50 transition-colors">
+                    <td className="py-3 px-4 font-medium text-slate-800 line-clamp-1">{blog.title}</td>
+                    <td className="py-3 px-4 text-slate-600">
+                      {blog.category?.name || 'Uncategorized'}
+                    </td>
+                    <td className="py-3 px-4">
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
+                        blog.status === 'published'
+                          ? 'bg-emerald-100 text-emerald-800'
+                          : 'bg-amber-100 text-amber-800'
+                      }`}>
+                        {blog.status}
+                      </span>
+                    </td>
+                    <td className="py-3 px-4 text-slate-500 text-xs whitespace-nowrap">
+                      {new Date(blog.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="py-3 px-4 text-right">
+                      <Link
+                        to={`/editor/blogs/edit/${blog._id}`}
+                        className="text-xs font-medium text-emerald-600 hover:text-emerald-800"
+                      >
+                        Edit
+                      </Link>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+}

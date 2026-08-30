@@ -180,7 +180,8 @@ const BlogPostForm = () => {
     try {
       await axiosClient.post('/blogs', blogPostData);
       alert('Blog post created successfully');
-      navigate('/admin/blogs');
+      const role = localStorage.getItem('role') || 'admin';
+      navigate(role === 'editor' ? '/editor/blogs' : '/admin/blogs');
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Failed to create blog post');

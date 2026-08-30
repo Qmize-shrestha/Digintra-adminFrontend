@@ -45,6 +45,9 @@ export default function AdminManageBlogs() {
     return titleMatch || authorMatch;
   });
 
+  const role = localStorage.getItem('role') || 'admin';
+  const basePath = role === 'editor' ? '/editor' : '/admin';
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -54,7 +57,7 @@ export default function AdminManageBlogs() {
           <p className="text-sm text-slate-500 mt-1">View, edit, and manage all your blog posts.</p>
         </div>
         <Link
-          to="/admin/blogs/create"
+          to={`${basePath}/blogs/create`}
           className="flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors shadow-sm font-medium"
         >
           <Plus size={20} />
@@ -153,7 +156,7 @@ export default function AdminManageBlogs() {
                           <Eye size={18} />
                         </Link>
                         <Link
-                          to={`/admin/blogs/edit/${blog._id}`}
+                          to={`${basePath}/blogs/edit/${blog._id}`}
                           className="p-1.5 text-slate-400 hover:text-orange-500 hover:bg-orange-50 rounded-md transition-colors"
                           title="Edit Post"
                         >

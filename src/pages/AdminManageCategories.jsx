@@ -202,6 +202,8 @@ export default function AdminManageCategories() {
     return (nameMatch || slugMatch) && catFilterMatch;
   });
 
+  const role = localStorage.getItem('role') || 'admin';
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -212,13 +214,15 @@ export default function AdminManageCategories() {
         </div>
         <div className="flex items-center gap-3">
           {activeTab === 'categories' ? (
-            <button
-              onClick={openAddCategory}
-              className="flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors shadow-sm font-medium"
-            >
-              <Plus size={18} />
-              <span>Add Category</span>
-            </button>
+            role === 'admin' && (
+              <button
+                onClick={openAddCategory}
+                className="flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors shadow-sm font-medium"
+              >
+                <Plus size={18} />
+                <span>Add Category</span>
+              </button>
+            )
           ) : (
             <button
               onClick={openAddSubCategory}
@@ -339,22 +343,26 @@ export default function AdminManageCategories() {
                           </span>
                         </td>
                         <td className="px-6 py-4 text-right">
-                          <div className="flex justify-end gap-2">
-                            <button
-                              onClick={() => openEditCategory(cat)}
-                              className="p-1.5 text-slate-400 hover:text-orange-500 hover:bg-orange-50 rounded-md transition-colors"
-                              title="Edit Category"
-                            >
-                              <Edit size={18} />
-                            </button>
-                            <button
-                              onClick={() => handleDeleteCategory(cat._id)}
-                              className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
-                              title="Delete Category"
-                            >
-                              <Trash2 size={18} />
-                            </button>
-                          </div>
+                          {role === 'admin' ? (
+                            <div className="flex justify-end gap-2">
+                              <button
+                                onClick={() => openEditCategory(cat)}
+                                className="p-1.5 text-slate-400 hover:text-orange-500 hover:bg-orange-50 rounded-md transition-colors"
+                                title="Edit Category"
+                              >
+                                <Edit size={18} />
+                              </button>
+                              <button
+                                onClick={() => handleDeleteCategory(cat._id)}
+                                className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
+                                title="Delete Category"
+                              >
+                                <Trash2 size={18} />
+                              </button>
+                            </div>
+                          ) : (
+                            <span className="text-xs text-slate-400 italic">Read-only</span>
+                          )}
                         </td>
                       </tr>
                     ))
@@ -467,13 +475,15 @@ export default function AdminManageCategories() {
                               >
                                 <Edit size={18} />
                               </button>
-                              <button
-                                onClick={() => handleDeleteSubCategory(sub._id)}
-                                className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
-                                title="Delete Subcategory"
-                              >
-                                <Trash2 size={18} />
-                              </button>
+                              {role === 'admin' && (
+                                <button
+                                  onClick={() => handleDeleteSubCategory(sub._id)}
+                                  className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
+                                  title="Delete Subcategory"
+                                >
+                                  <Trash2 size={18} />
+                                </button>
+                              )}
                             </div>
                           </td>
                         </tr>

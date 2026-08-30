@@ -227,8 +227,8 @@ const EditBlogPostForm = () => {
     try {
       await axiosClient.put(`/blogs/${postId}`, blogPostData);
       alert('Blog post updated successfully');
-      // navigate(`/blogpost/${postId}`);
-      navigate('/admin/blogs')
+      const role = localStorage.getItem('role') || 'admin';
+      navigate(role === 'editor' ? '/editor/blogs' : '/admin/blogs');
     } catch (error) {
       console.error('Error submitting form:', error);
     }
