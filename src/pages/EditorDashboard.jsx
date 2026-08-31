@@ -76,26 +76,6 @@ export default function EditorDashboard() {
 
   return (
     <div className="space-y-8">
-      {/* Welcome Banner */}
-      <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950 p-8 rounded-2xl text-white shadow-xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6">
-        <div>
-          <span className="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
-            Editor Workspace
-          </span>
-          <h2 className="text-3xl font-extrabold tracking-tight">Welcome back!</h2>
-          <p className="text-slate-300 mt-2 max-w-xl text-sm leading-relaxed">
-            Create, refine, and manage your articles. Organize your content with categories and subcategories.
-          </p>
-        </div>
-        <Link
-          to="/editor/blogs/create"
-          className="flex items-center gap-2 px-5 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl shadow-lg shadow-emerald-500/30 transition-all font-semibold whitespace-nowrap text-sm"
-        >
-          <Plus size={18} />
-          <span>Write New Blog</span>
-        </Link>
-      </div>
-
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat, index) => (
@@ -166,11 +146,10 @@ export default function EditorDashboard() {
                       {blog.category?.name || 'Uncategorized'}
                     </td>
                     <td className="py-3 px-4">
-                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
-                        blog.status === 'published'
+                      <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${blog.status === 'published'
                           ? 'bg-emerald-100 text-emerald-800'
                           : 'bg-amber-100 text-amber-800'
-                      }`}>
+                        }`}>
                         {blog.status}
                       </span>
                     </td>

@@ -97,7 +97,7 @@ const EditorLayout = ({ children }) => {
             </h2>
           </div>
 
-          <div className="flex items-center gap-4">
+          {/* <div className="flex items-center gap-4">
             <Link
               to="/editor/blogs/create"
               className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium transition-colors shadow-sm"
@@ -111,7 +111,7 @@ const EditorLayout = ({ children }) => {
               <LogOut size={16} />
               <span className="hidden sm:inline">Logout</span>
             </button>
-          </div>
+          </div> */}
         </header>
 
         {/* Dynamic Page Content */}

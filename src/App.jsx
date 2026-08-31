@@ -253,7 +253,7 @@ import OfferPopup from "./components/Offerpopup";
 // import BlogEditor from "./Blog/BlogEditor";
 const GlobalElements = ({ showPopup, closePopup }) => {
   const location = useLocation();
-  const hide = location.pathname.startsWith("/admin") || location.pathname.startsWith("/user") || location.pathname === "/login";
+  const hide = location.pathname.startsWith("/admin") || location.pathname.startsWith("/user") || location.pathname.startsWith("/editor") || location.pathname === "/login";
 
   if (hide) return null;
 
