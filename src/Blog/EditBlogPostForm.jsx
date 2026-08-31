@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import  axiosClient  from './AxiosClient';
+import axiosClient from './AxiosClient';
 import { useParams, useNavigate } from 'react-router-dom';
 import Aos from 'aos'
 const EditBlogPostForm = () => {
@@ -121,13 +121,9 @@ const EditBlogPostForm = () => {
     };
   }, []);
 
-  const handleContent = () => {
-    const quill = quillRef.current.getEditor();
-    const content1 = quill.root.innerHTML;
-    setContent(content1);
-  };
 
-  const modules = {
+
+  const modules = useMemo(() => ({
     toolbar: {
       container: [
         [{ 'font': [] }],
@@ -151,7 +147,7 @@ const EditBlogPostForm = () => {
       maxStack: 500,
       userOnly: true
     }
-  };
+  }), [imageHandler]);
 
   useEffect(() => {
     const fetchBlogPost = async () => {
@@ -165,10 +161,10 @@ const EditBlogPostForm = () => {
         setSummary(data.excerpt || data.summary || '');
         setTags(Array.isArray(data.tags) ? data.tags.join(', ') : '');
         setAuthor(typeof data.author === 'object' && data.author !== null ? data.author._id : (data.author || ''));
-        
+
         const catId = typeof data.category === 'object' && data.category !== null ? data.category._id : (data.category || '');
         setCategory(catId);
-        
+
         // Fetch subcategories for the initial category
         if (catId) {
           try {
@@ -199,7 +195,7 @@ const EditBlogPostForm = () => {
     };
 
     window.scrollTo(0, 0);
-    Aos.init({duration:1300});
+    Aos.init({ duration: 1300 });
     fetchBlogPost();
   }, [postId]);
 
@@ -326,19 +322,12 @@ const EditBlogPostForm = () => {
                 modules={modules}
                 theme="snow"
                 value={content}
-                onChange={handleContent}
-                className="mt-1"
+                onChange={setContent}
+                className="mt-1 bg-white h-64 mb-12"
               />
-              <button
-                type="button"
-                onClick={handleContent}
-                className="mt-2 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700"
-              >
-                Save
-              </button>
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700">Summary</label>
+              <label className="block text-sm font-medium text-gray-700 ">Summary</label>
               <input
                 type="text"
                 value={summary}
@@ -391,8 +380,8 @@ const EditBlogPostForm = () => {
                   {!category
                     ? 'Select a Category first'
                     : subCategoriesList.length === 0
-                    ? 'No subcategories available'
-                    : 'Select a Sub-Category (Optional)'}
+                      ? 'No subcategories available'
+                      : 'Select a Sub-Category (Optional)'}
                 </option>
                 {subCategoriesList.map((sub) => (
                   <option key={sub._id} value={sub._id}>
@@ -405,7 +394,7 @@ const EditBlogPostForm = () => {
             {/* SEO Settings */}
             <div className="bg-white p-4 rounded-md border border-gray-300 space-y-4">
               <h3 className="text-lg font-bold text-gray-800">SEO Settings</h3>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700">Meta Title</label>
                 <input

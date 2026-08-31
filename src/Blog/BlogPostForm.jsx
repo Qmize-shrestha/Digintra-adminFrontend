@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -121,13 +121,7 @@ const BlogPostForm = () => {
     };
   }, []);
 
-  const handleContent = () => {
-    const quill = quillRef.current.getEditor();
-    const content1 = quill.root.innerHTML;
-    setContent(content1);
-  };
-
-  const modules = {
+  const modules = useMemo(() => ({
     toolbar: {
       container: [
         [{ 'font': [] }],
@@ -152,7 +146,7 @@ const BlogPostForm = () => {
       maxStack: 500,
       userOnly: true
     }
-  };
+  }), [imageHandler]);
   
   
 
@@ -270,20 +264,15 @@ const BlogPostForm = () => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium  text-gray-700">Content</label>
+          <label className="block text-sm font-medium  text-gray-700 ">Content</label>
           <ReactQuill
             ref={quillRef}
             modules={modules}
             theme="snow"
-            className="mt-1"
+            value={content}
+            onChange={setContent}
+            className="mt-1 bg-white h-64 mb-12"
           />
-          <button
-            type="button"
-            onClick={handleContent}
-            className="mt-2 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700"
-          >
-            Save
-          </button>
         </div>
         <div>
           <label className="block text-sm font-medium text-gray-700">Summary</label>

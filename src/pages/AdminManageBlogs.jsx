@@ -86,7 +86,7 @@ export default function AdminManageBlogs() {
               <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 text-sm">
                 <th className="px-6 py-4 font-semibold">Blog Title</th>
                 <th className="px-6 py-4 font-semibold">Author</th>
-                <th className="px-6 py-4 font-semibold">Status</th>
+                {/* <th className="px-6 py-4 font-semibold">Status</th> */}
                 <th className="px-6 py-4 font-semibold">Date</th>
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
               </tr>
@@ -94,7 +94,7 @@ export default function AdminManageBlogs() {
             <tbody className="divide-y divide-slate-100">
               {loading ? (
                 <tr>
-                  <td colSpan="5" className="px-6 py-8 text-center text-slate-500">
+                  <td colSpan="4" className="px-6 py-8 text-center text-slate-500">
                     <div className="flex justify-center items-center gap-2">
                       <div className="w-5 h-5 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
                       <span>Loading blogs...</span>
@@ -103,7 +103,7 @@ export default function AdminManageBlogs() {
                 </tr>
               ) : filteredBlogs.length === 0 ? (
                 <tr>
-                  <td colSpan="5" className="px-6 py-8 text-center text-slate-500">
+                  <td colSpan="4" className="px-6 py-8 text-center text-slate-500">
                     No blogs found matching your search.
                   </td>
                 </tr>
@@ -128,7 +128,7 @@ export default function AdminManageBlogs() {
                     <td className="px-6 py-4 text-sm text-slate-600">
                       {typeof blog.author === 'object' && blog.author !== null ? blog.author?.name : blog.author || 'Unknown'}
                     </td>
-                    <td className="px-6 py-4">
+                    {/* <td className="px-6 py-4">
                       {blog.status === 'published' ? (
                         <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800 border border-green-200">
                           Published
@@ -138,7 +138,7 @@ export default function AdminManageBlogs() {
                           {blog.status ? blog.status.charAt(0).toUpperCase() + blog.status.slice(1) : 'Draft'}
                         </span>
                       )}
-                    </td>
+                    </td> */}
                     <td className="px-6 py-4 text-sm text-slate-600 whitespace-nowrap">
                       {new Date(blog.createdAt).toLocaleDateString()}
                     </td>

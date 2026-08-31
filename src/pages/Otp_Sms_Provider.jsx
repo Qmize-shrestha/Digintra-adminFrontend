@@ -259,7 +259,7 @@ const BlogPage = () => {
 
                             {/* 4. Unifonic */}
                             <h3 className="text-xl font-bold text-gray-900 mt-10 mb-4">4. Unifonic</h3>
-                            <img src={unifonic} alt="" className="w-full rounded-2xl shadow-lg mb-6 object-cover" />
+                            <img src={unifonic} alt="Unifonic" className="w-full rounded-2xl shadow-lg mb-6 object-cover" />
                             <p>
                                 Unifonic is a regional CPaaS provider serving businesses across the Middle East and other
                                 markets. Its communications platform includes APIs and customer engagement tools that

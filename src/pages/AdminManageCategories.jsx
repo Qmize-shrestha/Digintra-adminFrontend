@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 
 export default function AdminManageCategories() {
   const [activeTab, setActiveTab] = useState('categories'); // 'categories' or 'subcategories'
-  
+
   // Categories State
   const [categories, setCategories] = useState([]);
   const [catLoading, setCatLoading] = useState(true);
@@ -189,7 +189,7 @@ export default function AdminManageCategories() {
   };
 
   // Filtered lists
-  const filteredCategories = categories.filter(c => 
+  const filteredCategories = categories.filter(c =>
     c.name?.toLowerCase().includes(catSearch.toLowerCase()) ||
     c.slug?.toLowerCase().includes(catSearch.toLowerCase())
   );
@@ -235,22 +235,20 @@ export default function AdminManageCategories() {
       <div className="flex border-b border-slate-200 bg-white px-4 pt-2 rounded-t-xl">
         <button
           onClick={() => setActiveTab('categories')}
-          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${
-            activeTab === 'categories'
-              ? 'border-orange-500 text-orange-600 font-semibold'
-              : 'border-transparent text-slate-500 hover:text-slate-700'
-          }`}
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${activeTab === 'categories'
+            ? 'border-orange-500 text-orange-600 font-semibold'
+            : 'border-transparent text-slate-500 hover:text-slate-700'
+            }`}
         >
           <Folder size={18} />
           <span>Categories ({categories.length})</span>
         </button>
         <button
           onClick={() => setActiveTab('subcategories')}
-          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${
-            activeTab === 'subcategories'
-              ? 'border-orange-500 text-orange-600 font-semibold'
-              : 'border-transparent text-slate-500 hover:text-slate-700'
-          }`}
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${activeTab === 'subcategories'
+            ? 'border-orange-500 text-orange-600 font-semibold'
+            : 'border-transparent text-slate-500 hover:text-slate-700'
+            }`}
         >
           <Layers size={18} />
           <span>Subcategories ({subCategories.length})</span>
@@ -285,7 +283,7 @@ export default function AdminManageCategories() {
                     <th className="px-6 py-4 font-semibold">Category Name</th>
                     <th className="px-6 py-4 font-semibold">Slug</th>
                     <th className="px-6 py-4 font-semibold">Blogs Count</th>
-                    <th className="px-6 py-4 font-semibold">Status</th>
+                    {/* <th className="px-6 py-4 font-semibold">Status</th> */}
                     <th className="px-6 py-4 font-semibold text-right">Actions</th>
                   </tr>
                 </thead>
@@ -329,7 +327,7 @@ export default function AdminManageCategories() {
                             {cat.blogCount || 0} blogs
                           </span>
                         </td>
-                        <td className="px-6 py-4">
+                        {/* <td className="px-6 py-4">
                           <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
                             cat.status === 'active' 
                               ? 'bg-green-100 text-green-800 border border-green-200'
@@ -337,7 +335,7 @@ export default function AdminManageCategories() {
                           }`}>
                             {cat.status || 'active'}
                           </span>
-                        </td>
+                        </td> */}
                         <td className="px-6 py-4 text-right">
                           <div className="flex justify-end gap-2">
                             <button
@@ -538,7 +536,7 @@ export default function AdminManageCategories() {
                 ></textarea>
               </div>
 
-              <div>
+              {/* <div>
                 <label className="block text-xs font-semibold text-slate-600 uppercase mb-1">Status</label>
                 <select
                   value={catForm.status}
@@ -548,7 +546,7 @@ export default function AdminManageCategories() {
                   <option value="active">Active</option>
                   <option value="inactive">Inactive</option>
                 </select>
-              </div>
+              </div> */}
 
               <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
                 <button
