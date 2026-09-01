@@ -249,7 +249,8 @@ export default function AdminManageUsers() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    disabled={modalMode === 'edit'}
+                    className={`w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none ${modalMode === 'edit' ? 'bg-slate-100 text-slate-500 cursor-not-allowed pointer-events-none' : ''}`}
                     placeholder="john@digintra.com"
                   />
                 </div>

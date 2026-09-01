@@ -5,14 +5,14 @@ import { toast } from 'react-toastify';
 
 export default function AdminManageCategories() {
   const [activeTab, setActiveTab] = useState('categories'); // 'categories' or 'subcategories'
-  
+
   // Categories State
   const [categories, setCategories] = useState([]);
   const [catLoading, setCatLoading] = useState(true);
   const [catSearch, setCatSearch] = useState('');
   const [catModalOpen, setCatModalOpen] = useState(false);
   const [catModalMode, setCatModalMode] = useState('add');
-  const [catForm, setCatForm] = useState({ _id: '', name: '', slug: '', description: '', status: 'active' });
+  const [catForm, setCatForm] = useState({ _id: '', name: '', slug: '', description: '' });
 
   // Subcategories State
   const [subCategories, setSubCategories] = useState([]);
@@ -61,7 +61,7 @@ export default function AdminManageCategories() {
   // ---------------- CATEGORY ACTIONS ----------------
   const openAddCategory = () => {
     setCatModalMode('add');
-    setCatForm({ _id: '', name: '', slug: '', description: '', status: 'active' });
+    setCatForm({ _id: '', name: '', slug: '', description: '' });
     setCatModalOpen(true);
   };
 
@@ -72,7 +72,7 @@ export default function AdminManageCategories() {
       name: cat.name || '',
       slug: cat.slug || '',
       description: cat.description || '',
-      status: cat.status || 'active',
+      // status: cat.status || 'active',
     });
     setCatModalOpen(true);
   };
@@ -189,7 +189,7 @@ export default function AdminManageCategories() {
   };
 
   // Filtered lists
-  const filteredCategories = categories.filter(c => 
+  const filteredCategories = categories.filter(c =>
     c.name?.toLowerCase().includes(catSearch.toLowerCase()) ||
     c.slug?.toLowerCase().includes(catSearch.toLowerCase())
   );
@@ -214,15 +214,13 @@ export default function AdminManageCategories() {
         </div>
         <div className="flex items-center gap-3">
           {activeTab === 'categories' ? (
-            role === 'admin' && (
-              <button
-                onClick={openAddCategory}
-                className="flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors shadow-sm font-medium"
-              >
-                <Plus size={18} />
-                <span>Add Category</span>
-              </button>
-            )
+            <button
+              onClick={openAddCategory}
+              className="flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors shadow-sm font-medium"
+            >
+              <Plus size={18} />
+              <span>Add Category</span>
+            </button>
           ) : (
             <button
               onClick={openAddSubCategory}
@@ -239,22 +237,20 @@ export default function AdminManageCategories() {
       <div className="flex border-b border-slate-200 bg-white px-4 pt-2 rounded-t-xl">
         <button
           onClick={() => setActiveTab('categories')}
-          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${
-            activeTab === 'categories'
-              ? 'border-orange-500 text-orange-600 font-semibold'
-              : 'border-transparent text-slate-500 hover:text-slate-700'
-          }`}
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${activeTab === 'categories'
+            ? 'border-orange-500 text-orange-600 font-semibold'
+            : 'border-transparent text-slate-500 hover:text-slate-700'
+            }`}
         >
           <Folder size={18} />
           <span>Categories ({categories.length})</span>
         </button>
         <button
           onClick={() => setActiveTab('subcategories')}
-          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${
-            activeTab === 'subcategories'
-              ? 'border-orange-500 text-orange-600 font-semibold'
-              : 'border-transparent text-slate-500 hover:text-slate-700'
-          }`}
+          className={`flex items-center gap-2 px-5 py-3 border-b-2 font-medium text-sm transition-all ${activeTab === 'subcategories'
+            ? 'border-orange-500 text-orange-600 font-semibold'
+            : 'border-transparent text-slate-500 hover:text-slate-700'
+            }`}
         >
           <Layers size={18} />
           <span>Subcategories ({subCategories.length})</span>
@@ -289,7 +285,7 @@ export default function AdminManageCategories() {
                     <th className="px-6 py-4 font-semibold">Category Name</th>
                     <th className="px-6 py-4 font-semibold">Slug</th>
                     <th className="px-6 py-4 font-semibold">Blogs Count</th>
-                    <th className="px-6 py-4 font-semibold">Status</th>
+                    {/* <th className="px-6 py-4 font-semibold">Status</th> */}
                     <th className="px-6 py-4 font-semibold text-right">Actions</th>
                   </tr>
                 </thead>
@@ -333,25 +329,25 @@ export default function AdminManageCategories() {
                             {cat.blogCount || 0} blogs
                           </span>
                         </td>
-                        <td className="px-6 py-4">
-                          <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${
-                            cat.status === 'active' 
+                        {/* <td className="px-6 py-4">
+                          <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium ${cat.status === 'active'
                               ? 'bg-green-100 text-green-800 border border-green-200'
                               : 'bg-slate-100 text-slate-600 border border-slate-200'
-                          }`}>
+                            }`}>
                             {cat.status || 'active'}
                           </span>
-                        </td>
+                        </td> */}
                         <td className="px-6 py-4 text-right">
-                          {role === 'admin' ? (
-                            <div className="flex justify-end gap-2">
-                              <button
-                                onClick={() => openEditCategory(cat)}
-                                className="p-1.5 text-slate-400 hover:text-orange-500 hover:bg-orange-50 rounded-md transition-colors"
-                                title="Edit Category"
-                              >
-                                <Edit size={18} />
-                              </button>
+
+                          <div className="flex justify-end gap-2">
+                            <button
+                              onClick={() => openEditCategory(cat)}
+                              className="p-1.5 text-slate-400 hover:text-orange-500 hover:bg-orange-50 rounded-md transition-colors"
+                              title="Edit Category"
+                            >
+                              <Edit size={18} />
+                            </button>
+                            {role === 'admin' && (
                               <button
                                 onClick={() => handleDeleteCategory(cat._id)}
                                 className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
@@ -359,10 +355,11 @@ export default function AdminManageCategories() {
                               >
                                 <Trash2 size={18} />
                               </button>
-                            </div>
-                          ) : (
+                            )}
+                          </div>
+                          {/* ) : (
                             <span className="text-xs text-slate-400 italic">Read-only</span>
-                          )}
+                          )} */}
                         </td>
                       </tr>
                     ))
@@ -548,17 +545,7 @@ export default function AdminManageCategories() {
                 ></textarea>
               </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-slate-600 uppercase mb-1">Status</label>
-                <select
-                  value={catForm.status}
-                  onChange={(e) => setCatForm({ ...catForm, status: e.target.value })}
-                  className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none bg-white"
-                >
-                  <option value="active">Active</option>
-                  <option value="inactive">Inactive</option>
-                </select>
-              </div>
+
 
               <div className="flex justify-end gap-3 pt-4 border-t border-slate-100">
                 <button

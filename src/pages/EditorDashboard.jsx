@@ -52,7 +52,7 @@ export default function EditorDashboard() {
       shadow: 'shadow-emerald-500/30',
     },
     {
-      name: 'Published Posts',
+      name: 'Published Blog',
       value: statsData.publishedBlogs,
       icon: <CheckCircle size={28} className="text-white" />,
       color: 'from-blue-500 to-blue-600',
@@ -147,8 +147,8 @@ export default function EditorDashboard() {
                     </td>
                     <td className="py-3 px-4">
                       <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${blog.status === 'published'
-                          ? 'bg-emerald-100 text-emerald-800'
-                          : 'bg-amber-100 text-amber-800'
+                        ? 'bg-emerald-100 text-emerald-800'
+                        : 'bg-amber-100 text-amber-800'
                         }`}>
                         {blog.status}
                       </span>

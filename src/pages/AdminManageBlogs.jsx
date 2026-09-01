@@ -40,9 +40,9 @@ export default function AdminManageBlogs() {
 
   const filteredBlogs = blogs.filter(blog => {
     const titleMatch = blog.title?.toLowerCase().includes(searchTerm.toLowerCase());
-    const authorName = typeof blog.author === 'object' && blog.author !== null ? blog.author?.name : blog.author;
-    const authorMatch = authorName?.toLowerCase().includes(searchTerm.toLowerCase());
-    return titleMatch || authorMatch;
+    const categoryName = blog.category?.name || 'Uncategorized';
+    const categoryMatch = categoryName.toLowerCase().includes(searchTerm.toLowerCase());
+    return titleMatch || categoryMatch;
   });
 
   const role = localStorage.getItem('role') || 'admin';
@@ -73,7 +73,7 @@ export default function AdminManageBlogs() {
           </div>
           <input
             type="text"
-            placeholder="Search blogs by title or author..."
+            placeholder="Search blogs by title or category..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10 pr-4 py-2 w-full border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none transition-all"
@@ -88,7 +88,7 @@ export default function AdminManageBlogs() {
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 text-sm">
                 <th className="px-6 py-4 font-semibold">Blog Title</th>
-                <th className="px-6 py-4 font-semibold">Author</th>
+                <th className="px-6 py-4 font-semibold">Category</th>
                 <th className="px-6 py-4 font-semibold">Status</th>
                 <th className="px-6 py-4 font-semibold">Date</th>
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
@@ -129,7 +129,7 @@ export default function AdminManageBlogs() {
                       </div>
                     </td>
                     <td className="px-6 py-4 text-sm text-slate-600">
-                      {typeof blog.author === 'object' && blog.author !== null ? blog.author?.name : blog.author || 'Unknown'}
+                      {blog.category?.name || 'Uncategorized'}
                     </td>
                     <td className="px-6 py-4">
                       {blog.status === 'published' ? (
@@ -151,24 +151,26 @@ export default function AdminManageBlogs() {
                           to={`/blog/${blog.slug}`}
                           target="_blank"
                           className="p-1.5 text-slate-400 hover:text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
-                          title="View Post"
+                          title="View Blog"
                         >
                           <Eye size={18} />
                         </Link>
                         <Link
                           to={`${basePath}/blogs/edit/${blog._id}`}
                           className="p-1.5 text-slate-400 hover:text-orange-500 hover:bg-orange-50 rounded-md transition-colors"
-                          title="Edit Post"
+                          title="Edit Blog"
                         >
                           <Edit size={18} />
                         </Link>
-                        <button
-                          onClick={() => handleDelete(blog._id)}
-                          className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
-                          title="Delete Post"
-                        >
-                          <Trash2 size={18} />
-                        </button>
+                        {role === 'admin' && (
+                          <button
+                            onClick={() => handleDelete(blog._id)}
+                            className="p-1.5 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
+                            title="Delete Blog"
+                          >
+                            <Trash2 size={18} />
+                          </button>
+                        )}
                       </div>
                     </td>
                   </tr>

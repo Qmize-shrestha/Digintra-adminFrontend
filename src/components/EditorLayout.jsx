@@ -85,17 +85,14 @@ const EditorLayout = ({ children }) => {
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Top Navbar for Mobile Toggle & Profile */}
         <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-6 z-10">
-          <div className="flex items-center gap-4">
-            <button
-              className="md:hidden text-gray-500 hover:text-gray-700 focus:outline-none"
-              onClick={() => setIsMobileMenuOpen(true)}
-            >
-              <Menu size={24} />
-            </button>
-            <h2 className="text-xl font-bold text-gray-800 hidden sm:block">
-              {navLinks.find((link) => link.path === location.pathname)?.name || "Editor Workspace"}
-            </h2>
-          </div>
+          <button
+            className="md:hidden text-gray-500 hover:text-gray-700 p-2 -ml-2 rounded-md hover:bg-gray-100"
+            onClick={() => setIsMobileMenuOpen(true)}
+          >
+            <Menu size={24} />
+          </button>
+
+          <div className="flex-1 md:flex-none"></div> {/* Spacer for mobile */}
 
           {/* <div className="flex items-center gap-4">
             <Link
