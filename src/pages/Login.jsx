@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Mail, Lock, User, Phone, ShieldCheck, ArrowRight } from 'lucide-react';
+import { Mail, Lock, User, Phone, ShieldCheck, ArrowRight, Eye, EyeOff } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import loginImage from '../assets/DIGINTRA Login Panel_13837.jpg';
+
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const backendUrl = "http://localhost:5000/api/auth";
@@ -55,15 +58,20 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 relative px-4 sm:px-6 lg:px-8 overflow-hidden">
-
+    <div className="min-h-screen flex items-center justify-center bg-green-50 relative px-4 sm:px-6 lg:px-8 overflow-hidden">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="w-full max-w-md relative z-10 pt-20 pb-12"
+        className="w-full max-w-5xl bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row relative z-10"
       >
-        <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden border border-white/20 mt-8">
+        {/* Left Side - Image */}
+        <div className="w-full md:w-1/2 hidden md:block relative min-h-[500px]">
+           <img src={loginImage} alt="Login Panel" className="absolute inset-0 w-full h-full object-cover" />
+        </div>
+
+        {/* Right Side - Form Container */}
+        <div className="w-full md:w-1/2 flex flex-col justify-center">
 
           {/* Header Area */}
           <div className="px-8 pt-8 pb-6 bg-gradient-to-br from-green-600 to-green-800 text-center relative overflow-hidden">
@@ -107,7 +115,10 @@ export default function Login() {
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
                     <Lock size={18} />
                   </div>
-                  <input id="password" type="password" placeholder="••••••••" required className="w-full pl-10 pr-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none text-gray-700" onChange={handleChange} />
+                  <input id="password" type={showPassword ? "text" : "password"} placeholder="••••••••" required className="w-full pl-10 pr-10 py-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-all outline-none text-gray-700" onChange={handleChange} />
+                  <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors">
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
                 </div>
               </div>
 
