@@ -89,6 +89,7 @@ export default function AdminManageBlogs() {
               <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 text-sm">
                 <th className="px-6 py-4 font-semibold">Blog Title</th>
                 <th className="px-6 py-4 font-semibold">Category</th>
+                <th className="px-6 py-4 font-semibold">Subcategory</th>
                 <th className="px-6 py-4 font-semibold">Status</th>
                 <th className="px-6 py-4 font-semibold">Date</th>
                 <th className="px-6 py-4 font-semibold text-right">Actions</th>
@@ -130,6 +131,10 @@ export default function AdminManageBlogs() {
                     </td>
                     <td className="px-6 py-4 text-sm text-slate-600">
                       {blog.category?.name || 'Uncategorized'}
+                    </td>
+
+                    <td className="px-6 py-4 text-sm text-slate-600">
+                      {blog.subCategory?.name || 'Uncategorized'}
                     </td>
                     <td className="px-6 py-4">
                       {blog.status === 'published' ? (

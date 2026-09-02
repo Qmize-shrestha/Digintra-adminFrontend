@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { toast } from 'react-toastify';
 import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -68,32 +69,6 @@ const EditBlogPostForm = () => {
     }
   };
 
-  // const imageHandler = useCallback(() => {
-  //   const input = document.createElement('input');
-  //   input.setAttribute('type', 'file');
-  //   input.setAttribute('accept', 'image/*');
-  //   input.click();
-
-  //   input.onchange = async () => {
-  //     const file = input.files[0];
-  //     if (file) {
-  //       const formData = new FormData();
-  //       formData.append('file', file);
-  //       formData.append('upload_preset', 'tdcahggc');
-
-  //       try {
-  //         const response = await axios.post('https://api.cloudinary.com/v1_1/dtqo1n4mc/image/upload', formData);
-  //         const url = response.data.secure_url;
-  //         const quill = quillRef.current.getEditor();
-  //         const range = quill.getSelection();
-  //         quill.insertEmbed(range.index, 'image', url);
-  //       } catch (error) {
-  //         console.error('Error uploading image:', error);
-  //       }
-  //     }
-  //   };
-  // }, []);
-
   const imageHandler = useCallback(() => {
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
@@ -105,20 +80,18 @@ const EditBlogPostForm = () => {
       if (file) {
         const formData = new FormData();
         formData.append('file', file);
+        formData.append('upload_preset', 'tdcahggc');
 
         try {
-          const response = await axiosClient.post('/image/upload', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          });
-
-          const url = response.data.url;
+          const response = await axios.post('https://api.cloudinary.com/v1_1/dtqo1n4mc/image/upload', formData);
+          const url = response.data.secure_url;
           const quill = quillRef.current.getEditor();
-          const range = quill.getSelection();
-          quill.insertEmbed(range.index, 'image', url);
+          const range = quill.getSelection(true);
+          const index = range ? range.index : 0;
+          quill.insertEmbed(index, 'image', url);
         } catch (error) {
           console.error('Error uploading image:', error);
+          alert('Failed to upload image. Please try again.');
         }
       }
     };
@@ -259,7 +232,7 @@ const EditBlogPostForm = () => {
       author,
       category,
       subCategory,
-      coverImage,
+      featuredImage: coverImage,
       status: isPublished ? "published" : "draft",
       seo: {
         metaTitle,
@@ -271,7 +244,7 @@ const EditBlogPostForm = () => {
     try {
       await axiosClient.put(`/blogs/${postId}`, blogPostData);
       localStorage.removeItem(`blog_draft_edit_${postId}`); // Clear draft on successful update
-      alert('Blog post updated successfully');
+      toast.success('Blog post updated successfully');
       const role = localStorage.getItem('role') || 'admin';
       navigate(role === 'editor' ? '/editor/blogs' : '/admin/blogs');
     } catch (error) {
@@ -301,19 +274,13 @@ const EditBlogPostForm = () => {
     const file = event.target.files[0];
     if (!file) return;
 
-    // Create a FormData object to send the file to your server
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('upload_preset', 'tdcahggc');
 
     try {
-      // Post to your local server endpoint
-      const response = await axiosClient.post('/image/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      const imageUrl = response.data.url; // Assuming your server returns the URL in the 'url' field
+      const response = await axios.post('https://api.cloudinary.com/v1_1/dtqo1n4mc/image/upload', formData);
+      const imageUrl = response.data.secure_url;
       setCoverImage(imageUrl);
     } catch (error) {
       console.error('Error uploading image:', error);

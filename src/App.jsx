@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Routes, Navigate, useLocation } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Home from "./pages/Home";
 
@@ -253,7 +255,7 @@ import OfferPopup from "./components/Offerpopup";
 // import BlogEditor from "./Blog/BlogEditor";
 const GlobalElements = ({ showPopup, closePopup }) => {
   const location = useLocation();
-  const hide = location.pathname.startsWith("/admin") || location.pathname.startsWith("/user") || location.pathname.startsWith("/editor") || location.pathname === "/login";
+  const hide = location.pathname.startsWith("/admin") || location.pathname.startsWith("/user") || location.pathname.startsWith("/editor") || location.pathname === "/login" || location.pathname === "/loginblog" || location.pathname === "/bloglogin";
 
   if (hide) return null;
 
@@ -346,6 +348,7 @@ function App() {
       }}
     >
       <ScrollToTop />
+      <ToastContainer />
       <GlobalElements showPopup={showPopup} closePopup={closePopup} />
 
       <Routes>
@@ -594,9 +597,8 @@ function App() {
         <Route path="/blog/sms-campaign-ideas-for-small-businesses" element={<Sms_CampaignIdeas />} />
         <Route path="/blog/sms-marketing-rules-uae" element={<Sms_Marketing_RulesUAE />} />
 
-
-
-
+        {/* Dynamic Blog Route */}
+        <Route path="/blog/:slug" element={<SingleBlog />} />
         <Route path="/best-bulk-sms-service-provider-in-india" element={<Best_Bulk_SMS_Provider_In_India />} />
         <Route path="/otp-service-provider" element={<OTP_Service_Provider />} />
 

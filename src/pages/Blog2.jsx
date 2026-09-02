@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import waveSVG from "../assets/wave.svg";
 import { motion } from "framer-motion";
 import "./blog.css"
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import axiosClient from '../Blog/AxiosClient';
 import icons1 from "../assets/Blog1.jpg";
 import icons2 from "../assets/sms-notification-msg24x7.jpg";
 import icons3 from "../assets/businessman-holding-message-notifications-social-media_110893-1321-1024x482.png";
@@ -92,8 +93,7 @@ import Sms_campaign from "../assets/Sms_campaign.jpeg";
 import SmsMarketing_Rules from "../assets/SmsMarketing_Rules.jpeg";
 import A2P_Sms_Messaging from "../assets/A2P_Sms.jpeg";
 import Otp_Sms_Provider from "../assets/Otp_Sms_Provider.jpeg";
-const MainPage = () => {
-  const blogData = [
+  const oldBlogData = [
     {
       image: icons1,
       title: "Compliance Guidelines for Successful SMS Marketing",
@@ -503,9 +503,38 @@ const MainPage = () => {
 
 
   ];
+const MainPage = () => {
+  const [blogData, setBlogData] = useState(oldBlogData);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBlogs = async () => {
+      try {
+        const response = await axiosClient.get('/public/blogs');
+        if (response.data.success) {
+          const formattedBlogs = response.data.blogs.map((blog) => ({
+            image: blog.featuredImage || icons1, 
+            title: blog.title,
+            link: `/blog/${blog.slug}`,
+          }));
+          setBlogData([...formattedBlogs, ...oldBlogData]);
+        }
+      } catch (error) {
+        console.error("Failed to fetch public blogs:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBlogs();
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [])
+  }, []);
+
+  if (loading) {
+    return <div className="text-center py-20 text-2xl">Loading Blogs...</div>;
+  }
 
   return (
     <>

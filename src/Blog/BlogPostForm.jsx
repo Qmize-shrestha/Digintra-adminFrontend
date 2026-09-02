@@ -109,35 +109,6 @@ const BlogPostForm = () => {
     }
   };
 
-  // const imageHandler = useCallback(() => {
-  //   const input = document.createElement('input');
-  //   input.setAttribute('type', 'file');
-  //   input.setAttribute('accept', 'image/*');
-  //   input.click();
-
-  //   input.onchange = async () => {
-  //     const file = input.files[0];
-  //     if (file) {
-  //       const formData = new FormData();
-  //       formData.append('file', file);
-  //       formData.append('upload_preset', 'tdcahggc');
-
-  //       try {
-  //         const response = await axios.post(
-  //           'https://api.cloudinary.com/v1_1/dtqo1n4mc/image/upload',
-  //           formData
-  //         );
-
-  //         const url = response.data.secure_url;
-  //         const quill = quillRef.current.getEditor();
-  //         const range = quill.getSelection();
-  //         quill.insertEmbed(range.index, 'image', url);
-  //       } catch (error) {
-  //         console.error('Error uploading image:', error);
-  //       }
-  //     }
-  //   };
-  // }, []);
   const imageHandler = useCallback(() => {
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
@@ -149,20 +120,22 @@ const BlogPostForm = () => {
       if (file) {
         const formData = new FormData();
         formData.append('file', file);
+        formData.append('upload_preset', 'tdcahggc');
 
         try {
-          const response = await axiosClient.post('/image/upload', formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data',
-            },
-          });
+          const response = await axios.post(
+            'https://api.cloudinary.com/v1_1/dtqo1n4mc/image/upload',
+            formData
+          );
 
-          const url = response.data.url;
+          const url = response.data.secure_url;
           const quill = quillRef.current.getEditor();
-          const range = quill.getSelection();
-          quill.insertEmbed(range.index, 'image', url);
+          const range = quill.getSelection(true);
+          const index = range ? range.index : 0;
+          quill.insertEmbed(index, 'image', url);
         } catch (error) {
           console.error('Error uploading image:', error);
+          alert('Failed to upload image. Please try again.');
         }
       }
     };
@@ -215,7 +188,7 @@ const BlogPostForm = () => {
       tags: tags.split(',').map(tag => tag.trim().toLowerCase()), // Example tag handling
       author,
 
-      coverImage,
+      featuredImage: coverImage,
       status: isPublished ? "published" : "draft",
       seo: {
         metaTitle,
@@ -257,19 +230,13 @@ const BlogPostForm = () => {
     const file = event.target.files[0];
     if (!file) return;
 
-    // Create a FormData object to send the file to your server
     const formData = new FormData();
     formData.append('file', file);
+    formData.append('upload_preset', 'tdcahggc'); 
 
     try {
-      // Post to your local server endpoint
-      const response = await axiosClient.post('/image/upload', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
-
-      const imageUrl = response.data.url; // Assuming your server returns the URL in the 'url' field
+      const response = await axios.post('https://api.cloudinary.com/v1_1/dtqo1n4mc/image/upload', formData);
+      const imageUrl = response.data.secure_url;
       setCoverImage(imageUrl);
     } catch (error) {
       console.error('Error uploading image:', error);

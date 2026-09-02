@@ -282,11 +282,11 @@ export default function AdminManageCategories() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 text-sm">
-                    <th className="px-6 py-4 font-semibold">Category Name</th>
-                    <th className="px-6 py-4 font-semibold">Slug</th>
-                    <th className="px-6 py-4 font-semibold">Blogs Count</th>
+                    <th className="px-6 py-4 font-semibold w-full">Category Name</th>
+                    {/* <th className="px-6 py-4 font-semibold">Slug</th> */}
+                    <th className="px-6 py-4 font-semibold text-center whitespace-nowrap">Blogs Count</th>
                     {/* <th className="px-6 py-4 font-semibold">Status</th> */}
-                    <th className="px-6 py-4 font-semibold text-right">Actions</th>
+                    <th className="px-6 py-4 font-semibold text-right whitespace-nowrap">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -315,16 +315,16 @@ export default function AdminManageCategories() {
                             </div>
                             <div>
                               <p className="font-semibold text-slate-800">{cat.name}</p>
-                              {cat.description && (
+                              {/* {cat.description && (
                                 <p className="text-xs text-slate-500 mt-0.5 line-clamp-1">{cat.description}</p>
-                              )}
+                              )} */}
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4 text-sm text-slate-600 font-mono">
+                        {/* <td className="px-6 py-4 text-sm text-slate-600 font-mono">
                           {cat.slug}
-                        </td>
-                        <td className="px-6 py-4 text-sm text-slate-600">
+                        </td> */}
+                        <td className="px-6 py-4 text-center whitespace-nowrap">
                           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100">
                             {cat.blogCount || 0} blogs
                           </span>
@@ -337,7 +337,7 @@ export default function AdminManageCategories() {
                             {cat.status || 'active'}
                           </span>
                         </td> */}
-                        <td className="px-6 py-4 text-right">
+                        <td className="px-6 py-4 text-right whitespace-nowrap">
 
                           <div className="flex justify-end gap-2">
                             <button
@@ -395,7 +395,7 @@ export default function AdminManageCategories() {
                 onChange={(e) => setSubCategoryFilter(e.target.value)}
                 className="px-3 py-2 border border-slate-300 rounded-lg text-sm bg-white focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
               >
-                <option value="">All Parent Categories</option>
+                <option value="" hidden>All Parent Categories</option>
                 {categories.map((c) => (
                   <option key={c._id} value={c._id}>{c.name}</option>
                 ))}
@@ -409,11 +409,11 @@ export default function AdminManageCategories() {
               <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 text-sm">
-                    <th className="px-6 py-4 font-semibold">Subcategory Name</th>
-                    <th className="px-6 py-4 font-semibold">Parent Category</th>
-                    <th className="px-6 py-4 font-semibold">Slug</th>
-                    <th className="px-6 py-4 font-semibold">Blogs Count</th>
-                    <th className="px-6 py-4 font-semibold text-right">Actions</th>
+                    <th className="px-6 py-4 font-semibold w-full">Subcategory Name</th>
+                    <th className="px-6 py-4 font-semibold whitespace-nowrap">Parent Category</th>
+                    {/* <th className="px-6 py-4 font-semibold whitespace-nowrap">Slug</th> */}
+                    <th className="px-6 py-4 font-semibold text-center whitespace-nowrap">Blogs Count</th>
+                    <th className="px-6 py-4 font-semibold text-right whitespace-nowrap">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-100">
@@ -450,20 +450,20 @@ export default function AdminManageCategories() {
                               </div>
                             </div>
                           </td>
-                          <td className="px-6 py-4">
+                          <td className="px-6 py-4 whitespace-nowrap">
                             <span className="inline-flex items-center px-2.5 py-1 rounded-md text-xs font-semibold bg-orange-50 text-orange-700 border border-orange-200">
                               {parentName}
                             </span>
                           </td>
-                          <td className="px-6 py-4 text-sm text-slate-600 font-mono">
+                          {/* <td className="px-6 py-4 text-sm text-slate-600 font-mono">
                             {sub.slug}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-slate-600">
+                          </td> */}
+                          <td className="px-6 py-4 text-center whitespace-nowrap">
                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100">
                               {sub.blogCount || 0} blogs
                             </span>
                           </td>
-                          <td className="px-6 py-4 text-right">
+                          <td className="px-6 py-4 text-right whitespace-nowrap">
                             <div className="flex justify-end gap-2">
                               <button
                                 onClick={() => openEditSubCategory(sub)}
@@ -523,7 +523,7 @@ export default function AdminManageCategories() {
                 />
               </div>
 
-              <div>
+              {/* <div>
                 <label className="block text-xs font-semibold text-slate-600 uppercase mb-1">Slug (optional)</label>
                 <input
                   type="text"
@@ -532,7 +532,7 @@ export default function AdminManageCategories() {
                   onChange={(e) => setCatForm({ ...catForm, slug: e.target.value })}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none font-mono"
                 />
-              </div>
+              </div> */}
 
               <div>
                 <label className="block text-xs font-semibold text-slate-600 uppercase mb-1">Description</label>
@@ -610,7 +610,7 @@ export default function AdminManageCategories() {
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
                 />
               </div>
-
+              {/* 
               <div>
                 <label className="block text-xs font-semibold text-slate-600 uppercase mb-1">Slug (optional)</label>
                 <input
@@ -620,7 +620,7 @@ export default function AdminManageCategories() {
                   onChange={(e) => setSubForm({ ...subForm, slug: e.target.value })}
                   className="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none font-mono"
                 />
-              </div>
+              </div> */}
 
               <div>
                 <label className="block text-xs font-semibold text-slate-600 uppercase mb-1">Description</label>

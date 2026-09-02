@@ -148,9 +148,10 @@ export default function AdminManageUsers() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 text-sm">
-                <th className="px-6 py-4 font-semibold">Name</th>
-                {/* <th className="px-6 py-4 font-semibold">Status</th> */}
-                <th className="px-6 py-4 font-semibold text-right">Actions</th>
+                <th className="px-6 py-4 font-semibold w-full">Name</th>
+                <th className="px-6 py-4 font-semibold whitespace-nowrap">Email</th>
+                <th className="px-6 py-4 font-semibold whitespace-nowrap">Role</th>
+                <th className="px-6 py-4 font-semibold text-right whitespace-nowrap">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
@@ -176,8 +177,22 @@ export default function AdminManageUsers() {
                       <div className="flex flex-col">
                         <span className="font-medium text-slate-900">{user.name}</span>
                         {/* <span className="text-sm text-slate-500">{user.email}</span> */}
+                        {/* <span className="text-sm text-slate-500">{user.role}</span> */}
                       </div>
                     </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex flex-col">
+                        <span className="font-medium text-slate-900">{user.email}</span>
+                      </div>
+                    </td>
+
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="flex flex-col">
+                        <span className="font-medium text-slate-900">{user.role}</span>
+                      </div>
+                    </td>
+
+
                     {/* <td className="px-6 py-4">
                       <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${user.status === 'active'
                         ? 'bg-emerald-100 text-emerald-800'
@@ -186,7 +201,7 @@ export default function AdminManageUsers() {
                         {user.status === 'active' ? 'Active' : 'Inactive'}
                       </span>
                     </td> */}
-                    <td className="px-6 py-4">
+                    <td className="px-6 py-4 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end gap-3">
                         <button
                           onClick={() => openEditModal(user)}

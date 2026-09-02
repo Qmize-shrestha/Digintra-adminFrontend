@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, User, Phone, ShieldCheck, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -35,7 +37,7 @@ export default function Login() {
 
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", data.user.role);
-      alert("Login successful!");
+      toast.success("Login successful!");
 
         console.log("User role:", data.user.role);
 
@@ -53,9 +55,7 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[url('https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=2029&auto=format&fit=crop')] bg-cover bg-center relative px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Dark overlay for better contrast */}
-      <div className="absolute inset-0 bg-black/40 backdrop-blur-sm"></div>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 relative px-4 sm:px-6 lg:px-8 overflow-hidden">
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}
