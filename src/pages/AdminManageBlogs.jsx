@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Edit, Trash2, Plus, Search, Eye, FileText } from 'lucide-react';
 import axiosClient from '../Blog/AxiosClient';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 export default function AdminManageBlogs() {
   const [blogs, setBlogs] = useState([]);
@@ -130,11 +130,11 @@ export default function AdminManageBlogs() {
                       </div>
                     </td>
                     <td className="px-6 py-4 text-sm text-slate-600">
-                      {blog.category?.name || 'Uncategorized'}
+                      {blog.category?.name || '---'}
                     </td>
 
                     <td className="px-6 py-4 text-sm text-slate-600">
-                      {blog.subCategory?.name || 'Uncategorized'}
+                      {blog.subCategory?.name || '----'}
                     </td>
                     <td className="px-6 py-4">
                       {blog.status === 'published' ? (

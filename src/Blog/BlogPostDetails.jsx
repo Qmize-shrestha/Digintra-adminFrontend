@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'; // Import Link for navigatio
 import RecentBlogPostCard from './RecentBlogPostCard';
 import DOMPurify from 'dompurify';
 import  axiosClient  from './AxiosClient';
+import { toast } from 'react-hot-toast';
 import './BlogPostDetail.css'
 import Aos from 'aos';
 
@@ -76,6 +77,7 @@ const BlogPostDetail = () => {
         setLoading(false);
       } catch (error) {
         console.error('Error fetching post details:', error);
+        toast.error('Failed to fetch post details.');
         setLoading(false);
       }
     };
@@ -86,6 +88,7 @@ const BlogPostDetail = () => {
         setRecentpost(response.data);
       } catch (error) {
         console.error('Error fetching recent posts:', error);
+        toast.error('Failed to fetch recent posts.');
       }
     };
 
@@ -155,9 +158,11 @@ const BlogPostDetail = () => {
     try {
       const response = await axiosClient.delete(`/blogpost/deleteblogpost/${id}`);
       console.log('Delete response:', response.data);
+      toast.success('Blog post deleted successfully!');
       // Handle success (e.g., update UI or notify the user)
     } catch (error) {
       console.error('Error deleting blog post:', error);
+      toast.error('Error deleting blog post');
       // Handle error (e.g., show an error message)
     }
   };

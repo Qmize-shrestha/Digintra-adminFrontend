@@ -1,14 +1,10 @@
 import React, { useState } from 'react';
-import axiosClient from './AxiosClient'; // ✅ CORRECT
- // Import the custom axios client
-
+import axiosClient from './AxiosClient';
+import { toast } from 'react-hot-toast';
 const SubCategoryForm = ({ onSubmit, initialSubCategory = { name: '', categoryName: '', blogPostIds: [] } }) => {
   const [name, setName] = useState(initialSubCategory.name);
   const [categoryName, setCategoryName] = useState(initialSubCategory.categoryName);
   const [blogPostIds, setBlogPostIds] = useState(initialSubCategory.blogPostIds);
-  const [error, setError] = useState(null);
-    const [success, setSuccess] = useState(null);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -17,7 +13,7 @@ const SubCategoryForm = ({ onSubmit, initialSubCategory = { name: '', categoryNa
         categoryName,
         blogPostIds
       });
-      setSuccess('Sub-Category created successfully!');
+      toast.success('Sub-Category created successfully!');
 
       // Axios response data is available directly
       console.log('SubCategory created:', response.data);
@@ -25,7 +21,7 @@ const SubCategoryForm = ({ onSubmit, initialSubCategory = { name: '', categoryNa
       if (onSubmit) onSubmit(response.data);
     } catch (error) {
       if (error.response) {
-        setError('Failed to create Sub-Category. Please try again.');
+        toast.error('Failed to create Sub-Category. Please try again.');
         // Axios provides error details in error.response
         console.error('Error response:', error.response.data);
       } else {
@@ -74,8 +70,6 @@ const SubCategoryForm = ({ onSubmit, initialSubCategory = { name: '', categoryNa
         <button type="submit" className="w-full bg-indigo-500 text-white font-bold py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
           Submit
         </button>
-        {error && <p className="mt-4 text-red-500">{error}</p>}
-        {success && <p className="mt-4 text-green-500">{success}</p>}
       </form>
     </div>
   );

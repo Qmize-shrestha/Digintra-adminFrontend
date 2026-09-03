@@ -1,6 +1,5 @@
 import React from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-hot-toast';
 import { useRef } from 'react';
 import "./partner.css"
 import { Helmet } from 'react-helmet';
@@ -512,7 +511,6 @@ useEffect(()=>{
               </form>
             </div>
           </div>
-          <ToastContainer/>
         </div>
         </div>
         <Footer/>

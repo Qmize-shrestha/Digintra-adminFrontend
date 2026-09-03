@@ -182,6 +182,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axiosClient from './AxiosClient';
+import { toast } from 'react-hot-toast';
 import BlogPostCard from './BlogPostCard';
 import banner from '../assets/benner_12.jpg';
 import './PostPage.css';
@@ -206,6 +207,7 @@ const PostsPage = () => {
         }
       } catch (error) {
         console.error('Error fetching categories:', error);
+        toast.error('Failed to fetch categories.');
       }
     };
     fetchCategories();
@@ -230,6 +232,7 @@ const PostsPage = () => {
         }
       } catch (error) {
         console.error('Error fetching posts:', error);
+        toast.error('Failed to fetch posts.');
         setPosts([]);
       }
     };
@@ -256,6 +259,7 @@ const PostsPage = () => {
       setSelectedSubCategoryId(null);
     } catch (err) {
       console.error('Error searching posts:', err);
+      toast.error('Failed to search posts.');
       setPosts([]);
     }
   };

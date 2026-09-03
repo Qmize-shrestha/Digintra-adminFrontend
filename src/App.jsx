@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes, Navigate, useLocation } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from 'react-hot-toast';
 
 import Home from "./pages/Home";
 
@@ -348,7 +347,7 @@ function App() {
       }}
     >
       <ScrollToTop />
-      <ToastContainer />
+      <Toaster />
       <GlobalElements showPopup={showPopup} closePopup={closePopup} />
 
       <Routes>

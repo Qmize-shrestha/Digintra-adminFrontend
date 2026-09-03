@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast } from 'react-hot-toast';
 
 function LoginBlog() {
     const [formData, setFormData] = useState({
@@ -8,7 +9,6 @@ function LoginBlog() {
         password: ''
     });
 
-    const [alert, setAlert] = useState(null);
     const navigate = useNavigate();
 
     const handleChange = (e) => {
@@ -43,18 +43,13 @@ function LoginBlog() {
             navigate(`/blogeditor/${userId}`);
         } catch (error) {
             console.error('Login failed:', error);
-            setAlert({ type: 'error', message: error.response?.data?.error || 'Login failed' });
+            toast.error(error.response?.data?.error || 'Login failed');
         }
     };
 
     return (
         <div className="max-w-md mx-auto pt-40 mb-12">
             <h2 className="text-4xl font-bold mb-4">Log in</h2>
-            {alert && (
-                <div className={`bg-red-100 text-red-700 p-3 rounded mb-4`}>
-                    {alert.message}
-                </div>
-            )}
             <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                     <label htmlFor="email" className="block font-medium">Email</label>

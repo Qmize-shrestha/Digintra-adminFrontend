@@ -1,7 +1,16 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 import axios from 'axios';
-import ReactQuill from 'react-quill';
+import ReactQuill, { Quill } from 'react-quill';
+
+const Font = Quill.import('formats/font');
+Font.whitelist = ['', 'serif', 'monospace', 'poppins'];
+Quill.register(Font, true);
+
+const Size = Quill.import('attributors/style/size');
+Size.whitelist = ['10px', '12px', '14px', '16px', '18px', '20px', '24px', '32px', '48px'];
+Quill.register(Size, true);
+
 import 'react-quill/dist/quill.snow.css';
 import axiosClient from './AxiosClient';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -101,13 +110,14 @@ const EditBlogPostForm = () => {
     const quill = quillRef.current.getEditor();
     const content1 = quill.root.innerHTML;
     setContent(content1);
+    toast.success('Content saved successfully!');
   };
 
   const modules = useMemo(() => ({
     toolbar: {
       container: [
-        [{ 'font': [] }],
-        [{ 'size': ['small', 'medium', 'large', 'huge'] }],
+        [{ 'font': ['', 'serif', 'monospace', 'poppins'] }],
+        [{ 'size': ['10px', '12px', '14px', '16px', '18px', '20px', '24px', '32px', '48px'] }],
         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
         [{ 'indent': '-1' }, { 'indent': '+1' }],
@@ -319,7 +329,7 @@ const EditBlogPostForm = () => {
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full h-10 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
               />
             </div>
             <div>
@@ -328,7 +338,7 @@ const EditBlogPostForm = () => {
                 type="text"
                 value={slug}
                 onChange={(e) => setSlug(e.target.value)}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full h-10 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
               />
             </div>
             <div>
@@ -338,7 +348,7 @@ const EditBlogPostForm = () => {
                 onChange={(e) => handleCategoryChange(e.target.value)}
                 className="mt-1 block w-full h-10 px-3 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
               >
-                <option value="">Select a Category</option>
+                <option value="" hidden>Select a Category</option>
                 {categoriesList.map((cat) => (
                   <option key={cat._id} value={cat._id}>
                     {cat.name}
@@ -376,7 +386,7 @@ const EditBlogPostForm = () => {
                 theme="snow"
                 value={content}
                 onChange={setContent}
-                className="mt-1"
+                className="mt-1 h-10px mb-12 bg-white text-gray-800 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm "
               />
               <button
                 type="button"
@@ -392,7 +402,7 @@ const EditBlogPostForm = () => {
                 type="text"
                 value={summary}
                 onChange={(e) => setSummary(e.target.value)}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full h-10 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
               />
             </div>
             <div>
@@ -401,7 +411,7 @@ const EditBlogPostForm = () => {
                 type="text"
                 value={tags}
                 onChange={(e) => setTags(e.target.value)}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                className="mt-1 block w-full h-10 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
               />
             </div>
             <div>
@@ -411,7 +421,7 @@ const EditBlogPostForm = () => {
                 value={author}
                 readOnly
                 disabled
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100 text-gray-500 cursor-not-allowed"
+                className="mt-1 block w-full h-10 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-gray-100 text-gray-500 cursor-not-allowed"
               />
             </div>            {/* SEO Settings */}
             <div className="bg-white p-4 rounded-md border border-gray-300 space-y-4">
@@ -424,7 +434,7 @@ const EditBlogPostForm = () => {
                   value={metaTitle}
                   onChange={(e) => setMetaTitle(e.target.value)}
                   placeholder="SEO Title (leave blank to use post title)"
-                  className="mt-1 block w-full h-9 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-2"
+                  className="mt-1 block w-full h-10 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
                 />
               </div>
 
@@ -435,7 +445,7 @@ const EditBlogPostForm = () => {
                   value={metaDescription}
                   onChange={(e) => setMetaDescription(e.target.value)}
                   placeholder="Brief description for search engines"
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
                 />
               </div>
 
@@ -446,7 +456,7 @@ const EditBlogPostForm = () => {
                   value={canonicalUrl}
                   onChange={(e) => setCanonicalUrl(e.target.value)}
                   placeholder="https://example.com/blog/my-post"
-                  className="mt-1 block w-full h-9 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-2"
+                  className="mt-1 block w-full h-10 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
                 />
               </div>
             </div>
@@ -485,7 +495,7 @@ const EditBlogPostForm = () => {
           </form>
         </>
       ) : 'You are not an admin'}
-      
+
       {/* Preview Modal */}
       {showPreview && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75 overflow-y-auto pt-20 pb-10">

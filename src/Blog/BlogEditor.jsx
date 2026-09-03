@@ -4,6 +4,7 @@ import CategoryForm from '../Blog/CategoryForm';
 import SubCategoryForm from '../Blog/SubCaegoryForms';
 import BlogPostForm from '../Blog/BlogPostForm';
 import  axiosClient  from './AxiosClient'; 
+import { toast } from 'react-hot-toast';
 
 
 function BlogEditor() {
@@ -26,6 +27,7 @@ function BlogEditor() {
         }
   
       } catch (error) {
+        toast.error('Failed to check admin status.');
         setError(error.message);
       } finally {
         setLoading(false);

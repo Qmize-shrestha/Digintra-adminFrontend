@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { toast } from 'react-hot-toast';
 import axiosClient from '../Blog/AxiosClient';
 import Blogpart from '../components/Blogpart';
 import Footer from '../components/Footer';
@@ -23,6 +24,7 @@ export default function SingleBlog() {
         setLoading(false);
       } catch (err) {
         console.error('Error fetching blog:', err);
+        toast.error(err.response?.data?.message || 'Failed to fetch blog post');
         setError(true);
         setLoading(false);
       }
@@ -95,7 +97,7 @@ export default function SingleBlog() {
             />
 
             {/* Tags */}
-            {blog.tags && blog.tags.length > 0 && (
+            {/* {blog.tags && blog.tags.length > 0 && (
               <div className="mt-12 pt-8 border-t border-gray-200">
                 <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-4">Tags</h4>
                 <div className="flex flex-wrap gap-2">
@@ -106,7 +108,7 @@ export default function SingleBlog() {
                   ))}
                 </div>
               </div>
-            )}
+            )} */}
           </div>
 
           {/* Right Column: Sidebar */}

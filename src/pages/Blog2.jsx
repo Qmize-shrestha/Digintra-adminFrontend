@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import "./blog.css"
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { toast } from 'react-hot-toast';
 import axiosClient from '../Blog/AxiosClient';
 import icons1 from "../assets/Blog1.jpg";
 import icons2 from "../assets/sms-notification-msg24x7.jpg";
@@ -521,6 +522,7 @@ const MainPage = () => {
         }
       } catch (error) {
         console.error("Failed to fetch public blogs:", error);
+        toast.error(error.response?.data?.message || 'Failed to fetch blogs');
       } finally {
         setLoading(false);
       }

@@ -2,9 +2,7 @@
 import React from 'react';
 import emailjs from '@emailjs/browser';
 import { useRef } from 'react';
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-hot-toast';
 import icons1 from "../assets/icons8-arrow-100.png";
 export default function Sales() {
     const form = useRef();
@@ -83,7 +81,6 @@ export default function Sales() {
       <iframe data-aos="zoom-in-up" title="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.6213612525416!2d77.62113707489502!3d12.932040215744767!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae145b9d0a31a1%3A0x3e7cc87ca4d87f38!2sDIGINTRA!5e0!3m2!1sen!2sin!4v1688545722196!5m2!1sen!2sin" width={600} height={450} style={{border:'0'}} allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" className=" w-[310px] h-[500px] mx-auto lg:w-[700px] lg:h-[700px]"></iframe>
     
      </div>
-     <ToastContainer/>
    </div>
   )
 }

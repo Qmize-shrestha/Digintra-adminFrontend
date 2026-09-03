@@ -18,13 +18,13 @@ import { motion } from 'framer-motion';
 
 const Footer = () => {
 
- let badges = [badge4, badge2, badge3, badge1, badge5];
- let mapImg = footermap;
-//  let logos = [c1, c2, c3, c4, c5, c6, c7]; // carousel logos if needed
+  let badges = [badge4, badge2, badge3, badge1, badge5];
+  let mapImg = footermap;
+  //  let logos = [c1, c2, c3, c4, c5, c6, c7]; // carousel logos if needed
   // let icons = { icons1, icons2, icons3, icons4 };
   let officeImgs = { bangloreicons, dubiicons };
-    const [isOpen, setIsOpen] = useState(false);
-     const [modalOpen, setModalOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState("");
 
   const openModal = (item) => {
@@ -37,7 +37,7 @@ const Footer = () => {
     setSelectedItem("");
   };
   return (
-  <footer className="relative w-full bg-[#0b1220] text-white">
+    <footer className="relative w-full bg-[#0b1220] text-white mt-24">
       {/* Top CTA card */}
       <div className="max-w-[80%] mx-auto px-4">
         <div
@@ -110,70 +110,70 @@ const Footer = () => {
       </div>
 
       {/* Countries Section — Below Try DIGINTRA */}
-<div className="max-w-[80%] mx-auto px-4 mt-[-60px]">
-  <h2 className="text-xl md:text-2xl font-semibold text-white mb-6">
-    We Are Everywhere...
-  </h2>
+      <div className="max-w-[80%] mx-auto px-4 mt-[-60px]">
+        <h2 className="text-xl md:text-2xl font-semibold text-white mb-6">
+          We Are Everywhere...
+        </h2>
 
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-white/80 text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-white/80 text-sm">
 
-    {/* Column 1 */}
-    <ul className="space-y-2">
-     {/* <li><Link to="/bulk-sms-usa">Bulk SMS USA</Link></li> */}
-<li><Link to="/bulk-sms-uk">Bulk SMS UK</Link></li>
-<li><Link to="/bulk-sms-canada">Bulk SMS Canada</Link></li>
-<li><Link to="/bulk-sms-india">Bulk SMS India</Link></li>
-<li><Link to="/sms-broadcast-australia">Bulk SMS Australia</Link></li>
-<li><Link to="/bulk-sms-malaysia">Bulk SMS Malaysia</Link></li>
-<li><Link to="/bulk-sms-singapore">Bulk SMS Singapore</Link></li>
-<li><Link to="/bulk-sms-brazil">Bulk SMS Brazil</Link></li>
-<li><Link to="/bulk-sms-nigeria">Bulk SMS Nigeria</Link></li>
-<li><Link to="/bulk-sms-vietnam">Bulk SMS Vietnam</Link></li>
-<li><Link to="/bulk-sms-belgium">Bulk SMS Belgium</Link></li>
-{/* <li><Link to="/bulk-sms-south-korea">Bulk SMS South Korea</Link></li> */}
-<li><Link to="/bulk-sms-mexico">Bulk SMS Mexico</Link></li>
-<li><Link to="/bulk-sms-germany">Bulk SMS Germany</Link></li>
+          {/* Column 1 */}
+          <ul className="space-y-2">
+            {/* <li><Link to="/bulk-sms-usa">Bulk SMS USA</Link></li> */}
+            <li><Link to="/bulk-sms-uk">Bulk SMS UK</Link></li>
+            <li><Link to="/bulk-sms-canada">Bulk SMS Canada</Link></li>
+            <li><Link to="/bulk-sms-india">Bulk SMS India</Link></li>
+            <li><Link to="/sms-broadcast-australia">Bulk SMS Australia</Link></li>
+            <li><Link to="/bulk-sms-malaysia">Bulk SMS Malaysia</Link></li>
+            <li><Link to="/bulk-sms-singapore">Bulk SMS Singapore</Link></li>
+            <li><Link to="/bulk-sms-brazil">Bulk SMS Brazil</Link></li>
+            <li><Link to="/bulk-sms-nigeria">Bulk SMS Nigeria</Link></li>
+            <li><Link to="/bulk-sms-vietnam">Bulk SMS Vietnam</Link></li>
+            <li><Link to="/bulk-sms-belgium">Bulk SMS Belgium</Link></li>
+            {/* <li><Link to="/bulk-sms-south-korea">Bulk SMS South Korea</Link></li> */}
+            <li><Link to="/bulk-sms-mexico">Bulk SMS Mexico</Link></li>
+            <li><Link to="/bulk-sms-germany">Bulk SMS Germany</Link></li>
 
-    </ul>
+          </ul>
 
-    {/* Column 2 */}
-    <ul className="space-y-2">
-     <li><Link to="/bulk-sms-uae">Bulk SMS UAE</Link></li>
-<li><Link to="/bulk-sms-saudi-arabia">Bulk SMS Saudi Arabia</Link></li>
-<li><Link to="/bulk-sms-qatar">Bulk SMS Qatar</Link></li>
-<li><Link to="/bulk-sms-kuwait">Bulk SMS Kuwait</Link></li>
-<li><Link to="/bulk-sms-bahrain">Bulk SMS Bahrain</Link></li>
-<li><Link to="/bulk-sms-oman">Bulk SMS Oman</Link></li>
-{/* <li><Link to="/bulk-sms-indonesia">Bulk SMS Indonesia</Link></li> */}
-<li><Link to="/bulk-sms-turkey">Bulk SMS Turkey</Link></li>
-<li><Link to="/bulk-sms-egypt">Bulk SMS Egypt</Link></li>
-<li><Link to="/bulk-sms-phillipines">Bulk SMS Philippines</Link></li>
-<li><Link to="/bulk-sms-zambia">Bulk SMS Zambia</Link></li>
-<li><Link to="/bulk-sms-france">Bulk SMS France</Link></li>
+          {/* Column 2 */}
+          <ul className="space-y-2">
+            <li><Link to="/bulk-sms-uae">Bulk SMS UAE</Link></li>
+            <li><Link to="/bulk-sms-saudi-arabia">Bulk SMS Saudi Arabia</Link></li>
+            <li><Link to="/bulk-sms-qatar">Bulk SMS Qatar</Link></li>
+            <li><Link to="/bulk-sms-kuwait">Bulk SMS Kuwait</Link></li>
+            <li><Link to="/bulk-sms-bahrain">Bulk SMS Bahrain</Link></li>
+            <li><Link to="/bulk-sms-oman">Bulk SMS Oman</Link></li>
+            {/* <li><Link to="/bulk-sms-indonesia">Bulk SMS Indonesia</Link></li> */}
+            <li><Link to="/bulk-sms-turkey">Bulk SMS Turkey</Link></li>
+            <li><Link to="/bulk-sms-egypt">Bulk SMS Egypt</Link></li>
+            <li><Link to="/bulk-sms-phillipines">Bulk SMS Philippines</Link></li>
+            <li><Link to="/bulk-sms-zambia">Bulk SMS Zambia</Link></li>
+            <li><Link to="/bulk-sms-france">Bulk SMS France</Link></li>
 
-    </ul>
+          </ul>
 
-    {/* Column 3 */}
-    <ul className="space-y-2">
-    <li><Link to="/two-way-sms">2-Way SMS</Link></li>
-<li><Link to="/bulk-sms">Bulk SMS</Link></li>
-<li><Link to="/whatsapp-business-api">WhatsApp Business API</Link></li>
-<li><Link to="/dlt-registration-india">DLT Registration (India)</Link></li>
-<li><Link to="/sms-marketing">SMS Marketing</Link></li>
-<li><Link to="/sms-gateway">SMS Gateway</Link></li>
+          {/* Column 3 */}
+          <ul className="space-y-2">
+            <li><Link to="/two-way-sms">2-Way SMS</Link></li>
+            <li><Link to="/bulk-sms">Bulk SMS</Link></li>
+            <li><Link to="/whatsapp-business-api">WhatsApp Business API</Link></li>
+            <li><Link to="/dlt-registration-india">DLT Registration (India)</Link></li>
+            <li><Link to="/sms-marketing">SMS Marketing</Link></li>
+            <li><Link to="/sms-gateway">SMS Gateway</Link></li>
 
-    </ul>
+          </ul>
 
-    {/* Column 4 — Company Address style (optional) */}
-    <ul className="space-y-2 text-white/70 text-sm">
-     <h4 className="text-sm text-white/90 font-semibold mb-3">Resources</h4>
-              <li><Link to="/blogs" className="hover:text-white">Blog</Link></li>
-              <li><Link to="/use-cases" className="hover:text-white">Use Cases</Link></li>
-              <li><Link to="/privacy-policy" className="hover:text-white">Privacy Policy</Link></li>
-              <li><Link to="/terms&conditions" className="hover:text-white">Terms</Link></li>
-            </ul>
-  </div>
-</div>
+          {/* Column 4 — Company Address style (optional) */}
+          <ul className="space-y-2 text-white/70 text-sm">
+            <h4 className="text-sm text-white/90 font-semibold mb-3">Resources</h4>
+            <li><Link to="/blogs" className="hover:text-white">Blog</Link></li>
+            <li><Link to="/use-cases" className="hover:text-white">Use Cases</Link></li>
+            <li><Link to="/privacy-policy" className="hover:text-white">Privacy Policy</Link></li>
+            <li><Link to="/terms&conditions" className="hover:text-white">Terms</Link></li>
+          </ul>
+        </div>
+      </div>
 
 
 
@@ -271,11 +271,11 @@ const Footer = () => {
                 </div>
               </div>
             </div>
-</div>
-<div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 translate-x-[420px] -mt-[150px]">
+          </div>
+          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6 translate-x-[420px] -mt-[150px]">
 
 
-                         {/* Contact / CTA */}
+            {/* Contact / CTA */}
             <div className="bg-white/4 rounded-xl p-4 ">
               <h5 className="font-semibold">Get started - scale globally</h5>
               <p className="text-sm text-white/80 mt-2">Start a free trial, request a demo or chat with our team for enterprise onboarding.</p>
@@ -290,8 +290,8 @@ const Footer = () => {
             </div>
 
 
-{/* Office 3 */}
-  <div className="bg-white/4 rounded-xl p-4">
+            {/* Office 3 */}
+            <div className="bg-white/4 rounded-xl p-4">
               <div className="flex gap-4 items-start">
                 <img src={gayabiharicons} alt="Gayabihar" className="w-20 h-20 rounded-full object-cover border border-white/10" />
                 <div>
@@ -314,8 +314,8 @@ const Footer = () => {
                 </a>
               </div>
             </div> */}
-            </div>
-          
+          </div>
+
         </div>
       </div>
 

@@ -1,6 +1,15 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import axios from 'axios';
-import ReactQuill from 'react-quill';
+import { toast } from 'react-hot-toast';
+import ReactQuill, { Quill } from 'react-quill';
+
+const Font = Quill.import('formats/font');
+Font.whitelist = ['', 'serif', 'monospace', 'poppins'];
+Quill.register(Font, true);
+
+const Size = Quill.import('attributors/style/size');
+Size.whitelist = ['10px', '12px', '14px', '16px', '18px', '20px', '24px', '32px', '48px'];
+Quill.register(Size, true);
 import 'react-quill/dist/quill.snow.css';
 import axiosClient from './AxiosClient';
 import { useNavigate } from 'react-router-dom';
@@ -145,13 +154,14 @@ const BlogPostForm = () => {
     const quill = quillRef.current.getEditor();
     const content1 = quill.root.innerHTML;
     setContent(content1);
+    toast.success('Content saved successfully!');
   };
 
   const modules = useMemo(() => ({
     toolbar: {
       container: [
-        [{ 'font': [] }],
-        [{ 'size': ['small', 'medium', 'large', 'huge'] }],
+        [{ 'font': ['', 'serif', 'monospace', 'poppins'] }],
+        [{ 'size': ['10px', '12px', '14px', '16px', '18px', '20px', '24px', '32px', '48px'] }],
         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
         [{ 'indent': '-1' }, { 'indent': '+1' }],
@@ -200,12 +210,12 @@ const BlogPostForm = () => {
     try {
       await axiosClient.post('/blogs', blogPostData);
       localStorage.removeItem('blog_draft_new'); // Clear draft on successful submission
-      alert('Blog post created successfully');
+      toast.success('Blog post created successfully');
       const role = localStorage.getItem('role') || 'admin';
       navigate(role === 'editor' ? '/editor/blogs' : '/admin/blogs');
     } catch (error) {
       console.error('Error submitting form:', error);
-      alert('Failed to create blog post');
+      toast.error('Failed to create blog post');
     }
   };
 
@@ -232,7 +242,7 @@ const BlogPostForm = () => {
 
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('upload_preset', 'tdcahggc'); 
+    formData.append('upload_preset', 'tdcahggc');
 
     try {
       const response = await axios.post('https://api.cloudinary.com/v1_1/dtqo1n4mc/image/upload', formData);
@@ -272,7 +282,7 @@ const BlogPostForm = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               required
-              className="mt-1 block w-full h-9 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full h-10 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
             />
           </div>
           <div>
@@ -282,7 +292,7 @@ const BlogPostForm = () => {
               value={slug}
               onChange={(e) => setSlug(e.target.value)}
               required
-              className="mt-1 block w-full h-9 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full h-10 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
             />
           </div>
 
@@ -294,7 +304,7 @@ const BlogPostForm = () => {
               required
               className="mt-1 block w-full h-10 px-3 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
             >
-              <option value="">Select a Category</option>
+              <option value="" hidden>Select a Category</option>
               {categoriesList.map((cat) => (
                 <option key={cat._id} value={cat._id}>
                   {cat.name}
@@ -310,7 +320,7 @@ const BlogPostForm = () => {
               disabled={!category || subCategoriesList.length === 0}
               className="mt-1 block w-full h-10 px-3 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white disabled:bg-gray-100 disabled:text-gray-400"
             >
-              <option value="">
+              <option value="" hidden>
                 {!category
                   ? 'Select a Category first'
                   : subCategoriesList.length === 0
@@ -330,12 +340,14 @@ const BlogPostForm = () => {
               ref={quillRef}
               modules={modules}
               theme="snow"
-              className="mt-1"
+              value={content}
+              onChange={setContent}
+              className="mt-1 h-80 mb-12 bg-white text-gray-800"
             />
             <button
               type="button"
               onClick={handleContent}
-              className="mt-2 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700"
+              className="mt-5 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700"
             >
               Save
             </button>
@@ -346,7 +358,7 @@ const BlogPostForm = () => {
               type="text"
               value={summary}
               onChange={(e) => setSummary(e.target.value)}
-              className="mt-1 block w-full h-9 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full h-9 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
             />
           </div>
           <div>
@@ -355,7 +367,7 @@ const BlogPostForm = () => {
               type="text"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
-              className="mt-1 block w-full h-9 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full h-10 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
             />
           </div>
           <div>
@@ -365,7 +377,7 @@ const BlogPostForm = () => {
               value={author}
               onChange={(e) => setAuthor(e.target.value)}
               required
-              className="mt-1 block w-full h-9 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              className="mt-1 block w-full h-10 px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
             />
           </div>
 
@@ -391,7 +403,7 @@ const BlogPostForm = () => {
                 value={metaDescription}
                 onChange={(e) => setMetaDescription(e.target.value)}
                 placeholder="Brief description for search engines"
-                className="mt-1 block w-full border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2"
+                className="mt-1 block w-full px-3 py-2 border-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white"
               />
             </div>
 

@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Users, FileText, Activity, Layers, CheckCircle, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { toast } from 'react-hot-toast';
 
 export default function AdminDashboard() {
+  const navigate = useNavigate();
   const [statsData, setStatsData] = useState({
     totalUsers: 0,
     activeUsers: 0,
@@ -34,6 +37,7 @@ export default function AdminDashboard() {
         }
       } catch (error) {
         console.error("Failed to fetch admin stats:", error);
+        toast.error("Failed to load dashboard statistics.");
       } finally {
         setIsLoading(false);
       }
@@ -47,35 +51,32 @@ export default function AdminDashboard() {
       value: statsData.totalUsers,
       icon: <Users size={28} className="text-white" />,
       color: 'from-blue-500 to-blue-600',
-      shadow: 'shadow-blue-500/30'
+      shadow: 'shadow-blue-500/30',
+      link: '/admin/users'
     },
-    // {
-    //   name: 'Active Sessions',
-    //   value: statsData.activeUsers,
-    //   icon: <Activity size={28} className="text-white" />,
-    //   color: 'from-emerald-500 to-emerald-600',
-    //   shadow: 'shadow-emerald-500/30'
-    // },
     {
       name: 'Total Blogs',
       value: statsData.totalBlogs,
       icon: <FileText size={28} className="text-white" />,
       color: 'from-orange-500 to-orange-600',
-      shadow: 'shadow-orange-500/30'
+      shadow: 'shadow-orange-500/30',
+      link: '/admin/blogs'
     },
     {
       name: 'Published Blogs',
       value: statsData.publishedBlogs,
       icon: <CheckCircle size={28} className="text-white" />,
       color: 'from-purple-500 to-purple-600',
-      shadow: 'shadow-purple-500/30'
+      shadow: 'shadow-purple-500/30',
+      link: '/admin/blogs'
     },
     {
       name: 'Categories',
       value: statsData.totalCategories,
       icon: <Layers size={28} className="text-white" />,
       color: 'from-pink-500 to-pink-600',
-      shadow: 'shadow-pink-500/30'
+      shadow: 'shadow-pink-500/30',
+      link: '/admin/categories'
     },
   ];
 
@@ -120,7 +121,8 @@ export default function AdminDashboard() {
             <motion.div
               key={stat.name}
               variants={itemVariants}
-              className="bg-white rounded-2xl p-6 relative overflow-hidden group hover:shadow-xl transition-all duration-300 border border-slate-100"
+              onClick={() => navigate(stat.link)}
+              className="bg-white rounded-2xl p-6 relative overflow-hidden group hover:shadow-xl transition-all duration-300 border border-slate-100 cursor-pointer"
             >
               {/* Decorative Background Blob */}
               <div className={`absolute -right-6 -top-6 w-24 h-24 bg-gradient-to-br ${stat.color} rounded-full opacity-10 group-hover:scale-150 transition-transform duration-500 ease-out`}></div>

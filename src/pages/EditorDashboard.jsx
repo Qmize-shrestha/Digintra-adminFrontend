@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { FileText, Folder, Layers, Plus, Clock, CheckCircle } from 'lucide-react';
+import { FileText, Folder, Layers, Plus, Clock, CheckCircle, Eye, Edit } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { toast } from 'react-hot-toast';
 
 export default function EditorDashboard() {
   const [statsData, setStatsData] = useState({
@@ -36,6 +37,7 @@ export default function EditorDashboard() {
         }
       } catch (error) {
         console.error("Failed to fetch editor stats:", error);
+        toast.error("Failed to load dashboard statistics.");
       } finally {
         setIsLoading(false);
       }
@@ -120,11 +122,12 @@ export default function EditorDashboard() {
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="text-xs font-semibold text-slate-400 uppercase border-b border-slate-100">
-                <th className="py-3 px-4">Title</th>
+                <th className="py-3 px-4">Blog Title</th>
                 <th className="py-3 px-4">Category</th>
+                <th className="py-3 px-4">Subcategory</th>
                 <th className="py-3 px-4">Status</th>
                 <th className="py-3 px-4">Date</th>
-                <th className="py-3 px-4 text-right">Action</th>
+                <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100 text-sm">
@@ -140,10 +143,27 @@ export default function EditorDashboard() {
                 </tr>
               ) : (
                 recentBlogs.map((blog) => (
-                  <tr key={blog._id} className="hover:bg-slate-50 transition-colors">
-                    <td className="py-3 px-4 font-medium text-slate-800 line-clamp-1">{blog.title}</td>
+                  <tr key={blog._id} className=" hover:bg-slate-50 transition-colors">
+                    <td className="py-3 px-4">
+                      <div className="flex items-center gap-3">
+                        {blog.featuredImage || blog.coverImage ? (
+                          <img src={blog.featuredImage || blog.coverImage} alt="Cover" className="w-10 h-10 rounded-md object-cover flex-shrink-0" />
+                        ) : (
+                          <div className="w-10 h-10 rounded-md bg-slate-100 flex items-center justify-center flex-shrink-0">
+                            <FileText size={20} className="text-slate-400" />
+                          </div>
+                        )}
+                        <div>
+                          <p className="font-medium text-slate-800 line-clamp-1">{blog.title}</p>
+                          <p className="text-xs text-slate-500 line-clamp-1">https://digintra.com/blog/{blog.slug || blog._id}</p>
+                        </div>
+                      </div>
+                    </td>
                     <td className="py-3 px-4 text-slate-600">
                       {blog.category?.name || 'Uncategorized'}
+                    </td>
+                    <td className="py-3 px-4 text-slate-600">
+                      {blog.subCategory?.name || 'Uncategorized'}
                     </td>
                     <td className="py-3 px-4">
                       <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${blog.status === 'published'
@@ -157,12 +177,23 @@ export default function EditorDashboard() {
                       {new Date(blog.createdAt).toLocaleDateString()}
                     </td>
                     <td className="py-3 px-4 text-right">
-                      <Link
-                        to={`/editor/blogs/edit/${blog._id}`}
-                        className="text-xs font-medium text-emerald-600 hover:text-emerald-800"
-                      >
-                        Edit
-                      </Link>
+                      <div className="flex items-center justify-end gap-2">
+                        <Link
+                          to={`/blog/${blog.slug}`}
+                          target="_blank"
+                          className="p-1.5 text-slate-400 hover:text-emerald-600 transition-colors"
+                          title="View Blog"
+                        >
+                          <Eye size={16} />
+                        </Link>
+                        <Link
+                          to={`/editor/blogs/edit/${blog._id}`}
+                          className="p-1.5 text-slate-400 hover:text-emerald-600 transition-colors"
+                          title="Edit Blog"
+                        >
+                          <Edit size={16} />
+                        </Link>
+                      </div>
                     </td>
                   </tr>
                 ))

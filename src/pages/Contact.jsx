@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRef } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-hot-toast';
 import "./contact.css"
 import { Helmet } from 'react-helmet';
 import emailjs from '@emailjs/browser';
@@ -422,7 +421,6 @@ Product Specialist
             </form>
           </div>
         </div>
-        <ToastContainer/>
       </div>
       </div>
       <Footer/>

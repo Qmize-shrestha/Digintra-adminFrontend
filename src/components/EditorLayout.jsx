@@ -60,23 +60,13 @@ const EditorLayout = ({ children }) => {
           })}
         </nav>
 
-        {/* User Info & Logout Footer */}
-        <div className="p-4 border-t border-slate-800 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-emerald-700 flex items-center justify-center font-bold text-white shadow-inner">
-              E
-            </div>
-            <div>
-              <p className="text-sm font-medium text-white">Content Editor</p>
-              <p className="text-xs text-emerald-400 capitalize">Editor Access</p>
-            </div>
-          </div>
+        <div className="p-4 border-t border-slate-800">
           <button
             onClick={handleLogout}
-            className="p-2 text-slate-400 hover:text-red-400 hover:bg-slate-800 rounded-lg transition-colors"
-            title="Logout"
+            className="flex items-center gap-3 p-3 w-full rounded-lg transition-colors text-green-600 hover:bg-red-500/10 hover:text-red-400 font-medium"
           >
             <LogOut size={20} />
+            <span>Logout</span>
           </button>
         </div>
       </aside>
@@ -94,21 +84,15 @@ const EditorLayout = ({ children }) => {
 
           <div className="flex-1 md:flex-none"></div> {/* Spacer for mobile */}
 
-          {/* <div className="flex items-center gap-4">
-            <Link
-              to="/editor/blogs/create"
-              className="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium transition-colors shadow-sm"
-            >
-              + Write New Blog
-            </Link>
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg text-sm text-gray-600 hover:bg-gray-50 hover:text-red-600 transition-colors"
-            >
-              <LogOut size={16} />
-              <span className="hidden sm:inline">Logout</span>
-            </button>
-          </div> */}
+          <div className="flex items-center gap-4">
+            <div className="text-right hidden sm:block">
+              <p className="text-sm font-bold text-gray-700">EDITOR</p>
+              {/* <p className="text-xs text-emerald-600 font-medium">Editor Access</p> */}
+            </div>
+            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-600 to-emerald-400 flex items-center justify-center text-white font-bold shadow-md ring-2 ring-white">
+              E
+            </div>
+          </div>
         </header>
 
         {/* Dynamic Page Content */}

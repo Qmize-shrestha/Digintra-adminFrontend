@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Edit, Trash2, Plus, Search, FolderTree, Folder, Layers, X, CheckCircle, AlertCircle } from 'lucide-react';
 import axiosClient from '../Blog/AxiosClient';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 export default function AdminManageCategories() {
   const [activeTab, setActiveTab] = useState('categories'); // 'categories' or 'subcategories'

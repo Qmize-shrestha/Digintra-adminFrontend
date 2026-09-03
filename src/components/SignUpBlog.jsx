@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { toast } from 'react-hot-toast';
 const SignupBlog = () => {
   const [form, setForm] = useState({
     username: '',
@@ -9,7 +9,6 @@ const SignupBlog = () => {
     password: '',
   });
 
-  const [alert, setAlert] = useState(null);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -20,10 +19,10 @@ const SignupBlog = () => {
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:5000/api/signup-blog', form);
-      setAlert({ type: 'success', message: res.data.message });
+      toast.success(res.data.message);
       setTimeout(() => navigate('/loginblog'), 1500);
     } catch (err) {
-      setAlert({ type: 'error', message: err.response?.data?.error || 'Signup failed' });
+      toast.error(err.response?.data?.error || 'Signup failed');
     }
   };
 
@@ -31,12 +30,6 @@ const SignupBlog = () => {
     <div style={styles.container}>
       <form onSubmit={handleSubmit} style={styles.form}>
         <h2 style={styles.title}>Blog Signup</h2>
-
-        {alert && (
-          <div style={{ color: alert.type === 'error' ? 'red' : 'green', fontWeight: 'bold' }}>
-            {alert.message}
-          </div>
-        )}
 
         <input
           name="username"
