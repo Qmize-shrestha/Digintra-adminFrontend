@@ -129,8 +129,11 @@ const BlogPostDetail = () => {
   const { modifiedHtml } = processHeadingsFromHtml(post.content);
   const modifiedHeadingsArray = modifyHeadingContents(headingContents);
 
-  // Sanitize HTML content
-  const sanitizedContent = DOMPurify.sanitize(modifiedHtml);
+  // Sanitize HTML content while allowing video iframes
+  const sanitizedContent = DOMPurify.sanitize(modifiedHtml, {
+    ADD_TAGS: ['iframe'],
+    ADD_ATTR: ['src', 'width', 'height', 'frameborder', 'allow', 'allowfullscreen', 'class', 'style', 'title', 'target']
+  });
 
   const renderPosts = () => (
     <div className="bg-gray-100 p-4 h-auto rounded-lg">

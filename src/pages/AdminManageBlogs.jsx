@@ -40,7 +40,7 @@ export default function AdminManageBlogs() {
 
   const filteredBlogs = blogs.filter(blog => {
     const titleMatch = blog.title?.toLowerCase().includes(searchTerm.toLowerCase());
-    const categoryName = blog.category?.name || 'Uncategorized';
+    const categoryName = blog.category?.name || '----';
     const categoryMatch = categoryName.toLowerCase().includes(searchTerm.toLowerCase());
     return titleMatch || categoryMatch;
   });
@@ -88,6 +88,7 @@ export default function AdminManageBlogs() {
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200 text-slate-600 text-sm">
                 <th className="px-6 py-4 font-semibold">Blog Title</th>
+                <th className="px-6 py-4 font-semibold">Author</th>
                 <th className="px-6 py-4 font-semibold">Category</th>
                 <th className="px-6 py-4 font-semibold">Subcategory</th>
                 <th className="px-6 py-4 font-semibold">Status</th>
@@ -128,6 +129,9 @@ export default function AdminManageBlogs() {
                           <p className="text-xs text-slate-500 mt-0.5">{blog.slug}</p>
                         </div>
                       </div>
+                    </td>
+                    <td className="px-6 py-4 text-sm text-slate-600">
+                      {blog.author?.name || '----'}
                     </td>
                     <td className="px-6 py-4 text-sm text-slate-600">
                       {blog.category?.name || '---'}

@@ -7,7 +7,20 @@ const AdminLayout = ({ children }) => {
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (token) {
+        await fetch("http://localhost:5000/api/auth/logout", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+      }
+    } catch (error) {
+      console.error("Logout error:", error);
+    }
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     navigate("/bloglogin");

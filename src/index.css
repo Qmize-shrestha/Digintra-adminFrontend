@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;700&family=Lato:wght@400;700&family=Lora:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;700&family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@400;700&family=Roboto:wght@400;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -15,29 +15,154 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/* Inter */
+.ql-font-inter {
+  font-family: 'Inter', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value=inter]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=inter]::before {
+  content: 'Inter';
+  font-family: 'Inter', sans-serif;
+}
+
+/* Roboto */
+.ql-font-roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value=roboto]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=roboto]::before {
+  content: 'Roboto';
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Open Sans */
+.ql-font-open-sans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value=open-sans]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=open-sans]::before {
+  content: 'Open Sans';
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Lato */
+.ql-font-lato {
+  font-family: 'Lato', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value=lato]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=lato]::before {
+  content: 'Lato';
+  font-family: 'Lato', sans-serif;
+}
+
+/* Montserrat */
+.ql-font-montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value=montserrat]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=montserrat]::before {
+  content: 'Montserrat';
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Lora */
+.ql-font-lora {
+  font-family: 'Lora', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value=lora]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=lora]::before {
+  content: 'Lora';
+  font-family: 'Lora', serif;
+}
+
+/* Merriweather */
+.ql-font-merriweather {
+  font-family: 'Merriweather', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value=merriweather]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=merriweather]::before {
+  content: 'Merriweather';
+  font-family: 'Merriweather', serif;
+}
+
+/* Nunito */
+.ql-font-nunito {
+  font-family: 'Nunito', sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value=nunito]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=nunito]::before {
+  content: 'Nunito';
+  font-family: 'Nunito', sans-serif;
+}
+
+/* Playfair Display */
+.ql-font-playfair-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value=playfair-display]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value=playfair-display]::before {
+  content: 'Playfair Display';
+  font-family: 'Playfair Display', serif;
+}
+
 .ql-font-48px {
   font-size: 48px !important;
 }
 
 /* ReactQuill Custom Font Sizes in px */
 .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="10px"]::before,
-.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="10px"]::before { content: '10px'; }
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="10px"]::before {
+  content: '10px';
+}
+
 .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="12px"]::before,
-.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="12px"]::before { content: '12px'; }
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="12px"]::before {
+  content: '12px';
+}
+
 .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="14px"]::before,
-.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="14px"]::before { content: '14px'; }
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="14px"]::before {
+  content: '14px';
+}
+
 .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="16px"]::before,
-.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="16px"]::before { content: '16px'; }
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="16px"]::before {
+  content: '16px';
+}
+
 .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="18px"]::before,
-.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="18px"]::before { content: '18px'; }
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="18px"]::before {
+  content: '18px';
+}
+
 .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="20px"]::before,
-.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="20px"]::before { content: '20px'; }
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="20px"]::before {
+  content: '20px';
+}
+
 .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="24px"]::before,
-.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="24px"]::before { content: '24px'; }
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="24px"]::before {
+  content: '24px';
+}
+
 .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="32px"]::before,
-.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="32px"]::before { content: '32px'; }
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="32px"]::before {
+  content: '32px';
+}
+
 .ql-snow .ql-picker.ql-size .ql-picker-label[data-value="48px"]::before,
-.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="48px"]::before { content: '48px'; }
+.ql-snow .ql-picker.ql-size .ql-picker-item[data-value="48px"]::before {
+  content: '48px';
+}
 
 html {
   scroll-behavior: smooth;
@@ -83,4 +208,34 @@ html {
     -webkit-text-stroke: 1px #ffffff;
     /* border color */
   }
+}
+
+/* =====================================================
+   Responsive Video Embeds (ReactQuill iframes)
+   Applies to both the editor and the published blog.
+   ===================================================== */
+
+/* In the Quill editor */
+.ql-editor .ql-video,
+.ql-editor iframe {
+  width: 100% !important;
+  aspect-ratio: 16 / 9;
+  height: auto !important;
+  display: block;
+  border-radius: 8px;
+  margin: 12px 0;
+}
+
+/* In the published blog post output */
+.blog-content iframe,
+.blog-content .ql-video,
+.each-post-content iframe,
+.each-post-content .ql-video,
+.prose iframe {
+  width: 100% !important;
+  aspect-ratio: 16 / 9;
+  height: auto !important;
+  display: block;
+  border-radius: 8px;
+  margin: 16px 0;
 }

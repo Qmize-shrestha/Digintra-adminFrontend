@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Users, FileText, Activity, Layers, CheckCircle, Clock } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Users, FileText, Activity, Layers, CheckCircle, Clock, Eye, Edit } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 
@@ -12,6 +12,8 @@ export default function AdminDashboard() {
     totalBlogs: 0,
     publishedBlogs: 0,
     totalCategories: 0,
+    recentBlogs: [],
+    recentUsers: [],
   });
 
   const [isLoading, setIsLoading] = useState(true);
@@ -33,6 +35,8 @@ export default function AdminDashboard() {
             totalBlogs: data.data.blogs.total || 0,
             publishedBlogs: data.data.blogs.published || 0,
             totalCategories: data.data.categories.total || 0,
+            recentBlogs: data.data.recentBlogs || [],
+            recentUsers: data.data.recentUsers || [],
           });
         }
       } catch (error) {
@@ -115,28 +119,24 @@ export default function AdminDashboard() {
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.name}
               variants={itemVariants}
               onClick={() => navigate(stat.link)}
-              className="bg-white rounded-2xl p-6 relative overflow-hidden group hover:shadow-xl transition-all duration-300 border border-slate-100 cursor-pointer"
+              className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow cursor-pointer group"
             >
-              {/* Decorative Background Blob */}
-              <div className={`absolute -right-6 -top-6 w-24 h-24 bg-gradient-to-br ${stat.color} rounded-full opacity-10 group-hover:scale-150 transition-transform duration-500 ease-out`}></div>
-
-              <div className="relative z-10">
-                <div className="flex items-center justify-between mb-4">
-                  <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${stat.color} flex items-center justify-center shadow-lg ${stat.shadow} transform group-hover:-translate-y-1 transition-transform duration-300`}>
-                    {stat.icon}
-                  </div>
-                </div>
-
+              <div className="flex items-center justify-between">
                 <div>
-                  <h3 className="text-4xl font-black text-slate-800 tracking-tight">{stat.value.toLocaleString()}</h3>
-                  <p className="text-sm font-semibold text-slate-500 mt-1 uppercase tracking-wider">{stat.name}</p>
+                  <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">{stat.name}</p>
+                  <h3 className="text-3xl font-black text-slate-800 mt-2">
+                    {stat.value.toLocaleString()}
+                  </h3>
+                </div>
+                <div className={`p-3.5 rounded-xl bg-gradient-to-br ${stat.color} ${stat.shadow} shadow-lg transform group-hover:-translate-y-1 transition-transform duration-300`}>
+                  {stat.icon}
                 </div>
               </div>
             </motion.div>
@@ -144,46 +144,142 @@ export default function AdminDashboard() {
         </motion.div>
       )}
 
-      {/* Quick Actions / Recent Activity Section */}
+      {/* Recent Activity Sections */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4, duration: 0.5 }}
-        className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-8"
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8"
       >
-        {/* Welcome Banner */}
-
-
-        {/* System Status Mini-card */}
-        {/* <div className="bg-white rounded-3xl p-8 border border-slate-100 shadow-sm flex flex-col justify-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-emerald-400 to-emerald-500"></div>
-          <h3 className="text-lg font-bold text-slate-800 mb-6 flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-            System Status
-          </h3>
-
-          <div className="space-y-6">
+        {/* Recent Blogs Table */}
+        <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex flex-col">
+          <div className="flex justify-between items-center mb-6">
             <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span className="font-semibold text-slate-600">Database Connection</span>
-                <span className="text-emerald-500 font-bold">Stable</span>
-              </div>
-              <div className="w-full bg-slate-100 rounded-full h-2">
-                <div className="bg-emerald-500 h-2 rounded-full w-full"></div>
-              </div>
+              <h3 className="text-xl font-bold text-slate-800 tracking-tight">Recent Blogs</h3>
+              <p className="text-sm text-slate-500 mt-1">Latest blogs published across the platform</p>
             </div>
-
-            <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span className="font-semibold text-slate-600">API Latency</span>
-                <span className="text-blue-500 font-bold">24ms</span>
-              </div>
-              <div className="w-full bg-slate-100 rounded-full h-2">
-                <div className="bg-blue-500 h-2 rounded-full w-[15%]"></div>
-              </div>
-            </div>
+            <Link to="/admin/blogs" className="text-sm font-semibold text-orange-600 hover:text-orange-700 transition-colors flex items-center gap-1">
+              View All &rarr;
+            </Link>
           </div>
-        </div> */}
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="text-xs font-semibold text-slate-400 uppercase border-b border-slate-100">
+                  <th className="py-3 px-4">Blog Title</th>
+                  <th className="py-3 px-4">Author</th>
+                  <th className="py-3 px-4">Status</th>
+                  <th className="py-3 px-4 text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-sm">
+                {statsData.recentBlogs.length === 0 ? (
+                  <tr>
+                    <td colSpan="4" className="py-8 text-center text-slate-400">No recent blogs found.</td>
+                  </tr>
+                ) : (
+                  statsData.recentBlogs.map((blog) => (
+                    <tr key={blog._id} className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-3">
+                          {blog.featuredImage || blog.coverImage ? (
+                            <img src={blog.featuredImage || blog.coverImage} alt="Cover" className="w-10 h-10 rounded-md object-cover flex-shrink-0" />
+                          ) : (
+                            <div className="w-10 h-10 rounded-md bg-slate-100 flex items-center justify-center flex-shrink-0">
+                              <FileText size={20} className="text-slate-400" />
+                            </div>
+                          )}
+                          <div>
+                            <p className="font-medium text-slate-800 line-clamp-1">{blog.title}</p>
+                            <p className="text-xs text-slate-500 line-clamp-1">https://digintra.com/blog/{blog.slug || blog._id}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="py-3 px-4 text-slate-600">
+                        {blog.author?.name || '----'}
+                      </td>
+                      <td className="py-3 px-4">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${blog.status === 'published'
+                          ? 'bg-emerald-100 text-emerald-800'
+                          : 'bg-amber-100 text-amber-800'
+                          }`}>
+                          {blog.status}
+                        </span>
+                      </td>
+                      <td className="py-3 px-4 text-right">
+                        <div className="flex items-center justify-end gap-2">
+                          <Link to={`/blog/${blog.slug}`} target="_blank" className="p-1.5 text-slate-400 hover:text-orange-600 transition-colors" title="View live blog">
+                            <Eye size={16} />
+                          </Link>
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Recent Users Table */}
+        <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-sm flex flex-col">
+          <div className="flex justify-between items-center mb-6">
+            <div>
+              <h3 className="text-xl font-bold text-slate-800 tracking-tight">Recently Joined Users</h3>
+              <p className="text-sm text-slate-500 mt-1">Newest members of the platform</p>
+            </div>
+            <Link to="/admin/users" className="text-sm font-semibold text-blue-600 hover:text-blue-700 transition-colors flex items-center gap-1">
+              View All &rarr;
+            </Link>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="text-xs font-semibold text-slate-400 uppercase border-b border-slate-100">
+                  <th className="py-3 px-4">User</th>
+                  <th className="py-3 px-4">Role</th>
+                  <th className="py-3 px-4 text-right">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 text-sm">
+                {statsData.recentUsers.length === 0 ? (
+                  <tr>
+                    <td colSpan="3" className="py-8 text-center text-slate-400">No recent users found.</td>
+                  </tr>
+                ) : (
+                  statsData.recentUsers.map((user) => (
+                    <tr key={user._id} className="hover:bg-slate-50 transition-colors">
+                      <td className="py-3 px-4">
+                        <div className="flex items-center gap-3">
+                          <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                            {user.name.charAt(0).toUpperCase()}
+                          </div>
+                          <div>
+                            <p className="font-medium text-slate-800">{user.name}</p>
+                            <p className="text-xs text-slate-500">{user.email}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td className="py-3 px-4 text-slate-600 capitalize">
+                        {user.role}
+                      </td>
+                      <td className="py-3 px-4 text-right">
+                        <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${user.isOnline
+                          ? 'bg-emerald-100 text-emerald-800'
+                          : 'bg-slate-100 text-slate-800'
+                          }`}>
+                          {user.isOnline ? 'Online' : 'Offline'}
+                        </span>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </motion.div>
     </div>
   );

@@ -14,7 +14,6 @@ export default function AdminManageUsers() {
   const [formData, setFormData] = useState({
     _id: '',
     name: '',
-    email: '',
     password: '',
     role: 'editor',
     // status: 'active'
@@ -65,7 +64,7 @@ export default function AdminManageUsers() {
       email: user.email,
       password: '', // Blank by default when editing
       role: user.role,
-      // status: user.status
+      // status: user.status || 'active'
     });
     setIsModalOpen(true);
   };
@@ -151,6 +150,7 @@ export default function AdminManageUsers() {
                 <th className="px-6 py-4 font-semibold w-full">Name</th>
                 <th className="px-6 py-4 font-semibold whitespace-nowrap">Email</th>
                 <th className="px-6 py-4 font-semibold whitespace-nowrap">Role</th>
+                <th className="px-6 py-4 font-semibold whitespace-nowrap">Status</th>
                 <th className="px-6 py-4 font-semibold text-right whitespace-nowrap">Actions</th>
               </tr>
             </thead>
@@ -193,14 +193,14 @@ export default function AdminManageUsers() {
                     </td>
 
 
-                    {/* <td className="px-6 py-4">
-                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${user.status === 'active'
+                    <td className="px-6 py-4">
+                      <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${user.isOnline
                         ? 'bg-emerald-100 text-emerald-800'
                         : 'bg-slate-100 text-slate-800'
                         }`}>
-                        {user.status === 'active' ? 'Active' : 'Inactive'}
+                        {user.isOnline ? 'Online' : 'Offline'}
                       </span>
-                    </td> */}
+                    </td>
                     <td className="px-6 py-4 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end gap-3">
                         <button
@@ -292,8 +292,8 @@ export default function AdminManageUsers() {
                     onChange={(e) => setFormData({ ...formData, status: e.target.value })}
                     className="w-full px-3 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none bg-white"
                   >
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
+                    <option value="active">Online</option>
+                    <option value="inactive">Offline</option>
                   </select>
                 </div> */}
 

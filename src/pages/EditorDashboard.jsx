@@ -160,10 +160,10 @@ export default function EditorDashboard() {
                       </div>
                     </td>
                     <td className="py-3 px-4 text-slate-600">
-                      {blog.category?.name || 'Uncategorized'}
+                      {blog.category?.name || '-----'}
                     </td>
                     <td className="py-3 px-4 text-slate-600">
-                      {blog.subCategory?.name || 'Uncategorized'}
+                      {blog.subCategory?.name || '-----'}
                     </td>
                     <td className="py-3 px-4">
                       <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${blog.status === 'published'

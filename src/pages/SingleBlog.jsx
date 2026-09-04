@@ -92,7 +92,7 @@ export default function SingleBlog() {
 
             {/* Blog Content */}
             <div
-              className="prose prose-lg md:prose-xl prose-blue max-w-none text-gray-800"
+              className="prose prose-lg md:prose-xl prose-blue max-w-none text-gray-800 blog-content"
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
 

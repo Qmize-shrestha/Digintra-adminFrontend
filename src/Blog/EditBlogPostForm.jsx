@@ -4,7 +4,7 @@ import axios from 'axios';
 import ReactQuill, { Quill } from 'react-quill';
 
 const Font = Quill.import('formats/font');
-Font.whitelist = ['', 'serif', 'monospace', 'poppins'];
+Font.whitelist = ['', 'serif', 'monospace', 'poppins', 'inter', 'roboto', 'open-sans', 'lato', 'montserrat', 'lora', 'merriweather', 'nunito', 'playfair-display'];
 Quill.register(Font, true);
 
 const Size = Quill.import('attributors/style/size');
@@ -59,9 +59,9 @@ const EditBlogPostForm = () => {
     }
   };
 
-  const handleCategoryChange = async (selectedCatId) => {
+  const handleCategoryChange = async (selectedCatId, targetSubCatId = '') => {
     setCategory(selectedCatId);
-    setSubCategory('');
+    setSubCategory(targetSubCatId);
     if (!selectedCatId) {
       setSubCategoriesList([]);
       return;
@@ -100,23 +100,118 @@ const EditBlogPostForm = () => {
           quill.insertEmbed(index, 'image', url);
         } catch (error) {
           console.error('Error uploading image:', error);
-          alert('Failed to upload image. Please try again.');
+          toast.error('Failed to upload image. Please try again.');
         }
       }
     };
   }, []);
 
+  const formatVideoUrl = (url) => {
+    if (!url) return '';
+    let trimmed = url.trim();
+
+    if (trimmed.includes('youtube.com/embed/') || trimmed.includes('player.vimeo.com/video/')) {
+      return trimmed;
+    }
+
+    const youtubeShortsMatch = trimmed.match(/(?:https?:\/\/)?(?:www\.)?youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/i);
+    if (youtubeShortsMatch && youtubeShortsMatch[1]) {
+      return `https://www.youtube.com/embed/${youtubeShortsMatch[1]}`;
+    }
+
+    const youtubeWatchMatch = trimmed.match(/(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?.*v=([a-zA-Z0-9_-]+)/i);
+    if (youtubeWatchMatch && youtubeWatchMatch[1]) {
+      return `https://www.youtube.com/embed/${youtubeWatchMatch[1]}`;
+    }
+
+    const youtuBeMatch = trimmed.match(/(?:https?:\/\/)?youtu\.be\/([a-zA-Z0-9_-]+)/i);
+    if (youtuBeMatch && youtuBeMatch[1]) {
+      return `https://www.youtube.com/embed/${youtuBeMatch[1]}`;
+    }
+
+    const vimeoMatch = trimmed.match(/(?:https?:\/\/)?(?:www\.)?vimeo\.com\/([0-9]+)/i);
+    if (vimeoMatch && vimeoMatch[1]) {
+      return `https://player.vimeo.com/video/${vimeoMatch[1]}`;
+    }
+
+    return trimmed;
+  };
+
+  const videoHandler = useCallback(() => {
+    toast((t) => {
+      let inputVal = '';
+      return (
+        <div className="flex flex-col gap-2 p-1 min-w-[280px]">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">🎬</span>
+            <p className="font-semibold text-gray-800 text-sm">Add Video URL</p>
+          </div>
+          <input
+            type="text"
+            placeholder="Paste YouTube, Vimeo, or MP4 URL..."
+            className="w-full px-3 py-1.5 text-xs border border-gray-300 rounded focus:ring-1 focus:ring-indigo-500 focus:outline-none bg-white text-gray-800"
+            onChange={(e) => { inputVal = e.target.value; }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && inputVal) {
+                toast.dismiss(t.id);
+                const formattedUrl = formatVideoUrl(inputVal);
+                const quill = quillRef.current.getEditor();
+                const range = quill.getSelection(true);
+                const index = range ? range.index : 0;
+                quill.insertEmbed(index, 'video', formattedUrl);
+                toast.success('Video inserted successfully');
+              }
+            }}
+          />
+          <div className="flex justify-end gap-2 mt-1">
+            <button
+              onClick={() => {
+                if (inputVal) {
+                  toast.dismiss(t.id);
+                  const formattedUrl = formatVideoUrl(inputVal);
+                  const quill = quillRef.current.getEditor();
+                  const range = quill.getSelection(true);
+                  const index = range ? range.index : 0;
+                  quill.insertEmbed(index, 'video', formattedUrl);
+                  toast.success('Video inserted successfully');
+                } else {
+                  toast.error('Please enter a video URL');
+                }
+              }}
+              className="px-3 py-1 bg-indigo-600 text-white text-xs font-semibold rounded hover:bg-indigo-700 transition cursor-pointer"
+            >
+              Insert
+            </button>
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className="px-3 py-1 bg-gray-200 text-gray-700 text-xs font-semibold rounded hover:bg-gray-300 transition cursor-pointer"
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      );
+    }, { duration: 30000, id: 'video-url-toast' });
+  }, []);
+
   const handleContent = () => {
-    const quill = quillRef.current.getEditor();
-    const content1 = quill.root.innerHTML;
-    setContent(content1);
-    toast.success('Content saved successfully!');
+    if (quillRef.current) {
+      const quill = quillRef.current.getEditor();
+      const content1 = quill.root.innerHTML;
+      setContent(content1);
+      const draft = {
+        title, slug, content: content1, summary, tags, author, category, subCategory, coverImage, isPublished, metaTitle, metaDescription, canonicalUrl
+      };
+      localStorage.setItem(`blog_draft_edit_${postId}`, JSON.stringify(draft));
+      setLastSaved(new Date());
+      toast.success('Content saved successfully!');
+    }
   };
 
   const modules = useMemo(() => ({
     toolbar: {
       container: [
-        [{ 'font': ['', 'serif', 'monospace', 'poppins'] }],
+        [{ 'font': ['', 'serif', 'monospace', 'poppins', 'inter', 'roboto', 'open-sans', 'lato', 'montserrat', 'lora', 'merriweather', 'nunito', 'playfair-display'] }],
         [{ 'size': ['10px', '12px', '14px', '16px', '18px', '20px', '24px', '32px', '48px'] }],
         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
@@ -124,12 +219,13 @@ const EditBlogPostForm = () => {
         [{ 'align': [] }],
         ['bold', 'italic', 'underline', 'strike', 'sub', 'super'],
         [{ 'color': [] }, { 'background': [] }],
-        ['link', 'image', 'code-block', 'blockquote'],
+        ['link', 'image', 'video', 'code-block', 'blockquote'],
         [{ 'table': [] }],
         ['clean']
       ],
       handlers: {
-        image: imageHandler
+        image: imageHandler,
+        video: videoHandler
       }
     },
     history: {
@@ -137,7 +233,7 @@ const EditBlogPostForm = () => {
       maxStack: 500,
       userOnly: true
     }
-  }), [imageHandler]);
+  }), [imageHandler, videoHandler]);
 
   useEffect(() => {
     const fetchBlogPost = async () => {
@@ -184,28 +280,104 @@ const EditBlogPostForm = () => {
         // After loading, check for draft
         const savedDraft = localStorage.getItem(`blog_draft_edit_${postId}`);
         if (savedDraft) {
-          if (window.confirm("An unsaved draft for this post was found. Do you want to restore it?")) {
-            try {
-              const draft = JSON.parse(savedDraft);
-              setTitle(draft.title || '');
-              setSlug(draft.slug || '');
-              setContent(draft.content || '');
-              setSummary(draft.summary || '');
-              setTags(draft.tags || '');
-              setAuthor(draft.author || '');
-              setCategory(draft.category || '');
-              setSubCategory(draft.subCategory || '');
-              setCoverImage(draft.coverImage || '');
-              setIsPublished(draft.isPublished || false);
-              setMetaTitle(draft.metaTitle || '');
-              setMetaDescription(draft.metaDescription || '');
-              setCanonicalUrl(draft.canonicalUrl || '');
-            } catch (e) {
-              console.error("Failed to parse draft", e);
+          toast((t) => (
+            <div className="bg-white rounded-2xl shadow-2xl border border-indigo-100 p-4 max-w-sm w-full transition-all duration-300 transform hover:scale-[1.01]">
+              <div className="flex items-start gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-purple-600 flex items-center justify-center text-white shadow-md shadow-indigo-500/25 flex-shrink-0">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-sm font-bold text-gray-900 tracking-tight">Unsaved Draft Found</h4>
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-indigo-50 text-indigo-700 border border-indigo-100">
+                      Auto-saved
+                    </span>
+                  </div>
+                  <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                    We found a previously saved draft for this post. Would you like to restore your changes?
+                  </p>
+                  <div className="flex items-center justify-end gap-2 mt-3 pt-2 border-t border-gray-100">
+                    <button
+                      onClick={() => {
+                        toast.dismiss(t.id);
+                        localStorage.removeItem(`blog_draft_edit_${postId}`);
+                        toast('Draft discarded', { icon: '🗑️' });
+                      }}
+                      className="px-3 py-1.5 text-xs font-semibold text-gray-600 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 rounded-xl transition duration-150 active:scale-95 cursor-pointer"
+                    >
+                      Discard
+                    </button>
+                    <button
+                      onClick={() => {
+                        toast.dismiss(t.id);
+                        try {
+                          const draft = JSON.parse(savedDraft);
+                          setTitle(draft.title || '');
+                          setSlug(draft.slug || '');
+                          setSummary(draft.summary || '');
+                          setTags(draft.tags || '');
+                          setAuthor(draft.author || '');
+                          setCoverImage(draft.coverImage || '');
+                          setIsPublished(draft.isPublished || false);
+                          setMetaTitle(draft.metaTitle || '');
+                          setMetaDescription(draft.metaDescription || '');
+                          setCanonicalUrl(draft.canonicalUrl || '');
+
+                          const restoredContent = draft.content || '';
+                          setContent(restoredContent);
+
+                          if (draft.category) {
+                            handleCategoryChange(draft.category, draft.subCategory || '');
+                          } else {
+                            setCategory('');
+                            setSubCategory('');
+                          }
+
+                          setTimeout(() => {
+                            if (quillRef.current) {
+                              try {
+                                const quill = quillRef.current.getEditor();
+                                if (quill) {
+                                  quill.clipboard.dangerouslyPasteHTML(restoredContent);
+                                }
+                              } catch (err) {
+                                console.error("Error setting quill content:", err);
+                              }
+                            }
+                          }, 50);
+
+                          toast.success('Draft restored successfully!', {
+                            icon: '✨',
+                            style: { borderRadius: '12px', background: '#1e1b4b', color: '#fff' }
+                          });
+                        } catch (e) {
+                          console.error("Failed to parse draft", e);
+                          toast.error('Failed to restore draft');
+                        }
+                      }}
+                      className="px-4 py-1.5 text-xs font-semibold text-white bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 rounded-xl shadow-md shadow-indigo-500/20 hover:shadow-indigo-500/35 transition duration-150 active:scale-95 cursor-pointer flex items-center gap-1"
+                    >
+                      <span>Restore</span>
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ), {
+            duration: 15000,
+            id: `restore-draft-toast-${postId}`,
+            style: {
+              background: 'transparent',
+              boxShadow: 'none',
+              padding: 0,
+              maxWidth: '400px'
             }
-          } else {
-            localStorage.removeItem(`blog_draft_edit_${postId}`);
-          }
+          });
         }
       }
     };
@@ -215,19 +387,34 @@ const EditBlogPostForm = () => {
     fetchBlogPost();
   }, [postId]);
 
-  // Auto-save logic
+  // Auto-save logic (debounced auto-save)
   useEffect(() => {
-    if (loading || (!title && !content)) return;
+    if (loading) return;
 
-    const interval = setInterval(() => {
+    let currentContent = content;
+    if (quillRef.current) {
+      try {
+        const editor = quillRef.current.getEditor();
+        if (editor && editor.root) {
+          const innerHTML = editor.root.innerHTML;
+          if (innerHTML && innerHTML !== '<p><br></p>') {
+            currentContent = innerHTML;
+          }
+        }
+      } catch (e) { }
+    }
+
+    if (!title && (!currentContent || currentContent === '<p><br></p>') && !summary) return;
+
+    const timer = setTimeout(() => {
       const draft = {
-        title, slug, content, summary, tags, author, category, subCategory, coverImage, isPublished, metaTitle, metaDescription, canonicalUrl
+        title, slug, content: currentContent, summary, tags, author, category, subCategory, coverImage, isPublished, metaTitle, metaDescription, canonicalUrl
       };
       localStorage.setItem(`blog_draft_edit_${postId}`, JSON.stringify(draft));
       setLastSaved(new Date());
-    }, 30000);
+    }, 2000);
 
-    return () => clearInterval(interval);
+    return () => clearTimeout(timer);
   }, [title, slug, content, summary, tags, author, category, subCategory, coverImage, isPublished, metaTitle, metaDescription, canonicalUrl, loading, postId]);
 
   const handleSubmit = async (event) => {
