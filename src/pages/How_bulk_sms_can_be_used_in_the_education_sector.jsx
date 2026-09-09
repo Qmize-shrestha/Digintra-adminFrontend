@@ -6,8 +6,7 @@ import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import Footer from '../components/Footer';
 import icons1 from "../assets/SMS-uses-in-School.jpg";
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
+import BlogNavigation from "../components/BlogNavigation";
 export default function How_bulk_sms_can_be_used_in_the_education_sector() {
   useEffect(()=>{
     window.scrollTo(0,0);
@@ -79,26 +78,7 @@ Budget-Friendly SMS Marketing Tactics for Effective Campaigns.....
    </div>
    <h3  className="text-[20px] font-semibold mt-5 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>Conclusions</h3>
    <p  className="mt-2 lg:mt-5" style={{fontFamily:"'Poppins',sans-serif"}}>So, Have you admired by these methods of using SMS for the education industry? These are just a few out of many ways to use bulk SMS for education sector. We can’t include all of them but these are best out of them and will help you out in better communication…</p>
-   <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-     <Link to="/blog/bulk-sms-service-for-charities-trust-ngos-community-groups">
-       {" "}
-       <button className="w-[150px]  flex gap-x-5 hover:text-blue-700 font-semibold">
-         <span className="mt-2">
-           <img src={icons2} alt="" className="h-10" />
-         </span>
-         <span className="text-[16px] mt-4">prev</span>
-       </button>{" "}
-     </Link>
-     <Link to="/blog/how-to-use-bulk-sms-for-lead-generation">
-       {" "}
-       <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-         <span className="text-[16px] mt-4">next </span>
-         <span className="mt-2">
-           <img src={icons3} alt="" className="h-10" />
-         </span>
-       </button>{" "}
-     </Link>
-   </div>
+   <BlogNavigation />
    </div>
    <Blogpart/>
        </div>

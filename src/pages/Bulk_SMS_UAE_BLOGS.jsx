@@ -5,6 +5,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MainImage from '../assets/UAE_Bulk_SMS_Service.jpeg'
 import Footer from "../components/Footer";
+import BlogNavigation from "../components/BlogNavigation";
 
 
 const BlogPage = () => {
@@ -680,7 +681,9 @@ const BlogPage = () => {
 
         
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

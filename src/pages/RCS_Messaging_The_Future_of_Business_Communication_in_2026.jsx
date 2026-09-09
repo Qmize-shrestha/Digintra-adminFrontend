@@ -5,6 +5,7 @@ import MainImage from '../assets/RichCommunicationServices.jpeg'
 import { useState } from "react";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
+import BlogNavigation from "../components/BlogNavigation";
 
 const BlogPage = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -690,7 +691,9 @@ const BlogPage = () => {
 
     </section>
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

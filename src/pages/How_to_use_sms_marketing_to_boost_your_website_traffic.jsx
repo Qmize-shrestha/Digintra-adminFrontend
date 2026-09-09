@@ -6,9 +6,8 @@ import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import icons1 from "../assets/dgntra-seo-1024x354.jpg";
 import icons2 from "../assets/dgntra-wholesale-plan-1024x354.jpg";
-import icons3 from "../assets/prev.png";
-import icons4 from "../assets/next.png";
 import Footer from '../components/Footer';
+import BlogNavigation from "../components/BlogNavigation";
 export default function How_to_use_sms_marketing_to_boost_your_website_traffic() {
   useEffect(()=>{
     window.scrollTo(0,0);
@@ -238,26 +237,7 @@ What is Bulk SMS Service? & How Does It Help Businesses?.....
       And let me know whether my tips and ideas worked for you.
     </p>
   </div>
-  <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-    <Link to ="/blog/how-to-use-bulk-sms-for-lead-generation">
-      {" "}
-      <button className="w-[150px]  flex gap-x-5 hover:text-blue-700 font-semibold">
-        <span className="mt-2">
-          <img src={icons3} alt="" className="h-10" />
-        </span>
-        <span className="text-[16px] mt-4">prev</span>
-      </button>{" "}
-    </Link>
-    <Link to="/blog/how-to-send-bulk-messages-without-being-marked-as-spam">
-      {" "}
-      <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-        <span className="text-[16px] mt-4">next </span>
-        <span className="mt-2">
-          <img src={icons4} alt="" className="h-10" />
-        </span>
-      </button>{" "}
-    </Link>
-  </div>
+  <BlogNavigation />
 </div>
 <Blogpart/>
       </div>

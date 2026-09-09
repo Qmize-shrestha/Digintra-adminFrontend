@@ -6,6 +6,7 @@ import { useState } from "react";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
 import dltImage from "../assets/dlt2026.jpg";
+import BlogNavigation from "../components/BlogNavigation";
 
 const BlogPage = () => {
  
@@ -587,7 +588,9 @@ const BlogPage = () => {
   </div>
 </section>
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

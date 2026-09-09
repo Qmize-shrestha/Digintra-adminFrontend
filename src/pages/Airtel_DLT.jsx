@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
 import dltImage from "../assets/airtel-dlt.png";
 import { Link } from "react-router-dom";
+import BlogNavigation from "../components/BlogNavigation";
 
 
 const BlogPage = () => {
@@ -483,7 +484,9 @@ Airtel DLT Registration 2026: Step-by-Step Complete Guide
 
 
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

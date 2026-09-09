@@ -7,6 +7,7 @@ import Otp_Sms_Provider from "../assets/Otp_Sms_Provider.jpeg";
 import Digintra_homePage from "../assets/Digintra_homePage.jpeg";
 import Twilio_ from "../assets/Twilio_.jpeg";
 import unifonic from "../assets/unifonic.jpeg";
+import BlogNavigation from "../components/BlogNavigation";
 
 const BlogPage = () => {
     useEffect(() => {
@@ -520,7 +521,9 @@ const BlogPage = () => {
                             </div>
 
                         </section>
-                    </div>
+                    
+  <BlogNavigation />
+</div>
 
                     {/* RIGHT SIDEBAR */}
                     <Blogpart />

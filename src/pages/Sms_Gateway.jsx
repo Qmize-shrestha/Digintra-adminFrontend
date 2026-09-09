@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import smsgateway from "../assets/sms-gateway.jpg";
+import BlogNavigation from "../components/BlogNavigation";
 
 const BlogPage = () => {
  
@@ -885,7 +886,9 @@ const BlogPage = () => {
 
   </div>
 </section>
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import topetialt from "../assets/top5etisalternative.jpeg";
+import BlogNavigation from "../components/BlogNavigation";
 
 const BlogPage = () => {
  
@@ -614,7 +615,9 @@ to="https://digintra.com/blog/sms-api"
 
   </div>
 </section>
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

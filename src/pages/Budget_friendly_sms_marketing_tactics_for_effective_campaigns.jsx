@@ -6,8 +6,7 @@ import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import Footer from '../components/Footer';
 import icons1 from "../assets/businessman-holding-message-notifications-social-media_110893-1321-1024x482.png";
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
+import BlogNavigation from "../components/BlogNavigation";
 export default function Budget_friendly_sms_marketing_tactics_for_effective_campaigns() {
   useEffect(()=>{
     window.scrollTo(0,0);
@@ -147,10 +146,7 @@ export default function Budget_friendly_sms_marketing_tactics_for_effective_camp
              
                   <h2 className="text-[20px] mt-4 font-bold" style={{fontFamily:"'Montserrat',sans-serif"}}>Conclusion :</h2>
                   <p   className="text-[16px] mt-2 " style={{fontFamily:"'Poppins',sans-serif"}}>Budget-friendly SMS marketing tactics can help businesses maximize the effectiveness of their campaigns without compromising their financial resources. By setting clear goals, building a quality subscriber list, crafting compelling messages, segmenting your audience, optimizing timing and frequency, utilizing automation, leveraging user-generated content, running contests and promotions, monitoring results, and continuously testing and iterating, businesses can create impactful SMS marketing campaigns on a limited budget. With strategic planning, creativity, and a focus on high-impact techniques, businesses can achieve remarkable results and drive engagement and conversions through cost-effective SMS marketing.</p>
-              <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-          <Link href="/blog/the-top-10-advantages-of-sms-marketing-for-business">  <button className="w-[150px]  flex gap-x-5 hover:text-blue-700 font-semibold"><span className="mt-2"><img src={icons2} alt="" className="h-10" /></span><span className="text-[16px] mt-4">prev</span></button> </Link>    
-          <Link href="/blog/why-are-my-bulk-messages-not-being-delivered">    <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold"><span className="text-[16px] mt-4">next </span><span className="mt-2"><img src={icons3} alt="" className="h-10" /></span></button> </Link>  
-             </div> 
+              <BlogNavigation /> 
              </div>
              <Blogpart/>
             

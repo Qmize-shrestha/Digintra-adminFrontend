@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import icons1 from "../assets/sms-notification-msg24x7.jpg";
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
 import Footer from '../components/Footer';
+import BlogNavigation from "../components/BlogNavigation";
 export default function The_top_10_advantages_of_sms_marketing_for_business() {
   useEffect(()=>{
     window.scrollTo(0,0);
@@ -115,10 +114,7 @@ export default function The_top_10_advantages_of_sms_marketing_for_business() {
          
               <h2   className="text-[20px] mt-4 font-bold" style={{fontFamily:"'Montserrat',sans-serif"}}>Conclusion :</h2>
               <p   className="text-[16px] mt-2 " style={{fontFamily:"'Poppins',sans-serif"}}>SMS marketing presents businesses with a multitude of benefits that can revolutionize their communication and marketing strategies. From instant and direct communication to high conversion rates and increased customer engagement, SMS marketing offers a cost-effective and efficient solution for businesses seeking to connect with their target audience. By leveraging the power of SMS marketing, businesses can drive growth, enhance customer relationships, and stay ahead of the competition in today’s fast-paced digital landscape.</p>
-         <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-      <Link to="/blog/Compliance_Guidelines_for_Successful_SMS_Marketing">  <button className="w-[150px]  flex gap-x-5 hover:text-blue-700 font-semibold"><span className="mt-2"><img src={icons2} alt="" className="h-10" /></span><span className="text-[16px] mt-4">prev</span></button> </Link>    
-      <Link to="/blog/budget-friendly-sms-marketing-tactics-for-effective-campaigns">    <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold"><span className="text-[16px] mt-4">next </span><span className="mt-2"><img src={icons3} alt="" className="h-10" /></span></button> </Link>  
-         </div> 
+         <BlogNavigation /> 
          </div>
          <Blogpart/>
         </div>

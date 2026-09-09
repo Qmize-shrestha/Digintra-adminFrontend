@@ -14,6 +14,7 @@ import signupbsnldlt from "../assets/signupbsnldlt.png";
 import verifyotpbsnldlt from "../assets/verifyotpbsnldlt.png";
 import registerbsnldlt from "../assets/registerbsnldlt.png";
 import  trai from "../assets/trai.jpeg";
+import BlogNavigation from "../components/BlogNavigation";
 const BlogPage = () => {
  
   return (
@@ -346,7 +347,9 @@ const BlogPage = () => {
 
 
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

@@ -4,8 +4,6 @@ import { Helmet } from "react-helmet";
 import Blogpart from "../components/Blogpart";
 import Footer from "../components/Footer";
 import BULKSMSAPI from "../assets/bulksmsapi.jpg";
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
 import CompleteGuide from '../assets/completeguide.png'
 // import SMSREMINDERS from '../assets/SMSreminder.jpg'
 import SMSALERTPIC from "../assets/smsalertpic.jpg";
@@ -18,6 +16,7 @@ import FAST2SMS from "../assets/fast2sms.jpg";
 import INSIDER from '../assets/insider.png';
 // import SMSCAMPAIGN from '../assets/bulksmsmarketing2.jpg';
 import BULKSMSUNLOCK from '../assets/bulksmsunlock.jpg';
+import BlogNavigation from "../components/BlogNavigation";
 
 export default function BulkSMSBlog() {
   useEffect(() => {
@@ -157,24 +156,7 @@ Another important factor to consider is the provider's features and capabilities
 Cost is always a consideration, but it's important to balance affordability with quality. Compare pricing plans and ensure there are no hidden fees that could impact your budget. Some providers offer flexible pricing models based on your usage, which can be beneficial for small businesses or those with varying communication needs. Ultimately, the right bulk SMS provider will offer a combination of reliability, features, and affordability that aligns with your business goals and communication strategy.
           </p>
 
-          <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-            <Link to="/blog/your-sms-campaigns-are-not-converting">
-              <button className="w-[150px] flex gap-x-5 hover:text-blue-700 font-semibold">
-                <span className="mt-2">
-                  <img src={icons2} alt="Prev" className="h-10" />
-                </span>
-                <span className="text-[16px] mt-4">Prev</span>
-              </button>
-            </Link>
-            <Link to="">
-              <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-                <span className="text-[16px] mt-4">Next</span>
-                <span className="mt-2">
-                  <img src={icons3} alt="Next" className="h-10" />
-                </span>
-              </button>
-            </Link>
-          </div>
+          <BlogNavigation />
         </div>
         <Blogpart />
       </div>

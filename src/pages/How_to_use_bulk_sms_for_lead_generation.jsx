@@ -5,9 +5,8 @@ import Blogpart from '../components/Blogpart';
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import icons1 from "../assets/Lead-Generation-from-SMS-marketing.jpg";
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
 import Footer from '../components/Footer';
+import BlogNavigation from "../components/BlogNavigation";
 export default function How_to_use_bulk_sms_for_lead_generation() {
   useEffect(()=>{
     window.scrollTo(0,0);
@@ -115,26 +114,7 @@ Bulk SMS vs Whatsapp Messages Which is Better.....
           </div>
           <h3  className="text-[20px] font-semibold mt-5 lg:mt-10" style={{fontFamily:"'Montserrat',sans-serif"}}>Conclusions</h3>
           <p style={{fontFamily:"'Poppins',sans-serif"}}  className="mt-2 lg:mt-5">SMS marketing may be one of the best ways to respect prospects in certain cases. Emails don’t always offer a better response rate and there are greater chances of your mail delivering in the spam folder. Bulk SMS, on other hand reaches your target audience instantly and is read within three minutes of receiving the message. Follow the advice given in this article and start generating more leads for your B2B business via DIGINTRA SMS marketing service.</p>
-          <div className="w-[310px] flex gap-x-4 md:gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-            <Link to="/blog/how-bulk-sms-can-be-used-in-the-education-sector">
-              {" "}
-              <button className="w-[150px]  flex gap-x-5 hover:text-blue-700 font-semibold">
-                <span className="mt-2">
-                  <img src={icons2} alt="" className="h-10" />
-                </span>
-                <span className="text-[16px] mt-4">prev</span>
-              </button>{" "}
-            </Link>
-            <Link to="/blog/how-to-use-sms-marketing-to-boost-your-website-traffic">
-              {" "}
-              <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-                <span className="text-[16px] mt-4">next </span>
-                <span className="mt-2">
-                  <img src={icons3} alt="" className="h-10" />
-                </span>
-              </button>{" "}
-            </Link>
-          </div>
+          <BlogNavigation />
           </div>
           <Blogpart/>
     </div>

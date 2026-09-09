@@ -5,8 +5,7 @@ import Blogpart from '../components/Blogpart';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import icons1 from "../assets/NGOs-uses-DIGINTRA-Bulk-SMS-Services.jpg"
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
+import BlogNavigation from "../components/BlogNavigation";
 export default function Bulk_sms_service_for_charities_trust_ngos_community_groups() {
   useEffect(()=>{
     window.scrollTo(0,0);
@@ -96,7 +95,9 @@ The Top 10 Advantages of SMS Marketing for Business.....
             </button>{" "}
           </Link>
         </div>
-        </div>
+        
+  <BlogNavigation />
+</div>
         <Blogpart/>
     </div>
     <Footer/>

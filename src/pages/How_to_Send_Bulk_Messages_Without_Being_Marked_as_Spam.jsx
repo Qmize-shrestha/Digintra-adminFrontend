@@ -5,9 +5,8 @@ import Blogpart from '../components/Blogpart';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import icons1 from "../assets/dgntra-seo-1024x354.jpg";
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
 import Footer from '../components/Footer';
+import BlogNavigation from "../components/BlogNavigation";
 export default function How_to_Send_Bulk_Messages_Without_Being_Marked_as_Spam() {
   useEffect(()=>{
     window.scrollTo(0,0);
@@ -186,26 +185,7 @@ How to Send Bulk SMS without Getting Spammed.....
 
 
 
-<div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
- <Link to="/blog/how-to-use-sms-marketing-to-boost-your-website-traffic">
-   {" "}
-   <button className="w-[150px]  flex gap-x-5 hover:text-blue-700 font-semibold">
-     <span className="mt-2">
-       <img src={icons2} alt="" className="h-10" />
-     </span>
-     <span className="text-[16px] mt-4">prev</span>
-   </button>{" "}
- </Link>
- <Link to="/blog/Bulk-SMS-vs-Whatsapp-Messages-Which-is-Better">
-   {" "}
-   <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-     <span className="text-[16px] mt-4">next </span>
-     <span className="mt-2">
-       <img src={icons3} alt="" className="h-10" />
-     </span>
-   </button>{" "}
- </Link>
-</div>
+<BlogNavigation />
 </div>
 </div>
 <Blogpart/>

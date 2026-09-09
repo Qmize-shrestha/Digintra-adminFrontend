@@ -4,8 +4,6 @@ import { Helmet } from "react-helmet";
 import Blogpart from "../components/Blogpart";
 import Footer from "../components/Footer";
 import BULKSMSAPI from "../assets/bulksmsapi.jpg";
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
 // import SMSREMINDERS from '../assets/SMSreminder.jpg'
 import SMSALERTPIC from "../assets/smsalertpic.jpg";
 import FAST2SMS from "../assets/fast2sms.jpg";
@@ -15,6 +13,7 @@ import FAST2SMS from "../assets/fast2sms.jpg";
 // import SMSSUBSCRIBER from '../assets/smssubscriber.jpg';
 // import SERVICEPRO from '../assets/smsservice.jpg'
 import INSIDER from '../assets/insider.webp';
+import BlogNavigation from "../components/BlogNavigation";
 
 export default function BulkSMSBlog() {
   useEffect(() => {
@@ -229,24 +228,7 @@ export default function BulkSMSBlog() {
           Remember: Not all SMS providers are equal. The one that offers the lowest price isn’t always the best. Focus on value, not just cost.
           </p>
           
-          <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-            <Link to="/blog/top-5-things-you-need-to-know-before-choosing-a-bulk-sms-service-provider">
-              <button className="w-[150px] flex gap-x-5 hover:text-blue-700 font-semibold">
-                <span className="mt-2">
-                  <img src={icons2} alt="Prev" className="h-10" />
-                </span>
-                <span className="text-[16px] mt-4">Prev</span>
-              </button>
-            </Link>
-            <Link to="/blog/how-to-choose-the-best-bulk-sms-service-provider-in-india">
-              <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-                <span className="text-[16px] mt-4">Next</span>
-                <span className="mt-2">
-                  <img src={icons3} alt="Next" className="h-10" />
-                </span>
-              </button>
-            </Link>
-          </div>
+          <BlogNavigation />
         </div>
         <Blogpart />
       </div>

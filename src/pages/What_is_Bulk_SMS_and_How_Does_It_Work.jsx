@@ -4,8 +4,7 @@ import { Helmet } from 'react-helmet';
 import Blogpart from '../components/Blogpart';
 import Footer from '../components/Footer';
 import BULKSMS from '../assets/WhatisBulkSMS.jpg';
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
+import BlogNavigation from "../components/BlogNavigation";
 
 
 export default function BulkSMSBlog() {
@@ -98,20 +97,7 @@ Top 5 Bulk SMS Provider in India.....
           
           
           <p className='mt-2'>We hope that after reading this very long article, you must have understood what is bulk SMS and how does it work. And if still you have any query, then contact the professionals of Digintra. </p>
-          <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-            <Link to="/blog/how-top-businesses-use-sms-marketing-to-build-customer-satisfaction">
-              <button className="w-[150px] flex gap-x-5 hover:text-blue-700 font-semibold">
-                <span className="mt-2"><img src={icons2} alt="Prev" className="h-10" /></span>
-                <span className="text-[16px] mt-4">Prev</span>
-              </button>
-            </Link>
-            <Link to="/blog/top-5-benefits-of-bulk-sms-marketing-for-businesses">
-
-            <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-              <span className="text-[16px] mt-4">Next</span>
-              <span className="mt-2"><img src={icons3} alt="Next" className="h-10" /></span>
-            </button> </Link>
-          </div>
+          <BlogNavigation />
         </div>
         <Blogpart />
       </div>

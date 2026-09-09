@@ -5,9 +5,8 @@ import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import icons1 from "../assets/businessman-holding-message-notifications-social-media_110893-1321-1024x482.png";
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
 import Footer from '../components/Footer';
+import BlogNavigation from "../components/BlogNavigation";
 export default function What_is_Bulk_SMS_Service_How_Does_It_Help_Businesses() {
   useEffect(()=>{
     window.scrollTo(0,0);
@@ -307,26 +306,7 @@ How to use sms marketing to boost your website traffic.....
   <span className="ml-2 text-sm font-semibold">Read More →</span>
 </Link>
 
-<div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-   <Link to="/Bulk-SMS-vs-Whatsapp-Messages-Which-is-Better">
-     {" "}
-     <button className="w-[150px]  flex gap-x-5 hover:text-blue-700 font-semibold">
-       <span className="mt-2">
-         <img src={icons2} alt="" className="h-10" />
-       </span>
-       <span className="text-[16px] mt-4">prev</span>
-     </button>{" "}
-   </Link>
-   <Link to="/How-to-Send-Bulk-SMS-without-Getting-Spammed">
-     {" "}
-     <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-       <span className="text-[16px] mt-4">next </span>
-       <span className="mt-2">
-         <img src={icons3} alt="" className="h-10" />
-       </span>
-     </button>{" "}
-   </Link>
- </div>
+<BlogNavigation />
  </div>
  </div>
  <Blogpart/>

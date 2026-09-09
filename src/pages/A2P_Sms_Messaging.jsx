@@ -3,6 +3,7 @@ import Blogpart from "./Blogpart";
 import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
+import BlogNavigation from "../components/BlogNavigation";
 import A2P_Sms_Messaging from "../assets/A2P_Sms.jpeg";
 
 const BlogPage = () => {
@@ -530,6 +531,9 @@ const BlogPage = () => {
                                 </p>
                             </div>
                         </section>
+
+                        {/* PREV / NEXT NAVIGATION */}
+                        <BlogNavigation currentSlug="a2p-sms-messaging-business-guide" />
 
                     </div>
 

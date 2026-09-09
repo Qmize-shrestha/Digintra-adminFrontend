@@ -6,9 +6,8 @@ import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import icons1 from "../assets/why-messages-are-not-being-delivered-1024x381.jpg";
 import icons2 from "../assets/Bulk-SMS-India-Copy-300x169.jpg";
-import icons3 from "../assets/prev.png";
-import icons4 from "../assets/next.png";
 import Footer from '../components/Footer';
+import BlogNavigation from "../components/BlogNavigation";
 export default function Why_are_my_bulk_messages_not_being_delivered() {
   useEffect(()=>{
     window.scrollTo(0,0);
@@ -141,26 +140,7 @@ Compliance Guidelines for Successful SMS Marketing.....
    <p className="mt-2" style={{fontFamily:"'Poppins',sans-serif"}}>If you bought 1 Lac or 2 Lac SMS at 5 paisa, 6 paisa, 7 paisa and when you send 1 Lac SMS or any bulk quantity from their portal then they will submit only 40-60% (or less) to the SMSC for delivery and they also update fake delivery reports. Regarding this we humbly request you to please stay away from such companies and do not compare them with any reputed companies as we at DIGINTRA are distinctly a head from them. We always committed to provide Industry Best service and support with the competitive and lowest possible price.</p>
    </div>
    <h3 className="font-bold mt-2" style={{fontFamily:"'Montserrat',sans-serif"}}>Use these methods to improve your SMS response rates and watch your company’s revenue grow. Happy texting!</h3>
-    </div> <div className="w-[310px] flex gap-x-4 md:gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-    <Link to="/blog/budget-friendly-sms-marketing-tactics-for-effective-campaigns">
-      
-      <button className="w-[150px]  flex gap-x-5 hover:text-blue-700 font-semibold">
-        <span className="mt-2">
-          <img src={icons3} alt="" className="h-10" />
-        </span>
-        <span className="text-[16px] mt-4">prev</span>
-      </button>{" "}
-    </Link>
-    <Link to="/blog/bulk-sms-service-for-charities-trust-ngos-community-groups">
-      {" "}
-      <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-        <span className="text-[16px] mt-4">next </span>
-        <span className="mt-2">
-          <img src={icons4} alt="" className="h-10" />
-        </span>
-      </button>{" "}
-    </Link>
-  </div>
+    </div> <BlogNavigation />
 </div>
   </div>
   <Blogpart/>

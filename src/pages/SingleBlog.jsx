@@ -2,13 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { toast } from 'react-hot-toast';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import axiosClient from '../Blog/AxiosClient';
 import Blogpart from '../components/Blogpart';
 import Footer from '../components/Footer';
+import BlogNavigation from '../components/BlogNavigation';
 
 export default function SingleBlog() {
   const { slug } = useParams();
   const [blog, setBlog] = useState(null);
+  const [prevBlog, setPrevBlog] = useState(null);
+  const [nextBlog, setNextBlog] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -18,6 +22,8 @@ export default function SingleBlog() {
         const response = await axiosClient.get(`/public/blogs/${slug}`);
         if (response.data && response.data.success) {
           setBlog(response.data.blog);
+          setPrevBlog(response.data.prevBlog || null);
+          setNextBlog(response.data.nextBlog || null);
         } else {
           setError(true);
         }
@@ -73,11 +79,13 @@ export default function SingleBlog() {
           {/* Left Column: Blog Content */}
           <div className="w-full lg:w-2/3 xl:w-3/4">
             {/* Header Section */}
-            <header className="mb-6 text-left">
-              <h1 className="text-4xl font-extrabold text-black leading-tight">
-                {blog.title}
-              </h1>
-            </header>
+            {!blog.content?.includes('<h1') && (
+              <header className="mb-6 text-left">
+                <h1 className="text-4xl font-extrabold text-black leading-tight">
+                  {blog.title}
+                </h1>
+              </header>
+            )}
 
             {/* Cover Image */}
             {blog.featuredImage && (
@@ -92,9 +100,12 @@ export default function SingleBlog() {
 
             {/* Blog Content */}
             <div
-              className="prose prose-lg md:prose-xl prose-blue max-w-none text-gray-800 blog-content"
+              className="prose prose-lg md:prose-xl prose-blue max-w-none text-gray-800 blog-content overflow-x-auto [&_table]:w-full [&_table]:border-collapse [&_table]:my-6 [&_th]:border [&_th]:border-slate-300 [&_th]:bg-slate-100 [&_th]:p-3 [&_th]:font-bold [&_td]:border [&_td]:border-slate-200 [&_td]:p-3 [&_tr:nth-child(even)]:bg-slate-50/70"
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
+
+            {/* Previous / Next Article Navigation */}
+            <BlogNavigation currentSlug={slug} prevBlog={prevBlog} nextBlog={nextBlog} />
 
             {/* Tags */}
             {/* {blog.tags && blog.tags.length > 0 && (

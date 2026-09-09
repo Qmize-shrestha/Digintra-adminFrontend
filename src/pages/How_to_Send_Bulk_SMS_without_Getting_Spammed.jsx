@@ -5,8 +5,7 @@ import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import Footer from '../components/Footer';
 import icons1 from "../assets/dgntra-seo-1024x354.jpg";
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
+import BlogNavigation from "../components/BlogNavigation";
 export default function How_to_Send_Bulk_SMS_without_Getting_Spammed() {
   useEffect(()=>{
     window.scrollTo(0,0);
@@ -120,26 +119,7 @@ Discover the power of effective communication with Digintra's Bulk SMS Service i
 
 
 
-     <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-        <Link to="/blog/What-is-Bulk-SMS-Service-How-Does-It-Help-Businesses">
-          {" "}
-          <button className="w-[150px]  flex gap-x-5 hover:text-blue-700 font-semibold">
-            <span className="mt-2">
-              <img src={icons2} alt="" className="h-10" />
-            </span>
-            <span className="text-[16px] mt-4">prev</span>
-          </button>{" "}
-        </Link>
-        <Link to="/blog/top-5-bulk-sms-provider-in-india">
-          {" "}
-          <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-            <span className="text-[16px] mt-4">next </span>
-            <span className="mt-2">
-              <img src={icons3} alt="" className="h-10" />
-            </span>
-          </button>{" "}
-        </Link>
-      </div>
+     <BlogNavigation />
       </div>
       </div>
       <Blogpart/>

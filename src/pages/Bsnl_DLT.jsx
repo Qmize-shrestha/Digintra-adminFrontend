@@ -13,6 +13,7 @@ import signupbsnl from "../assets/signupbsnl.png";
 import signupbsnldlt from "../assets/signupbsnldlt.png";
 import verifyotpbsnldlt from "../assets/verifyotpbsnldlt.png";
 import registerbsnldlt from "../assets/registerbsnldlt.png";
+import BlogNavigation from "../components/BlogNavigation";
 const BlogPage = () => {
  
   return (
@@ -890,7 +891,9 @@ You need <span className="font-bold">BSNL DLT Registration</span> if your organi
 </section>
 
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

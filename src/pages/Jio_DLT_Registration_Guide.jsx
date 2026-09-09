@@ -12,6 +12,7 @@ import dltthirdstep from "../assets/dltthirdstep.png";
 import dltfourthstep from "../assets/dltfourthstep.jpg";
 import dltseventhstep from "../assets/dltseventhstep.png";
 import dlteighthstep from "../assets/dlteighthstep.jpg";
+import BlogNavigation from "../components/BlogNavigation";
 
 
 const BlogPage = () => {
@@ -567,7 +568,9 @@ Jio DLT Registration Guide: Complete Step-by-Step Process
 </section>
 
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

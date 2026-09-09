@@ -496,8 +496,6 @@ function App() {
         <Route path="/promotional-email" element={<Promotional_email />} />
         <Route path="/smtp-server" element={<Smtp_server />} />
         <Route path="/whatsapp-business-api" element={<Whatsapp_business_api />} />
-        {/* <Route path="/bulk-sms-india" element={<Bulk_SMS/>}/> */}
-        {/* <Route path="/bulk-sms-india" element={<Bulk_SMS_In_India/>}/> */}
         <Route path="/bulk-sms-germany" element={<BULK_SMS_GERMANY />} />
         <Route path="/bulk-sms-mexico" element={<BULK_SMS_MEXICO />} />
         <Route path="/bulk-sms-france" element={<BULK_SMS_FRANCE />} />
@@ -516,7 +514,7 @@ function App() {
         <Route path="/smspricing" element={<Pricingapp />} />
         <Route path="/contact-us" element={<Contact />} />
         <Route path="/whatsapp-api-pricing" element={<Whatsapp_api_pricing />} />
-        <Route path="/blog/the-top-10-advantages-of-sms-marketing-for-business" element={<The_top_10_advantages_of_sms_marketing_for_business />} />
+        {/* <Route path="/blog/the-top-10-advantages-of-sms-marketing-for-business" element={<The_top_10_advantages_of_sms_marketing_for_business />} />
         <Route path="/blog/budget-friendly-sms-marketing-tactics-for-effective-campaigns" element={<Budget_friendly_sms_marketing_tactics_for_effective_campaigns />} />
         <Route path="/blog/why-are-my-bulk-messages-not-being-delivered" element={<Why_are_my_bulk_messages_not_being_delivered />} />
         <Route path="/blog/bulk-sms-service-for-charities-trust-ngos-community-groups" element={<Bulk_sms_service_for_charities_trust_ngos_community_groups />} />
@@ -565,7 +563,6 @@ function App() {
         <Route path="/blog/unlocking-the-power-of-bulk-sms-transform-your-communication-strategy-today" element={<Unlocking_a_Power_of_Bulk_SMS />} />
         <Route path="/blog/dlt-registration-for-sms-in-india-a-complete-2025-guide" element={<DLT_Registration />} />
         <Route path="/blog/how-to-use-sms-for-customer-feedback-and-surveys" element={<Feedback_Customer />} />
-        {/* <Route path="/blog/whatsapp-business-api-revised-pricing-plan" element={<New_Pricing/>}/> */}
         <Route path="/blog/multimedia-messaging-service-a-comprehensive-guide-to-mms-defination-and-benefits" element={<Multimedia_Messaging_Services />} />
         <Route path="/blog/sms-vs-whatsapp-vs-email-marketing-which-is-best-for-your-business-in-2025" element={<Sms_vs_email_Whatsapp />} />
         <Route path="/blog/10-industries-that-can-double-their-conversions-with-bulk-sms-service" element={<Ten_Industries />} />
@@ -594,7 +591,7 @@ function App() {
         <Route path="/blog/sender-id" element={<Sender_Id />} />
         <Route path="/blog/bulk-sms-marketing-strategies-uae-businesses" element={<Bulk_SMS_MarketingUAE />} />
         <Route path="/blog/sms-campaign-ideas-for-small-businesses" element={<Sms_CampaignIdeas />} />
-        <Route path="/blog/sms-marketing-rules-uae" element={<Sms_Marketing_RulesUAE />} />
+        <Route path="/blog/sms-marketing-rules-uae" element={<Sms_Marketing_RulesUAE />} /> */}
 
         {/* Dynamic Blog Route */}
         <Route path="/blog/:slug" element={<SingleBlog />} />
@@ -603,9 +600,9 @@ function App() {
 
 
 
-        <Route path="/blog/what-is-bulk-sms-service-how-does-it-help-businesses" element={<What_is_Bulk_SMS_Service_How_Does_It_Help_Businesses />} />
+        {/* <Route path="/blog/what-is-bulk-sms-service-how-does-it-help-businesses" element={<What_is_Bulk_SMS_Service_How_Does_It_Help_Businesses />} />
         <Route path="/blog/how-to-use-bulk-sms-for-lead-generation" element={<How_to_use_bulk_sms_for_lead_generation />} />
-        <Route path="/blog/how-to-use-sms-marketing-to-boost-your-website-traffic" element={<How_to_use_sms_marketing_to_boost_your_website_traffic />} />
+        <Route path="/blog/how-to-use-sms-marketing-to-boost-your-website-traffic" element={<How_to_use_sms_marketing_to_boost_your_website_traffic />} /> */}
         <Route path="/voice-broadcast" element={<Voice_broadcast />} />
         <Route path="/terms&conditions" element={<Terms_conditons />} />
         <Route path="/about" element={<About />} />
@@ -647,8 +644,8 @@ function App() {
         <Route path="/bulk-sms-nigeria" element={<Bulk_SMS_Nigeria />} />
         <Route path="/two-way-sms" element={<TWO_WAY_SMS />} />
         <Route path="/bulk-sms-kuwait" element={<Bulk_sms_Kuwait />} />
-        <Route path="/blog/a2p-sms-messaging-business-guide" element={<A2P_Sms_Messaging />} />
-        <Route path="/blog/best-otp-sms-service-providers-in-uae" element={<Otp_Sms_Provider />} />
+        {/* <Route path="/blog/a2p-sms-messaging-business-guide" element={<A2P_Sms_Messaging />} /> */}
+        {/* <Route path="/blog/best-otp-sms-service-providers-in-uae" element={<Otp_Sms_Provider />} /> */}
         <Route path="/blog/post/:slug" element={<SingleBlog />} />
 
 

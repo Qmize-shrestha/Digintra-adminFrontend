@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import promotionaltextmsg from "../assets/promotional-text-msg.jpeg";
+import BlogNavigation from "../components/BlogNavigation";
 
 const BlogPage = () => {
  
@@ -645,7 +646,9 @@ const BlogPage = () => {
 
 
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

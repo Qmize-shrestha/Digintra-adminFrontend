@@ -10,6 +10,7 @@ import  sms from "../assets/sms-api.jpg";
 import smswork from "../assets/sms-api-work.jpeg"
 import { FaArrowDownLong } from "react-icons/fa6";
 import { FaBolt, FaChartBar, FaChartLine, FaClock, FaGlobe, FaIdBadge, FaKey, FaLanguage, FaLink, FaPaperPlane, FaPlug, FaRobot, FaServer, FaShieldAlt, FaSignal, FaTachometerAlt } from "react-icons/fa";
+import BlogNavigation from "../components/BlogNavigation";
 const BlogPage = () => {
  
   return (
@@ -917,7 +918,9 @@ const BlogPage = () => {
   </div>
 </section>
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

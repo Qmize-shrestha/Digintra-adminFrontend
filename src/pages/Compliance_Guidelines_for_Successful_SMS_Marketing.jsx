@@ -5,9 +5,8 @@ import Blogpart from '../components/Blogpart';
 import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import icons1 from "../assets/Blog1.jpg";
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
 import Footer from '../components/Footer';
+import BlogNavigation from "../components/BlogNavigation";
 export default function Compliance_Guidelines_for_Successful_SMS_Marketing() {
   useEffect(()=>{
     window.scrollTo(0,0);
@@ -108,10 +107,7 @@ export default function Compliance_Guidelines_for_Successful_SMS_Marketing() {
            
                 <h1   className="text-[20px] mt-4 font-bold" style={{fontFamily:"'Montserrat',sans-serif"}}>Conclusion :</h1>
                 <p   className="text-[16px] mt-2 " style={{fontFamily:"'Poppins',sans-serif"}}>Compliance guidelines play a vital role in ensuring successful SMS marketing campaigns that respect customer privacy, adhere to legal requirements, and build trust. By understanding and implementing these guidelines, businesses can conduct SMS marketing campaigns that not only achieve their marketing objectives but also maintain compliance with regulatory frameworks. By prioritizing compliance, businesses can foster positive customer relationships, protect their brand reputation, and drive long-term success in SMS marketing.</p>
-           <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-            <button className="w-[150px]  flex gap-x-5 hover:text-blue-700 font-semibold"><span className="mt-2"><img src={icons2} alt="" className="h-10" /></span><span className="text-[16px] mt-4">prev</span></button> 
-           <Link to="/blog/the-top-10-advantages-of-sms-marketing-for-business">   <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold"><span className="text-[16px] mt-4">next </span><span className="mt-2"><img src={icons3} alt="" className="h-10" /></span></button> </Link>  
-           </div> 
+           <BlogNavigation /> 
            </div>
            <Blogpart/>
       </div>

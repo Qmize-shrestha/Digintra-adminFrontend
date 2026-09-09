@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import senderid from "../assets/whatissenderid.jpeg";
 import Sms_campaign from "../assets/Sms_campaign.jpeg";
+import BlogNavigation from "../components/BlogNavigation";
 
 
 const BlogPage = () => {
@@ -354,7 +355,9 @@ SMS API  </Link> {" "}
         </div>
       </section>
 
-    </div>
+    
+  <BlogNavigation />
+</div>
 
     {/* RIGHT SIDEBAR */}
     <Blogpart />

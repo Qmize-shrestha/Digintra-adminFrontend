@@ -4,8 +4,6 @@ import { Helmet } from "react-helmet";
 import Blogpart from "../components/Blogpart";
 import Footer from "../components/Footer";
 import BULKSMSAPI from "../assets/bulksmsapi.jpg";
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
 import SMSMAR from "../assets/sms_marketing.jpg";
 import CompleteGuide from '../assets/completeguide.png'
 // import SMSREMINDERS from '../assets/SMSreminder.jpg'
@@ -23,6 +21,7 @@ import INSIDER from '../assets/insider.png';
 // import MULTIMEDIAMESSAGE from '../assets/multimediamessage.png';
 // import SmsEmailWhatsapp from '../assets/smsemailwhatsapp.png';
 import SENDEXCEL from '../assets/sendthroughexcel.jpg';
+import BlogNavigation from "../components/BlogNavigation";
 export default function BulkSMSBlog() {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -360,24 +359,7 @@ export default function BulkSMSBlog() {
 
 
 
-          <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-            <Link to="">
-              <button className="w-[150px] flex gap-x-5 hover:text-blue-700 font-semibold">
-                <span className="mt-2">
-                  <img src={icons2} alt="Prev" className="h-10" />
-                </span>
-                <span className="text-[16px] mt-4">Prev</span>
-              </button>
-            </Link>
-            <Link to="">
-              <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-                <span className="text-[16px] mt-4">Next</span>
-                <span className="mt-2">
-                  <img src={icons3} alt="Next" className="h-10" />
-                </span>
-              </button>
-            </Link>
-          </div>
+          <BlogNavigation />
         </div>
         <Blogpart />
       </div>

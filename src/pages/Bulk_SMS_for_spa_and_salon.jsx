@@ -4,9 +4,8 @@ import { Helmet } from 'react-helmet';
 import Blogpart from '../components/Blogpart';
 import Footer from '../components/Footer';
 import BULKSMS3 from '../assets/Bulksms2.jpg';
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
 import BULKSMS4 from '../assets/bulksmssalonandapa.jpg';
+import BlogNavigation from "../components/BlogNavigation";
 
 export default function BulkSMSBlog() {
   useEffect(() => {
@@ -114,19 +113,7 @@ How Top Businesses Use SMS Marketing to Build Customer Satisfaction.....
 
 
 
-          <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-            <Link to="/blog/what-is-bulk-sms-and-how-does-it-work">
-              <button className="w-[150px] flex gap-x-5 hover:text-blue-700 font-semibold">
-                <span className="mt-2"><img src={icons2} alt="Prev" className="h-10" /></span>
-                <span className="text-[16px] mt-4">Prev</span>
-              </button>
-            </Link>
-            <Link to="/blog/bulk-sms-services-for-hospitals">
-            <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-              <span className="text-[16px] mt-4">Next</span>
-              <span className="mt-2"><img src={icons3} alt="Next" className="h-10" /></span>
-            </button>   </Link>
-          </div>
+          <BlogNavigation />
         </div>
         <Blogpart />
       </div>

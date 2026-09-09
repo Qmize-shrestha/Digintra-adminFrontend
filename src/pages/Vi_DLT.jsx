@@ -14,6 +14,7 @@ import signupbsnldlt from "../assets/signupbsnldlt.png";
 
 import vidlt from "../assets/vidlt.jpg";
 import vidltportal from "../assets/vidltportal.jpeg";
+import BlogNavigation from "../components/BlogNavigation";
 const BlogPage = () => {
  
   return (
@@ -1122,7 +1123,9 @@ Vi DLT Registration: Complete Guide for Businesses in India (2026)
 
 
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

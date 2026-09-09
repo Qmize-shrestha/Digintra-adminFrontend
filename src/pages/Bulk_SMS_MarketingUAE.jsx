@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import senderid from "../assets/whatissenderid.jpeg";
 import digintra_photo3 from "../assets/Digintra_photo3.jpeg";
+import BlogNavigation from "../components/BlogNavigation";
 
 const BlogPage = () => {
  
@@ -726,7 +727,9 @@ const BlogPage = () => {
 </section>
 
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

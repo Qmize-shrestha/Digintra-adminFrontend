@@ -5,8 +5,7 @@ import { Helmet } from 'react-helmet';
 import Blogpart from '../components/Blogpart';
 import Footer from '../components/Footer';
 import SMSMARK from '../assets/smsvsmarketing.webp';
-import icons2 from "../assets/prev.png";
-import icons3 from "../assets/next.png";
+import BlogNavigation from "../components/BlogNavigation";
 
 export default function Top5BulkSmsProviderInIndia() {
   useEffect(() => {
@@ -78,20 +77,7 @@ Top 5 Benefits of Bulk SMS Marketing for Businesses.....
 
           <p className="text-[16px] mt-4 font-semibold" style={{ fontFamily: "'Poppins',sans-serif" }}>If you are looking for one of the best bulk SMS service providers in India or abroad, then you should contact the professionals of <span className="text-blue-900 font-bold">Digintra</span>. Moreover, we also provide email marketing services—you can go for that as well.</p>
 
-          <div className="w-[310px] flex gap-x-10 mx-auto justify-evenly h-14 mt-5 lg:mt-20">
-            <Link to="/top-5-bulk-sms-provider-in-india">
-              <button className="w-[150px] flex gap-x-5 hover:text-blue-700 font-semibold">
-                <span className="mt-2"><img src={icons2} alt="" className="h-10" /></span>
-                <span className="text-[16px] mt-4">Prev</span>
-              </button>
-            </Link>
-            <Link to="/how-top-businesses-use-sms-marketing-to-build-customer-satisfaction">
-            <button className="w-[150px] flex justify-end hover:text-blue-700 gap-x-5 font-semibold">
-              <span className="text-[16px] mt-4">Next</span>
-              <span className="mt-2"><img src={icons3} alt="" className="h-10" /></span>
-            </button>
-            </Link>
-          </div>
+          <BlogNavigation />
         </div>
         <Blogpart />
       </div>

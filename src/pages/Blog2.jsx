@@ -7,6 +7,7 @@ import "./blog.css"
 import { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { toast } from 'react-hot-toast';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import axiosClient from '../Blog/AxiosClient';
 import icons1 from "../assets/Blog1.jpg";
 import icons2 from "../assets/sms-notification-msg24x7.jpg";
@@ -505,36 +506,57 @@ import Otp_Sms_Provider from "../assets/Otp_Sms_Provider.jpeg";
 
   ];
 const MainPage = () => {
-  const [blogData, setBlogData] = useState(oldBlogData);
+  const [blogData, setBlogData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalBlogs, setTotalBlogs] = useState(0);
+  const [limit, setLimit] = useState(9);
 
   useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const response = await axiosClient.get('/public/blogs');
-        if (response.data.success) {
-          const formattedBlogs = response.data.blogs.map((blog) => ({
-            image: blog.featuredImage || icons1, 
-            title: blog.title,
-            link: `/blog/${blog.slug}`,
-          }));
-          setBlogData([...formattedBlogs, ...oldBlogData]);
-        }
-      } catch (error) {
-        console.error("Failed to fetch public blogs:", error);
-        toast.error(error.response?.data?.message || 'Failed to fetch blogs');
-      } finally {
-        setLoading(false);
-      }
-    };
     fetchBlogs();
-  }, []);
+  }, [currentPage, limit]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  const fetchBlogs = async () => {
+    try {
+      setLoading(true);
+      const response = await axiosClient.get(`/public/blogs?page=${currentPage}&limit=${limit}`);
+      if (response.data && response.data.success && response.data.blogs && response.data.blogs.length > 0) {
+        setBlogData(response.data.blogs);
+        setTotalPages(response.data.totalPages || 1);
+        setTotalBlogs(response.data.total || response.data.blogs.length);
+      } else {
+        // Safe fallback if database has no published blogs yet
+        const start = (currentPage - 1) * limit;
+        setBlogData(oldBlogData.slice(start, start + limit));
+        setTotalPages(Math.ceil(oldBlogData.length / limit));
+        setTotalBlogs(oldBlogData.length);
+      }
+    } catch (error) {
+      console.warn("Backend dynamic blogs fetch fallback to local cache:", error);
+      const start = (currentPage - 1) * limit;
+      setBlogData(oldBlogData.slice(start, start + limit));
+      setTotalPages(Math.ceil(oldBlogData.length / limit));
+      setTotalBlogs(oldBlogData.length);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  if (loading) {
+  const handlePageChange = (newPage) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+      const element = document.getElementById('allblog');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
+
+  const startEntry = totalBlogs === 0 ? 0 : (currentPage - 1) * limit + 1;
+  const endEntry = Math.min(currentPage * limit, totalBlogs);
+
+  if (loading && blogData.length === 0) {
     return <div className="text-center py-20 text-2xl">Loading Blogs...</div>;
   }
 
@@ -648,7 +670,7 @@ const MainPage = () => {
       <section className="py-16 bg-gradient-to-b from-gray-50 to-white mb-20">
 
         {/* Heading */}
-        <div id='allblog' className="text-center mb-12">
+        <div id='allblog' className="text-center mb-8">
           <h2 className="text-4xl font-bold text-gray-800">
             All Blogs
           </h2>
@@ -659,39 +681,176 @@ const MainPage = () => {
           </div>
         </div>
 
+        {/* Top Control Bar: Total Count & Per Page Quick Selector */}
+        <div className="max-w-6xl mx-auto px-4 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4 p-3.5 sm:p-4 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-sm">
+          <div className="flex items-center gap-2.5 text-sm text-slate-600">
+            <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse"></span>
+            <span>
+              Showing <strong className="font-bold text-slate-800">{startEntry}</strong> to{' '}
+              <strong className="font-bold text-slate-800">{endEntry}</strong> of{' '}
+              <strong className="font-bold text-slate-800">{totalBlogs}</strong> blogs
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2 text-sm text-slate-600">
+            <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Per page:</span>
+            <select
+              value={limit}
+              onChange={(e) => {
+                setLimit(Number(e.target.value));
+                setCurrentPage(1);
+              }}
+              className="border border-slate-300 hover:border-blue-500 focus:border-blue-500 rounded-xl px-3 py-1.5 text-sm font-bold text-slate-800 bg-slate-50 hover:bg-white focus:bg-white focus:ring-2 focus:ring-blue-500/20 outline-none transition-all cursor-pointer shadow-sm"
+            >
+              <option value={5}>5</option>
+              <option value={6}>6</option>
+              <option value={9}>9</option>
+              <option value={10}>10</option>
+              <option value={12}>12</option>
+              <option value={15}>15</option>
+              <option value={25}>25</option>
+              <option value={50}>50</option>
+            </select>
+          </div>
+        </div>
+
         {/* Blog Cards */}
         <div className="max-w-6xl mx-auto px-4 grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-          {blogData.map((blog, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group"
-            >
-              {/* Image */}
-              <div className="overflow-hidden">
-                <img
-                  src={blog.image}
-                  alt={blog.title}
-                  className="w-full h-52 object-cover group-hover:scale-105 transition duration-300"
-                />
-              </div>
+          {blogData.map((blog, index) => {
+            const blogImg = blog.featuredImage || blog.image || icons1;
+            const blogLink = blog.slug ? `/blog/${blog.slug}` : (blog.link || '#');
+            return (
+              <div
+                key={blog._id || index}
+                className="bg-white rounded-2xl shadow-md hover:shadow-xl transition duration-300 overflow-hidden group flex flex-col justify-between"
+              >
+                {/* Image */}
+                <div className="overflow-hidden">
+                  <img
+                    src={blogImg}
+                    alt={blog.title}
+                    className="w-full h-52 object-cover group-hover:scale-105 transition duration-300"
+                    onError={(e) => { e.target.src = icons1; }}
+                  />
+                </div>
 
-              {/* Content */}
-              <div className="p-6 flex flex-col justify-between h-44">
-                <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
-                  {blog.title}
-                </h3>
+                {/* Content */}
+                <div className="p-6 flex flex-col justify-between flex-grow">
+                  <h3 className="text-lg font-semibold text-gray-800 line-clamp-2">
+                    {blog.title}
+                  </h3>
 
-                <Link
-                  to={blog.link}
-                  className="mt-5 inline-block bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-2.5 px-5 rounded-lg font-medium 
-      hover:from-blue-600 hover:to-indigo-700 transition duration-300 shadow-md hover:shadow-lg"
-                >
-                  Read More
-                </Link>
+                  <Link
+                    to={blogLink}
+                    className="mt-5 inline-block text-center bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-2.5 px-5 rounded-lg font-medium 
+        hover:from-blue-600 hover:to-indigo-700 transition duration-300 shadow-md hover:shadow-lg"
+                  >
+                    Read More
+                  </Link>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
+        {/* Pagination & Limit Filter Footer */}
+        {totalBlogs > 0 && (
+          <div className="max-w-6xl mx-auto px-4 mt-16">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6 p-4 sm:p-5 bg-white/95 backdrop-blur-md rounded-2xl border border-slate-200/90 shadow-xl shadow-slate-200/50">
+              
+              {/* Left Side: Showing info & Limit dropdown */}
+              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-sm text-slate-600">
+                <span>
+                  Showing <strong className="font-bold text-slate-800">{startEntry}</strong> to{' '}
+                  <strong className="font-bold text-slate-800">{endEntry}</strong> of{' '}
+                  <strong className="font-bold text-slate-800">{totalBlogs}</strong> blogs
+                </span>
+
+                <div className="flex items-center gap-2 pl-3 border-l border-slate-200">
+                  <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Per page:</span>
+                  <select
+                    value={limit}
+                    onChange={(e) => {
+                      setLimit(Number(e.target.value));
+                      setCurrentPage(1);
+                    }}
+                    className="border border-slate-300 hover:border-blue-500 focus:border-blue-500 rounded-xl px-3 py-1.5 text-sm font-bold text-slate-800 bg-slate-50 hover:bg-white focus:bg-white focus:ring-2 focus:ring-blue-500/20 outline-none transition-all cursor-pointer shadow-sm"
+                  >
+                    <option value={5}>5</option>
+                    <option value={6}>6</option>
+                    <option value={9}>9</option>
+                    <option value={10}>10</option>
+                    <option value={12}>12</option>
+                    <option value={15}>15</option>
+                    <option value={25}>25</option>
+                    <option value={50}>50</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Right Side: Modern Eye-Catchy Pagination Controls */}
+              {totalPages > 1 && (
+                <div className="flex items-center gap-1.5 sm:gap-2">
+                  {/* PREVIOUS BUTTON */}
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    aria-label="Previous Page"
+                    className="group relative flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 shadow-sm disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:translate-x-0 bg-white hover:bg-gradient-to-r hover:from-blue-50 hover:to-indigo-50 text-slate-700 hover:text-blue-600 border border-slate-200 hover:border-blue-300 hover:shadow-md hover:-translate-x-0.5 active:translate-x-0"
+                  >
+                    <ChevronLeft
+                      size={18}
+                      className="transition-transform duration-300 group-hover:-translate-x-1 text-blue-600"
+                    />
+                    <span className="tracking-wide">Previous</span>
+                  </button>
+
+                  {/* Page Numbers */}
+                  <div className="flex items-center gap-1 px-1">
+                    {Array.from({ length: totalPages }, (_, i) => i + 1)
+                      .filter(page => page === 1 || page === totalPages || (page >= currentPage - 1 && page <= currentPage + 1))
+                      .map((page, index, arr) => {
+                        const showEllipsis = index > 0 && page - arr[index - 1] > 1;
+                        const isActive = currentPage === page;
+                        return (
+                          <React.Fragment key={page}>
+                            {showEllipsis && (
+                              <span className="px-1 text-slate-400 font-bold tracking-widest text-xs">•••</span>
+                            )}
+                            <button
+                              onClick={() => handlePageChange(page)}
+                              className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-xs sm:text-sm font-extrabold transition-all duration-200 shadow-sm ${
+                                isActive
+                                  ? 'bg-gradient-to-tr from-blue-600 via-indigo-600 to-blue-500 text-white shadow-lg shadow-blue-500/35 scale-105 ring-2 ring-blue-400/30'
+                                  : 'bg-white border border-slate-200/80 text-slate-700 hover:text-blue-600 hover:bg-blue-50/60 hover:border-blue-300 hover:scale-105'
+                              }`}
+                            >
+                              {page}
+                            </button>
+                          </React.Fragment>
+                        );
+                      })}
+                  </div>
+
+                  {/* NEXT BUTTON */}
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    aria-label="Next Page"
+                    className="group relative flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-300 shadow-md shadow-blue-500/20 disabled:opacity-40 disabled:cursor-not-allowed disabled:shadow-none disabled:hover:translate-x-0 bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 hover:from-blue-700 hover:to-indigo-800 text-white hover:shadow-lg hover:shadow-blue-500/30 hover:translate-x-0.5 active:translate-x-0"
+                  >
+                    <span className="tracking-wide">Next</span>
+                    <ChevronRight
+                      size={18}
+                      className="transition-transform duration-300 group-hover:translate-x-1 text-white"
+                    />
+                  </button>
+                </div>
+              )}
+
+            </div>
+          </div>
+        )}
       </section>
       <Footer />
     </>

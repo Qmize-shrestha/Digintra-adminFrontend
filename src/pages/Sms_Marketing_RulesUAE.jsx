@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import senderid from "../assets/whatissenderid.jpeg";
 import SmsMarketing_Rules from "../assets/SmsMarketing_Rules.jpeg";
+import BlogNavigation from "../components/BlogNavigation";
 
 
 const BlogPage = () => {
@@ -463,7 +464,9 @@ const BlogPage = () => {
             </div>
           </section>
 
-        </div>
+        
+  <BlogNavigation />
+</div>
 
         {/* RIGHT SIDEBAR */}
         <Blogpart />

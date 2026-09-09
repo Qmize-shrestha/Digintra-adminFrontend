@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Edit, Trash2, Plus, Search, Eye, FileText } from 'lucide-react';
+import { Edit, Trash2, Plus, Search, Eye, FileText, ChevronLeft, ChevronRight } from 'lucide-react';
 import axiosClient from '../Blog/AxiosClient';
 import { toast } from 'react-hot-toast';
 
@@ -8,15 +8,41 @@ export default function AdminManageBlogs() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearch, setDebouncedSearch] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [totalBlogs, setTotalBlogs] = useState(0);
+  const [limit, setLimit] = useState(10);
+
+  // Debounce search input to avoid spamming the backend
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(searchTerm);
+      setCurrentPage(1);
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
 
   useEffect(() => {
     fetchBlogs();
-  }, []);
+  }, [currentPage, limit, debouncedSearch]);
 
   const fetchBlogs = async () => {
     try {
-      const response = await axiosClient.get('/blogs');
-      setBlogs(response.data.blogs || []);
+      setLoading(true);
+      const params = new URLSearchParams({
+        page: currentPage,
+        limit: limit,
+      });
+      if (debouncedSearch.trim()) {
+        params.append('search', debouncedSearch.trim());
+      }
+      const response = await axiosClient.get(`/blogs?${params.toString()}`);
+      if (response.data && response.data.success) {
+        setBlogs(response.data.blogs || []);
+        setTotalPages(response.data.totalPages || 1);
+        setTotalBlogs(response.data.total || 0);
+      }
       setLoading(false);
     } catch (error) {
       console.error('Error fetching blogs:', error);
@@ -31,22 +57,22 @@ export default function AdminManageBlogs() {
     try {
       await axiosClient.delete(`/blogs/${id}`);
       toast.success('Blog deleted successfully');
-      setBlogs(blogs.filter(blog => blog._id !== id));
+      if (blogs.length === 1 && currentPage > 1) {
+        setCurrentPage(prev => prev - 1);
+      } else {
+        fetchBlogs();
+      }
     } catch (error) {
       console.error('Error deleting blog:', error);
       toast.error('Failed to delete blog.');
     }
   };
 
-  const filteredBlogs = blogs.filter(blog => {
-    const titleMatch = blog.title?.toLowerCase().includes(searchTerm.toLowerCase());
-    const categoryName = blog.category?.name || '----';
-    const categoryMatch = categoryName.toLowerCase().includes(searchTerm.toLowerCase());
-    return titleMatch || categoryMatch;
-  });
-
   const role = localStorage.getItem('role') || 'admin';
   const basePath = role === 'editor' ? '/editor' : '/admin';
+
+  const startEntry = totalBlogs === 0 ? 0 : (currentPage - 1) * limit + 1;
+  const endEntry = Math.min(currentPage * limit, totalBlogs);
 
   return (
     <div className="space-y-6">
@@ -99,21 +125,21 @@ export default function AdminManageBlogs() {
             <tbody className="divide-y divide-slate-100">
               {loading ? (
                 <tr>
-                  <td colSpan="5" className="px-6 py-8 text-center text-slate-500">
+                  <td colSpan="7" className="px-6 py-8 text-center text-slate-500">
                     <div className="flex justify-center items-center gap-2">
                       <div className="w-5 h-5 border-2 border-orange-500 border-t-transparent rounded-full animate-spin"></div>
                       <span>Loading blogs...</span>
                     </div>
                   </td>
                 </tr>
-              ) : filteredBlogs.length === 0 ? (
+              ) : blogs.length === 0 ? (
                 <tr>
-                  <td colSpan="5" className="px-6 py-8 text-center text-slate-500">
+                  <td colSpan="7" className="px-6 py-8 text-center text-slate-500">
                     No blogs found matching your search.
                   </td>
                 </tr>
               ) : (
-                filteredBlogs.map((blog) => (
+                blogs.map((blog) => (
                   <tr key={blog._id} className="hover:bg-slate-50 transition-colors group">
                     <td className="px-6 py-4">
                       <div className="flex items-center gap-3">
@@ -188,6 +214,78 @@ export default function AdminManageBlogs() {
             </tbody>
           </table>
         </div>
+
+        {/* Pagination Footer */}
+        {!loading && totalBlogs > 0 && (
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 bg-slate-50 border-t border-slate-200">
+            <div className="flex items-center gap-4 text-sm text-slate-600">
+              <span>
+                Showing <span className="font-semibold text-slate-800">{startEntry}</span> to{' '}
+                <span className="font-semibold text-slate-800">{endEntry}</span> of{' '}
+                <span className="font-semibold text-slate-800">{totalBlogs}</span> blogs
+              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-slate-500">Per page:</span>
+                <select
+                  value={limit}
+                  onChange={(e) => {
+                    setLimit(Number(e.target.value));
+                    setCurrentPage(1);
+                  }}
+                  className="border border-slate-300 rounded-md px-2 py-1 text-sm bg-white focus:ring-1 focus:ring-orange-500 outline-none"
+                >
+                  <option value={5}>5</option>
+                  <option value={10}>10</option>
+                  <option value={25}>25</option>
+                  <option value={50}>50</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-1">
+              <button
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+                className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-lg border border-slate-300 text-slate-600 bg-white hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                <ChevronLeft size={16} />
+                <span>Prev</span>
+              </button>
+
+              <div className="flex items-center gap-1 px-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1)
+                  .filter((p) => p === 1 || p === totalPages || (p >= currentPage - 1 && p <= currentPage + 1))
+                  .map((pageNumber, index, array) => {
+                    const showEllipsis = index > 0 && pageNumber - array[index - 1] > 1;
+                    return (
+                      <React.Fragment key={pageNumber}>
+                        {showEllipsis && <span className="px-2 text-slate-400 text-sm">...</span>}
+                        <button
+                          onClick={() => setCurrentPage(pageNumber)}
+                          className={`w-8 h-8 rounded-lg text-sm font-medium transition-colors ${
+                            currentPage === pageNumber
+                              ? 'bg-orange-500 text-white shadow-sm'
+                              : 'text-slate-600 hover:bg-slate-200/70'
+                          }`}
+                        >
+                          {pageNumber}
+                        </button>
+                      </React.Fragment>
+                    );
+                  })}
+              </div>
+
+              <button
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage >= totalPages}
+                className="flex items-center gap-1 px-3 py-1.5 text-sm font-medium rounded-lg border border-slate-300 text-slate-600 bg-white hover:bg-slate-100 disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+              >
+                <span>Next</span>
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
