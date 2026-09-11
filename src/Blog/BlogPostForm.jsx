@@ -10,9 +10,53 @@ Quill.register(Font, true);
 const Size = Quill.import('attributors/style/size');
 Size.whitelist = ['10px', '12px', '14px', '16px', '18px', '20px', '24px', '32px', '48px'];
 Quill.register(Size, true);
+
+// Register generic Attributors and Blots so Quill preserves class, style, id, target, rel, section, and div
+const Parchment = Quill.import('parchment');
+
+const ClassAttribute = new Parchment.Attributor.Attribute('class', 'class', {
+  scope: Parchment.Scope.ANY
+});
+const StyleAttribute = new Parchment.Attributor.Attribute('style', 'style', {
+  scope: Parchment.Scope.ANY
+});
+const IdAttribute = new Parchment.Attributor.Attribute('id', 'id', {
+  scope: Parchment.Scope.ANY
+});
+const TargetAttribute = new Parchment.Attributor.Attribute('target', 'target', {
+  scope: Parchment.Scope.ANY
+});
+const RelAttribute = new Parchment.Attributor.Attribute('rel', 'rel', {
+  scope: Parchment.Scope.ANY
+});
+
+const Block = Quill.import('blots/block');
+class SectionBlot extends Block { }
+SectionBlot.blotName = 'section';
+SectionBlot.tagName = 'section';
+
+class DivBlot extends Block { }
+DivBlot.blotName = 'div';
+DivBlot.tagName = 'div';
+
+Quill.register(ClassAttribute, true);
+Quill.register(StyleAttribute, true);
+Quill.register(IdAttribute, true);
+Quill.register(TargetAttribute, true);
+Quill.register(RelAttribute, true);
+Quill.register(SectionBlot, true);
+Quill.register(DivBlot, true);
 import 'react-quill/dist/quill.snow.css';
 import axiosClient from './AxiosClient';
 import { useNavigate } from 'react-router-dom';
+import {
+  TableActionToolbar,
+  InsertTableModal,
+  insertTableIntoQuill,
+  executeTableAction,
+  setupQuillTableListeners,
+  formatTableCellOrSelection
+} from './TableControls';
 
 
 const BlogPostForm = () => {
@@ -36,9 +80,20 @@ const BlogPostForm = () => {
   const [subCategoriesList, setSubCategoriesList] = useState([]);
 
   const quillRef = useRef(null);
+  const lastFocusedCellRef = useRef(null);
+  const [showTableModal, setShowTableModal] = useState(false);
 
   const [lastSaved, setLastSaved] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
+
+  // Setup Quill Table listeners for editable cells, cell focus & tab navigation
+  useEffect(() => {
+    const editor = quillRef.current?.getEditor();
+    if (!editor || !editor.root) return;
+
+    const cleanup = setupQuillTableListeners(editor, setContent, lastFocusedCellRef);
+    return cleanup;
+  }, []);
 
   // Initial load: check for draft
   useEffect(() => {
@@ -157,7 +212,7 @@ const BlogPostForm = () => {
             currentContent = innerHTML;
           }
         }
-      } catch (e) {}
+      } catch (e) { }
     }
 
     if (!title && (!currentContent || currentContent === '<p><br></p>') && !summary) return;
@@ -352,13 +407,13 @@ const BlogPostForm = () => {
         [{ 'align': [] }],
         ['bold', 'italic', 'underline', 'strike', 'sub', 'super'],
         [{ 'color': [] }, { 'background': [] }],
-        ['link', 'image', 'video', 'code-block', 'blockquote'],
-        [{ 'table': [] }],
+        ['link', 'image', 'video', 'table', 'code-block', 'blockquote'],
         ['clean']
       ],
       handlers: {
         image: imageHandler,
-        video: videoHandler
+        video: videoHandler,
+        table: () => setShowTableModal(true)
       }
     },
     history: {
@@ -520,7 +575,18 @@ const BlogPostForm = () => {
             </select>
           </div>
           <div>
-            <label className="block text-sm font-medium  text-gray-700">Content</label>
+            <div className="flex items-center justify-between mb-1.5">
+              <label className="block text-sm font-medium text-gray-700">Content</label>
+              <span className="text-xs text-indigo-600 font-medium bg-indigo-50 px-2 py-0.5 rounded-full">
+                Interactive Table Enabled
+              </span>
+            </div>
+
+            <TableActionToolbar
+              onOpenModal={() => setShowTableModal(true)}
+              onAction={(action) => executeTableAction(action, quillRef, lastFocusedCellRef, setContent)}
+            />
+
             <ReactQuill
               ref={quillRef}
               modules={modules}
@@ -532,7 +598,7 @@ const BlogPostForm = () => {
             <button
               type="button"
               onClick={handleContent}
-              className="mt-5 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700"
+              className="mt-5 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-md shadow-sm hover:bg-indigo-700 cursor-pointer"
             >
               Save
             </button>
@@ -662,6 +728,15 @@ const BlogPostForm = () => {
           </div>
         </div>
       )}
+
+      {/* Insert Table Modal */}
+      <InsertTableModal
+        isOpen={showTableModal}
+        onClose={() => setShowTableModal(false)}
+        onInsert={(rows, cols, hasHeader) =>
+          insertTableIntoQuill(rows, cols, hasHeader, quillRef, setContent)
+        }
+      />
     </>
   );
 };

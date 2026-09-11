@@ -239,3 +239,107 @@ html {
   border-radius: 8px;
   margin: 16px 0;
 }
+
+/* =====================================================
+   Custom Responsive Table Styling (Editor & Blog View)
+   ===================================================== */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 18px 0;
+  border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar {
+  height: 6px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+/* Base table styles in editor and published blogs */
+.ql-editor .table-responsive {
+  display: block !important;
+  width: 100% !important;
+  margin: 16px 0 !important;
+  user-select: text !important;
+}
+
+.ql-editor table,
+.blog-custom-table,
+.each-post-content table,
+.blog-content table,
+.prose table {
+  display: table !important;
+  width: 100% !important;
+  min-width: 480px;
+  border-collapse: collapse !important;
+  margin: 16px 0 !important;
+  font-size: 14px;
+  line-height: 1.6;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  background-color: #ffffff;
+}
+
+/* Table Headers */
+.ql-editor table th,
+.blog-custom-table th,
+.each-post-content table th,
+.blog-content table th,
+.prose table th {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  font-weight: 700;
+  padding: 12px 16px !important;
+  border: 1px solid #cbd5e1 !important;
+  text-align: left;
+  letter-spacing: 0.02em;
+}
+
+/* Table Body Cells */
+.ql-editor table td,
+.blog-custom-table td,
+.each-post-content table td,
+.blog-content table td,
+.prose table td {
+  padding: 10px 16px !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155;
+  vertical-align: middle;
+}
+
+/* Alternating row colors */
+.ql-editor table tr:nth-child(even),
+.blog-custom-table tr:nth-child(even),
+.each-post-content table tr:nth-child(even),
+.blog-content table tr:nth-child(even),
+.prose table tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+
+/* Hover highlight */
+.ql-editor table tr:hover,
+.blog-custom-table tr:hover,
+.each-post-content table tr:hover,
+.blog-content table tr:hover,
+.prose table tr:hover {
+  background-color: #f1f5f9;
+}
+
+/* Quill editor specific table cell editing UX */
+.ql-editor table td,
+.ql-editor table th {
+  min-width: 70px;
+  cursor: text;
+}
+
+.ql-editor table td:focus,
+.ql-editor table th:focus {
+  outline: 2px solid #6366f1;
+  outline-offset: -2px;
+}
