@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
-import ReactQuill, { Quill } from 'react-quill';
+import ReactQuill, { Quill } from 'react-quill-new';
+import TableUp, { defaultCustomSelect } from 'quill-table-up';
+import 'quill-table-up/index.css';
+import 'quill-table-up/table-creator.css';
 
 const Font = Quill.import('formats/font');
 Font.whitelist = ['', 'serif', 'monospace', 'poppins', 'inter', 'roboto', 'open-sans', 'lato', 'montserrat', 'lora', 'merriweather', 'nunito', 'playfair-display'];
@@ -14,23 +17,23 @@ Quill.register(Size, true);
 // Register generic Attributors and Blots so Quill preserves class, style, id, target, rel, section, and div
 const Parchment = Quill.import('parchment');
 
-const ClassAttribute = new Parchment.Attributor.Attribute('class', 'class', {
+const ClassAttribute = new Parchment.Attributor('class', 'class', {
   scope: Parchment.Scope.ANY
 });
-const StyleAttribute = new Parchment.Attributor.Attribute('style', 'style', {
+const StyleAttribute = new Parchment.Attributor('style', 'style', {
   scope: Parchment.Scope.ANY
 });
-const IdAttribute = new Parchment.Attributor.Attribute('id', 'id', {
+const IdAttribute = new Parchment.Attributor('id', 'id', {
   scope: Parchment.Scope.ANY
 });
-const TargetAttribute = new Parchment.Attributor.Attribute('target', 'target', {
+const TargetAttribute = new Parchment.Attributor('target', 'target', {
   scope: Parchment.Scope.ANY
 });
-const RelAttribute = new Parchment.Attributor.Attribute('rel', 'rel', {
+const RelAttribute = new Parchment.Attributor('rel', 'rel', {
   scope: Parchment.Scope.ANY
 });
 
-const Block = Quill.import('blots/block');  
+const Block = Quill.import('blots/block');
 class SectionBlot extends Block { }
 SectionBlot.blotName = 'section';
 SectionBlot.tagName = 'section';
@@ -47,18 +50,11 @@ Quill.register(RelAttribute, true);
 Quill.register(SectionBlot, true);
 Quill.register(DivBlot, true);
 
-import 'react-quill/dist/quill.snow.css';
+import 'react-quill-new/dist/quill.snow.css';
 import axiosClient from './AxiosClient';
 import { useParams, useNavigate } from 'react-router-dom';
 import Aos from 'aos';
-import {
-  TableActionToolbar,
-  InsertTableModal,
-  insertTableIntoQuill,
-  executeTableAction,
-  setupQuillTableListeners,
-  formatTableCellOrSelection
-} from './TableControls';
+Quill.register({ 'modules/table-up': TableUp }, true);
 
 const EditBlogPostForm = () => {
   const { postId } = useParams();
@@ -85,19 +81,9 @@ const EditBlogPostForm = () => {
 
   const quillRef = useRef(null);
   const lastFocusedCellRef = useRef(null);
-  const [showTableModal, setShowTableModal] = useState(false);
-
   const [lastSaved, setLastSaved] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
-
-  // Setup Quill Table listeners for editable cells, cell focus & tab navigation
-  useEffect(() => {
-    const editor = quillRef.current?.getEditor();
-    if (!editor || !editor.root) return;
-
-    const cleanup = setupQuillTableListeners(editor, setContent, lastFocusedCellRef);
-    return cleanup;
-  }, []);
+  const [editorMode, setEditorMode] = useState('visual'); // 'visual' | 'html'
 
   // Load categories list on mount
   useEffect(() => {
@@ -265,6 +251,10 @@ const EditBlogPostForm = () => {
   };
 
   const modules = useMemo(() => ({
+    table: true,
+    'table-up': {
+      customSelect: defaultCustomSelect
+    },
     toolbar: {
       container: [
         [{ 'font': ['', 'serif', 'monospace', 'poppins', 'inter', 'roboto', 'open-sans', 'lato', 'montserrat', 'lora', 'merriweather', 'nunito', 'playfair-display'] }],
@@ -275,13 +265,12 @@ const EditBlogPostForm = () => {
         [{ 'align': [] }],
         ['bold', 'italic', 'underline', 'strike', 'sub', 'super'],
         [{ 'color': [] }, { 'background': [] }],
-        ['link', 'image', 'video', 'table', 'code-block', 'blockquote'],
+        ['link', 'image', 'video', { 'table-up': [] }, 'code-block', 'blockquote'],
         ['clean']
       ],
       handlers: {
         image: imageHandler,
-        video: videoHandler,
-        table: () => setShowTableModal(true)
+        video: videoHandler
       }
     },
     history: {
@@ -299,7 +288,18 @@ const EditBlogPostForm = () => {
         const data = response.data.blog || response.data;
         setTitle(data.title || '');
         setSlug(data.slug || '');
-        setContent(data.content || '');
+
+        const rawContent = data.content || '';
+        setContent(rawContent);
+
+        // Smart detection for complex HTML
+        if (/<table/i.test(rawContent) || /<li[^>]+class=/i.test(rawContent) || /<tr/i.test(rawContent) || /<thead/i.test(rawContent)) {
+          setEditorMode('html');
+          toast('Complex HTML detected. Switched to HTML Source Mode to protect formatting.', {
+            icon: '🛡️',
+            style: { borderRadius: '10px', background: '#fff3cd', color: '#856404' }
+          });
+        }
         setSummary(data.excerpt || data.summary || '');
         setTags(Array.isArray(data.tags) ? data.tags.join(', ') : '');
         setAuthor(typeof data.author === 'object' && data.author !== null ? data.author.name : (data.author || ''));
@@ -624,24 +624,58 @@ const EditBlogPostForm = () => {
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="block text-sm font-medium text-gray-700">Content</label>
-                <span className="text-xs text-indigo-600 font-medium bg-indigo-50 px-2 py-0.5 rounded-full">
-                  Interactive Table Enabled
-                </span>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-indigo-600 font-medium bg-indigo-50 px-2 py-0.5 rounded-full">
+                    Interactive Table Enabled
+                  </span>
+
+                  {/* Editor Mode Toggle */}
+                  <div className="flex bg-gray-100 rounded-lg p-0.5 border border-gray-200">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        if (editorMode === 'html') {
+                          if (/<table/i.test(content) || /<li[^>]+class=/i.test(content)) {
+                            if (!window.confirm("Switching to Visual Mode may strip your tables and advanced Tailwind classes. Are you sure you want to continue?")) {
+                              return;
+                            }
+                          }
+                        }
+                        setEditorMode('visual');
+                      }}
+                      className={`px-3 py-1 text-xs font-semibold rounded-md transition-colors cursor-pointer ${editorMode === 'visual' ? 'bg-white shadow-sm text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
+                    >
+                      Visual
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setEditorMode('html')}
+                      className={`px-3 py-1 text-xs font-semibold rounded-md transition-colors cursor-pointer ${editorMode === 'html' ? 'bg-white shadow-sm text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
+                    >
+                      HTML Source
+                    </button>
+                  </div>
+                </div>
               </div>
 
-              <TableActionToolbar
-                onOpenModal={() => setShowTableModal(true)}
-                onAction={(action) => executeTableAction(action, quillRef, lastFocusedCellRef, setContent)}
-              />
-
-              <ReactQuill
-                ref={quillRef}
-                modules={modules}
-                theme="snow"
-                value={content}
-                onChange={setContent}
-                className="mt-1 h-80 mb-12 bg-white text-gray-800"
-              />
+              {editorMode === 'visual' ? (
+                <ReactQuill
+                  ref={quillRef}
+                  modules={modules}
+                  theme="snow"
+                  value={content}
+                  onChange={setContent}
+                  className="mt-1 h-80 mb-12 bg-white text-gray-800"
+                />
+              ) : (
+                <textarea
+                  value={content}
+                  onChange={(e) => setContent(e.target.value)}
+                  className="mt-1 w-full h-[380px] p-4 mb-2 font-mono text-sm bg-[#1e1e1e] text-[#d4d4d4] rounded-md border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 overflow-y-auto"
+                  placeholder="<p>Write your raw HTML here...</p>"
+                  spellCheck="false"
+                />
+              )}
               <button
                 type="button"
                 onClick={handleContent}
@@ -775,14 +809,6 @@ const EditBlogPostForm = () => {
         </div>
       )}
 
-      {/* Insert Table Modal */}
-      <InsertTableModal
-        isOpen={showTableModal}
-        onClose={() => setShowTableModal(false)}
-        onInsert={(rows, cols, hasHeader) =>
-          insertTableIntoQuill(rows, cols, hasHeader, quillRef, setContent)
-        }
-      />
     </div>
   );
 };

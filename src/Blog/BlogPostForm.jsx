@@ -1,7 +1,10 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import ReactQuill, { Quill } from 'react-quill';
+import ReactQuill, { Quill } from 'react-quill-new';
+import TableUp, { defaultCustomSelect } from 'quill-table-up';
+import 'quill-table-up/index.css';
+import 'quill-table-up/table-creator.css';
 
 const Font = Quill.import('formats/font');
 Font.whitelist = ['', 'serif', 'monospace', 'poppins', 'inter', 'roboto', 'open-sans', 'lato', 'montserrat', 'lora', 'merriweather', 'nunito', 'playfair-display'];
@@ -14,19 +17,19 @@ Quill.register(Size, true);
 // Register generic Attributors and Blots so Quill preserves class, style, id, target, rel, section, and div
 const Parchment = Quill.import('parchment');
 
-const ClassAttribute = new Parchment.Attributor.Attribute('class', 'class', {
+const ClassAttribute = new Parchment.Attributor('class', 'class', {
   scope: Parchment.Scope.ANY
 });
-const StyleAttribute = new Parchment.Attributor.Attribute('style', 'style', {
+const StyleAttribute = new Parchment.Attributor('style', 'style', {
   scope: Parchment.Scope.ANY
 });
-const IdAttribute = new Parchment.Attributor.Attribute('id', 'id', {
+const IdAttribute = new Parchment.Attributor('id', 'id', {
   scope: Parchment.Scope.ANY
 });
-const TargetAttribute = new Parchment.Attributor.Attribute('target', 'target', {
+const TargetAttribute = new Parchment.Attributor('target', 'target', {
   scope: Parchment.Scope.ANY
 });
-const RelAttribute = new Parchment.Attributor.Attribute('rel', 'rel', {
+const RelAttribute = new Parchment.Attributor('rel', 'rel', {
   scope: Parchment.Scope.ANY
 });
 
@@ -46,17 +49,10 @@ Quill.register(TargetAttribute, true);
 Quill.register(RelAttribute, true);
 Quill.register(SectionBlot, true);
 Quill.register(DivBlot, true);
-import 'react-quill/dist/quill.snow.css';
+import 'react-quill-new/dist/quill.snow.css';
 import axiosClient from './AxiosClient';
 import { useNavigate } from 'react-router-dom';
-import {
-  TableActionToolbar,
-  InsertTableModal,
-  insertTableIntoQuill,
-  executeTableAction,
-  setupQuillTableListeners,
-  formatTableCellOrSelection
-} from './TableControls';
+Quill.register({ 'modules/table-up': TableUp }, true);
 
 
 const BlogPostForm = () => {
@@ -80,20 +76,8 @@ const BlogPostForm = () => {
   const [subCategoriesList, setSubCategoriesList] = useState([]);
 
   const quillRef = useRef(null);
-  const lastFocusedCellRef = useRef(null);
-  const [showTableModal, setShowTableModal] = useState(false);
-
   const [lastSaved, setLastSaved] = useState(null);
   const [showPreview, setShowPreview] = useState(false);
-
-  // Setup Quill Table listeners for editable cells, cell focus & tab navigation
-  useEffect(() => {
-    const editor = quillRef.current?.getEditor();
-    if (!editor || !editor.root) return;
-
-    const cleanup = setupQuillTableListeners(editor, setContent, lastFocusedCellRef);
-    return cleanup;
-  }, []);
 
   // Initial load: check for draft
   useEffect(() => {
@@ -397,6 +381,10 @@ const BlogPostForm = () => {
   };
 
   const modules = useMemo(() => ({
+    table: true,
+    'table-up': {
+      customSelect: defaultCustomSelect
+    },
     toolbar: {
       container: [
         [{ 'font': ['', 'serif', 'monospace', 'poppins', 'inter', 'roboto', 'open-sans', 'lato', 'montserrat', 'lora', 'merriweather', 'nunito', 'playfair-display'] }],
@@ -407,13 +395,12 @@ const BlogPostForm = () => {
         [{ 'align': [] }],
         ['bold', 'italic', 'underline', 'strike', 'sub', 'super'],
         [{ 'color': [] }, { 'background': [] }],
-        ['link', 'image', 'video', 'table', 'code-block', 'blockquote'],
+        ['link', 'image', 'video', { 'table-up': [] }, 'code-block', 'blockquote'],
         ['clean']
       ],
       handlers: {
         image: imageHandler,
-        video: videoHandler,
-        table: () => setShowTableModal(true)
+        video: videoHandler
       }
     },
     history: {
@@ -582,11 +569,6 @@ const BlogPostForm = () => {
               </span>
             </div>
 
-            <TableActionToolbar
-              onOpenModal={() => setShowTableModal(true)}
-              onAction={(action) => executeTableAction(action, quillRef, lastFocusedCellRef, setContent)}
-            />
-
             <ReactQuill
               ref={quillRef}
               modules={modules}
@@ -729,14 +711,6 @@ const BlogPostForm = () => {
         </div>
       )}
 
-      {/* Insert Table Modal */}
-      <InsertTableModal
-        isOpen={showTableModal}
-        onClose={() => setShowTableModal(false)}
-        onInsert={(rows, cols, hasHeader) =>
-          insertTableIntoQuill(rows, cols, hasHeader, quillRef, setContent)
-        }
-      />
     </>
   );
 };

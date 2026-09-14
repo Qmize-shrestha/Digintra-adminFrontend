@@ -79,7 +79,7 @@ export default function SingleBlog() {
           {/* Left Column: Blog Content */}
           <div className="w-full lg:w-2/3 xl:w-3/4">
             {/* Header Section */}
-            {!blog.content?.includes('<h1') && (
+            {!blog.content?.includes('<h1') && !['best-bulk-sms-providers-in-india', 'bulk-sms-uae', 'rcs-messaging-the-future-of-business-messaging', 'dlt-registration-india-guide', 'bsnl-dlt-registration-guide', 'vi-dlt-registration-guide', 'promotional-text-message-examples', 'sms-api', 'a2p-sms-messaging-business-guide'].includes(blog.slug) && (
               <header className="mb-6 text-left">
                 <h1 className="text-4xl font-extrabold text-black leading-tight">
                   {blog.title}
@@ -88,7 +88,7 @@ export default function SingleBlog() {
             )}
 
             {/* Cover Image */}
-            {blog.featuredImage && (
+            {blog.featuredImage && !['best-bulk-sms-providers-in-india', 'bulk-sms-uae', 'rcs-messaging-the-future-of-business-messaging', 'dlt-registration-india-guide', 'bsnl-dlt-registration-guide', 'vi-dlt-registration-guide', 'promotional-text-message-examples', 'sms-api', 'a2p-sms-messaging-business-guide'].includes(blog.slug) && (
               <div className="mb-12 rounded-2xl overflow-hidden shadow-xl">
                 <img
                   src={blog.featuredImage}
@@ -100,7 +100,9 @@ export default function SingleBlog() {
 
             {/* Blog Content */}
             <div
-              className="prose prose-lg md:prose-xl prose-blue max-w-none text-gray-800 blog-content overflow-x-auto [&_table]:w-full [&_table]:border-collapse [&_table]:my-6 [&_th]:border [&_th]:border-slate-300 [&_th]:bg-slate-100 [&_th]:p-3 [&_th]:font-bold [&_td]:border [&_td]:border-slate-200 [&_td]:p-3 [&_tr:nth-child(even)]:bg-slate-50/70"
+              className="prose prose-lg md:prose-xl prose-blue max-w-none text-gray-800 blog-content overflow-x-auto [&_table]:w-full [&_table]:border-collapse 
+              [&_table]:my-6 [&_th]:border [&_th]:border-slate-300 [&_th]:bg-slate-100 [&_th]:p-3 [&_th]:font-bold [&_td]:border [&_td]:border-slate-200 [&_td]:p-3
+              [&_tr:nth-child(even)]:bg-slate-50/70 [&_a]:text-blue-600 [&_a]:hover:text-blue-800 [&_a]:underline"
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
 
@@ -111,7 +113,8 @@ export default function SingleBlog() {
             {/* {blog.tags && blog.tags.length > 0 && (
               <div className="mt-12 pt-8 border-t border-gray-200">
                 <h4 className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-4">Tags</h4>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2
+                ">
                   {blog.tags.map((tag, index) => (
                     <span key={index} className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-sm">
                       {tag}
