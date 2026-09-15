@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { toast } from 'react-hot-toast';
@@ -7,6 +7,36 @@ import axiosClient from '../Blog/AxiosClient';
 import Blogpart from '../components/Blogpart';
 import Footer from '../components/Footer';
 import BlogNavigation from '../components/BlogNavigation';
+
+const formatBlogContent = (content) => {
+  if (!content) return '';
+  // 1. Remove inline fixed width on <table> tags
+  let cleaned = content.replace(/<table([^>]*?)style="([^"]*?)"/gi, (match, attrs, style) => {
+    const filteredStyle = style.replace(/width\s*:\s*[^;]+;?/gi, '').trim();
+    return `<table${attrs}${filteredStyle ? ` style="${filteredStyle}"` : ''}`;
+  });
+  // 2. Remove inline fixed width on <p> tags
+  cleaned = cleaned.replace(/<p([^>]*?)style="([^"]*?)"/gi, (match, attrs, style) => {
+    const filteredStyle = style.replace(/width\s*:\s*[^;]+;?/gi, '').trim();
+    return `<p${attrs}${filteredStyle ? ` style="${filteredStyle}"` : ''}`;
+  });
+  // 3. Ensure unwrapped tables are safely wrapped in .table-responsive
+  cleaned = cleaned.replace(
+    /(<div[^>]*class=["'][^"']*(?:table-responsive|ql-table-wrapper)[^"']*["'][^>]*>\s*)?(<table[\s\S]*?<\/table>)/gi,
+    (match, existingWrapper, tableHtml) => {
+      if (existingWrapper) {
+        return `${existingWrapper}${tableHtml}`;
+      }
+      return `<div class="table-responsive">${tableHtml}</div>`;
+    }
+  );
+
+  // 4. Strip stray sidebar fragments pasted at the end of blog content
+  cleaned = cleaned.replace(/<div[^>]*class=["'][^"']*lg:w-\[320px\][^"']*["'][^>]*>[\s\S]*$/gi, '');
+  cleaned = cleaned.replace(/<div[^>]*class=["'][^"']*rounded-2xl shadow-xl[^"']*["'][^>]*>\s*<\/div>/gi, '');
+
+  return cleaned;
+};
 
 export default function SingleBlog() {
   const { slug } = useParams();
@@ -77,7 +107,7 @@ export default function SingleBlog() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-12">
 
           {/* Left Column: Blog Content */}
-          <div className="w-full lg:w-2/3 xl:w-3/4">
+          <div className="w-full lg:w-2/3 xl:w-3/4 min-w-0 max-w-full">
             {/* Header Section */}
             {!blog.content?.includes('<h1') && !['best-bulk-sms-providers-in-india', 'bulk-sms-uae', 'rcs-messaging-the-future-of-business-messaging', 'dlt-registration-india-guide', 'bsnl-dlt-registration-guide', 'vi-dlt-registration-guide', 'promotional-text-message-examples', 'sms-api', 'a2p-sms-messaging-business-guide'].includes(blog.slug) && (
               <header className="mb-6 text-left">
@@ -100,10 +130,9 @@ export default function SingleBlog() {
 
             {/* Blog Content */}
             <div
-              className="prose prose-lg md:prose-xl prose-blue max-w-none text-gray-800 blog-content overflow-x-auto [&_table]:w-full [&_table]:border-collapse 
-              [&_table]:my-6 [&_th]:border [&_th]:border-slate-300 [&_th]:bg-slate-100 [&_th]:p-3 [&_th]:font-bold [&_td]:border [&_td]:border-slate-200 [&_td]:p-3
-              [&_tr:nth-child(even)]:bg-slate-50/70 [&_a]:text-blue-600 [&_a]:hover:text-blue-800 [&_a]:underline"
-              dangerouslySetInnerHTML={{ __html: blog.content }}
+              className="prose prose-lg md:prose-xl prose-blue max-w-none text-gray-800 blog-content w-full min-w-0 max-w-full break-words
+              [&_a]:text-blue-600 [&_a]:hover:text-blue-800 [&_a]:underline"
+              dangerouslySetInnerHTML={{ __html: formatBlogContent(blog.content) }}
             />
 
             {/* Previous / Next Article Navigation */}

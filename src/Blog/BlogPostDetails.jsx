@@ -135,6 +135,35 @@ const BlogPostDetail = () => {
     ADD_ATTR: ['src', 'width', 'height', 'frameborder', 'allow', 'allowfullscreen', 'class', 'style', 'title', 'target']
   });
 
+  const formatTables = (html) => {
+    if (!html) return '';
+    let cleaned = html.replace(/<table([^>]*?)style="([^"]*?)"/gi, (match, attrs, style) => {
+      const filteredStyle = style.replace(/width\s*:\s*[^;]+;?/gi, '').trim();
+      return `<table${attrs}${filteredStyle ? ` style="${filteredStyle}"` : ''}`;
+    });
+    cleaned = cleaned.replace(/<p([^>]*?)style="([^"]*?)"/gi, (match, attrs, style) => {
+      const filteredStyle = style.replace(/width\s*:\s*[^;]+;?/gi, '').trim();
+      return `<p${attrs}${filteredStyle ? ` style="${filteredStyle}"` : ''}`;
+    });
+    cleaned = cleaned.replace(
+      /(<div[^>]*class=["'][^"']*(?:table-responsive|ql-table-wrapper)[^"']*["'][^>]*>\s*)?(<table[\s\S]*?<\/table>)/gi,
+      (match, existingWrapper, tableHtml) => {
+        if (existingWrapper) {
+          return `${existingWrapper}${tableHtml}`;
+        }
+        return `<div class="table-responsive">${tableHtml}</div>`;
+      }
+    );
+
+    // Strip stray sidebar fragments pasted at the end of blog content
+    cleaned = cleaned.replace(/<div[^>]*class=["'][^"']*lg:w-\[320px\][^"']*["'][^>]*>[\s\S]*$/gi, '');
+    cleaned = cleaned.replace(/<div[^>]*class=["'][^"']*rounded-2xl shadow-xl[^"']*["'][^>]*>\s*<\/div>/gi, '');
+
+    return cleaned;
+  };
+
+  const processedSanitizedContent = formatTables(sanitizedContent);
+
   const renderPosts = () => (
     <div className="bg-gray-100 p-4 h-auto rounded-lg">
       {/* <h3 className="text-xl font-semibold mb-2">Recent Posts</h3> */}
@@ -163,9 +192,10 @@ const BlogPostDetail = () => {
       console.log('Delete response:', response.data);
       toast.success('Blog post deleted successfully!');
       // Handle success (e.g., update UI or notify the user)
+      // For example, redirect to another page or refresh the list
     } catch (error) {
       console.error('Error deleting blog post:', error);
-      toast.error('Error deleting blog post');
+      toast.error('Failed to delete blog post.');
       // Handle error (e.g., show an error message)
     }
   };
@@ -179,19 +209,18 @@ function handleLogout() {
 }
 
   return (
-    <div className='w-full pt-40 mb-12'>
-      <div className="w-[90%] m-auto ">
-        <h1 className='mt-4 text-center text-xl md:text-4xl font-bold' >{post.title} | MSG24x7</h1>
-        <div className='min-w-[200px] max-w-[500px] m-auto flex justify-center items-center mt-4 gap-2 md:gap-6'>
-          <img src="https://msg24x7.com/assets/mSg24x7_Communications_Logo_1_x97-De0z8R1X.png" className='rounded-full w-12' alt="" />
-          <h5 className='text-[12px] md:text-xl'>{post.author}</h5>
-          <p className='text-gray-400  text-[6px] md:text-sm'>. last edited on .</p>
-          <p className='text-gray-400 text-[6px] md:text-sm'>{new Date(post.updatedAt).toLocaleDateString()}</p>
-        </div>
-      </div>
-      <div className='w-[90%] m-auto flex flex-col md:flex-row mt-2'>
-        <div className='w-full md:w-[25%] h-[50%] md:h-screen md:sticky top-16'>
-          <div className=" scrollbar-style shadow-xl w-full rounded-lg p-3 h-[200px] md:h-[45%] mt-8 overflow-y-auto">
+    <>
+      <Helmet>
+        <title>{post.metaTitle}</title>
+        <meta name="description" content={post.metaDescription} />
+        <link rel="canonical" href={post.canonicalUrl} />
+      </Helmet>
+      
+      <div className="flex flex-col md:flex-row justify-between w-full p-4 mt-28">
+        
+        {/* Table of Contents / Sidebar */}
+        <div className="w-full md:w-[25%] p-4 rounded-lg self-start">
+          <div>
             <p className='border-[#5a595950] text-center pb-4 font-semibold text-lg border-l border-t-4 border-r rounded-lg border-[#050A16] bg-gradient-to-r from-orange-400 via-red-600 to-blue-400 text-transparent bg-clip-text'>Table of Content</p>
             {modifiedHeadingsArray}
           </div>
@@ -201,10 +230,10 @@ function handleLogout() {
           </div>
         </div>
 
-        <div className="w-full md:w-[70%] max-w-4xl mx-auto mt-12 px-1 md:px-6">
+        <div className="w-full md:w-[70%] max-w-4xl mx-auto mt-12 px-1 md:px-6 min-w-0 max-w-full">
           <img src={post.coverImage} className="w-full  object-cover rounded-lg shadow-lg" alt={post.title} />
           <div className="mt-6">
-            <div className="prose lg:prose-xl each-post-content" dangerouslySetInnerHTML={{ __html: sanitizedContent }} />
+            <div className="prose lg:prose-xl each-post-content w-full min-w-0 max-w-full break-words" dangerouslySetInnerHTML={{ __html: processedSanitizedContent }} />
           </div>
           
           
@@ -244,7 +273,7 @@ function handleLogout() {
       <div className="w-[80%] m-auto mt-5">
         {renderPosts()}
       </div>
-    </div>
+    </>
   );
 };
 

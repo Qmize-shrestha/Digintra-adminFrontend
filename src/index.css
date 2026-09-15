@@ -243,47 +243,79 @@ html {
 /* =====================================================
    Custom Responsive Table Styling (Editor & Blog View)
    ===================================================== */
-.table-responsive {
-  width: 100%;
-  overflow-x: auto;
+.table-responsive,
+.ql-table-wrapper {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  overflow-x: auto !important;
   -webkit-overflow-scrolling: touch;
-  margin: 18px 0;
-  border-radius: 10px;
+  margin: 1.75rem 0 !important;
+  border-radius: 8px !important;
+  border: 1px solid #cbd5e1 !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
 }
 
-.table-responsive::-webkit-scrollbar {
+.table-responsive::-webkit-scrollbar,
+.ql-table-wrapper::-webkit-scrollbar {
   height: 6px;
 }
 
-.table-responsive::-webkit-scrollbar-thumb {
+.table-responsive::-webkit-scrollbar-track,
+.ql-table-wrapper::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb,
+.ql-table-wrapper::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 4px;
 }
 
-/* Base table styles in editor and published blogs */
-.ql-editor .table-responsive {
-  display: block !important;
-  width: 100% !important;
-  margin: 16px 0 !important;
-  user-select: text !important;
+.table-responsive::-webkit-scrollbar-thumb:hover,
+.ql-table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
+/* Base table styles across entire site */
 .ql-editor table,
 .blog-custom-table,
 .each-post-content table,
 .blog-content table,
-.prose table {
+.prose table,
+table.ql-table {
   display: table !important;
   width: 100% !important;
-  min-width: 480px;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  table-layout: fixed !important;
   border-collapse: collapse !important;
-  margin: 16px 0 !important;
-  font-size: 14px;
+  margin: 0 !important;
+  font-size: 15px;
   line-height: 1.6;
+  background-color: #ffffff;
+  border-spacing: 0 !important;
+}
+
+/* Standalone tables directly in content get an outer border */
+.blog-content > table,
+.each-post-content > table,
+.prose > table {
   border: 1px solid #cbd5e1 !important;
   border-radius: 8px !important;
-  overflow: hidden !important;
-  background-color: #ffffff;
+  margin: 1.75rem 0 !important;
+  display: table !important;
+}
+
+/* Override hardcoded col widths so columns distribute properly */
+.blog-content table col,
+.each-post-content table col,
+.prose table col,
+.ql-table col,
+.ql-editor table col {
+  width: auto !important;
 }
 
 /* Table Headers */
@@ -291,14 +323,22 @@ html {
 .blog-custom-table th,
 .each-post-content table th,
 .blog-content table th,
-.prose table th {
-  background-color: #f1f5f9;
-  color: #0f172a;
-  font-weight: 700;
+.prose table th,
+table.ql-table th,
+.blog-content table thead td,
+.each-post-content table thead td,
+.prose table thead td {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
   padding: 12px 16px !important;
   border: 1px solid #cbd5e1 !important;
+  border-bottom: 2px solid #94a3b8 !important;
   text-align: left;
   letter-spacing: 0.02em;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
 }
 
 /* Table Body Cells */
@@ -306,29 +346,86 @@ html {
 .blog-custom-table td,
 .each-post-content table td,
 .blog-content table td,
-.prose table td {
-  padding: 10px 16px !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #334155;
+.prose table td,
+table.ql-table td,
+td.ql-table-cell {
+  padding: 12px 16px !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
   vertical-align: middle;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+}
+
+/* When the first row contains strong tags or acts as a header */
+.blog-content table tbody tr:first-child:has(strong) td,
+.each-post-content table tbody tr:first-child:has(strong) td,
+.prose table tbody tr:first-child:has(strong) td,
+table.ql-table tbody tr:first-child:has(strong) td {
+  background-color: #f1f5f9 !important;
+  font-weight: 700 !important;
+  color: #0f172a !important;
+  border-bottom: 2px solid #94a3b8 !important;
 }
 
 /* Alternating row colors */
-.ql-editor table tr:nth-child(even),
-.blog-custom-table tr:nth-child(even),
-.each-post-content table tr:nth-child(even),
-.blog-content table tr:nth-child(even),
-.prose table tr:nth-child(even) {
-  background-color: #f8fafc;
+.ql-editor table tbody tr:nth-child(even),
+.blog-custom-table tbody tr:nth-child(even),
+.each-post-content table tbody tr:nth-child(even),
+.blog-content table tbody tr:nth-child(even),
+.prose table tbody tr:nth-child(even),
+table.ql-table tbody tr:nth-child(even) {
+  background-color: #f8fafc !important;
 }
 
 /* Hover highlight */
-.ql-editor table tr:hover,
-.blog-custom-table tr:hover,
-.each-post-content table tr:hover,
-.blog-content table tr:hover,
-.prose table tr:hover {
-  background-color: #f1f5f9;
+.ql-editor table tbody tr:hover,
+.blog-custom-table tbody tr:hover,
+.each-post-content table tbody tr:hover,
+.blog-content table tbody tr:hover,
+.prose table tbody tr:hover,
+table.ql-table tbody tr:hover {
+  background-color: #f1f5f9 !important;
+}
+
+/* CRITICAL: Overriding any hardcoded inline width on children inside cells */
+.blog-content table td *,
+.blog-content table th *,
+.each-post-content table td *,
+.each-post-content table th *,
+.prose table td *,
+.prose table th *,
+.ql-editor table td *,
+.ql-editor table th *,
+table.ql-table td *,
+table.ql-table th *,
+.ql-table-cell *,
+.ql-table-cell-inner {
+  max-width: 100% !important;
+  word-break: break-word !important;
+  overflow-wrap: break-word !important;
+  white-space: normal !important;
+  box-sizing: border-box !important;
+}
+
+.blog-content table td p,
+.blog-content table th p,
+.each-post-content table td p,
+.each-post-content table th p,
+.prose table td p,
+.prose table th p,
+.ql-editor table td p,
+.ql-editor table th p,
+table.ql-table td p,
+table.ql-table th p,
+.ql-table-cell-inner p,
+p.ql-table-cell-inner {
+  width: auto !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
 }
 
 /* Quill editor specific table cell editing UX */
@@ -342,4 +439,39 @@ html {
 .ql-editor table th:focus {
   outline: 2px solid #6366f1;
   outline-offset: -2px;
+}
+
+/* quill-table-up UI Actions (Context Menu, Alignment, Resize, Tooltips) */
+.table-up-menu,
+.table-up-align,
+.table-up-dialog,
+.table-up-tooltip {
+  z-index: 9999 !important;
+}
+
+/* Quill Visual Editor Layout & Scrollable Container */
+.quill-editor-custom {
+  display: flex;
+  flex-direction: column;
+}
+
+.quill-editor-custom .ql-toolbar {
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  border-color: #d1d5db !important;
+  background-color: #f9fafb;
+}
+
+.quill-editor-custom .ql-container {
+  height: 420px;
+  font-size: 15px;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  border-color: #d1d5db !important;
+  overflow-y: auto;
+  background-color: #ffffff;
+}
+
+.quill-editor-custom .ql-editor {
+  min-height: 100%;
 }

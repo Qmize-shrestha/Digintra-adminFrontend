@@ -2,9 +2,17 @@ import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'
 import { toast } from 'react-hot-toast';
 import axios from 'axios';
 import ReactQuill, { Quill } from 'react-quill-new';
-import TableUp, { defaultCustomSelect } from 'quill-table-up';
+import TableUp, {
+  defaultCustomSelect,
+  TableSelection,
+  TableMenuContextmenu,
+  TableAlign,
+  TableResizeLine,
+  TableResizeScale
+} from 'quill-table-up';
 import 'quill-table-up/index.css';
 import 'quill-table-up/table-creator.css';
+import { cleanAndFormatHtml } from './htmlFormatter';
 
 const Font = Quill.import('formats/font');
 Font.whitelist = ['', 'serif', 'monospace', 'poppins', 'inter', 'roboto', 'open-sans', 'lato', 'montserrat', 'lora', 'merriweather', 'nunito', 'playfair-display'];
@@ -129,20 +137,25 @@ const EditBlogPostForm = () => {
     input.onchange = async () => {
       const file = input.files[0];
       if (file) {
+        const loadingToast = toast.loading('Uploading image, please wait...');
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', 'tdcahggc');
 
         try {
           const response = await axios.post('https://api.cloudinary.com/v1_1/dtqo1n4mc/image/upload', formData);
-          const url = response.data.secure_url;
+          let url = response.data.secure_url;
+          if (url && url.includes('/upload/')) {
+            url = url.replace('/upload/', '/upload/f_auto,q_auto,w_1200,c_limit/');
+          }
           const quill = quillRef.current.getEditor();
           const range = quill.getSelection(true);
           const index = range ? range.index : 0;
           quill.insertEmbed(index, 'image', url);
+          toast.success('Image inserted successfully!', { id: loadingToast });
         } catch (error) {
           console.error('Error uploading image:', error);
-          toast.error('Failed to upload image. Please try again.');
+          toast.error('Failed to upload image. Please try again.', { id: loadingToast });
         }
       }
     };
@@ -251,9 +264,16 @@ const EditBlogPostForm = () => {
   };
 
   const modules = useMemo(() => ({
-    table: true,
     'table-up': {
-      customSelect: defaultCustomSelect
+      customSelect: defaultCustomSelect,
+      full: true,
+      modules: [
+        { module: TableSelection },
+        { module: TableMenuContextmenu },
+        { module: TableAlign },
+        { module: TableResizeLine },
+        { module: TableResizeScale }
+      ]
     },
     toolbar: {
       container: [
@@ -624,24 +644,15 @@ const EditBlogPostForm = () => {
             <div>
               <div className="flex items-center justify-between mb-1.5">
                 <label className="block text-sm font-medium text-gray-700">Content</label>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-indigo-600 font-medium bg-indigo-50 px-2 py-0.5 rounded-full">
-                    Interactive Table Enabled
-                  </span>
-
                   {/* Editor Mode Toggle */}
                   <div className="flex bg-gray-100 rounded-lg p-0.5 border border-gray-200">
                     <button
                       type="button"
                       onClick={() => {
-                        if (editorMode === 'html') {
-                          if (/<table/i.test(content) || /<li[^>]+class=/i.test(content)) {
-                            if (!window.confirm("Switching to Visual Mode may strip your tables and advanced Tailwind classes. Are you sure you want to continue?")) {
-                              return;
-                            }
-                          }
+                        if (editorMode !== 'visual') {
+                          setEditorMode('visual');
+                          toast.success('Switched to Visual Mode');
                         }
-                        setEditorMode('visual');
                       }}
                       className={`px-3 py-1 text-xs font-semibold rounded-md transition-colors cursor-pointer ${editorMode === 'visual' ? 'bg-white shadow-sm text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
                     >
@@ -649,29 +660,36 @@ const EditBlogPostForm = () => {
                     </button>
                     <button
                       type="button"
-                      onClick={() => setEditorMode('html')}
+                      onClick={() => {
+                        if (editorMode !== 'html') {
+                          setContent((prev) => cleanAndFormatHtml(prev));
+                          setEditorMode('html');
+                          toast.success('Switched to HTML Source Mode');
+                        }
+                      }}
                       className={`px-3 py-1 text-xs font-semibold rounded-md transition-colors cursor-pointer ${editorMode === 'html' ? 'bg-white shadow-sm text-indigo-600' : 'text-gray-500 hover:text-gray-700'}`}
                     >
                       HTML Source
                     </button>
                   </div>
                 </div>
-              </div>
 
               {editorMode === 'visual' ? (
-                <ReactQuill
-                  ref={quillRef}
-                  modules={modules}
-                  theme="snow"
-                  value={content}
-                  onChange={setContent}
-                  className="mt-1 h-80 mb-12 bg-white text-gray-800"
-                />
+                <div className="mt-1 mb-4">
+                  <ReactQuill
+                    ref={quillRef}
+                    modules={modules}
+                    theme="snow"
+                    value={content}
+                    onChange={setContent}
+                    className="quill-editor-custom bg-white text-gray-800"
+                  />
+                </div>
               ) : (
                 <textarea
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
-                  className="mt-1 w-full h-[380px] p-4 mb-2 font-mono text-sm bg-[#1e1e1e] text-[#d4d4d4] rounded-md border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 overflow-y-auto"
+                  className="mt-1 w-full h-[450px] p-4 mb-4 font-mono text-xs md:text-sm leading-relaxed bg-[#1e1e1e] text-[#d4d4d4] rounded-lg border border-gray-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none overflow-y-auto block"
                   placeholder="<p>Write your raw HTML here...</p>"
                   spellCheck="false"
                 />
